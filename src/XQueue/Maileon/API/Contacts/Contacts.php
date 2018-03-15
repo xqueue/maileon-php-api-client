@@ -9,7 +9,7 @@ use XQueue\Maileon\API\XML\AbstractXMLWrapper;
  * A wrapper class for a list of Maileon contacts. To access the contacts
  * contained within this list, iterate this object using foreach (i.e. IteratorAggregate is implemented).
  */
-class Contacts extends AbstractXMLWrapper implements IteratorAggregate
+class Contacts extends AbstractXMLWrapper implements \IteratorAggregate
 {
     private $contacts;
 
