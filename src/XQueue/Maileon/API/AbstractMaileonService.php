@@ -384,7 +384,7 @@ abstract class AbstractMaileonService
                 echo $sessionLog . "\n";
                 if ($result != null) {
                     echo "Result:\n";
-                    echo $result->toString() . "\n";
+                    echo $result . "\n";
                 }
                 if ($exception != null) {
                     echo "Caught exception:\n";
@@ -398,7 +398,7 @@ abstract class AbstractMaileonService
                 if ($result != null) {
                     echo "<h3>Result</h3>\n";
                     echo "<pre>\n";
-                    echo htmlentities($result->toString());
+                    echo htmlentities($result);
                     echo "</pre>\n";
                 }
                 if ($exception != null) {
