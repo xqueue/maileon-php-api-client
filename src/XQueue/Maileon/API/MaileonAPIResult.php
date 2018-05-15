@@ -108,7 +108,7 @@ class MaileonAPIResult {
             // AddressCheck uses application/xml;charset=utf-8 content type
             if ($this->contentType == 'application/vnd.maileon.api+xml' || $this->contentType == 'application/xml;charset=utf-8') {
                 if ($this->startsWith(trim($this->bodyData), "<")) {
-                        $this->resultXML = new SimpleXMLElement($this->bodyData);
+                        $this->resultXML = new \SimpleXMLElement($this->bodyData);
                         $this->result = XMLDeserializer::deserialize($this->resultXML);
                 }
                 if (!isset($this->result) && !is_array($this->result)) {

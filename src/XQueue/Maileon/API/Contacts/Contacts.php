@@ -49,7 +49,7 @@ class Contacts extends AbstractXMLWrapper implements \IteratorAggregate
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->contacts);
+        return new \ArrayIterator($this->contacts);
     }
 
     /**
