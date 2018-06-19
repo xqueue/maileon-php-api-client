@@ -32,7 +32,7 @@ abstract class AbstractJSONWrapper {
             // toArray and insert the result in our array; 
             // otherwise we insert the value as-is
             if(gettype($value) == "object" && 
-             is_subclass_of($value, 'AbstractJSONWrapper')) {
+             is_subclass_of($value, 'XQueue\Maileon\API\JSON\AbstractJSONWrapper')) {
                 if(!$value->isEmpty()) {
                     $result[$key] = $value->toArray();
                 }
@@ -58,7 +58,7 @@ abstract class AbstractJSONWrapper {
         // copy each key to the property named the same way; if the property
         // is a serializable Maileon class, call fromArray on it
         foreach($object_vars as $key => $value) {
-            if(class_exists('AbstractJSONWrapper') && is_subclass_of( $this->{$key},'AbstractJSONWrapper' )) {
+            if(class_exists('XQueue\Maileon\API\JSON\AbstractJSONWrapper') && is_subclass_of( $this->{$key},'XQueue\Maileon\API\JSON\AbstractJSONWrapper' )) {
                 $this->{$key}->fromArray($value);
             } else {
                 $this->{$key} = $value;

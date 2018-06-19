@@ -61,7 +61,7 @@ class JSONDeserializer {
             
             // if we can call fromArray on the class call it, otherwise
             // return the object as-is and trigger a warning
-            if(is_subclass_of($class, 'AbstractJSONWrapper')) {
+            if(is_subclass_of($class, 'XQueue\Maileon\API\JSON\AbstractJSONWrapper')) {
                 $class->fromArray($object);
                 return $class;
             } else {

@@ -110,10 +110,10 @@ class TransactionsService extends AbstractMaileonService {
 				'ignore_invalid_transactions' => ($ignoreInvalidEvents == true)?'true':'false'
 		);
 
-                $data = JSONSerializer::json_encode($transactions);
-                
+		$data = JSONSerializer::json_encode($transactions);
+
 		$result = $this->post("transactions",  $data, $queryParameters, "application/json", 
-                    'com_maileon_api_transactions_ProcessingReports');
+                    'XQueue\Maileon\API\Transactions\ProcessingReports');
 		
 		return $result;
 	}
@@ -185,6 +185,6 @@ class TransactionsService extends AbstractMaileonService {
 	   );
 
 	   return $this->get("transactions", $queryParameters, "application/json",
-			   array('array', 'com_maileon_api_transactions_RecentTransaction'));
+			   array('array', 'XQueue\Maileon\API\Transactions\ProcessingReports'));
 	}
 }

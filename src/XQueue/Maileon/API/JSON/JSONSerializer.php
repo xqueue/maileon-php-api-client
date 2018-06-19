@@ -45,7 +45,7 @@ class JSONSerializer {
         } else if ($type == 'object') {  
             // if we can call toArray() on this object call it, otherwise return
             // the object as-is and trigger a notice
-            if(is_subclass_of($object, 'AbstractJSONWrapper')) { 
+            if(is_subclass_of($object, 'XQueue\Maileon\API\JSON\AbstractJSONWrapper')) { 
                 return $object->toArray();
             } else {
                 trigger_error("JSONSerializer: Trying to serialize " . get_class($object)); 
