@@ -185,6 +185,6 @@ class TransactionsService extends AbstractMaileonService {
 	   );
 
 	   return $this->get("transactions", $queryParameters, "application/json",
-			   array('array', 'XQueue\Maileon\API\Transactions\ProcessingReports'));
+			   array('array', 'XQueue\Maileon\API\Transactions\RecentTransaction'));
 	}
 }
