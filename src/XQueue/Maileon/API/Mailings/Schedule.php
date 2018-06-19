@@ -37,7 +37,7 @@ class Schedule extends AbstractXMLWrapper {
     /**
      * Initialization of the schedule from a simple xml element.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  The xml element that is used to parse the schedule from.
      */
     function fromXML($xmlElement) {
@@ -52,12 +52,12 @@ class Schedule extends AbstractXMLWrapper {
      *
      * @param bool $addXMLDeclaration
      *
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  Generate a XML element from the contact object.
      */
     function toXML($addXMLDeclaration = true) {
         $xmlString = $addXMLDeclaration ? "<?xml version=\"1.0\"?><mailing></mailing>" : "<mailing></mailing>";
-        $xml = new SimpleXMLElement($xmlString);
+        $xml = new \SimpleXMLElement($xmlString);
 
         if (isset($this->minutes)) $xml->addChild("minutes", $this->minutes);
         if (isset($this->hours)) $xml->addChild("hours", $this->hour);

@@ -37,19 +37,19 @@ class ContactEventList extends AbstractXMLWrapper
     /**
      * For future use, not yet implemented.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      */
     function fromXML($xmlElement)
     {
     }
 
     /**
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *    containing the XML serialization of this object
      */
     function toXML()
     {
-        $xml = new SimpleXMLElement("<?xml version=\"1.0\"?><events></events>");
+        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><events></events>");
 
         // Some fields are mandatory, especially when setting data to the API
         if (isset($this->token)) $xml->addChild("token", $this->token);

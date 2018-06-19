@@ -60,7 +60,7 @@ class ContactEventType extends AbstractXMLWrapper
     /**
      * Initializes this contact event type from an XML representation.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  the serialized XML representation to use
      */
     function fromXML($xmlElement)
@@ -108,12 +108,12 @@ class ContactEventType extends AbstractXMLWrapper
     }
 
     /**
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  containing the XML serialization of this object
      */
     function toXML()
     {
-        $xml = new SimpleXMLElement("<?xml version=\"1.0\"?><contacteventtype></contacteventtype>");
+        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><contacteventtype></contacteventtype>");
 
         // Some fields are mandatory, especially when setting data to the API
         if (isset($this->id)) $xml->addChild("id", $this->id);

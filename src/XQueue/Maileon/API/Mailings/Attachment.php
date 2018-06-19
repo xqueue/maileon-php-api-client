@@ -52,7 +52,7 @@ class Attachment extends AbstractXMLWrapper
     /**
      * Initialization of the attachment from a simple xml element.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  The xml element that is used to parse the attachment from.
      */
     function fromXML($xmlElement)
@@ -72,7 +72,7 @@ class Attachment extends AbstractXMLWrapper
      * @return \SimpleXMLElement
      */
     function toXML() {
-        /*$xml = new SimpleXMLElement("<?xml version=\"1.0\"?><attachment></attachment>");
+        /*$xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><attachment></attachment>");
 
         $xml->addChild("id", $this->id);
         $xml->addChild("filename", $this->filename);

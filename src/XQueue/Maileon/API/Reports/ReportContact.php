@@ -45,7 +45,7 @@ class ReportContact extends Contact
     /**
      * Initialization of the report contact from a simple xml element.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  The xml element that is used to parse the contact list from.
      */
     function fromXML($xmlElement)

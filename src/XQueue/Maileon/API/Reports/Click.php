@@ -70,7 +70,7 @@ class Click extends AbstractXMLWrapper
     /**
      * Initializes this click from an XML representation.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  the XML representation to use
      */
     function fromXML($xmlElement)
@@ -107,7 +107,7 @@ class Click extends AbstractXMLWrapper
     /**
      * For future use, not implemented yet.
      *
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  containing the XML serialization of this object
      */
     function toXML()

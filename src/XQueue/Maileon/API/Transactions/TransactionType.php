@@ -50,8 +50,8 @@ class TransactionType extends AbstractXMLWrapper
      *     Archiving duration in days [1..n] after which the transaction events will be deleted, 0 and empty = forever (default)
      * @param integer $storeOnly
      *     If nothing or false is specified, the limit for strings attributes of the transaction is set to 1000 characters
-     *     and the transaction event can be used in any contactfilter, e.g. „give me all contacts that received contact
-     *     event X with value Y in attribute Z“.
+     *     and the transaction event can be used in any contactfilter, e.g. ï¿½give me all contacts that received contact
+     *     event X with value Y in attribute Zï¿½.
      *     If storeOnly is set to true, the attributes of the transaction cannot be used as comparision inputs for
      *     contactfilters but the allowed length is raised to 64.000 characters.
      */
@@ -72,7 +72,7 @@ class TransactionType extends AbstractXMLWrapper
     /**
      * Initializes this transaction type from an XML representation.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  the serialized XML representation to use
      */
     function fromXML($xmlElement)
@@ -116,12 +116,12 @@ class TransactionType extends AbstractXMLWrapper
     }
 
     /**
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  containing the XML serialization of this object
      */
     function toXML()
     {
-        $xml = new SimpleXMLElement("<?xml version=\"1.0\"?><transaction_type></transaction_type>");
+        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><transaction_type></transaction_type>");
 
         // Some fields are mandatory, especially when setting data to the API
         if (isset($this->id)) $xml->addChild("id", $this->id);

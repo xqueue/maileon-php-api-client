@@ -67,7 +67,7 @@ class ContactFilter extends AbstractXMLWrapper
     /**
      * Initializes this contact filter from an XML representation.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  the XML representation to use
      */
     function fromXML($xmlElement)
@@ -88,12 +88,12 @@ class ContactFilter extends AbstractXMLWrapper
     }
 
     /**
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  containing the serialized representation of this contact filter
      */
     function toXML()
     {
-        $xml = new SimpleXMLElement("<?xml version=\"1.0\"?><contactfilter></contactfilter>");
+        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><contactfilter></contactfilter>");
 
         $xml->addChild("id", $this->id);
         $xml->addChild("name", $this->name);

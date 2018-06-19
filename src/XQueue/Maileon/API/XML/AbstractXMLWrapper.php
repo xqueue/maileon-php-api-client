@@ -13,7 +13,7 @@ abstract class AbstractXMLWrapper
     /**
      * Initialization from a simple xml element.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  the SimpleXMLElement to initialize the object from
      */
     abstract function fromXML($xmlElement);
@@ -33,7 +33,7 @@ abstract class AbstractXMLWrapper
     /**
      * Serialization to a simple XML element.
      *
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  contains the serialized representation of the object
      */
     abstract function toXML();

@@ -92,12 +92,12 @@ class TargetGroup extends AbstractXMLWrapper
     }
 
     /**
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  containing the serialized representation of this target group
      */
     function toXML()
     {
-        $xml = new SimpleXMLElement("<?xml version=\"1.0\"?><targetgroup></targetgroup>");
+        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><targetgroup></targetgroup>");
 
         $xml->addChild("id", $this->id);
         $xml->addChild("name", $this->name);

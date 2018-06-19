@@ -31,7 +31,7 @@ class CustomProperty extends AbstractXMLWrapper
     /**
      * Initialization of the attachment from a simple xml element.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  The xml element that is used to parse the attachment from.
      */
     function fromXML($xmlElement)
@@ -46,7 +46,7 @@ class CustomProperty extends AbstractXMLWrapper
      * @return \SimpleXMLElement
      */
     function toXML() {
-        $xml = new SimpleXMLElement("<?xml version=\"1.0\"?><property></property>");
+        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><property></property>");
 
         $xml->addChild("key", $this->key);
         $xml->addChild("value", $this->value);

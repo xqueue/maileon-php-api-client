@@ -16,7 +16,7 @@ abstract class XMLUtils
      * @param \SimpleXMLElement $to
      * @param \SimpleXMLElement $from
      */
-    static function appendChild(SimpleXMLElement $to, SimpleXMLElement $from)
+    static function appendChild(\SimpleXMLElement $to, \SimpleXMLElement $from)
     {
         $toDom = dom_import_simplexml($to);
         $fromDom = dom_import_simplexml($from);

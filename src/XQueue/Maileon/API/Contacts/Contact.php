@@ -66,7 +66,7 @@ class Contact extends AbstractXMLWrapper
     /**
      * Initialization of the contact from a simple xml element.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  The xml element that is used to parse the contact from.
      */
     function fromXML($xmlElement)
@@ -101,13 +101,13 @@ class Contact extends AbstractXMLWrapper
      *
      * @param bool $addXMLDeclaration
      *
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  Generate a XML element from the contact object.
      */
     function toXML($addXMLDeclaration = true)
     {
         $xmlString = $addXMLDeclaration ? "<?xml version=\"1.0\"?><contact></contact>" : "<contact></contact>";
-        $xml = new SimpleXMLElement($xmlString);
+        $xml = new \SimpleXMLElement($xmlString);
 
         // Some fields are mandatory, especially when setting data to the API
         if (isset($this->id)) $xml->addChild("id", $this->id);

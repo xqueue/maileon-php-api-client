@@ -55,7 +55,7 @@ class Contacts extends AbstractXMLWrapper implements \IteratorAggregate
     /**
      * Initialization of the contact from a simple xml element. NOT YET IMPLEMENTED.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  The xml element that is used to parse the contact list from.
      */
     function fromXML($xmlElement)
@@ -72,12 +72,12 @@ class Contacts extends AbstractXMLWrapper implements \IteratorAggregate
     /**
      * Serialization to a simple XML element.
      *
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  Generate a XML element from the contact object.
      */
     function toXML()
     {
-        $xml = new SimpleXMLElement("<?xml version=\"1.0\"?><contacts></contacts>");
+        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><contacts></contacts>");
         $contactsDom = dom_import_simplexml($xml);
 
         foreach ($this->contacts as $contact) {
@@ -85,7 +85,7 @@ class Contacts extends AbstractXMLWrapper implements \IteratorAggregate
             $contactsDom->appendChild($contactsDom->ownerDocument->importNode($contactDom, true));
         }
 
-        return new SimpleXMLElement($contactsDom->ownerDocument->saveXML());
+        return new \SimpleXMLElement($contactsDom->ownerDocument->saveXML());
     }
 
     /**

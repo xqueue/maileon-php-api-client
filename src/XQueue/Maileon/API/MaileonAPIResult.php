@@ -174,7 +174,7 @@ class MaileonAPIResult {
     }
 
     /**
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  the HTTP body data parsed as a SimpleXMLElement, or null if there was no XML in the body
      */
     public function getResultXML() {

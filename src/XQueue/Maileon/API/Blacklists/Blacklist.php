@@ -39,7 +39,7 @@ class Blacklist extends AbstractXMLWrapper
     /**
      * Initializes this blacklist type from an XML representation.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  the serialized XML representation to use
      */
     function fromXML($xmlElement)

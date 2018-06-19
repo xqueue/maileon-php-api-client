@@ -759,7 +759,7 @@ class MailingsService extends AbstractMaileonService
      */
     function addCustomProperties($mailingId, $properties) {
 
-        $xml = new SimpleXMLElement("<?xml version=\"1.0\"?><properties></properties>");
+        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><properties></properties>");
 
         if (is_array($properties)) {
             foreach ($properties as $property) {
@@ -807,7 +807,7 @@ class MailingsService extends AbstractMaileonService
         return $this->delete("mailings/${mailingId}/settings/properties", $queryParameters);
     }
 
-    function sxml_append(SimpleXMLElement $to, SimpleXMLElement $from) {
+    function sxml_append(\SimpleXMLElement $to, \SimpleXMLElement $from) {
         $toDom = dom_import_simplexml($to);
         $fromDom = dom_import_simplexml($from);
         $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));

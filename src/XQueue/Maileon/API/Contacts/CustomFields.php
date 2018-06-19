@@ -29,7 +29,7 @@ class CustomFields extends AbstractXMLWrapper
     /**
      * Initialization of the custom fields from a simple xml element.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  The xml element that is used to parse the custom fields from.
      */
     function fromXML($xmlElement)
@@ -42,12 +42,12 @@ class CustomFields extends AbstractXMLWrapper
     /**
      * Serialization to a simple XML element.
      *
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  Generate a XML element from the custom fields list.
      */
     function toXML()
     {
-        $xml = new SimpleXMLElement("<?xml version=\"1.0\"?><custom_fields></custom_fields>");
+        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><custom_fields></custom_fields>");
         if (isset($this->custom_fields)) {
             foreach ($this->custom_fields as $index => $type) {
                 $field = $xml->addChild("field");

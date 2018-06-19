@@ -34,7 +34,7 @@ class Mailing extends AbstractXMLWrapper
     /**
      * Initialization of the mailing from a simple xml element.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  The xml element that is used to parse the mailing from.
      */
     function fromXML($xmlElement)
@@ -72,13 +72,13 @@ class Mailing extends AbstractXMLWrapper
      *
      * @param bool $addXMLDeclaration
      *
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  Generate a XML element from the contact object.
      */
     function toXML($addXMLDeclaration = true)
     {
         $xmlString = $addXMLDeclaration ? "<?xml version=\"1.0\"?><mailing></mailing>" : "<mailing></mailing>";
-        $xml = new SimpleXMLElement($xmlString);
+        $xml = new \SimpleXMLElement($xmlString);
 
         if (isset($this->id)) $xml->addChild("id", $this->id);
 

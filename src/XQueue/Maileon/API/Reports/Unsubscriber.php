@@ -60,7 +60,7 @@ class Unsubscriber extends AbstractXMLWrapper
     /**
      * Initializes this unsubscription from an XML representation.
      *
-     * @param SimpleXMLElement $xmlElement
+     * @param \SimpleXMLElement $xmlElement
      *  the XML representation to use
      */
     function fromXML($xmlElement)
@@ -76,7 +76,7 @@ class Unsubscriber extends AbstractXMLWrapper
     /**
      * For future use, not implemented yet.
      *
-     * @return \em SimpleXMLElement
+     * @return \em \SimpleXMLElement
      *  containing the XML serialization of this object
      */
     function toXML()
