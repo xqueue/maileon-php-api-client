@@ -71,3 +71,5 @@ class SynchronizationMode
         }
     }
 }
+
+SynchronizationMode::init();

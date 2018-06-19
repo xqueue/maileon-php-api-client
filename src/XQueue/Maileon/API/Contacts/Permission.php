@@ -138,3 +138,5 @@ class Permission
     }
 
 }
+
+Permission::init();

@@ -99,3 +99,5 @@ class DataType
         }
     }
 }
+
+DataType::init();
