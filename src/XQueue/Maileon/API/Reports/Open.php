@@ -37,6 +37,11 @@ class Open extends AbstractXMLWrapper
         ", contact=" . $this->contact->toString() .
         ", mailingId=" . $this->mailingId . "]";
     }
+    
+    function __toString()
+    {
+        return $this->toString();
+    }
 
     /**
      * @return \em csv string

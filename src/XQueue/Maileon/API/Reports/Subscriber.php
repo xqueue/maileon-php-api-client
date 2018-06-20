@@ -39,6 +39,11 @@ class Subscriber extends AbstractXMLWrapper
         ", mailingId=" . $this->mailingId . "]";
     }
 
+    function __toString()
+    {
+        return $this->toString();
+    }
+
     /**
      * @return \em csv string
      *  containing a csv pepresentation of this subscriber

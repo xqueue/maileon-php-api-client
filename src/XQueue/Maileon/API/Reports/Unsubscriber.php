@@ -45,6 +45,11 @@ class Unsubscriber extends AbstractXMLWrapper
         ", source=" . $this->source . "]";
     }
 
+    function __toString()
+    {
+        return $this->toString();
+    }
+
     /**
      * @return \em csv string
      *  containing a csv pepresentation of this unsubscriber

@@ -59,6 +59,11 @@ class Bounce extends AbstractXMLWrapper
         ", statusCode=" . $this->statusCode .
         ", source=" . $this->source . "]";
     }
+    
+    function __toString()
+    {
+        return $this->toString();
+    }
 
     /**
      * @return \em csv string

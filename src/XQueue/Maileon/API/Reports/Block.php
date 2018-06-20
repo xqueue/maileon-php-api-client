@@ -51,6 +51,11 @@ class Block extends AbstractXMLWrapper
         ", reason=" . $this->reason . "]";
     }
 
+    function __toString()
+    {
+        return $this->toString();
+    }
+
     /**
      * @return \em csv string
      *  containing a csv pepresentation of this block

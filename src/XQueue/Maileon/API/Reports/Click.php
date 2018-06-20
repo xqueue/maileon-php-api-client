@@ -67,6 +67,11 @@ class Click extends AbstractXMLWrapper
         ", linkTags=" . $linkTags ."]";
     }
 
+    function __toString()
+    {
+        return $this->toString();
+    }
+
     /**
      * Initializes this click from an XML representation.
      *
