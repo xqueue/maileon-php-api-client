@@ -1,0 +1,272 @@
+Date 2019-11-08
+Version 1.5.4
+- Fixed bug with deserializing mailing subjects
+- Added method for getting sender alias
+
+Date 2019-10-16
+Version 1.5.3
+- Fixed bug with transaction types de-/serialization not handling boolean values correctly (storeonly and required attributes)
+
+Date 2019-09-02
+Version 1.5.2
+- Fixed deserialization bug with transaction types having SimpleXML objects as values instead of just the content
+
+Date 2019-07-08
+Version 1.5.1
+- Set default value for getting contact filters to 100
+- Added deserialization of previewtext for properly retrieving the mailing preview text
+- Added method to retrieve mailings by state (thanks to 'Verlagsgruppe Hüthig Jehle Rehm GmbH')
+
+Date 2019-04-05
+Version 1.5.0
+- Added CRUD methods for managing account placeholders
+- Added methods for getting/settung mailing preview texts
+
+Date 2019-01-30
+Version 1.4.1
+- Added more details to debug output in case of cURL errors, e.g. certificate problems
+
+
+Date: 2018-12-10
+Version 1.4.0
+- Added description for transaction type and transaction type attributes when creating or retrieving a type
+- Added 'date' as attribute type
+- Added attributes in analytics report service (goals, timestamps as epoch and sql timestamps and external id)
+- Fixed missing parameter 'nlaccountid' when unsubscribing by email
+- Fixed path for creating contacts from /contacts to /contacts/email
+- Fixed space in "src" or "subscription_page" parameter of methods creating contacts causing 505 responses
+- Removed wrong initialization of import contact or transactions
+
+Date: 2018-11-16
+Version 1.3.9
+- Added method to retrieve url for single mail reports
+- Added parameter for unsubscribing contacts from several newsletter accounts by email ($nlAccountIds)
+- Added methods for getting and setting templates to a single newsletter
+- Added method for resetting mailing content to template state
+- Added method for getting (unique) conversions
+
+Date: 2018-07-06
+Version 1.3.8
+- Added methods to send test mails to single contacts and test targetgroups
+
+Date: 2018-06-26
+Version 1.3.7.1
+- Fixed possible warnings and notices with return headers when using proxy configuration
+
+Date: 2018-06-25
+Version 1.3.7
+- Added methods for setting and updating schedules for regular mailings
+- Fixed problem with response headers being parsed wrong when using a proxy server
+
+Date: 2018-06-22
+Version 1.3.6
+- Fixed bug causing mailings with spaces in their names not being found when searching by that name
+
+Date: 2018-05-15
+Version 1.3.5
+- Changed method toArray in Transaction.php to avoid wrong serialization
+
+Date: 2018-02-28
+Version 1.3.4
+- Fixed possible problem with empty(trim(...)) as empty expects a variable instead of return value in ContactsService
+
+Date: 2018-02-09
+Version 1.3.3
+- Added check to \com_maileon_api_AbstractMaileonService::appendArrayFields if passed parameter is really an array. This caused "Invalid argument supplied for foreach()" if used wrong.
+- Added method getResponseHeaders to result object which returns an array of all headers and their values
+
+Date: 2017-11-15
+Version 1.3.2
+- Trimmed values for DOI mailing keys
+- Added methods for creating a contact filter with v2 of the resource for access by early testers (format might be changed in the future)
+- Fixed bug when getting contacts and results where partially XML elements instead of strings (like the email address)
+- Adding default value for "checksum" to "" for updating contacts to indicate for customers which value to set if using "ignore_checksum".
+
+Date: 2017-08-03
+Version 1.3.1
+- Added methods and objects to manage custom properties of mailings
+
+Date: 2017-08-01
+Version 1.3.0
+- Added Parameter "authorized" to deleteAllContacts and set it by default to NO to avoid removing contacts by mistake
+- Fixed contact-by-email-operations to use /email/ resource
+- Allowing usage of IDs for contacts with synchronizingContacts
+- Added method to add attachments to regular mailings (thanks to Wanadis)
+- Added parameter "prefer_maileon_id" to "SynchronizeContacts" method
+
+Date: 2017-01-16
+Version 1.2.5
+- Added method to check for existence of mailing by name
+- Added method to get mailing ID by name
+- Added service for marketing automation
+- Fixed createTransactions using wrong parameter (ignore_invalid_events instead ignore_invalid_transactions)
+
+
+Date: 2016-12-12
+Version 1.2.4
+- Fixed not urlencoding single unsubscription reasons
+
+Date: 2016-12-09
+Version 1.2.3
+- Fixed using text/plain for getting textversions
+- Added methods to set and get a mailing locale
+- Added method to execute RSS SmartMailing functionality
+- Added method to set/get tags of mailings
+- Added method to get most recent transactions
+
+Date: 2016-08-12
+Version 1.2.1
+- Changed com_maileon_api_json_JSONDeserializer::json_decode to use associative arrays instead of objects
+- Added STATE to standard contact fields
+- Added getSubject and setSubject to mailing service
+
+Date: 2016-06-06
+Version 1.2.0
+- Renamed class Debug to XQDebug to avoid collisions with other classes (not using namespace due to backwards compatibility to PHP 5.3)
+  If you used statements like this to enable or disable classloader debugging: Debug::setDebug(false);
+  make sure to change it to XQDebug::setDebug(false);
+- Added methods and parameters to specify unsubscription reasons
+- Set urlencode when getting mails by scheduleTime
+- Added functions to simplify permission handling and fallback values when setting an invalid permission (thanks to Wanadis)
+- Added methods to get recent transactions (thanks to Wiera)
+- Updated transaction report handling (thanks to Wiera)
+- Unified json serialization/deserialization (thanks to Wiera)
+
+Date: 2016-04-29
+Version 1.1.6
+- Fixed possible problems with utf8_encode and custom field names with special characters by using mb_string_convert instead
+- Fixed initialization of content in transactions. Previous version caused empty content to be an empty array [] instead of an empty object {}
+- Added method to embed link tags in click-report
+- Added parameter archivingDuration for transactions types. This parameter describes the time in days a transaction event should be archived. Default is "forever".
+- Added methods to get target groups and their count
+
+Date: 2015-12-21
+Version 1.1.5
+- Added setText/getText for mailings
+- Added method to unsubscribe contact by external id from multiple accounts at once
+- Added method to retrieve the mailing name
+- Added method + objects to retrieve the schedule of a mailing
+- Added method to copy mailings
+- Fixed possible problem on some servers when using "1" and "" as true or false as method parameters
+- Added method to find transaction type by name (thanks to Viktor)
+- Fixed mediatype for getTargetGroupId
+- Fixed targetgroupid deserialization
+- Changed .include files in example to .php to avoid the server printing keys, e.g. if htaccess is not configured properly
+- Added method for deleting a contact filter
+- Added deserialization of contact filter creation result
+- Added method for creating a target group using a contact filter id
+- Added method to get counts for contact filter contacts (all contacts and active contacts)
+- Added method for disabling QoS checks for mailings
+- Removed mailingId from createContacts parameters, when not set (instead of sending an empty string to the API
+- Added method to retrieve archive url of a mailing
+
+Date: 2015-09-04
+Version 1.1.4
+- Added CSV export for reports
+- Added linkId and linkUrl to reporting: clicks
+- Fixed reading permission type in contacts of reportings
+- Fixed problem with XML deserializer on older PHP versions not deserializing "id" and "count" elements properly
+- Added set Sender-/Recipient Alias method to mailing service
+- Extending createTransations by using functions to create contacts that are not available in Maileon when sending transactions
+- Added methods to create TRIGGER and DOI Mailings and set properties (e.g. the dispatch options, doi_keys, etc.)
+- Added parsing transaction type id when creating a new transaction type
+- Added parameters for passing a mailingId when unsubscribing
+
+Version 1.1.3
+- Added deleting target groups
+
+Date: 2015-04-14
+Version 1.1.2
+- Added methods and samples for adding attachments to transactions
+- Added methods and samples for retrieving unique bounces
+- Added attributes "type", "statusCode" and "source" to bounce objects
+- Added JSON deserializer to JSON objects and access sample
+
+Date: 2015-03-30
+Version 1.1.1
+- Prevented 'create contact' from submitting default value, if not set
+- Added method to retrieve a targetgroup by its ID
+- Added method to get contacts by a Maileon contactfilter
+- Enabling the client to be used behind a proxy. Set parameters PROXY_HOST and PROXY_PORT in configuration file
+- Fixed possible bug in ApiResult when retrieving counts of 0 (result being interpreted as boolean "false"
+- When creating/updating a contact using "createContact" and no permission is set, the Maileon default permission "NONE" will be used
+- Fixed getter bug in MaileonAPIException
+- Removed support for contact events API (deprecated, use transactions)
+
+Date: 2014-12-16 13:01:43 MESZ
+Version: 1.0.4 RC1
+ - Fixed possible problem when email contains & sign
+
+Date: 2014-11-14 10:37:39 MESZ
+Version: 1.0.3
+ - Added resource for getting "block" status changes
+ - Fixed bug with serializing custom fields objects to xml
+ - Changed contact filter refreshing to omit time parameter completely, if not set
+ - Removed $embedFieldBackups from ReportsService->getBlocks method signature 
+ - Fixed createCustomField not properly setting type
+ 
+Date: 2014-10-01 16:54:44 MESZ
+Version: 1.0.2
+ - Reports: Added methods to retrieve unique opener/clicker to report service
+ - Mailings: Added methods to get/set target group ID
+ - Mailings: Added methods to get/set sender email address
+ - Mailings: Added methods to get/set reply-to address
+ - Contactfilters: Added method to create simple contact filters
+ - Fixed bug with always creating exceptions on failed connections
+ - Added TIMEOUT variable to config (int value) which defines the timeout for a CURL call (in seconds)
+ 
+Date: 2014-08-04 10:19:00 MESZ
+Version: 1.0.1
+ - Added contact properties "created" and "updated"
+ 
+Date: 2014-07-28 17:53:38 MESZ
+Version: 1.0.0
+ - Added blacklist management
+ - Initial release
+
+Date: 2014-07-25 10:50:01 MESZ
+Version: 0.10.3
+ - Added objects and methods for getting mailings (by schedule time)
+ - URLEncoded custom field names in URL
+ - Showing error message on missing config in sample
+ - Fixed documentation not being generated for some classes
+ 
+Date: 2014-07-23 15:39:52 MESZ
+Version: 0.10.2
+ - Added counting methods for report service
+ 
+Date: 2014-07-17 08:20:17 MESZ
+Version: 0.10.1
+ - Fixed bug with deserializing unsubscribers
+ 
+Date: 2014-07-08 14:32:14 MESZ
+Version: 0.10.0
+ - Added missing report functions for bounces, opens, clicks and recipients
+ - Added parameter "reimport_unsubscribed_contacts" to "synchronize contacts"
+ - Added createContactByExternalId
+ - Renamed object "Unsubscription" to "Unsubscriber" together with the function names (now: "get unsubscriber", etc.) to align with other reporting names
+  
+Date: 2014-07-02 15:06:52
+Version: 0.9.5
+ - Refactored debug output, request handling
+ - Redacted authorization information in debug output
+ - Fixed "deserialize empty arrays" bug
+ - Moveed testdata to its own include file
+ 
+Date: 2014-06-25 10:05:35 MESZ
+Version: 0.9.4 
+ - Added possibility to reportings to filter by contact ID, email, or external ID
+
+Date: 2014-05-15 16:02:58 MESZ
+Version: 0.9.3
+ - Contact fields now use CDATA to make PHP accept sending e.g. X&Y as firstname (and also < and >)
+ 
+Date: 2014-05-06 14:07:59 MESZ
+Version: 0.9.2
+ - Added parameter override_permission to "synchronize contacts" to allow selecting if existing permissions should be updated 
+ 
+Date: 2014-05-06 09:56:38 MESZ
+Version: 0.9.1
+ - Added empty expect header to calls as Maileon does not process them correctly if N/A
+ 
+ 0.9.0 Initial version, released to some test customers

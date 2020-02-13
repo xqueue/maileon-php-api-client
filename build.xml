@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<project name="maileon-api-client-php" default="deploy" basedir=".">
+	<property name="dir.test" value="test" />
+	<property name="dir.client" value="client" />
+
+	<property file="build.properties" />
+
+	<fileset dir="${dir.client}" id="fileset_client">
+		<include name="**/*" />
+	</fileset>
+
+	<fileset dir="${dir.test}" id="fileset_test">
+		<include name="**/*" />
+		<exclude name="com/**"/>
+		<exclude name="phpunit-bootstrap.php"/>
+	</fileset>
+
+	<target name="deploy" description="Deploys project locally">
+		<echo message="[deploying project to ${dir.deploy}]" />
+		<copy todir="${dir.deploy}">
+			<fileset refid="fileset_test" />
+		</copy>
+		<copy todir="${dir.deploy}/includes">
+			<fileset refid="fileset_client" />
+		</copy>
+	</target>
+
+	<target name="test" description="Runs the PHPUnit tests">
+		<echo>Running tests...</echo>
+		<exec executable="${phpunit}" failonerror="true">
+			<arg value="-c" />
+			<arg value="phpunit-configuration.xml" />
+		</exec>
+	</target>
+</project>
