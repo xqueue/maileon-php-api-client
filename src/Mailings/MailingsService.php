@@ -14,7 +14,6 @@ use Maileon\AbstractMaileonService;
  */
 class MailingsService extends AbstractMaileonService
 {
-    
     /**
      * Creates a new mailing.
      * @param string $name
@@ -62,6 +61,35 @@ class MailingsService extends AbstractMaileonService
     public function disableQosChecks($mailingId)
     {
         return $this->put('mailings/' . $mailingId . '/settings/disableQosChecks');
+    }
+
+    /**
+     * Set ignoring permissions for sendouts.
+     * This is only possible with transaction/trigger mails and be aware to NOT add advertisements
+     * in mails you send without advertisement permission. This is meant for order confirmations and the like.
+     *
+     * @param $ignorePermission can be either true or false
+     */
+    public function setIgnorePermission($mailingId, $ignorePermission)
+    {
+        if ($ignorePermission === true) {
+            $ignorePermission = "true";
+        } elseif ($ignorePermission === false) {
+            $ignorePermission = "false";
+        }
+        return $this->post(
+            'mailings/' . $mailingId . '/settings/ignorepermission',
+            "<ignore_permission>$ignorePermission</ignore_permission>"
+        );
+    }
+    
+    /**
+     * Check if a (trigger) mail is set to ignore permission during sendout (order confirmation, invoices, ...)
+     * @return "true" or "false"
+     */
+    public function isIgnorePermission($mailingId)
+    {
+        return $this->get('mailings/' . $mailingId . '/settings/ignorepermission');
     }
     
     /**
@@ -318,8 +346,6 @@ class MailingsService extends AbstractMaileonService
         return $this->get('mailings/' . $mailingId . '/contents/previewtext');
     }
     
-    
-    
     /**
      * Sets the template for a mailing. Be careful, all HTML/text contents will be resettet.
      * For templates from the same account, relative paths can be used in the form
@@ -360,8 +386,6 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/template');
     }
-    
-    
     
     /**
      * Resets the HTML/text contents of the mailing to its template state.
@@ -405,7 +429,7 @@ class MailingsService extends AbstractMaileonService
      * @param string $mailingId
      *  the ID of the mailing
      * @return \em MaileonAPIResult
-     *    the result object of the API call, with the sender alias of the mailing
+     *  the result object of the API call, with the sender alias of the mailing
      *  available at MaileonAPIResult::getResult()
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred

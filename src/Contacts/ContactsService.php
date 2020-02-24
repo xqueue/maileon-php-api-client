@@ -825,7 +825,7 @@ class ContactsService extends AbstractMaileonService
     public function createCustomField($name, $type = 'string')
     {
         $queryParameters = array('type' => $type);
-        $encodedName = urlencode(mb_convert_encoding($name, "UTF-8"));
+        $encodedName = rawurlencode(mb_convert_encoding($name, "UTF-8"));
         return $this->post("contacts/fields/custom/${encodedName}", "", $queryParameters);
     }
 
@@ -858,8 +858,8 @@ class ContactsService extends AbstractMaileonService
      */
     public function renameCustomField($oldName, $newName)
     {
-        $encodedOldName = urlencode(mb_convert_encoding($oldName, "UTF-8"));
-        $encodedNewName = urlencode(mb_convert_encoding($newName, "UTF-8"));
+        $encodedOldName = rawurlencode(mb_convert_encoding($oldName, "UTF-8"));
+        $encodedNewName = rawurlencode(mb_convert_encoding($newName, "UTF-8"));
         return $this->put("contacts/fields/custom/${encodedOldName}/${encodedNewName}");
     }
 
@@ -876,7 +876,7 @@ class ContactsService extends AbstractMaileonService
      */
     public function deleteCustomField($name)
     {
-        $encodedName = urlencode(mb_convert_encoding($name, "UTF-8"));
+        $encodedName = rawurlencode(mb_convert_encoding($name, "UTF-8"));
         return $this->delete("contacts/fields/custom/{$encodedName}");
     }
 
@@ -908,7 +908,7 @@ class ContactsService extends AbstractMaileonService
      */
     public function deleteCustomFieldValues($name)
     {
-        $encodedName = urlencode(mb_convert_encoding($name, "UTF-8"));
+        $encodedName = rawurlencode(mb_convert_encoding($name, "UTF-8"));
         return $this->delete("contacts/fields/custom/{$encodedName}/values");
     }
 }

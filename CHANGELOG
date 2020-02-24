@@ -1,3 +1,8 @@
+Date  2020-01-20
+Version 1.5.5
+- Changed url encode scheme for contact fields so spaces are allowed
+- Added method for setting "ignore_permissions" (trigger mails, only)
+
 Date 2019-11-08
 Version 1.5.4
 - Fixed bug with deserializing mailing subjects
