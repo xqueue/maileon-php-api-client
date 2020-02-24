@@ -52,6 +52,7 @@ class XMLDeserializer
                 case "subject":
                 case "senderalias":
                 case "ignore_permission":
+                case "state":
                 case "url":
                     return (string)$xmlElement;
                 case "locale":

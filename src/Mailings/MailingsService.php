@@ -276,6 +276,22 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/contents/sender');
     }
+
+    /**
+     * Fetches the state of the mailing identified by the given ID.
+     *
+     * @param string $mailingId
+     *  the ID of the mailing
+     * @return \em MaileonAPIResult
+     *  the result object of the API call, with the state of the mailing
+     *  available at MaileonAPIResult::getResult()
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function getState($mailingId)
+    {
+        return $this->get('mailings/' . $mailingId . '/state');
+    }
     
     /**
      * Updates the subject of the mailing referenced by the given ID.
@@ -635,11 +651,11 @@ class MailingsService extends AbstractMaileonService
      *
      * @param number mailingId
      *  The ID of the mailing to schedule
-     * @param date mailingId
+     * @param date date
      *  The SQL conform date of the schedule day in the format YYYY-MM-DD
-     * @param hours mailingId
+     * @param hours hours
      *  The schedule hour in the format of HH, 24 hours format
-     * @param minute mailingId
+     * @param minute minute
      *  The schedule minutes in the format MM
      * @return
      * @throws MaileonException
@@ -654,17 +670,43 @@ class MailingsService extends AbstractMaileonService
         
         return $this->put('mailings/' . $mailingId . '/schedule', "", $queryParameters);
     }
+
+    /**
+     * Delete the schedule for the given mailing
+     *
+     * @param number mailingId
+     *  The ID of the mailing to delete the schedule for
+     * @return
+     * @throws MaileonException
+     */
+    public function deleteMailingSchedule($mailingId)
+    {
+        return $this->delete('mailings/' . $mailingId . '/schedule');
+    }
+    
+    /**
+     * Get the schedule for the given mailing
+     *
+     * @param number mailingId
+     *  The ID of the mailing to get the schedule of
+     * @return
+     * @throws MaileonException
+     */
+    public function getMailingSchedule($mailingId)
+    {
+        return $this->get('mailings/' . $mailingId . '/schedule');
+    }
     
     /**
      * Update the schedule for the given mailing
      *
      * @param number mailingId
      *  The ID of the mailing to update the schedule for
-     * @param date mailingId
+     * @param date date
      *  The SQL conform date of the schedule day in the format YYYY-MM-DD
-     * @param hours mailingId
+     * @param hours hours
      *  The schedule hour in the format of HH, 24 hours format
-     * @param minute mailingId
+     * @param minute minute
      *  The schedule minutes in the format MM
      * @return
      * @throws MaileonException

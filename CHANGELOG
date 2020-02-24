@@ -1,3 +1,8 @@
+Date 2020-02-14  
+Version 1.5.6
+- Added getState for mailings
+- Added getSchedule and deleteSchedule for regular mailings
+
 Date  2020-01-20
 Version 1.5.5
 - Changed url encode scheme for contact fields so spaces are allowed

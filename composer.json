@@ -1,7 +1,7 @@
 {
     "name": "xqueue/maileon-api-client",
     "description": "API-Client to XQ:Maileon",
-    "version": "1.5.5",
+    "version": "1.5.6",
     "keywords": ["XQueue", "Maileon"],
     "homepage": "https://www.maileon.de",
     "type": "library",
