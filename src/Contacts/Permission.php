@@ -139,3 +139,4 @@ class Permission
         }
     }
 }
+Permission::init();

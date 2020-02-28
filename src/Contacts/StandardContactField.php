@@ -67,3 +67,4 @@ class StandardContactField
         // Nothing to initialize
     }
 }
+StandardContactField::init();

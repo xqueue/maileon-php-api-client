@@ -56,7 +56,7 @@ class SynchronizationMode
      *
      * @param int $code
      *  the code to get the synchronization mode for
-     * @return \em com_maileon_api_contacts_SynchronizationMode
+     * @return \em SynchronizationMode
      *  the synchronization mode for the given code
      */
     public static function getSynchronizationMode($code)
@@ -72,3 +72,4 @@ class SynchronizationMode
         }
     }
 }
+SynchronizationMode::init();

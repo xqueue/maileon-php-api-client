@@ -145,7 +145,7 @@ abstract class AbstractMaileonService
      * @param mixed $deserializationType
      *  The name of the class this result should be deserialized as. Use
      *      array( 'array', 'typename' ) to deserialize arrays of a type.
-     * @return \em MaileonAPIResult
+     * @return MaileonAPIResult
      *    the result object of the API call
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
@@ -174,7 +174,7 @@ abstract class AbstractMaileonService
      * @param mixed $deserializationType
      *  The name of the class this result should be deserialized as. Use
      *      array( 'array', 'typename' ) to deserialize arrays of a type.
-     * @return \em MaileonAPIResult
+     * @return MaileonAPIResult
      *    the result object of the API call
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
@@ -213,7 +213,7 @@ abstract class AbstractMaileonService
      * @param mixed $deserializationType
      *  The name of the class this result should be deserialized as. Use
      *      array( 'array', 'typename' ) to deserialize arrays of a type.
-     * @return \em MaileonAPIResult
+     * @return MaileonAPIResult
      *    the result object of the API call
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
@@ -245,9 +245,9 @@ abstract class AbstractMaileonService
      * @param mixed $deserializationType
      *  The name of the class this result should be deserialized as. Use
      *      array( 'array', 'typename' ) to deserialize arrays of a type.
-     * @return \em com_maileon_api_MaileonAPIResult
+     * @return MaileonAPIResult
      *    the result object of the API call
-     * @throws com_maileon_api_MaileonAPIException
+     * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
      */
     public function delete(
@@ -357,8 +357,8 @@ abstract class AbstractMaileonService
      * @param mixed $deserializationType
      *  The name of the class this result should be deserialized as. Use
      *      array( 'array', 'typename' ) to deserialize arrays of a type.
-     * @return \com_maileon_api_MaileonAPIResult
-     * @throws com_maileon_api_MaileonAPIException
+     * @return MaileonAPIResult
+     * @throws MaileonAPIException
      */
     private function performRequest($curlSession, $deserializationType = null)
     {
