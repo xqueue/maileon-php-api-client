@@ -1,0 +1,27 @@
+{
+	"name" : "xqueue/php-maileon-api-client/tests",
+	"description" : "API-Client to XQ:Maileon Tests",
+	"version" : "1.0.0",
+	"keywords" : [
+		"XQueue",
+		"Maileon"
+	],
+	"homepage" : "https://www.maileon.de",
+	"type" : "library",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "XQueue GmbH, Marcus Beckerle",
+			"email" : "marcus.beckerle@xqueue.com"
+		}
+	],
+	"require" : {
+		"php" : "^7.0.0",
+		"ext-curl" : "*",
+		"ext-mbstring" : "*",
+		"ext-libxml" : "*",
+		"xqueue/maileon-api-client/" : "@dev"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : "^4"
+	}
+}

@@ -1,11 +1,9 @@
 <?php
 
-namespace Maileon;
+namespace de\xqueue\maileon\api\client;
 
-use Maileon\MaileonAPIException;
-use Maileon\HTTPResponseCodes;
-use Maileon\Json\JSONDeserializer;
-use Maileon\Xml\XMLDeserializer;
+use de\xqueue\maileon\api\client\json\JSONDeserializer;
+use de\xqueue\maileon\api\client\xml\XMLDeserializer;
 
 /**
  * The result of making a call to the Maileon REST API.
@@ -148,7 +146,7 @@ class MaileonAPIResult
     }
 
     /**
-     * @return \em mixed
+     * @return mixed
      *  the deserialized result object as a subclass of com_maileon_api_xml_AbstractXMLWrapper,
      *  or the free-form string result if the response body data was not a deserializable object,
      *  or null if there was no response body data
@@ -159,7 +157,7 @@ class MaileonAPIResult
     }
 
     /**
-     * @return \em number
+     * @return number
      *  the HTTP status code that was returned by the HTTP request
      */
     public function getStatusCode()
@@ -168,7 +166,7 @@ class MaileonAPIResult
     }
 
     /**
-     * @return \em bool
+     * @return bool
      *  true iff a 2xx status code (success) was returned by the HTTP request
      */
     public function isSuccess()
@@ -177,7 +175,7 @@ class MaileonAPIResult
     }
 
     /**
-     * @return \em bool
+     * @return bool
      *  true iff a 4xx status code (client error) was returned by the HTTP request
      */
     public function isClientError()
@@ -186,7 +184,7 @@ class MaileonAPIResult
     }
 
     /**
-     * @return \em string
+     * @return string
      *  the content type returned by the HTTP request
      */
     public function getContentType()
@@ -195,7 +193,7 @@ class MaileonAPIResult
     }
 
     /**
-     * @return \em string
+     * @return string
      *  the unprocessed HTTP body data, or null if there was no body
      */
     public function getBodyData()
@@ -204,7 +202,7 @@ class MaileonAPIResult
     }
 
     /**
-     * @return \em SimpleXMLElement
+     * @return \SimpleXMLElement
      *  the HTTP body data parsed as a SimpleXMLElement, or null if there was no XML in the body
      */
     public function getResultXML()
@@ -213,7 +211,7 @@ class MaileonAPIResult
     }
 
     /**
-     * @return \em array of strings
+     * @return array of strings
      *  an array of response headers
      */
     public function getResponseHeaders()
@@ -222,7 +220,7 @@ class MaileonAPIResult
     }
 
     /**
-     * @return \em string
+     * @return string
      *  a human-readable representation of the HTTP request result
      */
     public function toString()

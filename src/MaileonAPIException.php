@@ -1,6 +1,6 @@
 <?php
 
-namespace Maileon;
+namespace de\xqueue\maileon\api\client;
 
 /**
  * An exception that is thrown when a technical error has occurred either in the communication
@@ -22,7 +22,7 @@ class MaileonAPIException extends \RuntimeException
 
     /**
      *
-     * @return \em false|string
+     * @return false|string
      *  the HTTP response body if there was one, false otherwise
      */
     public function getResponse()

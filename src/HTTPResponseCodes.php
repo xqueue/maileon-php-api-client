@@ -1,6 +1,6 @@
 <?php
 
-namespace Maileon;
+namespace de\xqueue\maileon\api\client;
 
 /**
  * This class allows translating between HTTP response codes and human readable strings

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="maileon-api-client-php" default="deploy" basedir=".">
 	<property name="dir.test" value="test" />
-	<property name="dir.client" value="client" />
+	<property name="dir.client" value="src" />
 
 	<property file="build.properties" />
 

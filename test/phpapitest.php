@@ -1,34 +1,35 @@
 <?php
-namespace Maileon\Test;
 
-use Maileon\Contacts\Contact;
-use Maileon\Contacts\Contacts;
-use Maileon\HTTPResponseCodes;
-use Maileon\Utils\PingService;
-use Maileon\ContactFilters\Rule;
-use Maileon\Contacts\Permission;
-use Maileon\Transactions\DataType;
-use Maileon\Account\AccountService;
-use Maileon\Mailings\MailingFields;
-use Maileon\Reports\ReportsService;
-use Maileon\Mailings\CustomProperty;
-use Maileon\Contacts\ContactsService;
-use Maileon\Mailings\MailingsService;
-use Maileon\TargetGroups\TargetGroup;
-use Maileon\Transactions\Transaction;
-use Maileon\Account\AccountPlaceholder;
-use Maileon\Transactions\AttributeType;
-use Maileon\Blacklists\BlacklistsService;
-use Maileon\ContactFilters\ContactFilter;
-use Maileon\Contacts\SynchronizationMode;
-use Maileon\Transactions\ImportReference;
-use Maileon\Transactions\TransactionType;
-use Maileon\Contacts\StandardContactField;
-use Maileon\Transactions\ContactReference;
-use Maileon\TargetGroups\TargetGroupsService;
-use Maileon\Transactions\TransactionsService;
-use Maileon\Transactions\ImportContactReference;
-use Maileon\ContactFilters\ContactfiltersService;
+require "vendor/autoload.php";
+
+use de\xqueue\maileon\api\client\HTTPResponseCodes;
+use de\xqueue\maileon\api\client\contacts\ContactsService;
+use de\xqueue\maileon\api\client\contacts\Contact;
+use de\xqueue\maileon\api\client\contacts\Permission;
+use de\xqueue\maileon\api\client\contacts\StandardContactField;
+use de\xqueue\maileon\api\client\contactfilters\ContactFilter;
+use de\xqueue\maileon\api\client\account\AccountPlaceholder;
+use de\xqueue\maileon\api\client\Utils\PingService;
+use de\xqueue\maileon\api\client\contacts\SynchronizationMode;
+use de\xqueue\maileon\api\client\contacts\Contacts;
+use de\xqueue\maileon\api\client\contactfilters\ContactfiltersService;
+use de\xqueue\maileon\api\client\contactfilters\Rule;
+use de\xqueue\maileon\api\client\targetgroups\TargetGroupsService;
+use de\xqueue\maileon\api\client\targetgroups\TargetGroup;
+use de\xqueue\maileon\api\client\mailings\MailingsService;
+use de\xqueue\maileon\api\client\mailings\MailingFields;
+use de\xqueue\maileon\api\client\mailings\CustomProperty;
+use de\xqueue\maileon\api\client\reports\Reports\ReportsService;
+use de\xqueue\maileon\api\client\transactions\TransactionsService;
+use de\xqueue\maileon\api\client\transactions\AttributeType;
+use de\xqueue\maileon\api\client\transactions\Transaction;
+use de\xqueue\maileon\api\client\transactions\ContactReference;
+use de\xqueue\maileon\api\client\transactions\ImportReference;
+use de\xqueue\maileon\api\client\transactions\ImportContactReference;
+use de\xqueue\maileon\api\client\Blacklists\BlacklistsService;
+use de\xqueue\maileon\api\client\account\AccountService;
+use de\xqueue\maileon\api\client\transactions\TransactionType;
+use de\xqueue\maileon\api\client\transactions\DataType;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -47,7 +48,7 @@ function checkResult($result = "")
     $statusCode = $result->getStatusCode();
     if (!$result->isSuccess()) {
         echo '<font color="#ff0000"><b>failed</b></font>' . ' (Status code: ' . $statusCode . ' - '
-                . HTTPResponseCodes::getStringFromHTTPStatusCode($statusCode)
+            . HTTPResponseCodes::getStringFromHTTPStatusCode($statusCode)
                 . ($result->getBodyData() ? ' - ' . $result->getBodyData() : '') . ')';
     } else {
         echo '<font color="#22ff22"><b>success</b></font>' . ' (Status code: ' . $statusCode . ' - '

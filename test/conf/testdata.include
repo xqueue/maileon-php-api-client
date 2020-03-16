@@ -1,8 +1,11 @@
-﻿?<?php
+<?php
 
-$contactsToSync = new com_maileon_api_contacts_Contacts();
+use de\xqueue\maileon\api\client\contacts\Contact;
+use de\xqueue\maileon\api\client\contacts\Contacts;
+
+$contactsToSync = new Contacts();
 	
-$contactsToSync->addContact(new com_maileon_api_contacts_Contact(
+$contactsToSync->addContact(new Contact(
         11616280,
 		'max.mustermann@xqueue.de',
 		null,

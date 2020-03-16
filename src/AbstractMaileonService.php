@@ -1,9 +1,6 @@
 <?php
 
-namespace Maileon;
-
-use Maileon\MaileonAPIException;
-use Maileon\MaileonAPIResult;
+namespace de\xqueue\maileon\api\client;
 
 /**
  * Abstract base class for all the service accessing individual resources. This class handles
@@ -124,8 +121,7 @@ abstract class AbstractMaileonService
     }
 
     /**
-     * @param unknown $isDebug
-     * @return \em boolean
+     * @return boolean
      *  true if debug output is enabled, false otherwise
      */
     public function isDebug()
