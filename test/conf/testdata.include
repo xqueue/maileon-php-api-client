@@ -4,13 +4,13 @@ $contactsToSync = new com_maileon_api_contacts_Contacts();
 	
 $contactsToSync->addContact(new com_maileon_api_contacts_Contact(
         11616280,
-		'marcus.beckerle@xqueue.de',
+		'max.mustermann@xqueue.de',
 		null,
 		'external-id-4',
 		$anonymous = null,
 		array(
 				'LASTNAME' => 'Mustermann',
-				'FIRSTNAME' => 'Max2'
+				'FIRSTNAME' => 'Max'
 		), array()));
 	
 $TESTDATA = array(
@@ -18,16 +18,16 @@ $TESTDATA = array(
 		"userId" => 211932,
 		"external_id" => "someExternalId",
 		"userChecksum" => "someChecksum",
-		"userEmail" => "marcus.staender@xqueue.de",
+		"userEmail" => "max.mustermann@xqueue.de",
 		"transactionTypeId" => 139,
-		"transactionUserEmail" => "marcus.beckerle@xqueue.de",
+		"transactionUserEmail" => "max.mustermann@xqueue.de",
 		"userExternalId" => "someExternalId",
 		"doiMailingKey" => "testFirstname",
 		"page_index" => 1,
 		"page_size" => 1000,
 		"contactFilterId" => 2704,
 		"getEmailNotExisting" => "someMailForGettingContactByMail@mail.com",
-		"getEmail" => "marcus.staender@xqueue.com",
+		"getEmail" => "max.,ustermann@xqueue.com",
 		"mailingId" => 466,
 		"setMailingId" => 41,
 		'field_name1' => 'AAA', //'integer', 'float', 'date' or 'boolean'.

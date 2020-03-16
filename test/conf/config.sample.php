@@ -8,7 +8,7 @@
 		"PROXY_HOST" => "",
 		"PROXY_PORT" => "",
 		"THROW_EXCEPTION" => true,
-		"TIMEOUT" => 5, // 5 seconds
-		"DEBUG" => "false" // NEVER enable on production
+		"TIMEOUT" => 30, // seconds
+		"DEBUG" => false // NEVER enable on production
 	);
 	
