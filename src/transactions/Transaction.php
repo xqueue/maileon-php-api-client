@@ -121,8 +121,8 @@ class Transaction extends AbstractJSONWrapper
     public function toString()
     {
             return "Transaction [type=" . $this->type .
-            ", contact=(" . (empty($this->contact))?"":$this->contact->toString() . "), import=(" .
-            (empty($this->import))?"":$this->import->toString() . "), content=(" . json_encode($this->content) . ")]";
+            ", contact=(" . ((empty($this->contact))?"":$this->contact->toString()) . "), import=(" .
+            ((empty($this->import))?"":$this->import->toString()) . "), content=(" . json_encode($this->content) . ")]";
     }
     
     public function toArray()
