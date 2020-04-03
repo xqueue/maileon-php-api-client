@@ -1,3 +1,8 @@
+Date 
+Version 1.6.1
+- Fixed bug when sender and recipient alias contained XML special characters like &
+- ...
+
 Date 2020-03-16
 Version 1.6.0
 - Updated namespaces

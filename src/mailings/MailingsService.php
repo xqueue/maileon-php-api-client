@@ -436,7 +436,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post(
             'mailings/' . $mailingId . '/contents/senderalias',
-            "<senderalias>" . $senderalias . "</senderalias>"
+            "<senderalias><![CDATA[" . $senderalias . "]]></senderalias>"
         );
     }
     
@@ -472,7 +472,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post(
             'mailings/' . $mailingId . '/contents/recipientalias',
-            "<recipientalias>" . $recipientalias . "</recipientalias>"
+            "<recipientalias><![CDATA[" . $recipientalias . "]]></recipientalias>"
         );
     }
     
