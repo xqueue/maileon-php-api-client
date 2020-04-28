@@ -32,8 +32,8 @@ class Contact extends AbstractXMLWrapper
      *  The Maileon contact id.
      * @param string $email
      *  The email-address of the contact.
-     * @param string $permission
-     *  The permission code. 1 = NONE, 2 = SOI, 3 = COI, 4 = DOI, 5 = DOI+, 6 = OTHER.
+     * @param Permission $permission
+     *  The permission NONE, SOI, COI, DOI, DOI_PLUS, OTHER.
      * @param string $external_id
      *  The external id to identify the contact.
      * @param boolean $anonymous
