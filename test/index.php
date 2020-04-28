@@ -129,6 +129,12 @@
         <li><input type="checkbox" name="mailings_32" value="true"> GET mailing subject</li>
     </ul>
 
+    <h2>Media - Tests</h2>
+
+    <p>
+        <input type="checkbox" name="media_1" value="true"> GET a list of mailing templates
+    </p>
+
     <h2>Reports - Tests</h2>
     <ul>
         <li><input type="checkbox" name="reports_1" value="true"> GET unsubscribers</li>

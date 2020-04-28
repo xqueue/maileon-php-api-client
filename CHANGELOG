@@ -1,7 +1,9 @@
-Date 
+Date 2020-04-28
 Version 1.6.1
 - Fixed bug when sender and recipient alias contained XML special characters like &
 - Fixed warning with transaction service and not correctly set parenthesis
+- Added methods to retrieve mailing templates
+- Fixed some annotation mistakes
 
 Date 2020-03-16
 Version 1.6.0

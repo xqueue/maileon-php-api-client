@@ -19,6 +19,7 @@ use de\xqueue\maileon\api\client\targetgroups\TargetGroup;
 use de\xqueue\maileon\api\client\mailings\MailingsService;
 use de\xqueue\maileon\api\client\mailings\MailingFields;
 use de\xqueue\maileon\api\client\mailings\CustomProperty;
+use de\xqueue\maileon\api\client\media\MediaService;
 use de\xqueue\maileon\api\client\reports\Reports\ReportsService;
 use de\xqueue\maileon\api\client\transactions\TransactionsService;
 use de\xqueue\maileon\api\client\transactions\AttributeType;
@@ -1698,6 +1699,52 @@ checkResult($response);
 <?php } ?>
 </ul>
 <?php } // End?>
+
+<?php
+// ----------------------------------------------------------------------------------------------------------
+// Reports
+// ----------------------------------------------------------------------------------------------------------
+
+if (containsPostNeedle("media_")) {
+?>
+
+    <h2>Reportings - Tests</h2>
+    
+    <?php
+    	$mediaService = new MediaService($config);
+    ?>
+    <ul>
+    
+    <?php if (isset($_POST['media_1'])) { ?>
+        <li>
+        	GET list of mailing templates:
+        	
+        	<?php
+        	$response = $mediaService->getMailingTemplates();
+        	
+        	if ($response->isSuccess()) {
+        	    echo "<br /><pre><ul>";
+        	    foreach ($response->getResult() as $template) {
+        	        echo "<li>" . $template->name;
+            	        echo "<ul><li>";
+            	        print_r($template);
+            	        echo "</li></ul>";
+        	        echo "</li>";
+        	    }
+        	    echo "</ul></pre>";
+        	}
+        	?>
+        </li>
+        
+    <?php
+    }
+    ?>
+    </ul>
+    <?php 
+}
+
+?>
+
 
 
 
