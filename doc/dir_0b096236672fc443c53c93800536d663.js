@@ -1,4 +1,0 @@
-var dir_0b096236672fc443c53c93800536d663 =
-[
-    [ "api", "dir_e4aac7056b8e6048a2d44e56c7802a02.html", "dir_e4aac7056b8e6048a2d44e56c7802a02" ]
-];
