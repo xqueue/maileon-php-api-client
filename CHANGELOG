@@ -1,3 +1,11 @@
+Date 2020-05-20
+Version 1.6.2
+- Added methods to update contacts by external ID or email address, directly
+- Added method to get transaction type by name, directly
+- Added Method for deleting a transaction type by name
+- Added possibility to send transactions by providing the transaction type name (typeName) instead of type (ID)
+
+
 Date 2020-04-28
 Version 1.6.1
 - Fixed bug when sender and recipient alias contained XML special characters like &
