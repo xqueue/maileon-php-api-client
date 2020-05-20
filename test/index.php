@@ -40,8 +40,9 @@
         <li><input type="checkbox" name="contact_2" value="true"> GET contacts count</li>
         <li><input type="checkbox" name="contact_3" value="true"> GET all contacts [page and pagesize from config]</li>
         <li><input type="checkbox" name="contact_4" value="true"> GET contact with ID and checksum from config</li>
-        <li><input type="checkbox" name="contact_5" value="true"> PUT update contact with ID and checksum from config
-        </li>
+        <li><input type="checkbox" name="contact_5" value="true"> PUT update contact with ID and checksum from config</li>
+        <li><input type="checkbox" name="contact_5_1" value="true"> PUT update contact with its email as identifier</li>
+        <li><input type="checkbox" name="contact_5_2" value="true"> PUT update contact with its external ID as identifier</li>
         <li><input type="checkbox" name="contact_6" value="true"> DELETE contact by email from config</li>
         <li><input type="checkbox" name="contact_7" value="true"> GET all contacts [page and pagesize from config]</li>
         <li><input type="checkbox" name="contact_8" value="true"> GET contact with email from config</li>
@@ -163,6 +164,7 @@
         <li><input type="checkbox" name="transactions_6" value="true"> POST create transactions</li>
         <li><input type="checkbox" name="transactions_6_1" value="true"> POST create complex transactions</li>
         <li><input type="checkbox" name="transactions_6_2" value="true"> POST create 10 transactions fast</li>
+        <li><input type="checkbox" name="transactions_6_3" value="true"> POST create transactions by name</li>
         <li><input type="checkbox" name="transactions_7" value="true"> POST create transactions and create non existing contact</li>
         <li><input type="checkbox" name="transactions_8" value="true"> POST create transactions with attachment</li>
         <li><input type="checkbox" name="transactions_9" value="true"> DELETE transactions before a given date</li>

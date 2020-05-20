@@ -309,6 +309,41 @@ PUT update contact with ID <?= $TESTDATA['userId']?> (ignore checksum):
 	}
 ?>
 </li>
+<?php } if (isset($_POST['contact_5_1'])) { ?>
+<li>
+PUT update contact with its email as identifier:
+<?php
+
+	$newUpdateContact = new Contact();
+	$newUpdateContact->email = "maxi.mustermann@xqueue.com";
+	$newUpdateContact->permission = Permission::$OTHER; // Not mandatory
+	$newUpdateContact->standard_fields[StandardContactField::$FIRSTNAME] = "maxi";
+	
+	echo "\n<pre>" . htmlentities($newUpdateContact->toXMLString()) . "</pre>\n";
+
+	$response = $contactsService->updateContactByEmail("maxi.mustermann@baunzt.de", $newUpdateContact);
+
+	checkResult($response);
+?>
+</li>
+<?php } if (isset($_POST['contact_5_2'])) { ?>
+<li>
+PUT update contact with its external ID as identifier:
+<?php
+
+	$newUpdateContact = new Contact();
+	$newUpdateContact->external_id = "test123";
+	$newUpdateContact->email = "maxi2.mustermann@baunzt.de";
+	$newUpdateContact->permission = Permission::$NONE; // Not mandatory
+	$newUpdateContact->standard_fields[StandardContactField::$FIRSTNAME] = "maxi external test";
+	
+	echo "\n<pre>" . htmlentities($newUpdateContact->toXMLString()) . "</pre>\n";
+
+	$response = $contactsService->updateContactByExternalId("test123", $newUpdateContact);
+
+	checkResult($response);
+?>
+</li>
 <?php } if (isset($_POST['contact_6'])) { ?>
 <li>
 DELETE contact with email: <?= $TESTDATA['userEmail']?>
@@ -2610,7 +2645,7 @@ DELETE transaction type
 		<?php
 		$transaction = new Transaction();
 		$transaction->contact = new ContactReference();
-		$transaction->contact->email = "anouar.haha@xqueue.com";
+		$transaction->contact->email = "max.mustermann@baunzt.de";
 		$transaction->type = 247;
 
 		for ($i=0; $i<10; $i++) {
@@ -2630,6 +2665,32 @@ DELETE transaction type
 			if ($response->isSuccess() && $response->getResult()->reports[0]) {
 				echo "<br /><pre>Sample for accessing message of report [0]: " . $response->getResult()->reports[0]->message . "</pre>";
 			}
+		}
+
+
+		?>
+	</li>
+<?php } if (isset($_POST['transactions_6_3'])) { ?>
+	<li>
+		POST create transaction by name
+		<?php
+		$transaction = new Transaction();
+		$transaction->contact = new ContactReference();
+		$transaction->contact->email = "max.mustermann@baunzt.de";
+		$transaction->typeName = "Bestellbestätigung_TEST1";
+		
+		// Some sample content
+		$transaction->content['transaction_id'] = "123äöü45";
+
+		$transactions = array($transaction);
+
+		echo json_encode($transactions).PHP_EOL;
+
+		$response = $transactionsService->createTransactions($transactions, true, false);
+		checkResult($response);
+
+		if ($response->isSuccess() && $response->getResult()->reports[0]) {
+		    echo "<br /><pre>Sample for accessing message of report [0]: " . ((property_exists($response->getResult()->reports[0], 'message'))?$response->getResult()->reports[0]->message:"none") . "</pre>";
 		}
 
 
