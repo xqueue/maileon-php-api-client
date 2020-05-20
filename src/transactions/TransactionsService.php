@@ -51,8 +51,8 @@ class TransactionsService extends AbstractMaileonService
 
         return $this->get('transactions/types', $queryParameters);
     }
-        
-        /**
+    
+    /**
      * Gets information about a transaction type.
      *
      * @param integer $id
@@ -65,6 +65,21 @@ class TransactionsService extends AbstractMaileonService
     public function getTransactionType($id)
     {
         return $this->get("transactions/types/" . $id);
+    }
+    
+    /**
+     * Gets information about a transaction type by its name.
+     *
+     * @param string $name
+     * the name of the transaction type to get information about
+     * @return MaileonAPIResult
+     * the result object of the API call
+     * @throws MaileonAPIException
+     *      if there was a connection problem or a server error occurred
+     */
+    public function getTransactionTypeByName($name)
+    {
+        return $this->get("transactions/types/" . urlencode($name));
     }
         
     /**
@@ -96,6 +111,21 @@ class TransactionsService extends AbstractMaileonService
     {
         return $this->delete("transactions/types/" . $id);
     }
+    
+    /**
+     * Deletes a transaction type from the system by name.
+     *
+     * @param string $name
+     * the name of the transaction type to delete
+     * @return MaileonAPIResult
+     * the result object of the API call
+     * @throws MaileonAPIException
+     * if there was a connection problem or a server error occurred
+     */
+    public function deleteTransactionTypeByName($name)
+    {
+        return $this->delete("transactions/types/" . urlencode($name));
+    }
         
     /**
      * Creates a transaction
@@ -114,12 +144,11 @@ class TransactionsService extends AbstractMaileonService
     public function createTransactions($transactions, $release = true, $ignoreInvalidEvents = false)
     {
         $queryParameters = array(
-            'release' => ($release == true)?'true':'false',
             'ignore_invalid_transactions' => ($ignoreInvalidEvents == true)?'true':'false'
         );
 
-                $data = JSONSerializer::json_encode($transactions);
-                
+        $data = JSONSerializer::json_encode($transactions);
+        
         $result = $this->post(
             "transactions",
             $data,
@@ -164,21 +193,11 @@ class TransactionsService extends AbstractMaileonService
      * the id if the found transaction
      * @throws MaileonAPIException
      * if there was a connection problem or a server error occurred
+     * @deprecated $name can be used as ID, @see getTransactionType()
      */
     public function findTransactionTypeByName($type_name)
     {
-        //FIXME: more than 1000 transactions
-        $types = $this->getTransactionTypes(1, 1000)->getResult();
-
-        $type_name = mb_strtolower($type_name);
-
-        foreach ($types as $type) {
-            if (strcmp(mb_strtolower($type->name), $type_name) == 0) {
-                return (int)$type->id;
-            }
-        }
-
-        return null;
+        return $this->getTransactionType($type_name);
     }
         
     /**
