@@ -515,6 +515,40 @@ class ContactsService extends AbstractMaileonService
 
         return $this->post("contacts", $cleanedContacts->toXMLString(), $queryParameters);
     }
+    
+   /**
+    * This methods updates the data of a Maileon contact identifying a contact by its email
+    *
+    * @param string $email The (old) email address of the contact.
+    * @param Contact $contact
+    *  The contact object to send to Maileon. If it has a permission, it will be overwritten.
+    * @return MaileonAPIResult
+    *  the result object of the API call
+    * @throws MaileonAPIException
+    *  if there was a connection problem or a server error occurred
+    */
+    public function updateContactByEmail( $email, $contact ) {
+
+        $queryParameters = array();
+            
+        if (isset($contact->permission)) {
+            $queryParameters['permission'] = $contact->permission->getCode();
+        }
+        
+        // The API allows only some of the fields to be submitted
+        $contactToSend = new Contact(
+            null,
+            $contact->email,
+            null,
+            $contact->external_id,
+            null,
+            $contact->standard_fields,
+            $contact->custom_fields
+            );
+        
+        $encodedEmail = utf8_encode($email);
+        return $this->put("contacts/email/${encodedEmail}", $contactToSend->toXMLString(), $queryParameters);
+    }
 
     /**
      * This method unsubscribes a contact from Maileon using the contact's email adress.
@@ -642,6 +676,40 @@ class ContactsService extends AbstractMaileonService
         }
 
         return $this->delete("contacts/contact/unsubscribe", $queryParameters);
+    }
+    
+    /**
+     * This methods updates the data of a Maileon contact identifying a contact by its external ID
+     *
+     * @param string $externalId The (old) external ID of the contact.
+     * @param Contact $contact
+     *  The contact object to send to Maileon. If it has a permission, it will be overwritten.
+     * @return MaileonAPIResult
+     *  the result object of the API call
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function updateContactByExternalId( $externalId, $contact ) {
+        
+        $queryParameters = array();
+        
+        if (isset($contact->permission)) {
+            $queryParameters['permission'] = $contact->permission->getCode();
+        }
+        
+        // The API allows only some of the fields to be submitted
+        $contactToSend = new Contact(
+            null,
+            $contact->email,
+            null,
+            $contact->external_id,
+            null,
+            $contact->standard_fields,
+            $contact->custom_fields
+            );
+        
+        $encodedExternalId = urlencode($externalId);
+        return $this->put("contacts/externalid/{$encodedExternalId}", $contactToSend->toXMLString(), $queryParameters);
     }
 
     /**
