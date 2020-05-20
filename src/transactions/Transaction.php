@@ -21,6 +21,13 @@ class Transaction extends AbstractJSONWrapper
      * the numeric ID of the transaction type to use
      */
     public $type;
+    
+    /**
+     *
+     * @var string
+     * the name of the transaction type to use as an alternative to using the ID
+     */
+    public $typeName;
 
     /**
      *
