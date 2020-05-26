@@ -34,7 +34,7 @@ Upon unpacking the distributed .zip file, you will see the following elements in
 	doc/                      - the API documentation
 	test/                     - the testing app and the phphunit tests
 	CHANGELOG                 - The changelog file
-	LICENSE						 - a copy of the MIT license this software is released under
+	LICENSE                   - a copy of the MIT license this software is released under
 	README.md                 - this file
 	build.properties          - the build configuration
 	build.xml                 - the ant build file
@@ -62,7 +62,7 @@ For the next step, you will need a working installation of [Apache Ant](http://a
 
 Once ant is installed, run it inside the directory where you unpacked the API client:
 
-	C:\projects\maileon-php-client-0.10.3>ant
+	C:\projects\maileon-php-client-1.6.2>ant
 	Buildfile: C:\projects\eagle_kunde\php-api-client\target\maileon-php-client-0.10.3\build.xml
 	
 	deploy:
@@ -78,12 +78,38 @@ To verify that your installation works, check all the checkboxes in the "Ping - 
 
 ## Installing the API client into your PHP application
 
-Copy the entire `client` subdirectory to your webserver. Then, from the code that uses the client, include the client's main file:
+The client is distributed using [Packagist]() and thus, can easily be included using composer.
+
+A sample composer file would be
+
+    {
+        "name" : "myvendor/myapplication",
+        "description" : "Some sample application",
+        "version" : "1.0.0",
+        "keywords" : [
+            "XQueue",
+            "Maileon"
+	],
+        "homepage" : "https://www.maileon.de",
+        "type" : "library",
+        "license" : "MIT",
+        "authors" : [{
+            "name" : "XQueue GmbH, Max Mustermann",
+            "email" : "max.mustermann@xqueue.com"
+        }],
+        "require" : {
+            "xqueue/maileon-api-client/" : "@dev"
+        },
+        "require-dev" : {
+            "phpunit/phpunit" : "^4"
+        }
+    }
+
+The client can then be included by adding the autoloader.
 
 	// Include the Maileon API Client classloader 
-	require_once('./client/MaileonApiClient.php');
+	require "vendor/autoload.php";
 	
-You can rename the `client` subdirectory, as long as you also change the path in the `require_once` directive accordingly. You may also want to install a root certificate bundle to enable secure transmissions over HTTPS. See the last section "Connecting to the API using HTTPS" of this document for instructions on how to achieve this.
 
 ## Running the PHPUnit tests
 
