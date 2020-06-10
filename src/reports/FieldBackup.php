@@ -1,6 +1,6 @@
 <?php
 
-namespace de\xqueue\maileon\api\client\reports\Reports;
+namespace de\xqueue\maileon\api\client\reports;
 
 /**
  * Field Backups are the values of contact fields that have been backed up for mailings

@@ -1,6 +1,6 @@
 <?php
 
-namespace de\xqueue\maileon\api\client\reports\Reports;
+namespace de\xqueue\maileon\api\client\reports;
 
 use de\xqueue\maileon\api\client\contacts\Contact;
 use de\xqueue\maileon\api\client\contacts\Permission;

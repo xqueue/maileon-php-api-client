@@ -20,7 +20,7 @@ use de\xqueue\maileon\api\client\mailings\MailingsService;
 use de\xqueue\maileon\api\client\mailings\MailingFields;
 use de\xqueue\maileon\api\client\mailings\CustomProperty;
 use de\xqueue\maileon\api\client\media\MediaService;
-use de\xqueue\maileon\api\client\reports\Reports\ReportsService;
+use de\xqueue\maileon\api\client\reports\ReportsService;
 use de\xqueue\maileon\api\client\transactions\TransactionsService;
 use de\xqueue\maileon\api\client\transactions\AttributeType;
 use de\xqueue\maileon\api\client\transactions\Transaction;
