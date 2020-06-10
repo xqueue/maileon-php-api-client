@@ -2,25 +2,25 @@
 
 namespace de\xqueue\maileon\api\client\xml;
 
-use de\xqueue\maileon\api\client\reports\Reports\Open;
-use de\xqueue\maileon\api\client\reports\Reports\Block;
-use de\xqueue\maileon\api\client\reports\Reports\Click;
-use de\xqueue\maileon\api\client\reports\Reports\Bounce;
+use de\xqueue\maileon\api\client\reports\Open;
+use de\xqueue\maileon\api\client\reports\Block;
+use de\xqueue\maileon\api\client\reports\Click;
+use de\xqueue\maileon\api\client\reports\Bounce;
 use de\xqueue\maileon\api\client\contacts\Contact;
 use de\xqueue\maileon\api\client\mailings\Mailing;
 use de\xqueue\maileon\api\client\contacts\Contacts;
 use de\xqueue\maileon\api\client\mailings\Schedule;
-use de\xqueue\maileon\api\client\reports\Reports\Recipient;
-use de\xqueue\maileon\api\client\reports\Reports\Conversion;
-use de\xqueue\maileon\api\client\reports\Reports\Subscriber;
+use de\xqueue\maileon\api\client\reports\Recipient;
+use de\xqueue\maileon\api\client\reports\Conversion;
+use de\xqueue\maileon\api\client\reports\Subscriber;
 use de\xqueue\maileon\api\client\mailings\Attachment;
-use de\xqueue\maileon\api\client\reports\Reports\FieldBackup;
+use de\xqueue\maileon\api\client\reports\FieldBackup;
 use de\xqueue\maileon\api\client\blacklists\Blacklist;
-use de\xqueue\maileon\api\client\reports\Reports\UniqueBounce;
-use de\xqueue\maileon\api\client\reports\Reports\Unsubscriber;
+use de\xqueue\maileon\api\client\reports\UniqueBounce;
+use de\xqueue\maileon\api\client\reports\Unsubscriber;
 use de\xqueue\maileon\api\client\contacts\CustomFields;
 use de\xqueue\maileon\api\client\mailings\CustomProperty;
-use de\xqueue\maileon\api\client\reports\Reports\UniqueConversion;
+use de\xqueue\maileon\api\client\reports\UniqueConversion;
 use de\xqueue\maileon\api\client\targetgroups\TargetGroup;
 use de\xqueue\maileon\api\client\account\AccountPlaceholder;
 use de\xqueue\maileon\api\client\contactfilters\ContactFilter;
