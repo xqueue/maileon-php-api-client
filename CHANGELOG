@@ -1,4 +1,8 @@
 Date 2020-06-10
+Version 1.6.4
+- Fixed reports namespace in XMLDeserializer.php
+
+Date 2020-06-10
 Version 1.6.3
 - Fixed reports namespace by removing "Reports" from end of namespace
 - Removed trailing / in require for test/composer.json
