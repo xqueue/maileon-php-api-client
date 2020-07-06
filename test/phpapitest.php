@@ -1427,11 +1427,19 @@ checkResult($response);
         //echo phpversion();
 		?>
 	</li>
+<?php } if (isset($_POST['mailings_15_0'])) { ?>
+	<li>
+		GET Schedule for Regular Mailing:
+		<?php
+		$response = $mailingService->getMailingSchedule(727);
+		checkResult($response);
+		?>
+	</li>
 <?php } if (isset($_POST['mailings_15_1'])) { ?>
 	<li>
 		PUT Schedule Regular Mailing:
 		<?php
-		$response = $mailingService->setMailingSchedule(13899, "2019-01-10", 14, 01);
+		$response = $mailingService->setMailingSchedule(593, "2011-01-10", 14, 01);
 		checkResult($response);
 		?>
 	</li>
@@ -1439,7 +1447,28 @@ checkResult($response);
 	<li>
 		POST Update the Schedule for Regular Mailing:
 		<?php
-		$response = $mailingService->updateMailingSchedule(13899, "2019-03-20", 14, 01);
+		$response = $mailingService->updateMailingSchedule(593, "2011-03-20", 14, 01);
+		checkResult($response);
+		?>
+	</li>
+<?php } if (isset($_POST['mailings_15_3'])) { ?>
+	<li>
+		PUT Set the schedule for regular mailing with advanced dispatch options:
+		<?php
+		$mailingService->deleteMailingSchedule(593);
+		//$response = $mailingService->setMailingSchedule(593, "2021-03-20", 14, 01, 'weekdayhour', null, 0, "2021-03-25 18:00", false, 2, null, "5-10,12,13-15");
+		
+		$response = $mailingService->setMailingSchedule(593, "2021-03-20", 14, 01, 'uniform', 24, null, null, false, 1, null, "2-5,7,13-18");
+		checkResult($response);
+		?>
+	</li>
+<?php } if (isset($_POST['mailings_15_4'])) { ?>
+	<li>
+		POST Update the schedule for regular mailing with advanced dispatch options:
+		<?php
+		//$response = $mailingService->updateMailingSchedule(593, "2021-03-20", 14, 01, 'weekdayhour', null, 0, "2020-07-05 18:00", true, 3);
+		//$response = $mailingService->updateMailingSchedule(593, "2021-03-20", 14, 01, 'weekdayhour', null, 0, "2021-04-20 18:00", false, 3);
+		$response = $mailingService->updateMailingSchedule(593, "2021-03-20", 14, 01, 'uniform', 24, null, null, false, 1, null, "2-5,7,13-18");
 		checkResult($response);
 		?>
 	</li>
@@ -1726,6 +1755,30 @@ checkResult($response);
             $mailingId = 466;
 
             $response = $mailingService->getSubject($mailingId);
+            checkResult($response);
+            
+            echo "<br />Result: " . $response->getResult();
+            ?>
+        </li>
+    <?php } if (isset($_POST['mailings_33'])) { ?>
+        <li>
+            GET mailing cleanup option:
+            <?php
+
+            $mailingId = 593;
+
+            $response = $mailingService->isCleanupListsAndFilters($mailingId);
+            checkResult($response);
+            ?>
+        </li>
+    <?php } if (isset($_POST['mailings_34'])) { ?>
+        <li>
+            SET mailing cleanup option:
+            <?php
+
+            $mailingId = 593;
+
+            $response = $mailingService->setCleanupListsAndFilters($mailingId, true);
             checkResult($response);
             
             echo "<br />Result: " . $response->getResult();
@@ -2735,7 +2788,7 @@ POST create transactions and non existing contact
                 <?php
                 $transaction = new Transaction();
                 $transaction->contact = new ContactReference();
-                $transaction->contact->email = $TESTDATA['transactionUserEmail'];
+                $transaction->contact->email = "marcus.beckerle@xqueue.com";
                 $transaction->type = $TESTDATA['transactionTypeId'];
                 $transaction->content = array(
                     //'date' => "20.10.2013 12:00:00",

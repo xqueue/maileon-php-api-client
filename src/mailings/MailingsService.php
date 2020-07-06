@@ -103,6 +103,38 @@ class MailingsService extends AbstractMaileonService
     }
     
     /**
+     * Set cleanup option for post sendout processing.
+     * This flag defines if the used contact list and filter should be deleted after sendout.
+     *
+     * @param integer $mailingId the ID of the mailing
+     * @param boolean $cleanup can be either true or false
+     */
+    public function setCleanupListsAndFilters($mailingId, $cleanup)
+    {
+        if ($cleanup === true) {
+            $cleanup = "true";
+        } elseif ($cleanup === false) {
+            $cleanup = "false";
+        }
+        return $this->post(
+            'mailings/' . $mailingId . '/settings/post_sendout_cleanup',
+            "<cleanup>$cleanup</cleanup>"
+            );
+    }
+    
+    /**
+     * Retrieve the cleanup option for post sendout processing.
+     * This flag defines if the used contact list and filter should be deleted after sendout.
+     *
+     * @param integer $mailingId the ID of the mailing
+     * @return "true" or "false"
+     */
+    public function isCleanupListsAndFilters($mailingId)
+    {
+        return $this->get('mailings/' . $mailingId . '/settings/post_sendout_cleanup');
+    }
+    
+    /**
      * Sets the dispatch logic for trigger mailings
      * 
      * @param integer $mailingId the ID of the mailing
@@ -644,7 +676,7 @@ class MailingsService extends AbstractMaileonService
     }
     
     /**
-     * Schedules the mailing for a given time
+     * Schedules the mailing for a given time. If <code>dispatchOption</code> is set, the enhanced scheduling options are enabled.
      *
      * @param number mailingId
      *  The ID of the mailing to schedule
@@ -654,16 +686,45 @@ class MailingsService extends AbstractMaileonService
      *  The schedule hour in the format of HH, 24 hours format
      * @param minute minute
      *  The schedule minutes in the format MM
-     * @return
+     * @param string dispatchOption
+     *  The time distribution strategy to choose from {'hour', 'weekdayhour', 'uniform'}.
+     * @param dispatchEndInHours Number of hours begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used in case of 'hour'
+     *  dispatch option and 'uniform' option. Allowed values for the 'uniform' distribution are in [2..96], whereas for 'hour' strategy thery are ranging from [2..24].
+     * @param dispatchEndInDays Number of days begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used only with dispatch
+     *  option 'weekdayhour' and its acceptable range is [1..7].
+     * @param dispatchEndExactDatetime The exact end date util which the dispatch time distribution has to be finished. It is used when none of the arguments above
+     *  <code>dispatchEndInHours</code>, <code>dispatchEndInDays</code> aren't set i.e. equals 0. Note that one of <code>dispatchEndInHours</code>, <code>dispatchEndInDays</code>,
+     *  <code>dispatchEndExactDatetime</code> argument should be used in the request according to the selected dispatch option. Format: yyyy-MM-dd HH:mm
+     * @param boolean clicksAsResponseReference
+     *  The parameter determines the inclusion/exclusion of clicks as a response criteria when selecting {'hour', 'weekdayhour'} options.
+     * @param int dispatchWavesGroup
+     *  The number determines how many consecutive sending waves will be grouped when using {'hour', 'weekdayhour'} distribution. Supported values are {1, 2, 3 (default)}.
+     * @param string dispatchUniformInterval 
+     *  The arguments controls the interval {'hour', '30m', '20m', '15m', '10m'} for the 'uniform' strategy indicating the frequency of mailing
+     *  distribution over time. It should equals null for {'hour', 'weekdayhour'} dispatch options.
+     * @param string allowedHours 
+     *  The value represents the allowed hours. Comma separated values for the allowed hours and can be combined with a range of hours. The required format looks
+     *  like 0,3,5,17-21 as an example. The acceptable values rane is 0..23. Note that the if this argument is not provided, all 24H of the day will be considered as acceptable
+     *  dispatch hours.
+     * @return MaileonAPIResult
      * @throws MaileonAPIException
      */
-    public function setMailingSchedule($mailingId, $date, $hours, $minutes)
+    public function setMailingSchedule($mailingId, $date, $hours, $minutes, $dispatchOption = null, $dispatchEndInHours = null, $dispatchEndInDays = null, $dispatchEndExactDatetime = null, $clicksAsResponseReference = null, $dispatchWavesGroup = null, $dispatchUniformInterval = null, $allowedHours = null)
     {
         $queryParameters = array(
             'date' => $date,
             'hours' => $hours,
             'minutes' => $minutes
         );
+        
+        if (!empty($dispatchOption)) { $queryParameters ['dispatchOption'] = urlencode($dispatchOption); }
+        if (!empty($dispatchEndInHours)) { $queryParameters ['dispatchEndInHours'] = urlencode($dispatchEndInHours); }
+        if (!empty($dispatchEndInDays)) { $queryParameters ['dispatchEndInDays'] = urlencode($dispatchEndInDays); }
+        if (!empty($dispatchEndExactDatetime)) { $queryParameters ['dispatchEndExactDatetime'] = urlencode($dispatchEndExactDatetime); }
+        if (!empty($clicksAsResponseReference)) { $queryParameters ['clicksAsResponseReference'] = (boolval($clicksAsResponseReference) === true) ? "true" : "false"; }
+        if (!empty($dispatchWavesGroup)) { $queryParameters ['dispatchWavesGroup'] = urlencode($dispatchWavesGroup); }
+        if (!empty($dispatchUniformInterval)) { $queryParameters ['dispatchUniformInterval'] = urlencode($dispatchUniformInterval); }
+        if (!empty($allowedHours)) { $queryParameters ['allowedHours'] = urlencode($allowedHours); }
         
         return $this->put('mailings/' . $mailingId . '/schedule', "", $queryParameters);
     }
@@ -693,7 +754,7 @@ class MailingsService extends AbstractMaileonService
     }
     
     /**
-     * Update the schedule for the given mailing
+     * Update the schedule for the given mailing. If <code>dispatchOption</code> is set, the enhanced scheduling options are enabled.
      *
      * @param number mailingId
      * @param date date
@@ -702,16 +763,45 @@ class MailingsService extends AbstractMaileonService
      *  The schedule hour in the format of HH, 24 hours format
      * @param minute minute
      *  The schedule minutes in the format MM
-     * @return
+     * @param string dispatchOption
+     *  The time distribution strategy to choose from {'hour', 'weekdayhour', 'uniform'}.
+     * @param dispatchEndInHours Number of hours begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used in case of 'hour'
+     *  dispatch option and 'uniform' option. Allowed values for the 'uniform' distribution are in [2..96], whereas for 'hour' strategy thery are ranging from [2..24].
+     * @param dispatchEndInDays Number of days begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used only with dispatch
+     *  option 'weekdayhour' and its acceptable range is [1..7].
+     * @param dispatchEndExactDatetime The exact end date util which the dispatch time distribution has to be finished. It is used when none of the arguments above
+     *  <code>dispatchEndInHours</code>, <code>dispatchEndInDays</code> aren't set i.e. equals 0. Note that one of <code>dispatchEndInHours</code>, <code>dispatchEndInDays</code>,
+     *  <code>dispatchEndExactDatetime</code> argument should be used in the request according to the selected dispatch option. Format: yyyy-MM-dd HH:mm
+     * @param boolean clicksAsResponseReference
+     *  The parameter determines the inclusion/exclusion of clicks as a response criteria when selecting {'hour', 'weekdayhour'} options.
+     * @param int dispatchWavesGroup
+     *  The number determines how many consecutive sending waves will be grouped when using {'hour', 'weekdayhour'} distribution. Supported values are {1, 2, 3 (default)}.
+     * @param string dispatchUniformInterval 
+     *  The arguments controls the interval {'hour', '30m', '20m', '15m', '10m'} for the 'uniform' strategy indicating the frequency of mailing
+     *  distribution over time. It should equals null for {'hour', 'weekdayhour'} dispatch options.
+     * @param string allowedHours 
+     *  The value represents the allowed hours. Comma separated values for the allowed hours and can be combined with a range of hours. The required format looks
+     *  like 0,3,5,17-21 as an example. The acceptable values rane is 0..23. Note that the if this argument is not provided, all 24H of the day will be considered as acceptable
+     *  dispatch hours.
+     * @return MaileonAPIResult
      * @throws MaileonAPIException
      */
-    public function updateMailingSchedule($mailingId, $date, $hours, $minutes)
+    public function updateMailingSchedule($mailingId, $date, $hours, $minutes, $dispatchOption = null, $dispatchEndInHours = null, $dispatchEndInDays = null, $dispatchEndExactDatetime = null, $clicksAsResponseReference = null, $dispatchWavesGroup = null, $dispatchUniformInterval = null, $allowedHours = null)
     {
         $queryParameters = array(
             'date' => $date,
             'hours' => $hours,
             'minutes' => $minutes
         );
+        
+        if (!empty($dispatchOption)) { $queryParameters ['dispatchOption'] = urlencode($dispatchOption); }
+        if (!empty($dispatchEndInHours)) { $queryParameters ['dispatchEndInHours'] = urlencode($dispatchEndInHours); }
+        if (!empty($dispatchEndInDays)) { $queryParameters ['dispatchEndInDays'] = urlencode($dispatchEndInDays); }
+        if (!empty($dispatchEndExactDatetime)) { $queryParameters ['dispatchEndExactDatetime'] = urlencode($dispatchEndExactDatetime); }
+        if (!empty($clicksAsResponseReference)) { $queryParameters ['clicksAsResponseReference'] = (boolval($clicksAsResponseReference) === true) ? "true" : "false"; }
+        if (!empty($dispatchWavesGroup)) { $queryParameters ['dispatchWavesGroup'] = urlencode($dispatchWavesGroup); }
+        if (!empty($dispatchUniformInterval)) { $queryParameters ['dispatchUniformInterval'] = urlencode($dispatchUniformInterval); }
+        if (!empty($allowedHours)) { $queryParameters ['allowedHours'] = urlencode($allowedHours); }
         
         return $this->post('mailings/' . $mailingId . '/schedule', "", $queryParameters);
     }

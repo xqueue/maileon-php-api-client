@@ -62,6 +62,10 @@ class XMLDeserializer
 
                 case "events":
                     return false; // deserialization not yet supported.
+                    
+                case "ignorepermission":
+                case "cleanup":
+                    return boolval($xmlElement);
 
                 case "result":
                     $result = array();

@@ -109,8 +109,11 @@
         <li><input type="checkbox" name="mailings_13" value="true"> DELETE deactivate trigger mailing</li>
         <li><input type="checkbox" name="mailings_14" value="true"> GET dispatch scheduling for trigger mailing</li>
         <li><input type="checkbox" name="mailings_15" value="true"> POST copy mailing</li>
+        <li><input type="checkbox" name="mailings_15_0" value="true"> GET schedule for regular mailing</li>
         <li><input type="checkbox" name="mailings_15_1" value="true"> PUT schedule mailing</li>
         <li><input type="checkbox" name="mailings_15_2" value="true"> POST update schedule of mailing</li>
+        <li><input type="checkbox" name="mailings_15_3" value="true"> PUT Set the schedule for regular mailing with advanced dispatch options</li>
+        <li><input type="checkbox" name="mailings_15_4" value="true"> POST Update the schedule for regular mailing with advanced dispatch options</li>
         <li><input type="checkbox" name="mailings_16" value="true"> PUT disable all QoS checks</li>
         <li><input type="checkbox" name="mailings_17" value="true"> GET get the archive URL</li>
         <li><input type="checkbox" name="mailings_18" value="true"> POST and GET tags</li>
@@ -128,6 +131,8 @@
         <li><input type="checkbox" name="mailings_30" value="true"> GET mailing preview text</li>
         <li><input type="checkbox" name="mailings_31" value="true"> SET mailing preview text</li>
         <li><input type="checkbox" name="mailings_32" value="true"> GET mailing subject</li>
+        <li><input type="checkbox" name="mailings_33" value="true"> GET mailing cleanup option</li>
+        <li><input type="checkbox" name="mailings_34" value="true"> SET mailing cleanup option</li>
     </ul>
 
     <h2>Media - Tests</h2>

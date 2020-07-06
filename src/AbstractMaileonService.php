@@ -383,7 +383,13 @@ abstract class AbstractMaileonService
         if (isset($fieldValues) && is_array($fieldValues) && count($fieldValues) > 0) {
             $params ["$name"] = array();
             foreach ($fieldValues as $value) {
-                $params ["$name"] [] = urlencode($value); //urlencode(utf8_encode($value));
+                if ($value === true) {
+                    $params ["$name"] [] = "true";
+                } else if ($value === false) {
+                    $params ["$name"] [] = "false";
+                } else {
+                    $params ["$name"] [] = urlencode($value);
+                }
             }
         }
         return $params;
