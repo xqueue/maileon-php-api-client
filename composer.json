@@ -1,7 +1,7 @@
 {
 	"name" : "xqueue/maileon-api-client",
 	"description" : "API-Client to XQ:Maileon",
-	"version" : "1.6.2",
+	"version" : "1.6.5",
 	"keywords" : [
 		"XQueue",
 		"Maileon"
@@ -12,6 +12,9 @@
 	"authors" : [{
 			"name" : "XQueue GmbH, Marcus Beckerle",
 			"email" : "marcus.beckerle@xqueue.com"
+		}, {
+			"name" : "XQueue GmbH, Andreas Lange",
+			"email" : "andreas.lange@xqueue.com"
 		}, {
 			"name" : "Wanadis Devs",
 			"email" : "dev@maileon.hu"
