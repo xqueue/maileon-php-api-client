@@ -3,6 +3,7 @@
 namespace de\xqueue\maileon\api\client\reports;
 
 use de\xqueue\maileon\api\client\AbstractMaileonService;
+use de\xqueue\maileon\api\client\MaileonAPIResult;
 
 /**
  *
@@ -58,7 +59,7 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of
      *  page_size must be in the range 1 to 1000.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getOpens(
         $fromDate = null,
@@ -147,7 +148,7 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of page_size
      *  must be in the range 1 to 1000.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getUniqueOpens(
         $fromDate = null,
@@ -219,7 +220,7 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousOpens
      *  If this is set to true (default), only openers that have not yet been
      *  anonymized (due to deletion/unsubscription) are returned.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getOpensCount(
         $fromDate = null,
@@ -278,7 +279,7 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousOpens
      *  If this is set to true (default), only openers that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getUniqueOpensCount(
         $fromDate = null,
@@ -341,7 +342,7 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of
      *  page_size must be in the range 1 to 1000.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getRecipients(
         $fromDate = null,
@@ -399,7 +400,7 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeDeletedRecipients
      *  Supported values: true / false. If set to true, the recipients that have been
      *  removed from maileon will be excluded.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getRecipientsCount(
         $fromDate = null,
@@ -479,7 +480,7 @@ class ReportsService extends AbstractMaileonService
      *  the range 1 to 1000.
      * @param bool $embedLinkTags
      *  If the set to true, available link tags will be appended to each click.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getClicks(
         $fromDate = null,
@@ -580,7 +581,7 @@ class ReportsService extends AbstractMaileonService
      *  range 1 to 1000.
      * @param bool $embedLinkTags
      *  If the set to true, available link tags will be appended to each click.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getUniqueClicks(
         $fromDate = null,
@@ -661,7 +662,7 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousClicks
      *  If this is set to true (default), only clicks that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getClicksCount(
         $fromDate = null,
@@ -727,7 +728,7 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousClicks
      *  If this is set to true (default), only clicks that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getUniqueClicksCount(
         $fromDate = null,
@@ -795,7 +796,7 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of page_size
      *  must be in the range 1 to 1000.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getBounces(
         $fromDate = null,
@@ -877,7 +878,7 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of page_size must be in
      *  the range 1 to 1000.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getUniqueBounces(
         $fromDate = null,
@@ -943,7 +944,7 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousBounces
      *  If this is set to true (default), only bounces that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getBouncesCount(
         $fromDate = null,
@@ -1002,7 +1003,7 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousBounces
      *  If this is set to true (default), only bounces that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getUniqueBouncesCount(
         $fromDate = null,
@@ -1064,7 +1065,7 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of page_size must be
      *  in the range 1 to 1000.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getBlocks(
         $fromDate = null,
@@ -1138,7 +1139,7 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousBlocks
      *  If this is set to true (default), only bounces that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getBlocksCount(
         $fromDate = null,
@@ -1208,7 +1209,7 @@ class ReportsService extends AbstractMaileonService
      *  The maximum count of items in the result page. If provided, the value of page_size
      *  must be in the range 1 to 1000.
      *
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getUnsubscribers(
         $fromDate = null,
@@ -1260,7 +1261,7 @@ class ReportsService extends AbstractMaileonService
      *  Filters the unsubscriptions by their source. The source can be an unsubscription link
      *  (link), a reply mail (reply) or other.
      *
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getUnsubscribersCount(
         $fromDate = null,
@@ -1318,7 +1319,7 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of page_size must be in
      *  the range 1 to 1000.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getSubscribers(
         $fromDate = null,
@@ -1377,7 +1378,7 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousContacts
      *  If this is set to true (default), only subscribers that have not yet been anonymized
      *  (due to deletion) are returned.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getSubscribersCount(
         $fromDate = null,
@@ -1434,7 +1435,7 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of page_size must
      *  be in the range 1 to 1000.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getConversions(
         $fromDate = null,
@@ -1555,7 +1556,7 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of page_size must be in
      *  the range 1 to 1000.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getUniqueConversions(
         $fromDate = null,
@@ -1671,7 +1672,7 @@ class ReportsService extends AbstractMaileonService
      *  Multivalued parameter to filter the revenues by goal ids. Each value must correspond to a valid goal id.
      * @param array $linkIds
      *  Multivalued parameter to filter the revenues by link ids. Each value must correspond to a valid link id.
-     * @return array
+     * @return MaileonAPIResult
      */
     public function getRevenue(
         $fromDate = null,
@@ -1733,7 +1734,7 @@ class ReportsService extends AbstractMaileonService
      *  For each unsubscription, the corresponding field backups will be returned if available.
      *  Note that this only applies for non anonymizable field backups.
      *
-     * @return array
+     * @return MaileonAPIResult
      */
     private function createQueryParameters(
         $pageIndex,
@@ -1802,7 +1803,7 @@ class ReportsService extends AbstractMaileonService
      *  Filters the unsubscriptions by their source. The source can be an unsubscription link
      *  (link), a reply mail (reply) or other.
      *
-     * @return array
+     * @return MaileonAPIResult
      */
     private function createCountQueryParameters(
         $fromDate,

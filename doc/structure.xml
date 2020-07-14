@@ -5547,25 +5547,26 @@ used in RESTful web services.</description>
       <error line="74" code="PPC:ERR-50007">No summary for property $verboseOut</error>
     </parse_markers>
   </file>
-  <file path="reports\ReportsService.php" generated-path="reports.ReportsService.html" hash="3a034db001bfd41dfcd6b1de3b5d4965" package="Default">
+  <file path="reports\ReportsService.php" generated-path="reports.ReportsService.html" hash="5db6e93b2973b4f510ca92f7175d4085" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="AbstractMaileonService">\de\xqueue\maileon\api\client\AbstractMaileonService</namespace-alias>
-    <class final="false" abstract="false" namespace="de\xqueue\maileon\api\client\reports" line="14" package="Default">
+    <namespace-alias name="MaileonAPIResult">\de\xqueue\maileon\api\client\MaileonAPIResult</namespace-alias>
+    <class final="false" abstract="false" namespace="de\xqueue\maileon\api\client\reports" line="15" package="Default">
       <extends>\de\xqueue\maileon\api\client\AbstractMaileonService</extends>
       <name>ReportsService</name>
       <full_name>\de\xqueue\maileon\api\client\reports\ReportsService</full_name>
-      <docblock line="14">
+      <docblock line="15">
         <description>Abstract base class for all the service accessing individual resources. This class handles
 the basic authentication and provides convenience methods to access the four HTTP methods
 used in RESTful web services.</description>
         <long-description></long-description>
-        <tag name="author" line="14" description="Viktor Balogh (Wiera)"/>
-        <tag name="author" line="14" description="Marcus St&amp;amp;auml;nder | Trusted Mails GmbH |&#10;&lt;a href=&quot;mailto:marcus.staender@trusted-mails.com&quot;&gt;marcus.staender@trusted-mails.com&lt;/a&gt;"/>
-        <tag name="package" line="14" description="Default"/>
+        <tag name="author" line="15" description="Viktor Balogh (Wiera)"/>
+        <tag name="author" line="15" description="Marcus St&amp;amp;auml;nder | Trusted Mails GmbH |&#10;&lt;a href=&quot;mailto:marcus.staender@trusted-mails.com&quot;&gt;marcus.staender@trusted-mails.com&lt;/a&gt;"/>
+        <tag name="package" line="15" description="Default"/>
         <tag name="inherited_from" description="\de\xqueue\maileon\api\client\AbstractMaileonService" refers="\de\xqueue\maileon\api\client\AbstractMaileonService" link="/classes/de.xqueue.maileon.api.client.AbstractMaileonService.html"/>
       </docblock>
       <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="23" package="Default">
@@ -5673,62 +5674,62 @@ used in RESTful web services.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="63" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="64" package="Default">
         <name>getOpens</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getOpens()</full_name>
-        <docblock line="63">
+        <docblock line="64">
           <description>Returns a page of openers.</description>
           <long-description></long-description>
-          <tag name="param" line="63" description="&lt;p&gt;If provided, only the openers after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="64" description="&lt;p&gt;If provided, only the openers after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;If provided, only the openers before the given date will be returned.&#10; The value of to_date must be a numeric value representing a point in time&#10; milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="64" description="&lt;p&gt;If provided, only the openers before the given date will be returned.&#10; The value of to_date must be a numeric value representing a point in time&#10; milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;Multivalued parameter to filter the openers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="64" description="&lt;p&gt;Multivalued parameter to filter the openers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;Multivalued parameter to filter the openers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="64" description="&lt;p&gt;Multivalued parameter to filter the openers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;Multivalued parameter to filter the openers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="64" description="&lt;p&gt;Multivalued parameter to filter the openers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;Multivalued parameter to filter the openers by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="64" description="&lt;p&gt;Multivalued parameter to filter the openers by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;Filters the opens by format. Possible values are: html / text.&lt;/p&gt;" type="string" variable="$formatFilter">
+          <tag name="param" line="64" description="&lt;p&gt;Filters the opens by format. Possible values are: html / text.&lt;/p&gt;" type="string" variable="$formatFilter">
             <type>string</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;Multivalued parameter to filter the opens by the social networks where they occurred.&lt;/p&gt;" type="array" variable="$socialNetworkFilter">
+          <tag name="param" line="64" description="&lt;p&gt;Multivalued parameter to filter the opens by the social networks where they occurred.&lt;/p&gt;" type="array" variable="$socialNetworkFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;Multivalued parameter to filter the opens by device type. Possible values for&#10;device_type are: UNKNOWN / COMPUTER / TABLET / MOBILE&lt;/p&gt;" type="array" variable="$deviceTypeFilter">
+          <tag name="param" line="64" description="&lt;p&gt;Multivalued parameter to filter the opens by device type. Possible values for&#10;device_type are: UNKNOWN / COMPUTER / TABLET / MOBILE&lt;/p&gt;" type="array" variable="$deviceTypeFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;If the set to true, available email client details will be appended to each open.&lt;/p&gt;" type="boolean" variable="$embedEmailClientInfos">
+          <tag name="param" line="64" description="&lt;p&gt;If the set to true, available email client details will be appended to each open.&lt;/p&gt;" type="boolean" variable="$embedEmailClientInfos">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;If this is set to true (default), only openers that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousOpens">
+          <tag name="param" line="64" description="&lt;p&gt;If this is set to true (default), only openers that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousOpens">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
+          <tag name="param" line="64" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
+          <tag name="param" line="64" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been&#10;backed up for mailings because of a backup instruction. For each unsubscription, the corresponding&#10;field backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
+          <tag name="param" line="64" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been&#10;backed up for mailings because of a backup instruction. For each unsubscription, the corresponding&#10;field backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="64" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="63" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of&#10; page_size must be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="64" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of&#10; page_size must be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="return" line="63" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="64" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -5812,53 +5813,53 @@ used in RESTful web services.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="152" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="153" package="Default">
         <name>getUniqueOpens</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getUniqueOpens()</full_name>
-        <docblock line="152">
+        <docblock line="153">
           <description>Returns a page of unique openers.</description>
           <long-description></long-description>
-          <tag name="param" line="152" description="&lt;p&gt;If provided, only the openers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="153" description="&lt;p&gt;If provided, only the openers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;If provided, only the openers before the given date will be returned.&#10; The value of to_date must be a numeric value representing a point in time&#10; milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="153" description="&lt;p&gt;If provided, only the openers before the given date will be returned.&#10; The value of to_date must be a numeric value representing a point in time&#10; milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;Multivalued parameter to filter the openers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="153" description="&lt;p&gt;Multivalued parameter to filter the openers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;Multivalued parameter to filter the openers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="153" description="&lt;p&gt;Multivalued parameter to filter the openers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;Multivalued parameter to filter the openers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="153" description="&lt;p&gt;Multivalued parameter to filter the openers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;Multivalued parameter to filter the openers by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="153" description="&lt;p&gt;Multivalued parameter to filter the openers by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;If the set to true, available email client details will be appended to each open.&lt;/p&gt;" type="boolean" variable="$embedEmailClientInfos">
+          <tag name="param" line="153" description="&lt;p&gt;If the set to true, available email client details will be appended to each open.&lt;/p&gt;" type="boolean" variable="$embedEmailClientInfos">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;If this is set to true (default), only openers that have not yet been&#10;anonymized (due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousOpens">
+          <tag name="param" line="153" description="&lt;p&gt;If this is set to true (default), only openers that have not yet been&#10;anonymized (due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousOpens">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
+          <tag name="param" line="153" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
+          <tag name="param" line="153" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have&#10;been backed up for mailings because of a backup instruction. For each unsubscription,&#10;the corresponding field backups will be returned if available. Note that this only&#10;applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
+          <tag name="param" line="153" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have&#10;been backed up for mailings because of a backup instruction. For each unsubscription,&#10;the corresponding field backups will be returned if available. Note that this only&#10;applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="153" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="152" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size&#10; must be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="153" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size&#10; must be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="return" line="152" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="153" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -5927,44 +5928,44 @@ used in RESTful web services.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="224" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="225" package="Default">
         <name>getOpensCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getOpensCount()</full_name>
-        <docblock line="224">
+        <docblock line="225">
           <description>Count openers.</description>
           <long-description></long-description>
-          <tag name="param" line="224" description="&lt;p&gt;If provided, only the openers after the given date will be returned.&#10; The value of from_date must be a numeric value representing a point in time&#10; milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="225" description="&lt;p&gt;If provided, only the openers after the given date will be returned.&#10; The value of from_date must be a numeric value representing a point in time&#10; milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="224" description="&lt;p&gt;If provided, only the openers before the given date will be returned.&#10; The value of to_date must be a numeric value representing a point in time&#10; milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="225" description="&lt;p&gt;If provided, only the openers before the given date will be returned.&#10; The value of to_date must be a numeric value representing a point in time&#10; milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="224" description="&lt;p&gt;Multivalued parameter to filter the openers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="225" description="&lt;p&gt;Multivalued parameter to filter the openers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="224" description="&lt;p&gt;Multivalued parameter to filter the openers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="225" description="&lt;p&gt;Multivalued parameter to filter the openers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="224" description="&lt;p&gt;Multivalued parameter to filter the openers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="225" description="&lt;p&gt;Multivalued parameter to filter the openers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="224" description="&lt;p&gt;Multivalued parameter to filter the openers by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="225" description="&lt;p&gt;Multivalued parameter to filter the openers by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="224" description="&lt;p&gt;Filters the opens by format. Possible values are: html / text.&lt;/p&gt;" type="string" variable="$formatFilter">
+          <tag name="param" line="225" description="&lt;p&gt;Filters the opens by format. Possible values are: html / text.&lt;/p&gt;" type="string" variable="$formatFilter">
             <type>string</type>
           </tag>
-          <tag name="param" line="224" description="&lt;p&gt;Multivalued parameter to filter the opens by the social networks where they occurred.&lt;/p&gt;" type="array" variable="$socialNetworkFilter">
+          <tag name="param" line="225" description="&lt;p&gt;Multivalued parameter to filter the opens by the social networks where they occurred.&lt;/p&gt;" type="array" variable="$socialNetworkFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="224" description="&lt;p&gt;Multivalued parameter to filter the opens by device type. Possible values for&#10;device_type are: UNKNOWN / COMPUTER / TABLET / MOBILE&lt;/p&gt;" type="array" variable="$deviceTypeFilter">
+          <tag name="param" line="225" description="&lt;p&gt;Multivalued parameter to filter the opens by device type. Possible values for&#10;device_type are: UNKNOWN / COMPUTER / TABLET / MOBILE&lt;/p&gt;" type="array" variable="$deviceTypeFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="224" description="&lt;p&gt;If this is set to true (default), only openers that have not yet been&#10;anonymized (due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousOpens">
+          <tag name="param" line="225" description="&lt;p&gt;If this is set to true (default), only openers that have not yet been&#10;anonymized (due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousOpens">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="224" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="225" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -6018,35 +6019,35 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="283" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="284" package="Default">
         <name>getUniqueOpensCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getUniqueOpensCount()</full_name>
-        <docblock line="283">
+        <docblock line="284">
           <description>Count unique openers.</description>
           <long-description></long-description>
-          <tag name="param" line="283" description="&lt;p&gt;If provided, only the openers after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds&#10; afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="284" description="&lt;p&gt;If provided, only the openers after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds&#10; afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="283" description="&lt;p&gt;If provided, only the openers before the given date will be returned. The value&#10; of to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="284" description="&lt;p&gt;If provided, only the openers before the given date will be returned. The value&#10; of to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="283" description="&lt;p&gt;Multivalued parameter to filter the openers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="284" description="&lt;p&gt;Multivalued parameter to filter the openers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="283" description="&lt;p&gt;Multivalued parameter to filter the openers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="284" description="&lt;p&gt;Multivalued parameter to filter the openers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="283" description="&lt;p&gt;Multivalued parameter to filter the openers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="284" description="&lt;p&gt;Multivalued parameter to filter the openers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="283" description="&lt;p&gt;Multivalued parameter to filter the openers by external ids. Each value&#10; must correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="284" description="&lt;p&gt;Multivalued parameter to filter the openers by external ids. Each value&#10; must correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="283" description="&lt;p&gt;If this is set to true (default), only openers that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousOpens">
+          <tag name="param" line="284" description="&lt;p&gt;If this is set to true (default), only openers that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousOpens">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="283" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="284" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -6085,50 +6086,50 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="346" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="347" package="Default">
         <name>getRecipients</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getRecipients()</full_name>
-        <docblock line="346">
+        <docblock line="347">
           <description>Returns a page of recipients.</description>
           <long-description></long-description>
-          <tag name="param" line="346" description="&lt;p&gt;If provided, only the recipients after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="347" description="&lt;p&gt;If provided, only the recipients after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;If provided, only the recipients before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="347" description="&lt;p&gt;If provided, only the recipients before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;Multivalued parameter to filter the recipients by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="347" description="&lt;p&gt;Multivalued parameter to filter the recipients by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;Multivalued parameter to filter the recipients by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="347" description="&lt;p&gt;Multivalued parameter to filter the recipients by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;Multivalued parameter to filter the recipients by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="347" description="&lt;p&gt;Multivalued parameter to filter the recipients by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;Multivalued parameter to filter the recipients by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="347" description="&lt;p&gt;Multivalued parameter to filter the recipients by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;Supported values: true / false. If set to true, the recipients that have been removed from&#10;maileon will be excluded.&lt;/p&gt;" type="boolean" variable="$excludeDeletedRecipients">
+          <tag name="param" line="347" description="&lt;p&gt;Supported values: true / false. If set to true, the recipients that have been removed from&#10;maileon will be excluded.&lt;/p&gt;" type="boolean" variable="$excludeDeletedRecipients">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
+          <tag name="param" line="347" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
+          <tag name="param" line="347" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have&#10;been backed up for mailings because of a backup instruction. For each unsubscription, the&#10;corresponding field backups will be returned if available. Note that this only applies for&#10;non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
+          <tag name="param" line="347" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have&#10;been backed up for mailings because of a backup instruction. For each unsubscription, the&#10;corresponding field backups will be returned if available. Note that this only applies for&#10;non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="347" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="346" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of&#10; page_size must be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="347" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of&#10; page_size must be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="return" line="346" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="347" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -6192,35 +6193,35 @@ used in RESTful web services.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="404" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="405" package="Default">
         <name>getRecipientsCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getRecipientsCount()</full_name>
-        <docblock line="404">
+        <docblock line="405">
           <description>Count recipients.</description>
           <long-description></long-description>
-          <tag name="param" line="404" description="&lt;p&gt;If provided, only the recipients after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="405" description="&lt;p&gt;If provided, only the recipients after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;If provided, only the recipients before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="405" description="&lt;p&gt;If provided, only the recipients before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;Multivalued parameter to filter the recipients by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="405" description="&lt;p&gt;Multivalued parameter to filter the recipients by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;Multivalued parameter to filter the recipients by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="405" description="&lt;p&gt;Multivalued parameter to filter the recipients by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;Multivalued parameter to filter the recipients by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="405" description="&lt;p&gt;Multivalued parameter to filter the recipients by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;Multivalued parameter to filter the recipients by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="405" description="&lt;p&gt;Multivalued parameter to filter the recipients by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;Supported values: true / false. If set to true, the recipients that have been&#10;removed from maileon will be excluded.&lt;/p&gt;" type="boolean" variable="$excludeDeletedRecipients">
+          <tag name="param" line="405" description="&lt;p&gt;Supported values: true / false. If set to true, the recipients that have been&#10;removed from maileon will be excluded.&lt;/p&gt;" type="boolean" variable="$excludeDeletedRecipients">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="404" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="405" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -6259,74 +6260,74 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="484" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="485" package="Default">
         <name>getClicks</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getClicks()</full_name>
-        <docblock line="484">
+        <docblock line="485">
           <description>Returns a page of clickers.</description>
           <long-description></long-description>
-          <tag name="param" line="484" description="&lt;p&gt;If provided, only the clickers after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="485" description="&lt;p&gt;If provided, only the clickers after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;If provided, only the clickers before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="485" description="&lt;p&gt;If provided, only the clickers before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Multivalued parameter to filter the clickers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="485" description="&lt;p&gt;Multivalued parameter to filter the clickers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Multivalued parameter to filter the clickers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="485" description="&lt;p&gt;Multivalued parameter to filter the clickers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Multivalued parameter to filter the clickers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="485" description="&lt;p&gt;Multivalued parameter to filter the clickers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Multivalued parameter to filter the clickers by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="485" description="&lt;p&gt;Multivalued parameter to filter the clickers by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Filters the opens by format. Possible values are: html / text.&lt;/p&gt;" type="string" variable="$formatFilter">
+          <tag name="param" line="485" description="&lt;p&gt;Filters the opens by format. Possible values are: html / text.&lt;/p&gt;" type="string" variable="$formatFilter">
             <type>string</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Multivalued parameter to filter the clicks by links. Each value must correspond to a link id.&lt;/p&gt;" type="array" variable="$linkIdFilter">
+          <tag name="param" line="485" description="&lt;p&gt;Multivalued parameter to filter the clicks by links. Each value must correspond to a link id.&lt;/p&gt;" type="array" variable="$linkIdFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Filters the clicks by link url.&lt;/p&gt;" type="string" variable="$linkUrlFilter">
+          <tag name="param" line="485" description="&lt;p&gt;Filters the clicks by link url.&lt;/p&gt;" type="string" variable="$linkUrlFilter">
             <type>string</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Multivalued parameter to filter the clicks by tags associated to the links.&lt;/p&gt;" type="array" variable="$linkTagFilter">
+          <tag name="param" line="485" description="&lt;p&gt;Multivalued parameter to filter the clicks by tags associated to the links.&lt;/p&gt;" type="array" variable="$linkTagFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Multivalued parameter to filter the opens by the social networks where they occurred.&lt;/p&gt;" type="array" variable="$socialNetworkFilter">
+          <tag name="param" line="485" description="&lt;p&gt;Multivalued parameter to filter the opens by the social networks where they occurred.&lt;/p&gt;" type="array" variable="$socialNetworkFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Multivalued parameter to filter the opens by device type. Possible values for device_type&#10;are: UNKNOWN / COMPUTER / TABLET / MOBILE&lt;/p&gt;" type="array" variable="$deviceTypeFilter">
+          <tag name="param" line="485" description="&lt;p&gt;Multivalued parameter to filter the opens by device type. Possible values for device_type&#10;are: UNKNOWN / COMPUTER / TABLET / MOBILE&lt;/p&gt;" type="array" variable="$deviceTypeFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;If the set to true, available email client details will be appended to each open.&lt;/p&gt;" type="boolean" variable="$embedEmailClientInfos">
+          <tag name="param" line="485" description="&lt;p&gt;If the set to true, available email client details will be appended to each open.&lt;/p&gt;" type="boolean" variable="$embedEmailClientInfos">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;If this is set to true (default), only clicks that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousClicks">
+          <tag name="param" line="485" description="&lt;p&gt;If this is set to true (default), only clicks that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousClicks">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
+          <tag name="param" line="485" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
+          <tag name="param" line="485" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been backed&#10;up for mailings because of a backup instruction. For each unsubscription, the corresponding field&#10;backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
+          <tag name="param" line="485" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been backed&#10;up for mailings because of a backup instruction. For each unsubscription, the corresponding field&#10;backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="485" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in&#10; the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="485" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in&#10; the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="param" line="484" description="&lt;p&gt;If the set to true, available link tags will be appended to each click.&lt;/p&gt;" type="boolean" variable="$embedLinkTags">
+          <tag name="param" line="485" description="&lt;p&gt;If the set to true, available link tags will be appended to each click.&lt;/p&gt;" type="boolean" variable="$embedLinkTags">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="484" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="485" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -6430,56 +6431,56 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="585" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="586" package="Default">
         <name>getUniqueClicks</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getUniqueClicks()</full_name>
-        <docblock line="585">
+        <docblock line="586">
           <description>Returns a page of unique clickers.</description>
           <long-description></long-description>
-          <tag name="param" line="585" description="&lt;p&gt;If provided, only the clickers after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="586" description="&lt;p&gt;If provided, only the clickers after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;If provided, only the clickers before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="586" description="&lt;p&gt;If provided, only the clickers before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;Multivalued parameter to filter the clickers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="586" description="&lt;p&gt;Multivalued parameter to filter the clickers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;Multivalued parameter to filter the clickers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="586" description="&lt;p&gt;Multivalued parameter to filter the clickers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;Multivalued parameter to filter the clickers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="586" description="&lt;p&gt;Multivalued parameter to filter the clickers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;Multivalued parameter to filter the clickers by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="586" description="&lt;p&gt;Multivalued parameter to filter the clickers by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;If the set to true, available email client details will be appended to each open.&lt;/p&gt;" type="boolean" variable="$embedEmailClientInfos">
+          <tag name="param" line="586" description="&lt;p&gt;If the set to true, available email client details will be appended to each open.&lt;/p&gt;" type="boolean" variable="$embedEmailClientInfos">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;If this is set to true (default), only clicks that have not yet been anonymized (due to&#10;deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousClicks">
+          <tag name="param" line="586" description="&lt;p&gt;If this is set to true (default), only clicks that have not yet been anonymized (due to&#10;deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousClicks">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
+          <tag name="param" line="586" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
+          <tag name="param" line="586" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been backed&#10;up for mailings because of a backup instruction. For each unsubscription, the corresponding field&#10;backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
+          <tag name="param" line="586" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been backed&#10;up for mailings because of a backup instruction. For each unsubscription, the corresponding field&#10;backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="586" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in the&#10; range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="586" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in the&#10; range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="param" line="585" description="&lt;p&gt;If the set to true, available link tags will be appended to each click.&lt;/p&gt;" type="boolean" variable="$embedLinkTags">
+          <tag name="param" line="586" description="&lt;p&gt;If the set to true, available link tags will be appended to each click.&lt;/p&gt;" type="boolean" variable="$embedLinkTags">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="585" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="586" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -6553,53 +6554,53 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="666" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="667" package="Default">
         <name>getClicksCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getClicksCount()</full_name>
-        <docblock line="666">
+        <docblock line="667">
           <description>Count clickers.</description>
           <long-description></long-description>
-          <tag name="param" line="666" description="&lt;p&gt;If provided, only the clickers after the given date will be returned. The value of from_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="667" description="&lt;p&gt;If provided, only the clickers after the given date will be returned. The value of from_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;If provided, only the clickers before the given date will be returned. The value of to_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="667" description="&lt;p&gt;If provided, only the clickers before the given date will be returned. The value of to_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;Multivalued parameter to filter the clickers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="667" description="&lt;p&gt;Multivalued parameter to filter the clickers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;Multivalued parameter to filter the clickers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="667" description="&lt;p&gt;Multivalued parameter to filter the clickers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;Multivalued parameter to filter the clickers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="667" description="&lt;p&gt;Multivalued parameter to filter the clickers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;Multivalued parameter to filter the clickers by external ids. Each value must correspond to a contacts&#10; external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="667" description="&lt;p&gt;Multivalued parameter to filter the clickers by external ids. Each value must correspond to a contacts&#10; external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;Filters the opens by format. Possible values are: html / text.&lt;/p&gt;" type="string" variable="$formatFilter">
+          <tag name="param" line="667" description="&lt;p&gt;Filters the opens by format. Possible values are: html / text.&lt;/p&gt;" type="string" variable="$formatFilter">
             <type>string</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;Multivalued parameter to filter the clicks by links. Each value must correspond to a link id.&lt;/p&gt;" type="array" variable="$linkIdFilter">
+          <tag name="param" line="667" description="&lt;p&gt;Multivalued parameter to filter the clicks by links. Each value must correspond to a link id.&lt;/p&gt;" type="array" variable="$linkIdFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;Filters the clicks by link url.&lt;/p&gt;" type="string" variable="$linkUrlFilter">
+          <tag name="param" line="667" description="&lt;p&gt;Filters the clicks by link url.&lt;/p&gt;" type="string" variable="$linkUrlFilter">
             <type>string</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;Multivalued parameter to filter the clicks by tags associated to the links.&lt;/p&gt;" type="array" variable="$linkTagFilter">
+          <tag name="param" line="667" description="&lt;p&gt;Multivalued parameter to filter the clicks by tags associated to the links.&lt;/p&gt;" type="array" variable="$linkTagFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;Multivalued parameter to filter the opens by the social networks where they occurred.&lt;/p&gt;" type="array" variable="$socialNetworkFilter">
+          <tag name="param" line="667" description="&lt;p&gt;Multivalued parameter to filter the opens by the social networks where they occurred.&lt;/p&gt;" type="array" variable="$socialNetworkFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;Multivalued parameter to filter the opens by device type. Possible values for device_type&#10;are: UNKNOWN / COMPUTER / TABLET / MOBILE&lt;/p&gt;" type="array" variable="$deviceTypeFilter">
+          <tag name="param" line="667" description="&lt;p&gt;Multivalued parameter to filter the opens by device type. Possible values for device_type&#10;are: UNKNOWN / COMPUTER / TABLET / MOBILE&lt;/p&gt;" type="array" variable="$deviceTypeFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="666" description="&lt;p&gt;If this is set to true (default), only clicks that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousClicks">
+          <tag name="param" line="667" description="&lt;p&gt;If this is set to true (default), only clicks that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousClicks">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="666" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="667" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -6668,35 +6669,35 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="732" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="733" package="Default">
         <name>getUniqueClicksCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getUniqueClicksCount()</full_name>
-        <docblock line="732">
+        <docblock line="733">
           <description>Count unique clickers.</description>
           <long-description></long-description>
-          <tag name="param" line="732" description="&lt;p&gt;If provided, only the clickers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="733" description="&lt;p&gt;If provided, only the clickers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="732" description="&lt;p&gt;If provided, only the clickers before the given date will be returned. The value of to_date must be a&#10; numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="733" description="&lt;p&gt;If provided, only the clickers before the given date will be returned. The value of to_date must be a&#10; numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="732" description="&lt;p&gt;Multivalued parameter to filter the clickers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="733" description="&lt;p&gt;Multivalued parameter to filter the clickers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="732" description="&lt;p&gt;Multivalued parameter to filter the clickers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="733" description="&lt;p&gt;Multivalued parameter to filter the clickers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="732" description="&lt;p&gt;Multivalued parameter to filter the clickers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="733" description="&lt;p&gt;Multivalued parameter to filter the clickers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="732" description="&lt;p&gt;Multivalued parameter to filter the clickers by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="733" description="&lt;p&gt;Multivalued parameter to filter the clickers by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="732" description="&lt;p&gt;If this is set to true (default), only clicks that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousClicks">
+          <tag name="param" line="733" description="&lt;p&gt;If this is set to true (default), only clicks that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousClicks">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="732" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="733" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -6735,59 +6736,59 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="800" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="801" package="Default">
         <name>getBounces</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getBounces()</full_name>
-        <docblock line="800">
+        <docblock line="801">
           <description>Returns a page of bouncers.</description>
           <long-description></long-description>
-          <tag name="param" line="800" description="&lt;p&gt;If provided, only the bouncers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="801" description="&lt;p&gt;If provided, only the bouncers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;If provided, only the bouncers before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="801" description="&lt;p&gt;If provided, only the bouncers before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;Multivalued parameter to filter the bouncers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="801" description="&lt;p&gt;Multivalued parameter to filter the bouncers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;Multivalued parameter to filter the bouncers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="801" description="&lt;p&gt;Multivalued parameter to filter the bouncers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;Multivalued parameter to filter the bouncers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="801" description="&lt;p&gt;Multivalued parameter to filter the bouncers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;Multivalued parameter to filter the bouncers by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="801" description="&lt;p&gt;Multivalued parameter to filter the bouncers by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;Filters the bounces by status codes. Status codes follow the pattern digit.digit.digit (example: 5.0.0).&lt;/p&gt;" type="array" variable="$statusCodeFilter">
+          <tag name="param" line="801" description="&lt;p&gt;Filters the bounces by status codes. Status codes follow the pattern digit.digit.digit (example: 5.0.0).&lt;/p&gt;" type="array" variable="$statusCodeFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;Filters the bounces by type: permanent / transient.&lt;/p&gt;" type="string" variable="$typeFilter">
+          <tag name="param" line="801" description="&lt;p&gt;Filters the bounces by type: permanent / transient.&lt;/p&gt;" type="string" variable="$typeFilter">
             <type>string</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;Filters the bounces by their source: mta-listener / reply.&lt;/p&gt;" type="string" variable="$sourceFilter">
+          <tag name="param" line="801" description="&lt;p&gt;Filters the bounces by their source: mta-listener / reply.&lt;/p&gt;" type="string" variable="$sourceFilter">
             <type>string</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBounces">
+          <tag name="param" line="801" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBounces">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
+          <tag name="param" line="801" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
+          <tag name="param" line="801" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been&#10;backed up for mailings because of a backup instruction. For each unsubscription, the corresponding&#10;field backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
+          <tag name="param" line="801" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been&#10;backed up for mailings because of a backup instruction. For each unsubscription, the corresponding&#10;field backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="801" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size&#10; must be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="801" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size&#10; must be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="return" line="800" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="801" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -6866,50 +6867,50 @@ used in RESTful web services.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="882" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="883" package="Default">
         <name>getUniqueBounces</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getUniqueBounces()</full_name>
-        <docblock line="882">
+        <docblock line="883">
           <description>Returns a page of unique bouncers.</description>
           <long-description></long-description>
-          <tag name="param" line="882" description="&lt;p&gt;If provided, only the bouncers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="883" description="&lt;p&gt;If provided, only the bouncers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;If provided, only the bouncers before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="883" description="&lt;p&gt;If provided, only the bouncers before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;Multivalued parameter to filter the bouncers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="883" description="&lt;p&gt;Multivalued parameter to filter the bouncers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;Multivalued parameter to filter the bouncers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="883" description="&lt;p&gt;Multivalued parameter to filter the bouncers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;Multivalued parameter to filter the bouncers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="883" description="&lt;p&gt;Multivalued parameter to filter the bouncers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;Multivalued parameter to filter the bouncers by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="883" description="&lt;p&gt;Multivalued parameter to filter the bouncers by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBounces">
+          <tag name="param" line="883" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBounces">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
+          <tag name="param" line="883" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
+          <tag name="param" line="883" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been backed&#10;up for mailings because of a backup instruction. For each unsubscription, the corresponding field&#10;backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
+          <tag name="param" line="883" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been backed&#10;up for mailings because of a backup instruction. For each unsubscription, the corresponding field&#10;backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="883" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="882" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in&#10; the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="883" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in&#10; the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="return" line="882" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="883" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -6973,44 +6974,44 @@ used in RESTful web services.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="948" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="949" package="Default">
         <name>getBouncesCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getBouncesCount()</full_name>
-        <docblock line="948">
+        <docblock line="949">
           <description>Count bouncers.</description>
           <long-description></long-description>
-          <tag name="param" line="948" description="&lt;p&gt;If provided, only the bouncers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="949" description="&lt;p&gt;If provided, only the bouncers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="948" description="&lt;p&gt;If provided, only the bouncers before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="949" description="&lt;p&gt;If provided, only the bouncers before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="948" description="&lt;p&gt;Multivalued parameter to filter the bouncers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="949" description="&lt;p&gt;Multivalued parameter to filter the bouncers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="948" description="&lt;p&gt;Multivalued parameter to filter the bouncers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="949" description="&lt;p&gt;Multivalued parameter to filter the bouncers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="948" description="&lt;p&gt;Multivalued parameter to filter the bouncers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="949" description="&lt;p&gt;Multivalued parameter to filter the bouncers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="948" description="&lt;p&gt;Multivalued parameter to filter the bouncers by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="949" description="&lt;p&gt;Multivalued parameter to filter the bouncers by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="948" description="&lt;p&gt;Filters the bounces by status codes. Status codes follow the pattern digit.digit.digit (example: 5.0.0).&lt;/p&gt;" type="array" variable="$statusCodeFilter">
+          <tag name="param" line="949" description="&lt;p&gt;Filters the bounces by status codes. Status codes follow the pattern digit.digit.digit (example: 5.0.0).&lt;/p&gt;" type="array" variable="$statusCodeFilter">
             <type>array</type>
           </tag>
-          <tag name="param" line="948" description="&lt;p&gt;Filters the bounces by type: permanent / transient.&lt;/p&gt;" type="string" variable="$typeFilter">
+          <tag name="param" line="949" description="&lt;p&gt;Filters the bounces by type: permanent / transient.&lt;/p&gt;" type="string" variable="$typeFilter">
             <type>string</type>
           </tag>
-          <tag name="param" line="948" description="&lt;p&gt;Filters the bounces by their source: mta-listener / reply.&lt;/p&gt;" type="string" variable="$sourceFilter">
+          <tag name="param" line="949" description="&lt;p&gt;Filters the bounces by their source: mta-listener / reply.&lt;/p&gt;" type="string" variable="$sourceFilter">
             <type>string</type>
           </tag>
-          <tag name="param" line="948" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBounces">
+          <tag name="param" line="949" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBounces">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="948" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="949" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -7064,35 +7065,35 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1007" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1008" package="Default">
         <name>getUniqueBouncesCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getUniqueBouncesCount()</full_name>
-        <docblock line="1007">
+        <docblock line="1008">
           <description>Count unique bouncers.</description>
           <long-description></long-description>
-          <tag name="param" line="1007" description="&lt;p&gt;If provided, only the bouncers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1008" description="&lt;p&gt;If provided, only the bouncers after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1007" description="&lt;p&gt;If provided, only the bouncers before the given date will be returned. The value of to_date must be&#10; a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1008" description="&lt;p&gt;If provided, only the bouncers before the given date will be returned. The value of to_date must be&#10; a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1007" description="&lt;p&gt;Multivalued parameter to filter the bouncers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1008" description="&lt;p&gt;Multivalued parameter to filter the bouncers by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1007" description="&lt;p&gt;Multivalued parameter to filter the bouncers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1008" description="&lt;p&gt;Multivalued parameter to filter the bouncers by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1007" description="&lt;p&gt;Multivalued parameter to filter the bouncers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1008" description="&lt;p&gt;Multivalued parameter to filter the bouncers by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1007" description="&lt;p&gt;Multivalued parameter to filter the bouncers by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1008" description="&lt;p&gt;Multivalued parameter to filter the bouncers by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1007" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBounces">
+          <tag name="param" line="1008" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBounces">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="1007" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1008" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -7131,53 +7132,53 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1069" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1070" package="Default">
         <name>getBlocks</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getBlocks()</full_name>
-        <docblock line="1069">
+        <docblock line="1070">
           <description>Returns a page of blocks.</description>
           <long-description></long-description>
-          <tag name="param" line="1069" description="&lt;p&gt;If provided, only the blocks after the given date will be returned. The value of from_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1070" description="&lt;p&gt;If provided, only the blocks after the given date will be returned. The value of from_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;If provided, only the blocks before the given date will be returned. The value of to_date must be&#10; a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1070" description="&lt;p&gt;If provided, only the blocks before the given date will be returned. The value of to_date must be&#10; a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;Multivalued parameter to filter the blocks by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1070" description="&lt;p&gt;Multivalued parameter to filter the blocks by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;Multivalued parameter to filter the blocks by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1070" description="&lt;p&gt;Multivalued parameter to filter the blocks by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;Multivalued parameter to filter the blocks by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1070" description="&lt;p&gt;Multivalued parameter to filter the blocks by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;Filter by reason, valid: blacklist, bounce_policy.&lt;/p&gt;" type="array" variable="$reasons">
+          <tag name="param" line="1070" description="&lt;p&gt;Filter by reason, valid: blacklist, bounce_policy.&lt;/p&gt;" type="array" variable="$reasons">
             <type>array</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;Filter by old status, valid: allowed, blocked.&lt;/p&gt;" type="string" variable="$oldStatus">
+          <tag name="param" line="1070" description="&lt;p&gt;Filter by old status, valid: allowed, blocked.&lt;/p&gt;" type="string" variable="$oldStatus">
             <type>string</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;Filter by new status, valid: allowed, blocked.&lt;/p&gt;" type="string" variable="$newStatus">
+          <tag name="param" line="1070" description="&lt;p&gt;Filter by new status, valid: allowed, blocked.&lt;/p&gt;" type="string" variable="$newStatus">
             <type>string</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBlocks">
+          <tag name="param" line="1070" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBlocks">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
+          <tag name="param" line="1070" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
+          <tag name="param" line="1070" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="1070" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1069" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be&#10; in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="1070" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be&#10; in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1069" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1070" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -7246,41 +7247,41 @@ used in RESTful web services.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1143" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1144" package="Default">
         <name>getBlocksCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getBlocksCount()</full_name>
-        <docblock line="1143">
+        <docblock line="1144">
           <description>Count blocks.</description>
           <long-description></long-description>
-          <tag name="param" line="1143" description="&lt;p&gt;If provided, only the blocks after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1144" description="&lt;p&gt;If provided, only the blocks after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1143" description="&lt;p&gt;If provided, only the blocks before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1144" description="&lt;p&gt;If provided, only the blocks before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1143" description="&lt;p&gt;Multivalued parameter to filter the blocks by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1144" description="&lt;p&gt;Multivalued parameter to filter the blocks by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1143" description="&lt;p&gt;Multivalued parameter to filter the blocks by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1144" description="&lt;p&gt;Multivalued parameter to filter the blocks by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1143" description="&lt;p&gt;Multivalued parameter to filter the blocks by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1144" description="&lt;p&gt;Multivalued parameter to filter the blocks by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1143" description="&lt;p&gt;Filter by reason, valid: blacklist, bounce_policy.&lt;/p&gt;" type="array" variable="$reasons">
+          <tag name="param" line="1144" description="&lt;p&gt;Filter by reason, valid: blacklist, bounce_policy.&lt;/p&gt;" type="array" variable="$reasons">
             <type>array</type>
           </tag>
-          <tag name="param" line="1143" description="&lt;p&gt;Filter by old status, valid: allowed, blocked.&lt;/p&gt;" type="string" variable="$oldStatus">
+          <tag name="param" line="1144" description="&lt;p&gt;Filter by old status, valid: allowed, blocked.&lt;/p&gt;" type="string" variable="$oldStatus">
             <type>string</type>
           </tag>
-          <tag name="param" line="1143" description="&lt;p&gt;Filter by new status, valid: allowed, blocked.&#10;Filters the bounces by their source: mta-listener / reply.&lt;/p&gt;" type="string" variable="$newStatus">
+          <tag name="param" line="1144" description="&lt;p&gt;Filter by new status, valid: allowed, blocked.&#10;Filters the bounces by their source: mta-listener / reply.&lt;/p&gt;" type="string" variable="$newStatus">
             <type>string</type>
           </tag>
-          <tag name="param" line="1143" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBlocks">
+          <tag name="param" line="1144" description="&lt;p&gt;If this is set to true (default), only bounces that have not yet been anonymized&#10;(due to deletion/unsubscription) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousBlocks">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="1143" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1144" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -7329,44 +7330,44 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1213" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1214" package="Default">
         <name>getUnsubscribers</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getUnsubscribers()</full_name>
-        <docblock line="1213">
+        <docblock line="1214">
           <description>Returns a page of unsubscriberss.</description>
           <long-description></long-description>
-          <tag name="param" line="1213" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned.&#10;  The value of from_date must be a numeric value representing a point in time milliseconds&#10;  afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1214" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned.&#10;  The value of from_date must be a numeric value representing a point in time milliseconds&#10;  afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1213" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1214" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1213" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1214" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1213" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1214" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1213" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1214" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1213" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids.&#10; Each value must correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1214" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids.&#10; Each value must correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1213" description="&lt;p&gt;Filters the unsubscriptions by their source. The source can be an&#10;unsubscription link (link), a reply mail (reply) or other.&lt;/p&gt;" type="string" variable="$source">
+          <tag name="param" line="1214" description="&lt;p&gt;Filters the unsubscriptions by their source. The source can be an&#10;unsubscription link (link), a reply mail (reply) or other.&lt;/p&gt;" type="string" variable="$source">
             <type>string</type>
           </tag>
-          <tag name="param" line="1213" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been&#10;backed up for mailings because of a backup instruction. For each unsubscription, the corresponding&#10;field backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
+          <tag name="param" line="1214" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been&#10;backed up for mailings because of a backup instruction. For each unsubscription, the corresponding&#10;field backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="1213" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="1214" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1213" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size&#10; must be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="1214" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size&#10; must be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1213" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1214" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -7420,35 +7421,35 @@ used in RESTful web services.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1265" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1266" package="Default">
         <name>getUnsubscribersCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getUnsubscribersCount()</full_name>
-        <docblock line="1265">
+        <docblock line="1266">
           <description>Count unsubscribers.</description>
           <long-description></long-description>
-          <tag name="param" line="1265" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1266" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1265" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1266" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1265" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1266" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1265" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1266" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1265" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1266" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1265" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1266" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1265" description="&lt;p&gt;Filters the unsubscriptions by their source. The source can be an unsubscription link&#10;(link), a reply mail (reply) or other.&lt;/p&gt;" type="string" variable="$source">
+          <tag name="param" line="1266" description="&lt;p&gt;Filters the unsubscriptions by their source. The source can be an unsubscription link&#10;(link), a reply mail (reply) or other.&lt;/p&gt;" type="string" variable="$source">
             <type>string</type>
           </tag>
-          <tag name="return" line="1265" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1266" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -7487,50 +7488,50 @@ used in RESTful web services.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1323" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1324" package="Default">
         <name>getSubscribers</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getSubscribers()</full_name>
-        <docblock line="1323">
+        <docblock line="1324">
           <description>Returns a page of subscribers.</description>
           <long-description></long-description>
-          <tag name="param" line="1323" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1324" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of to_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1324" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of to_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1324" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1324" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1324" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids. Each value must correspond to&#10; a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1324" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids. Each value must correspond to&#10; a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;If this is set to true (default), only subscribers that have not yet been anonymized&#10;(due to deletion) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousContacts">
+          <tag name="param" line="1324" description="&lt;p&gt;If this is set to true (default), only subscribers that have not yet been anonymized&#10;(due to deletion) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousContacts">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
+          <tag name="param" line="1324" description="&lt;p&gt;The list of standard contact fields to return.&lt;/p&gt;" type="boolean" variable="$standardFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
+          <tag name="param" line="1324" description="&lt;p&gt;The list of custom contact fields to return.&lt;/p&gt;" type="boolean" variable="$customFields">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been backed&#10;up for mailings because of a backup instruction. For each unsubscription, the corresponding field&#10;backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
+          <tag name="param" line="1324" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of contact fields that have been backed&#10;up for mailings because of a backup instruction. For each unsubscription, the corresponding field&#10;backups will be returned if available. Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="1324" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1323" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in&#10; the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="1324" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in&#10; the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1323" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1324" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -7594,35 +7595,35 @@ used in RESTful web services.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1382" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1383" package="Default">
         <name>getSubscribersCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getSubscribersCount()</full_name>
-        <docblock line="1382">
+        <docblock line="1383">
           <description>Count subscribers.</description>
           <long-description></long-description>
-          <tag name="param" line="1382" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1383" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1382" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1383" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1382" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1383" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1382" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1383" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1382" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1383" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1382" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1383" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1382" description="&lt;p&gt;If this is set to true (default), only subscribers that have not yet been anonymized&#10;(due to deletion) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousContacts">
+          <tag name="param" line="1383" description="&lt;p&gt;If this is set to true (default), only subscribers that have not yet been anonymized&#10;(due to deletion) are returned.&lt;/p&gt;" type="boolean" variable="$excludeAnonymousContacts">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="1382" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1383" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -7661,47 +7662,47 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1439" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1440" package="Default">
         <name>getConversions</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getConversions()</full_name>
-        <docblock line="1439">
+        <docblock line="1440">
           <description>Returns a page of conversions.</description>
           <long-description></long-description>
-          <tag name="param" line="1439" description="&lt;p&gt;If provided, only the conversions after the given date will be returned. The value of from_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1440" description="&lt;p&gt;If provided, only the conversions after the given date will be returned. The value of from_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1439" description="&lt;p&gt;If provided, only the conversions before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1440" description="&lt;p&gt;If provided, only the conversions before the given date will be returned. The value of to_date must&#10; be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1439" description="&lt;p&gt;Multivalued parameter to filter the conversions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1440" description="&lt;p&gt;Multivalued parameter to filter the conversions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1439" description="&lt;p&gt;Multivalued parameter to filter the conversions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1440" description="&lt;p&gt;Multivalued parameter to filter the conversions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1439" description="&lt;p&gt;Multivalued parameter to filter the conversions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1440" description="&lt;p&gt;Multivalued parameter to filter the conversions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1439" description="&lt;p&gt;Multivalued parameter to filter the conversions by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1440" description="&lt;p&gt;Multivalued parameter to filter the conversions by external ids. Each value must correspond&#10; to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1439" description="&lt;p&gt;Multivalued parameter to filter the conversions by site ids. Each value must correspond to a valid site id.&lt;/p&gt;" type="array" variable="$siteIds">
+          <tag name="param" line="1440" description="&lt;p&gt;Multivalued parameter to filter the conversions by site ids. Each value must correspond to a valid site id.&lt;/p&gt;" type="array" variable="$siteIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1439" description="&lt;p&gt;Multivalued parameter to filter the conversions by goal ids. Each value must correspond to a valid goal id.&lt;/p&gt;" type="array" variable="$goalIds">
+          <tag name="param" line="1440" description="&lt;p&gt;Multivalued parameter to filter the conversions by goal ids. Each value must correspond to a valid goal id.&lt;/p&gt;" type="array" variable="$goalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1439" description="&lt;p&gt;Multivalued parameter to filter the conversions by link ids. Each value must correspond to a valid link id.&lt;/p&gt;" type="array" variable="$linkIds">
+          <tag name="param" line="1440" description="&lt;p&gt;Multivalued parameter to filter the conversions by link ids. Each value must correspond to a valid link id.&lt;/p&gt;" type="array" variable="$linkIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1439" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="1440" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1439" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must&#10; be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="1440" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must&#10; be in the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1439" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1440" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -7760,40 +7761,40 @@ used in RESTful web services.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1498" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1499" package="Default">
         <name>getConversionsCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getConversionsCount()</full_name>
-        <docblock line="1498">
+        <docblock line="1499">
           <description>Returns the count of conversions.</description>
           <long-description></long-description>
-          <tag name="param" line="1498" description="&lt;p&gt;If provided, only the conversions after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1499" description="&lt;p&gt;If provided, only the conversions after the given date will be returned. The value of&#10; from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1498" description="&lt;p&gt;If provided, only the conversions before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1499" description="&lt;p&gt;If provided, only the conversions before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1498" description="&lt;p&gt;Multivalued parameter to filter the conversions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1499" description="&lt;p&gt;Multivalued parameter to filter the conversions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1498" description="&lt;p&gt;Multivalued parameter to filter the conversions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1499" description="&lt;p&gt;Multivalued parameter to filter the conversions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1498" description="&lt;p&gt;Multivalued parameter to filter the conversions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1499" description="&lt;p&gt;Multivalued parameter to filter the conversions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1498" description="&lt;p&gt;Multivalued parameter to filter the conversions by external ids. Each value must correspond to&#10; a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1499" description="&lt;p&gt;Multivalued parameter to filter the conversions by external ids. Each value must correspond to&#10; a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1498" description="&lt;p&gt;Multivalued parameter to filter the conversions by site ids. Each value must correspond to a valid site id.&lt;/p&gt;" type="array" variable="$siteIds">
+          <tag name="param" line="1499" description="&lt;p&gt;Multivalued parameter to filter the conversions by site ids. Each value must correspond to a valid site id.&lt;/p&gt;" type="array" variable="$siteIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1498" description="&lt;p&gt;Multivalued parameter to filter the conversions by goal ids. Each value must correspond to a valid goal id.&lt;/p&gt;" type="array" variable="$goalIds">
+          <tag name="param" line="1499" description="&lt;p&gt;Multivalued parameter to filter the conversions by goal ids. Each value must correspond to a valid goal id.&lt;/p&gt;" type="array" variable="$goalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1498" description="&lt;p&gt;Multivalued parameter to filter the conversions by link ids. Each value must correspond to a valid link id.&lt;/p&gt;" type="array" variable="$linkIds">
+          <tag name="param" line="1499" description="&lt;p&gt;Multivalued parameter to filter the conversions by link ids. Each value must correspond to a valid link id.&lt;/p&gt;" type="array" variable="$linkIds">
             <type>array</type>
           </tag>
-          <tag name="return" line="1498" description="" type="\de\xqueue\maileon\api\client\reports\number">
+          <tag name="return" line="1499" description="" type="\de\xqueue\maileon\api\client\reports\number">
             <type>\de\xqueue\maileon\api\client\reports\number</type>
           </tag>
         </docblock>
@@ -7843,47 +7844,47 @@ used in RESTful web services.</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1560" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1561" package="Default">
         <name>getUniqueConversions</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getUniqueConversions()</full_name>
-        <docblock line="1560">
+        <docblock line="1561">
           <description>Returns a page of unique conversions.</description>
           <long-description></long-description>
-          <tag name="param" line="1560" description="&lt;p&gt;If provided, only the unique conversions after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1561" description="&lt;p&gt;If provided, only the unique conversions after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1560" description="&lt;p&gt;If provided, only the unique conversions before the given date will be returned. The value of to_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1561" description="&lt;p&gt;If provided, only the unique conversions before the given date will be returned. The value of to_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1560" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1561" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1560" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1561" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1560" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1561" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1560" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1561" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1560" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by site ids. Each value must correspond&#10; to a valid site id.&lt;/p&gt;" type="array" variable="$siteIds">
+          <tag name="param" line="1561" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by site ids. Each value must correspond&#10; to a valid site id.&lt;/p&gt;" type="array" variable="$siteIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1560" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by goal ids. Each value must correspond&#10; to a valid goal id.&lt;/p&gt;" type="array" variable="$goalIds">
+          <tag name="param" line="1561" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by goal ids. Each value must correspond&#10; to a valid goal id.&lt;/p&gt;" type="array" variable="$goalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1560" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by link ids. Each value must correspond&#10; to a valid link id.&lt;/p&gt;" type="array" variable="$linkIds">
+          <tag name="param" line="1561" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by link ids. Each value must correspond&#10; to a valid link id.&lt;/p&gt;" type="array" variable="$linkIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1560" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="1561" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1560" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in&#10; the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="1561" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in&#10; the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1560" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1561" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -7942,40 +7943,40 @@ used in RESTful web services.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1622" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1623" package="Default">
         <name>getUniqueConversionsCount</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getUniqueConversionsCount()</full_name>
-        <docblock line="1622">
+        <docblock line="1623">
           <description>Returns a page of unique conversions.</description>
           <long-description></long-description>
-          <tag name="param" line="1622" description="&lt;p&gt;If provided, only the unique conversions after the given date will be returned. The value of&#10;from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1623" description="&lt;p&gt;If provided, only the unique conversions after the given date will be returned. The value of&#10;from_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1622" description="&lt;p&gt;If provided, only the unique conversions before the given date will be returned. The value of&#10;to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1623" description="&lt;p&gt;If provided, only the unique conversions before the given date will be returned. The value of&#10;to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1622" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1623" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1622" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1623" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1622" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1623" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1622" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1623" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1622" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by site ids. Each value must correspond&#10; to a valid site id.&lt;/p&gt;" type="array" variable="$siteIds">
+          <tag name="param" line="1623" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by site ids. Each value must correspond&#10; to a valid site id.&lt;/p&gt;" type="array" variable="$siteIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1622" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by goal ids. Each value must correspond&#10; to a valid goal id.&lt;/p&gt;" type="array" variable="$goalIds">
+          <tag name="param" line="1623" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by goal ids. Each value must correspond&#10; to a valid goal id.&lt;/p&gt;" type="array" variable="$goalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1622" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by link ids. Each value must correspond&#10; to a valid link id.&lt;/p&gt;" type="array" variable="$linkIds">
+          <tag name="param" line="1623" description="&lt;p&gt;Multivalued parameter to filter the unique conversions by link ids. Each value must correspond&#10; to a valid link id.&lt;/p&gt;" type="array" variable="$linkIds">
             <type>array</type>
           </tag>
-          <tag name="return" line="1622" description="" type="\de\xqueue\maileon\api\client\reports\number">
+          <tag name="return" line="1623" description="" type="\de\xqueue\maileon\api\client\reports\number">
             <type>\de\xqueue\maileon\api\client\reports\number</type>
           </tag>
         </docblock>
@@ -8025,41 +8026,41 @@ used in RESTful web services.</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1676" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="1677" package="Default">
         <name>getRevenue</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::getRevenue()</full_name>
-        <docblock line="1676">
+        <docblock line="1677">
           <description>Returns the revenue value.</description>
           <long-description></long-description>
-          <tag name="param" line="1676" description="&lt;p&gt;If provided, only the revenues after the given date will be returned. The value of from_date&#10;must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1677" description="&lt;p&gt;If provided, only the revenues after the given date will be returned. The value of from_date&#10;must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1676" description="&lt;p&gt;If provided, only the revenues before the given date will be returned. The value of to_date&#10;must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1677" description="&lt;p&gt;If provided, only the revenues before the given date will be returned. The value of to_date&#10;must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1676" description="&lt;p&gt;Multivalued parameter to filter the revenues by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1677" description="&lt;p&gt;Multivalued parameter to filter the revenues by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1676" description="&lt;p&gt;Multivalued parameter to filter the revenues by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1677" description="&lt;p&gt;Multivalued parameter to filter the revenues by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1676" description="&lt;p&gt;Multivalued parameter to filter the revenues by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1677" description="&lt;p&gt;Multivalued parameter to filter the revenues by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1676" description="&lt;p&gt;Multivalued parameter to filter the revenues by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1677" description="&lt;p&gt;Multivalued parameter to filter the revenues by external ids. Each value must correspond to a&#10; contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1676" description="&lt;p&gt;Multivalued parameter to filter the revenues by site ids. Each value must correspond to a valid site id.&lt;/p&gt;" type="array" variable="$siteIds">
+          <tag name="param" line="1677" description="&lt;p&gt;Multivalued parameter to filter the revenues by site ids. Each value must correspond to a valid site id.&lt;/p&gt;" type="array" variable="$siteIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1676" description="&lt;p&gt;Multivalued parameter to filter the revenues by goal ids. Each value must correspond to a valid goal id.&lt;/p&gt;" type="array" variable="$goalIds">
+          <tag name="param" line="1677" description="&lt;p&gt;Multivalued parameter to filter the revenues by goal ids. Each value must correspond to a valid goal id.&lt;/p&gt;" type="array" variable="$goalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1676" description="&lt;p&gt;Multivalued parameter to filter the revenues by link ids. Each value must correspond to a valid link id.&lt;/p&gt;" type="array" variable="$linkIds">
+          <tag name="param" line="1677" description="&lt;p&gt;Multivalued parameter to filter the revenues by link ids. Each value must correspond to a valid link id.&lt;/p&gt;" type="array" variable="$linkIds">
             <type>array</type>
           </tag>
-          <tag name="return" line="1676" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1677" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -8108,44 +8109,44 @@ used in RESTful web services.</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="de\xqueue\maileon\api\client\reports" line="1738" package="Default">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="de\xqueue\maileon\api\client\reports" line="1739" package="Default">
         <name>createQueryParameters</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::createQueryParameters()</full_name>
-        <docblock line="1738">
+        <docblock line="1739">
           <description>Creates the common query parameters</description>
           <long-description></long-description>
-          <tag name="param" line="1738" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
+          <tag name="param" line="1739" description="&lt;p&gt;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="integer" variable="$pageIndex">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1738" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in&#10; the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
+          <tag name="param" line="1739" description="&lt;p&gt;The maximum count of items in the result page. If provided, the value of page_size must be in&#10; the range 1 to 1000.&lt;/p&gt;" type="integer" variable="$pageSize">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1738" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1739" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1738" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of to_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1739" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of to_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1738" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1739" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1738" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1739" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1738" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1739" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1738" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1739" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1738" description="&lt;p&gt;Filters the unsubscriptions by their source. The source can be an unsubscription link&#10;(link), a reply mail (reply) or other.&lt;/p&gt;" type="string" variable="$source">
+          <tag name="param" line="1739" description="&lt;p&gt;Filters the unsubscriptions by their source. The source can be an unsubscription link&#10;(link), a reply mail (reply) or other.&lt;/p&gt;" type="string" variable="$source">
             <type>string</type>
           </tag>
-          <tag name="param" line="1738" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of&#10;contact fields that have been backed up for mailings because of a backup instruction.&#10;For each unsubscription, the corresponding field backups will be returned if available.&#10;Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
+          <tag name="param" line="1739" description="&lt;p&gt;Supported values: true / false. Field Backups are the values of&#10;contact fields that have been backed up for mailings because of a backup instruction.&#10;For each unsubscription, the corresponding field backups will be returned if available.&#10;Note that this only applies for non anonymizable field backups.&lt;/p&gt;" type="boolean" variable="$embedFieldBackups">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="1738" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1739" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -8199,35 +8200,35 @@ used in RESTful web services.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="de\xqueue\maileon\api\client\reports" line="1807" package="Default">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="de\xqueue\maileon\api\client\reports" line="1808" package="Default">
         <name>createCountQueryParameters</name>
         <full_name>\de\xqueue\maileon\api\client\reports\ReportsService::createCountQueryParameters()</full_name>
-        <docblock line="1807">
+        <docblock line="1808">
           <description>Creates the common query parameters for count operations</description>
           <long-description></long-description>
-          <tag name="param" line="1807" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
+          <tag name="param" line="1808" description="&lt;p&gt;If provided, only the unsubscriptions after the given date will be returned. The value of from_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$fromDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1807" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of to_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
+          <tag name="param" line="1808" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of to_date&#10; must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1807" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
+          <tag name="param" line="1808" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to a contact id.&lt;/p&gt;" type="array" variable="$contactIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1807" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
+          <tag name="param" line="1808" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by email addresses.&lt;/p&gt;" type="array" variable="$contactEmails">
             <type>array</type>
           </tag>
-          <tag name="param" line="1807" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
+          <tag name="param" line="1808" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by external ids. Each value must&#10; correspond to a contacts external id.&lt;/p&gt;" type="array" variable="$contactExternalIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1807" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
+          <tag name="param" line="1808" description="&lt;p&gt;Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to a mailing id.&lt;/p&gt;" type="array" variable="$mailingIds">
             <type>array</type>
           </tag>
-          <tag name="param" line="1807" description="&lt;p&gt;Filters the unsubscriptions by their source. The source can be an unsubscription link&#10;(link), a reply mail (reply) or other.&lt;/p&gt;" type="string" variable="$source">
+          <tag name="param" line="1808" description="&lt;p&gt;Filters the unsubscriptions by their source. The source can be an unsubscription link&#10;(link), a reply mail (reply) or other.&lt;/p&gt;" type="string" variable="$source">
             <type>string</type>
           </tag>
-          <tag name="return" line="1807" description="" type="array">
-            <type>array</type>
+          <tag name="return" line="1808" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
@@ -8685,7 +8686,7 @@ used in RESTful web services.</description>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="14" code="PPC:ERR-50005">No summary for class \de\xqueue\maileon\api\client\reports\ReportsService</error>
+      <error line="15" code="PPC:ERR-50005">No summary for class \de\xqueue\maileon\api\client\reports\ReportsService</error>
     </parse_markers>
   </file>
   <file path="contactfilters\Rule.php" generated-path="contactfilters.Rule.html" hash="19b29e18c9a19c6c4d0ea4c0694dbcc5" package="Default">
