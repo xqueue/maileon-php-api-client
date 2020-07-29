@@ -201,15 +201,22 @@ class ContactsService extends AbstractMaileonService
     /**
      * This method returns the number of contacts in the maileon newsletter account.
      *
+     * @param string $updatedAfter
+     *  returns contacts only, which were updated after the given datetime. The format must be in SQL format: Y-m-d H:i:s
      * @return MaileonAPIResult
      *    the result object of the API call, with the count of contacts
      *  available at MaileonAPIResult::getResult()
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
      */
-    public function getContactsCount()
+    public function getContactsCount($updatedAfter = null)
     {
-        return $this->get('contacts/count');
+        $queryParameters = array();
+        if (!empty($updatedAfter)) {
+            // Currently, let API handle validation
+            $queryParameters['updated_after'] = urlencode($updatedAfter);
+        }
+        return $this->get('contacts/count', $queryParameters);
     }
 
     /**
@@ -223,19 +230,26 @@ class ContactsService extends AbstractMaileonService
      *  the standard fields to retrieve for the contacts
      * @param string[] $custom_fields
      *  the custom fields to retrieve for the contacts
+     * @param string $updatedAfter
+     *  returns contacts only, which were updated after the given datetime. The format must be in SQL format: Y-m-d H:i:s
      * @return MaileonAPIResult
      *    the result object of the API call, with a Contacts
      *  available at MaileonAPIResult::getResult()
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
      */
-    public function getContacts($page_index = 1, $page_size = 100, $standard_fields = array(), $custom_fields = array())
+    public function getContacts($page_index = 1, $page_size = 100, $standard_fields = array(), $custom_fields = array(), $updatedAfter = null)
     {
         $queryParameters = array(
             'page_index' => $page_index,
             'page_size' => $page_size,
             'standard_field' => $standard_fields
         );
+        
+        if (!empty($updatedAfter)) {
+            // Currently, let API handle validation
+            $queryParameters['updated_after'] = urlencode($updatedAfter);
+        }
 
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
 
@@ -980,4 +994,6 @@ class ContactsService extends AbstractMaileonService
         $encodedName = rawurlencode(mb_convert_encoding($name, "UTF-8"));
         return $this->delete("contacts/fields/custom/{$encodedName}/values");
     }
+    
+    
 }

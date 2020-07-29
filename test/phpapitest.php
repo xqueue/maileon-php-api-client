@@ -248,6 +248,17 @@ GET contacts count:
 	}
 ?>
 </li>
+<?php } if (isset($_POST['contact_2_1'])) { ?>
+<li>
+GET contacts count with update_after parameter:
+<?php
+    $response = $contactsService->getContactsCount("2020-07-20 00:00:00");
+	checkResult($response);
+	if ($response->isSuccess()) {
+		echo '<br /><pre><ul><li>Returned contacts count: ' . $response->getResult() . '</li></ul>';
+	}
+?>
+</li>    
 <?php } if (isset($_POST['contact_3'])) { ?>
 <li>
 GET all contacts [page <?= $TESTDATA['page_index']?>, pagesize <?= $TESTDATA['page_size']?>]:
@@ -256,6 +267,35 @@ GET all contacts [page <?= $TESTDATA['page_index']?>, pagesize <?= $TESTDATA['pa
 
 	$start = time();
 	$response = $contactsService->getContacts($TESTDATA['page_index'], $TESTDATA['page_size'], array('FIRSTNAME', 'LASTNAME'), array());
+	checkResult($response);
+	$end = time();
+
+	echo "<br />Duration: ".($end - $start)." seconds<br />";
+
+	echo "<br />Headers: ";
+	var_dump($response->getResponseHeaders());
+	echo "<br />";
+
+	echo $response->getResponseHeaders()['X-Pages'];
+
+	// Print all results
+	if ($response->isSuccess()) {
+		echo "<br /><pre><ul>";
+			foreach ($response->getResult() as $contact) {
+				echo "<li>" . $contact->toString() . "</li>";
+			}
+		echo "</ul></pre>";
+	}
+?>
+</li>
+<?php } if (isset($_POST['contact_3_1'])) { ?>
+<li>
+GET all contacts [page <?= $TESTDATA['page_index']?>, pagesize <?= $TESTDATA['page_size']?>] with update_after parameter:
+<?php
+//array('FIRSTNAME','LASTNAME')
+
+	$start = time();
+	$response = $contactsService->getContacts($TESTDATA['page_index'], $TESTDATA['page_size'], array('FIRSTNAME', 'LASTNAME', 'SENDOUT_STATUS', 'PERMISSION_STATUS'), array(), "2020-07-20 00:00:00");
 	checkResult($response);
 	$end = time();
 

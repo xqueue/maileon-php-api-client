@@ -38,7 +38,9 @@
         <li><input type="checkbox" name="contact_1_1" value="true"> POST Create contact by external ID</li>
         <li><input type="checkbox" name="contact_1_2" value="true"> PUT Update contact</li>
         <li><input type="checkbox" name="contact_2" value="true"> GET contacts count</li>
+        <li><input type="checkbox" name="contact_2_1" value="true"> GET contacts count with update_after parameter</li>
         <li><input type="checkbox" name="contact_3" value="true"> GET all contacts [page and pagesize from config]</li>
+        <li><input type="checkbox" name="contact_3_1" value="true"> GET all contacts [page and pagesize from config] with update_after parameter</li>
         <li><input type="checkbox" name="contact_4" value="true"> GET contact with ID and checksum from config</li>
         <li><input type="checkbox" name="contact_5" value="true"> PUT update contact with ID and checksum from config</li>
         <li><input type="checkbox" name="contact_5_1" value="true"> PUT update contact with its email as identifier</li>
