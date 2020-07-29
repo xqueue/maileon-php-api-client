@@ -1,3 +1,8 @@
+Date 2020-07-29
+Version 1.7.0
+- Added parameter updated_after for ContactsService getContactsCount and getContacts fot filtering only changed contacts
+- Added new standard contact fields PERMISSION_STATUS and SENDOUT_STATUS
+
 Date 2020-07-03
 Version 1.6.5
 - Added methods for getting and setting post sendout cleanup (deleting the used contact list and filter)
