@@ -57,9 +57,15 @@ class StandardContactField
 
     /** The Constant ZIP. */
     public static $ZIP = "ZIP";
-
+    
     /** The Constant STATE. */
     public static $STATE = "STATE";
+    
+    /** The Constant SENDOUT_STATUS. Sendout status can be "blocked" or "allowed" */
+    public static $SENDOUT_STATUS = "SENDOUT_STATUS";
+    
+    /** The Constant PERMISSION_STATUS. Permission status can be "available" (permission != none and not unsubscribed), "none" (no permission given, yet), or "unsubscribed" */
+    public static $PERMISSION_STATUS = "PERMISSION_STATUS";
 
 
     public static function init()
