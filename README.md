@@ -78,7 +78,7 @@ To verify that your installation works, check all the checkboxes in the "Ping - 
 
 ## Installing the API client into your PHP application
 
-The client is distributed using [Packagist]() and thus, can easily be included using composer.
+The client is distributed using [Packagist](https://packagist.org/packages/xqueue/maileon-api-client) and thus, can easily be included using composer.
 
 A sample composer file would be
 
