@@ -8996,7 +8996,7 @@ used in RESTful web services.</description>
       <error line="15" code="PPC:ERR-50007">No summary for property $value</error>
     </parse_markers>
   </file>
-  <file path="contacts\ContactsService.php" generated-path="contacts.ContactsService.html" hash="3d15c67a362ffa3ec812ea9fdd2a585a" package="Default">
+  <file path="contacts\ContactsService.php" generated-path="contacts.ContactsService.html" hash="793700c67704543941910b22ec44a114" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -9321,42 +9321,53 @@ about how to get the maileon contact id and the corresponding checksum.</long-de
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="210" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="212" package="Default">
         <name>getContactsCount</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::getContactsCount()</full_name>
-        <docblock line="210">
+        <docblock line="212">
           <description>This method returns the number of contacts in the maileon newsletter account.</description>
           <long-description></long-description>
-          <tag name="return" line="210" description="the result object of the API call, with the count of contacts&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="param" line="212" description="&lt;p&gt;returns contacts only, which were updated after the given datetime. The format must be in SQL format: Y-m-d H:i:s&lt;/p&gt;" type="string" variable="$updatedAfter">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="212" description="the result object of the API call, with the count of contacts&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="210" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="212" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
+        <argument line="0" by_reference="false">
+          <name>$updatedAfter</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="232" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="241" package="Default">
         <name>getContacts</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::getContacts()</full_name>
-        <docblock line="232">
+        <docblock line="241">
           <description>Returns a page of contacts in the account.</description>
           <long-description></long-description>
-          <tag name="param" line="232" description="&lt;p&gt;the index of the result page to fetch&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\number" variable="$page_index">
+          <tag name="param" line="241" description="&lt;p&gt;the index of the result page to fetch&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\number" variable="$page_index">
             <type>\de\xqueue\maileon\api\client\contacts\number</type>
           </tag>
-          <tag name="param" line="232" description="&lt;p&gt;the number of results to fetch per page&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\number" variable="$page_size">
+          <tag name="param" line="241" description="&lt;p&gt;the number of results to fetch per page&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\number" variable="$page_size">
             <type>\de\xqueue\maileon\api\client\contacts\number</type>
           </tag>
-          <tag name="param" line="232" description="&lt;p&gt;the standard fields to retrieve for the contacts&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$standard_fields">
+          <tag name="param" line="241" description="&lt;p&gt;the standard fields to retrieve for the contacts&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$standard_fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="232" description="&lt;p&gt;the custom fields to retrieve for the contacts&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$custom_fields">
+          <tag name="param" line="241" description="&lt;p&gt;the custom fields to retrieve for the contacts&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$custom_fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="return" line="232" description="the result object of the API call, with a Contacts&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="param" line="241" description="&lt;p&gt;returns contacts only, which were updated after the given datetime. The format must be in SQL format: Y-m-d H:i:s&lt;/p&gt;" type="string" variable="$updatedAfter">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="241" description="the result object of the API call, with a Contacts&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="232" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="241" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9380,26 +9391,31 @@ about how to get the maileon contact id and the corresponding checksum.</long-de
           <default>array()</default>
           <type>array&lt;mixed,string&gt;</type>
         </argument>
+        <argument line="0" by_reference="false">
+          <name>$updatedAfter</name>
+          <default>null</default>
+          <type>string</type>
+        </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="260" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="274" package="Default">
         <name>getContactByEmail</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::getContactByEmail()</full_name>
-        <docblock line="260">
+        <docblock line="274">
           <description>Returns a contact with the provided email address.</description>
           <long-description></long-description>
-          <tag name="param" line="260" description="&lt;p&gt;the email address to retrieve a contact for&lt;/p&gt;" type="string" variable="$email">
+          <tag name="param" line="274" description="&lt;p&gt;the email address to retrieve a contact for&lt;/p&gt;" type="string" variable="$email">
             <type>string</type>
           </tag>
-          <tag name="param" line="260" description="&lt;p&gt;the standard fields to return with the contact&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$standard_fields">
+          <tag name="param" line="274" description="&lt;p&gt;the standard fields to return with the contact&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$standard_fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="260" description="&lt;p&gt;the custom fields to return with the contact&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$custom_fields">
+          <tag name="param" line="274" description="&lt;p&gt;the custom fields to return with the contact&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$custom_fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="return" line="260" description="the result object of the API call, with a Contact&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="274" description="the result object of the API call, with a Contact&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="260" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="274" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9419,25 +9435,25 @@ about how to get the maileon contact id and the corresponding checksum.</long-de
           <type>array&lt;mixed,string&gt;</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="286" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="300" package="Default">
         <name>getContactsByEmail</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::getContactsByEmail()</full_name>
-        <docblock line="286">
+        <docblock line="300">
           <description>Returns a list of contacts with the provided email address.</description>
           <long-description></long-description>
-          <tag name="param" line="286" description="&lt;p&gt;the email address to retrieve a contact for&lt;/p&gt;" type="string" variable="$email">
+          <tag name="param" line="300" description="&lt;p&gt;the email address to retrieve a contact for&lt;/p&gt;" type="string" variable="$email">
             <type>string</type>
           </tag>
-          <tag name="param" line="286" description="&lt;p&gt;the standard fields to return with the contact&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$standard_fields">
+          <tag name="param" line="300" description="&lt;p&gt;the standard fields to return with the contact&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$standard_fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="286" description="&lt;p&gt;the custom fields to return with the contact&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$custom_fields">
+          <tag name="param" line="300" description="&lt;p&gt;the custom fields to return with the contact&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$custom_fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="return" line="286" description="the result object of the API call, with an array of Contact&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="300" description="the result object of the API call, with an array of Contact&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="286" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="300" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9457,25 +9473,25 @@ about how to get the maileon contact id and the corresponding checksum.</long-de
           <type>array&lt;mixed,string&gt;</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="309" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="323" package="Default">
         <name>getContactsByExternalId</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::getContactsByExternalId()</full_name>
-        <docblock line="309">
+        <docblock line="323">
           <description>Retrieves all contacts with a given external ID.</description>
           <long-description></long-description>
-          <tag name="param" line="309" description="&lt;p&gt;the external ID to search for&lt;/p&gt;" type="string" variable="$externalId">
+          <tag name="param" line="323" description="&lt;p&gt;the external ID to search for&lt;/p&gt;" type="string" variable="$externalId">
             <type>string</type>
           </tag>
-          <tag name="param" line="309" description="" type="array&lt;mixed,string&gt;" variable="$standard_fields">
+          <tag name="param" line="323" description="" type="array&lt;mixed,string&gt;" variable="$standard_fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="309" description="" type="array&lt;mixed,string&gt;" variable="$custom_fields">
+          <tag name="param" line="323" description="" type="array&lt;mixed,string&gt;" variable="$custom_fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="return" line="309" description="the result object of the API call, with a Contacts&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="323" description="the result object of the API call, with a Contacts&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="309" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="323" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9495,25 +9511,25 @@ about how to get the maileon contact id and the corresponding checksum.</long-de
           <type>array&lt;mixed,string&gt;</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="332" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="346" package="Default">
         <name>getContactsByFilterId</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::getContactsByFilterId()</full_name>
-        <docblock line="332">
+        <docblock line="346">
           <description>Retrieves all contacts with a given contact filter ID.</description>
           <long-description></long-description>
-          <tag name="param" line="332" description="&lt;p&gt;the filter ID to use to select contacts&lt;/p&gt;" type="string" variable="$filterId">
+          <tag name="param" line="346" description="&lt;p&gt;the filter ID to use to select contacts&lt;/p&gt;" type="string" variable="$filterId">
             <type>string</type>
           </tag>
-          <tag name="param" line="332" description="" type="array&lt;mixed,string&gt;" variable="$standard_fields">
+          <tag name="param" line="346" description="" type="array&lt;mixed,string&gt;" variable="$standard_fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="332" description="" type="array&lt;mixed,string&gt;" variable="$custom_fields">
+          <tag name="param" line="346" description="" type="array&lt;mixed,string&gt;" variable="$custom_fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="return" line="332" description="the result object of the API call, with a Contacts&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="346" description="the result object of the API call, with a Contacts&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="332" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="346" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9543,19 +9559,19 @@ about how to get the maileon contact id and the corresponding checksum.</long-de
           <type>array&lt;mixed,string&gt;</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="358" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="372" package="Default">
         <name>getCountContactsByFilterId</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::getCountContactsByFilterId()</full_name>
-        <docblock line="358">
+        <docblock line="372">
           <description>Retrieves the number of contacts matching a given contact filter ID.</description>
           <long-description></long-description>
-          <tag name="param" line="358" description="&lt;p&gt;the filter ID to use to select contacts&lt;/p&gt;" type="string" variable="$filterId">
+          <tag name="param" line="372" description="&lt;p&gt;the filter ID to use to select contacts&lt;/p&gt;" type="string" variable="$filterId">
             <type>string</type>
           </tag>
-          <tag name="return" line="358" description="the result object of the API call, with the number&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="372" description="the result object of the API call, with the number&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="358" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="372" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9565,19 +9581,19 @@ about how to get the maileon contact id and the corresponding checksum.</long-de
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="373" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="387" package="Default">
         <name>getCountActiveContactsByFilterId</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::getCountActiveContactsByFilterId()</full_name>
-        <docblock line="373">
+        <docblock line="387">
           <description>Retrieves the number of active contacts matching a given contact filter ID.</description>
           <long-description></long-description>
-          <tag name="param" line="373" description="&lt;p&gt;the filter ID to use to select contacts&lt;/p&gt;" type="string" variable="$filterId">
+          <tag name="param" line="387" description="&lt;p&gt;the filter ID to use to select contacts&lt;/p&gt;" type="string" variable="$filterId">
             <type>string</type>
           </tag>
-          <tag name="return" line="373" description="the result object of the API call, with the number&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="387" description="the result object of the API call, with the number&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="373" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="387" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9587,37 +9603,37 @@ about how to get the maileon contact id and the corresponding checksum.</long-de
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="404" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="418" package="Default">
         <name>updateContact</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::updateContact()</full_name>
-        <docblock line="404">
+        <docblock line="418">
           <description>This methods updates the data of a Maileon contact identifying a contact by its internal Maileon ID</description>
           <long-description></long-description>
-          <tag name="param" line="404" description="&lt;p&gt;The contact object to send to Maileon.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\Contact" variable="$contact">
+          <tag name="param" line="418" description="&lt;p&gt;The contact object to send to Maileon.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\Contact" variable="$contact">
             <type>\de\xqueue\maileon\api\client\contacts\Contact</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;This is the checksum that must be used when the request comes from a user,&#10;see documentation under &lt;a href=&quot;http://dev.maileon.com&quot;&gt;http://dev.maileon.com&lt;/a&gt; for details.&lt;/p&gt;" type="string" variable="$checksum">
+          <tag name="param" line="418" description="&lt;p&gt;This is the checksum that must be used when the request comes from a user,&#10;see documentation under &lt;a href=&quot;http://dev.maileon.com&quot;&gt;http://dev.maileon.com&lt;/a&gt; for details.&lt;/p&gt;" type="string" variable="$checksum">
             <type>string</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;The source that shall be passed to the API.&lt;/p&gt;" type="string" variable="$src">
+          <tag name="param" line="418" description="&lt;p&gt;The source that shall be passed to the API.&lt;/p&gt;" type="string" variable="$src">
             <type>string</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;The subscription page the request comes from.&lt;/p&gt;" type="string" variable="$subscriptionPage">
+          <tag name="param" line="418" description="&lt;p&gt;The subscription page the request comes from.&lt;/p&gt;" type="string" variable="$subscriptionPage">
             <type>string</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;If true, a DOI mailing will be triggered.&lt;/p&gt;" type="boolean" variable="$triggerDoi">
+          <tag name="param" line="418" description="&lt;p&gt;If true, a DOI mailing will be triggered.&lt;/p&gt;" type="boolean" variable="$triggerDoi">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;If this parameter is set, the DOI mailing with the given ID will be triggered.&#10; If not set, the default DOI Mailing will be triggered.&lt;/p&gt;" type="string" variable="$doiMailingKey">
+          <tag name="param" line="418" description="&lt;p&gt;If this parameter is set, the DOI mailing with the given ID will be triggered.&#10; If not set, the default DOI Mailing will be triggered.&lt;/p&gt;" type="string" variable="$doiMailingKey">
             <type>string</type>
           </tag>
-          <tag name="param" line="404" description="&lt;p&gt;If this is true, the checksum will not be validated.&#10;This is only valid if the request is NOT triggered by the contact (e.g. on a profile change landing page)&#10;but from a third party system.&lt;/p&gt;" type="string" variable="$ignoreChecksum">
+          <tag name="param" line="418" description="&lt;p&gt;If this is true, the checksum will not be validated.&#10;This is only valid if the request is NOT triggered by the contact (e.g. on a profile change landing page)&#10;but from a third party system.&lt;/p&gt;" type="string" variable="$ignoreChecksum">
             <type>string</type>
           </tag>
-          <tag name="return" line="404" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="418" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="404" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="418" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9657,44 +9673,44 @@ about how to get the maileon contact id and the corresponding checksum.</long-de
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="480" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="494" package="Default">
         <name>synchronizeContacts</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::synchronizeContacts()</full_name>
-        <docblock line="480">
+        <docblock line="494">
           <description>Synchronizes a list of contacts with the contacts in the account and returns a
 detailed report with stats and validation errors.</description>
           <long-description></long-description>
-          <tag name="param" line="480" description="&lt;p&gt;the contacts to synchronize&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\Contacts" variable="$contacts">
+          <tag name="param" line="494" description="&lt;p&gt;the contacts to synchronize&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\Contacts" variable="$contacts">
             <type>\de\xqueue\maileon\api\client\contacts\Contacts</type>
           </tag>
-          <tag name="param" line="480" description="&lt;p&gt;the permission to set for the contacts&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\Permission" variable="$permission">
+          <tag name="param" line="494" description="&lt;p&gt;the permission to set for the contacts&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\Permission" variable="$permission">
             <type>\de\xqueue\maileon\api\client\contacts\Permission</type>
           </tag>
-          <tag name="param" line="480" description="&lt;p&gt;the sync mode to use&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\SynchronizationMode" variable="$syncMode">
+          <tag name="param" line="494" description="&lt;p&gt;the sync mode to use&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\SynchronizationMode" variable="$syncMode">
             <type>\de\xqueue\maileon\api\client\contacts\SynchronizationMode</type>
           </tag>
-          <tag name="param" line="480" description="&lt;p&gt;if set to true, the external id is used as identifier for the contacts.&#10; Otherwise the email address is used as identifier.&lt;/p&gt;" type="string" variable="$useExternalId">
+          <tag name="param" line="494" description="&lt;p&gt;if set to true, the external id is used as identifier for the contacts.&#10; Otherwise the email address is used as identifier.&lt;/p&gt;" type="string" variable="$useExternalId">
             <type>string</type>
           </tag>
-          <tag name="param" line="480" description="&lt;p&gt;if set to true, invalid contacts are ignored and the synchronization&#10; succeeds for valid contacts.&lt;/p&gt;" type="string" variable="$ignoreInvalidContacts">
+          <tag name="param" line="494" description="&lt;p&gt;if set to true, invalid contacts are ignored and the synchronization&#10; succeeds for valid contacts.&lt;/p&gt;" type="string" variable="$ignoreInvalidContacts">
             <type>string</type>
           </tag>
-          <tag name="param" line="480" description="&lt;p&gt;if set to true, unsubscribed contacts will be imported, if false, they will be ommitted&lt;/p&gt;" type="string" variable="$reimportUnsubscribedContacts">
+          <tag name="param" line="494" description="&lt;p&gt;if set to true, unsubscribed contacts will be imported, if false, they will be ommitted&lt;/p&gt;" type="string" variable="$reimportUnsubscribedContacts">
             <type>string</type>
           </tag>
-          <tag name="param" line="480" description="&lt;p&gt;if set to true the permission of existing and non existing contacts will be overwridden,&#10; if false, the permission will be used for new contacts only and existing contacts will not be influenced.&lt;/p&gt;" type="boolean" variable="$overridePermission">
+          <tag name="param" line="494" description="&lt;p&gt;if set to true the permission of existing and non existing contacts will be overwridden,&#10; if false, the permission will be used for new contacts only and existing contacts will not be influenced.&lt;/p&gt;" type="boolean" variable="$overridePermission">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="480" description="&lt;p&gt;If true, only existing contacts are updated and no new contacts are created&lt;/p&gt;" type="boolean" variable="$updateOnly">
+          <tag name="param" line="494" description="&lt;p&gt;If true, only existing contacts are updated and no new contacts are created&lt;/p&gt;" type="boolean" variable="$updateOnly">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="480" description="&lt;p&gt;If true, Maileon tries identifying contacts by Maileon-ID, if available. Fallback is always the email address.&lt;/p&gt;" type="boolean" variable="$preferMaileonId">
+          <tag name="param" line="494" description="&lt;p&gt;If true, Maileon tries identifying contacts by Maileon-ID, if available. Fallback is always the email address.&lt;/p&gt;" type="boolean" variable="$preferMaileonId">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="480" description="the result object of the API call. The&#10; response XML reports which contacts were successfully synchronized as well as any errors that&#10; might have occurred." type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="494" description="the result object of the API call. The&#10; response XML reports which contacts were successfully synchronized as well as any errors that&#10; might have occurred." type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="480" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="494" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9744,22 +9760,22 @@ detailed report with stats and validation errors.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="530" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="544" package="Default">
         <name>updateContactByEmail</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::updateContactByEmail()</full_name>
-        <docblock line="530">
+        <docblock line="544">
           <description>This methods updates the data of a Maileon contact identifying a contact by its email</description>
           <long-description></long-description>
-          <tag name="param" line="530" description="&lt;p&gt;The (old) email address of the contact.&lt;/p&gt;" type="string" variable="$email">
+          <tag name="param" line="544" description="&lt;p&gt;The (old) email address of the contact.&lt;/p&gt;" type="string" variable="$email">
             <type>string</type>
           </tag>
-          <tag name="param" line="530" description="&lt;p&gt;The contact object to send to Maileon. If it has a permission, it will be overwritten.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\Contact" variable="$contact">
+          <tag name="param" line="544" description="&lt;p&gt;The contact object to send to Maileon. If it has a permission, it will be overwritten.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\Contact" variable="$contact">
             <type>\de\xqueue\maileon\api\client\contacts\Contact</type>
           </tag>
-          <tag name="return" line="530" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="544" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="530" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="544" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9774,28 +9790,28 @@ detailed report with stats and validation errors.</description>
           <type>\de\xqueue\maileon\api\client\contacts\Contact</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="572" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="586" package="Default">
         <name>unsubscribeContactByEmail</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::unsubscribeContactByEmail()</full_name>
-        <docblock line="572">
+        <docblock line="586">
           <description>This method unsubscribes a contact from Maileon using the contact's email adress.</description>
           <long-description></long-description>
-          <tag name="param" line="572" description="&lt;p&gt;The email address of the contact.&lt;/p&gt;" type="string" variable="$email">
+          <tag name="param" line="586" description="&lt;p&gt;The email address of the contact.&lt;/p&gt;" type="string" variable="$email">
             <type>string</type>
           </tag>
-          <tag name="param" line="572" description="&lt;p&gt;The ID of the mailing to assign the unsubscribe to.&#10;The mailing must have been sent, i.e. be sealed.&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="586" description="&lt;p&gt;The ID of the mailing to assign the unsubscribe to.&#10;The mailing must have been sent, i.e. be sealed.&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="572" description="&lt;p&gt;an array of reasons or a single reason (string).&#10;Unsubscription reasons have two layers&#10;of information, see &lt;a href=&quot;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-email&quot;&gt;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-email&lt;/a&gt;&#10;for more details about the format.&#10;The parameter(s) will be url-encoded by the client, you do not need to provide urlencoded strings.&lt;/p&gt;" type="array" variable="$reasons">
+          <tag name="param" line="586" description="&lt;p&gt;an array of reasons or a single reason (string).&#10;Unsubscription reasons have two layers&#10;of information, see &lt;a href=&quot;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-email&quot;&gt;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-email&lt;/a&gt;&#10;for more details about the format.&#10;The parameter(s) will be url-encoded by the client, you do not need to provide urlencoded strings.&lt;/p&gt;" type="array" variable="$reasons">
             <type>array</type>
           </tag>
-          <tag name="param" line="572" description="&lt;p&gt;Optional parameter to define in which accounts the&#10;email should be unsubscribed. Note: The accounts must belong to the owner of&#10;the API key in use, otherwise they will be ignored.&lt;/p&gt;" type="array" variable="$nlAccounts">
+          <tag name="param" line="586" description="&lt;p&gt;Optional parameter to define in which accounts the&#10;email should be unsubscribed. Note: The accounts must belong to the owner of&#10;the API key in use, otherwise they will be ignored.&lt;/p&gt;" type="array" variable="$nlAccounts">
             <type>array</type>
           </tag>
-          <tag name="return" line="572" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="586" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="572" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="586" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9820,28 +9836,28 @@ detailed report with stats and validation errors.</description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="619" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="633" package="Default">
         <name>addUnsubscriptionReasonsToUnsubscribedContact</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::addUnsubscriptionReasonsToUnsubscribedContact()</full_name>
-        <docblock line="619">
+        <docblock line="633">
           <description>This method adds unsubscription reasons to an unsubscribed contact.</description>
           <long-description>The contact must already be unsubscribed, otherwise 400 will be returned by the PAI</long-description>
-          <tag name="param" line="619" description="&lt;p&gt;The ID of the contact.&lt;/p&gt;" type="integer" variable="$id">
+          <tag name="param" line="633" description="&lt;p&gt;The ID of the contact.&lt;/p&gt;" type="integer" variable="$id">
             <type>integer</type>
           </tag>
-          <tag name="param" line="619" description="&lt;p&gt;The checksum generated by Maileon&lt;/p&gt;" type="string" variable="$checksum">
+          <tag name="param" line="633" description="&lt;p&gt;The checksum generated by Maileon&lt;/p&gt;" type="string" variable="$checksum">
             <type>string</type>
           </tag>
-          <tag name="param" line="619" description="&lt;p&gt;an array of reasons or a single reason (string).&#10;Unsubscription reasons have two layers&#10;of information, see &lt;a href=&quot;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-email&quot;&gt;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-email&lt;/a&gt;&#10;for more details about the format.&#10;The parameter(s) will be url-encoded by the client, you do not need to provide urlencoded strings.&lt;/p&gt;" type="array" variable="$reasons">
+          <tag name="param" line="633" description="&lt;p&gt;an array of reasons or a single reason (string).&#10;Unsubscription reasons have two layers&#10;of information, see &lt;a href=&quot;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-email&quot;&gt;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-email&lt;/a&gt;&#10;for more details about the format.&#10;The parameter(s) will be url-encoded by the client, you do not need to provide urlencoded strings.&lt;/p&gt;" type="array" variable="$reasons">
             <type>array</type>
           </tag>
-          <tag name="param" line="619" description="&lt;p&gt;If the call comes from an authorized&#10;system instead of the user you might ignore the checksum&lt;/p&gt;" type="boolean" variable="$ignore_checksum">
+          <tag name="param" line="633" description="&lt;p&gt;If the call comes from an authorized&#10;system instead of the user you might ignore the checksum&lt;/p&gt;" type="boolean" variable="$ignore_checksum">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="619" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="633" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="619" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="633" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9866,25 +9882,25 @@ detailed report with stats and validation errors.</description>
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="661" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="675" package="Default">
         <name>unsubscribeContactById</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::unsubscribeContactById()</full_name>
-        <docblock line="661">
+        <docblock line="675">
           <description>This method unsubscribes a contact from Maileon using the Maileon id.</description>
           <long-description></long-description>
-          <tag name="param" line="661" description="" type="integer" variable="$id">
+          <tag name="param" line="675" description="" type="integer" variable="$id">
             <type>integer</type>
           </tag>
-          <tag name="param" line="661" description="&lt;p&gt;The ID of the mailing to assign the unsubscribe to.&#10;The mailing must have been sent, i.e. be sealed.&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="675" description="&lt;p&gt;The ID of the mailing to assign the unsubscribe to.&#10;The mailing must have been sent, i.e. be sealed.&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="661" description="&lt;p&gt;an array of reasons or a single reason (string).&#10;Unsubscription reasons have two layers&#10;of information, see &lt;a href=&quot;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-maileon-id&quot;&gt;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-maileon-id&lt;/a&gt;&#10;for more details about the format.&#10;The parameter(s) will be url-encoded by the client, you do not need to provide urlencoded strings.&lt;/p&gt;" type="array" variable="$reasons">
+          <tag name="param" line="675" description="&lt;p&gt;an array of reasons or a single reason (string).&#10;Unsubscription reasons have two layers&#10;of information, see &lt;a href=&quot;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-maileon-id&quot;&gt;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-by-maileon-id&lt;/a&gt;&#10;for more details about the format.&#10;The parameter(s) will be url-encoded by the client, you do not need to provide urlencoded strings.&lt;/p&gt;" type="array" variable="$reasons">
             <type>array</type>
           </tag>
-          <tag name="return" line="661" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="675" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="661" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="675" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9904,22 +9920,22 @@ detailed report with stats and validation errors.</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="692" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="706" package="Default">
         <name>updateContactByExternalId</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::updateContactByExternalId()</full_name>
-        <docblock line="692">
+        <docblock line="706">
           <description>This methods updates the data of a Maileon contact identifying a contact by its external ID</description>
           <long-description></long-description>
-          <tag name="param" line="692" description="&lt;p&gt;The (old) external ID of the contact.&lt;/p&gt;" type="string" variable="$externalId">
+          <tag name="param" line="706" description="&lt;p&gt;The (old) external ID of the contact.&lt;/p&gt;" type="string" variable="$externalId">
             <type>string</type>
           </tag>
-          <tag name="param" line="692" description="&lt;p&gt;The contact object to send to Maileon. If it has a permission, it will be overwritten.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\Contact" variable="$contact">
+          <tag name="param" line="706" description="&lt;p&gt;The contact object to send to Maileon. If it has a permission, it will be overwritten.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\Contact" variable="$contact">
             <type>\de\xqueue\maileon\api\client\contacts\Contact</type>
           </tag>
-          <tag name="return" line="692" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="706" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="692" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="706" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9934,25 +9950,25 @@ detailed report with stats and validation errors.</description>
           <type>\de\xqueue\maileon\api\client\contacts\Contact</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="731" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="745" package="Default">
         <name>unsubscribeContactByExternalId</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::unsubscribeContactByExternalId()</full_name>
-        <docblock line="731">
+        <docblock line="745">
           <description>This method unsubscribes a contact from Maileon using the external id.</description>
           <long-description></long-description>
-          <tag name="param" line="731" description="&lt;p&gt;The external ID of the contact.&lt;/p&gt;" type="string" variable="$externalId">
+          <tag name="param" line="745" description="&lt;p&gt;The external ID of the contact.&lt;/p&gt;" type="string" variable="$externalId">
             <type>string</type>
           </tag>
-          <tag name="param" line="731" description="&lt;p&gt;The ID of the mailing to assign the unsubscribe to.&#10;The mailing must have been sent, i.e. be sealed.&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="745" description="&lt;p&gt;The ID of the mailing to assign the unsubscribe to.&#10;The mailing must have been sent, i.e. be sealed.&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="731" description="&lt;p&gt;an array of reasons or a single reason (string).&#10;Unsubscription reasons have two layers&#10;of information, see &lt;a href=&quot;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-external-id&quot;&gt;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-external-id&lt;/a&gt;&#10;for more details about the format.&#10;The parameter(s) will be url-encoded by the client, you do not need to provide urlencoded strings.&lt;/p&gt;" type="array" variable="$reasons">
+          <tag name="param" line="745" description="&lt;p&gt;an array of reasons or a single reason (string).&#10;Unsubscription reasons have two layers&#10;of information, see &lt;a href=&quot;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-external-id&quot;&gt;http://dev.maileon.com/api/rest-api-1-0/contacts/unsubscribe-contacts-external-id&lt;/a&gt;&#10;for more details about the format.&#10;The parameter(s) will be url-encoded by the client, you do not need to provide urlencoded strings.&lt;/p&gt;" type="array" variable="$reasons">
             <type>array</type>
           </tag>
-          <tag name="return" line="731" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="745" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="731" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="745" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -9972,23 +9988,23 @@ detailed report with stats and validation errors.</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="762" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="776" package="Default">
         <name>unsubscribeContactByExternalIdFromMultipleAccounts</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::unsubscribeContactByExternalIdFromMultipleAccounts()</full_name>
-        <docblock line="762">
+        <docblock line="776">
           <description>This method unsubscribes a contact from Maileon from several accounts
 (owner of API key must also be the same customer owning the other accounts).</description>
           <long-description></long-description>
-          <tag name="param" line="762" description="" type="integer" variable="$externalId">
+          <tag name="param" line="776" description="" type="integer" variable="$externalId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="762" description="&lt;p&gt;The ID of the mailing to assign the unsubscribe to.&#10;The mailing must have been sent, i.e. be sealed.&lt;/p&gt;" type="integer" variable="$nlaccountid">
+          <tag name="param" line="776" description="&lt;p&gt;The ID of the mailing to assign the unsubscribe to.&#10;The mailing must have been sent, i.e. be sealed.&lt;/p&gt;" type="integer" variable="$nlaccountid">
             <type>integer</type>
           </tag>
-          <tag name="return" line="762" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="776" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="762" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="776" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10003,33 +10019,33 @@ detailed report with stats and validation errors.</description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="792" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="806" package="Default">
         <name>getBlockedContacts</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::getBlockedContacts()</full_name>
-        <docblock line="792">
+        <docblock line="806">
           <description>Returns a page of blocked contacts. Blocked contacts are contacts with available permission
 but that are blocked for sendouts because of blacklist matches or similar reasons such as
 bounce policy.</description>
           <long-description></long-description>
-          <tag name="param" line="792" description="&lt;p&gt;the standard fields to select&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$standardFields">
+          <tag name="param" line="806" description="&lt;p&gt;the standard fields to select&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$standardFields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="792" description="&lt;p&gt;the custom fields to select&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$customFields">
+          <tag name="param" line="806" description="&lt;p&gt;the custom fields to select&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$customFields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="792" description="&lt;p&gt;the paging index of the page to retrieve&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\number" variable="$pageIndex">
+          <tag name="param" line="806" description="&lt;p&gt;the paging index of the page to retrieve&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\number" variable="$pageIndex">
             <type>\de\xqueue\maileon\api\client\contacts\number</type>
           </tag>
-          <tag name="param" line="792" description="&lt;p&gt;the number of results per page&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\number" variable="$pageSize">
+          <tag name="param" line="806" description="&lt;p&gt;the number of results per page&lt;/p&gt;" type="\de\xqueue\maileon\api\client\contacts\number" variable="$pageSize">
             <type>\de\xqueue\maileon\api\client\contacts\number</type>
           </tag>
-          <tag name="return" line="792" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="806" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="return" line="792" description="the result object of the API call, with a com_maileon_api_co" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="806" description="the result object of the API call, with a com_maileon_api_co" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="792" description="if there was a connection problem or a server error occurredntacts_Contacts&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="806" description="if there was a connection problem or a server error occurredntacts_Contacts&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10054,21 +10070,21 @@ bounce policy.</description>
           <type>\de\xqueue\maileon\api\client\contacts\number</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="822" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="836" package="Default">
         <name>deleteContact</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::deleteContact()</full_name>
-        <docblock line="822">
+        <docblock line="836">
           <description>This method removes a contact completely from Maileon using the maileon ID.</description>
           <long-description>WARNING: the contact is COMPLETELY removed, not only unsubscribed. This means that not only the
 contact data is removed but also all statistics change.
 For most usecases the unsubscribe method is more appropriate.</long-description>
-          <tag name="param" line="822" description="&lt;p&gt;The email address of the contact to delete. Does not need to be unique.&lt;/p&gt;" type="string" variable="$email">
+          <tag name="param" line="836" description="&lt;p&gt;The email address of the contact to delete. Does not need to be unique.&lt;/p&gt;" type="string" variable="$email">
             <type>string</type>
           </tag>
-          <tag name="return" line="822" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="836" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="822" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="836" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10078,21 +10094,21 @@ For most usecases the unsubscribe method is more appropriate.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="841" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="855" package="Default">
         <name>deleteContactByEmail</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::deleteContactByEmail()</full_name>
-        <docblock line="841">
+        <docblock line="855">
           <description>This method removes all contacts completely from Maileon using the email address.</description>
           <long-description>WARNING: the contacts are COMPLETELY removed, not only unsubscribed. This means that not
 only the contact data is removed but also all statistics change.
 For most usecases the unsubscribe method is more appropriate.</long-description>
-          <tag name="param" line="841" description="&lt;p&gt;The email address of the contact to delete. Does not need to be unique.&lt;/p&gt;" type="string" variable="$email">
+          <tag name="param" line="855" description="&lt;p&gt;The email address of the contact to delete. Does not need to be unique.&lt;/p&gt;" type="string" variable="$email">
             <type>string</type>
           </tag>
-          <tag name="return" line="841" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="855" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="841" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="855" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10102,21 +10118,21 @@ For most usecases the unsubscribe method is more appropriate.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="859" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="873" package="Default">
         <name>deleteContactsByExternalId</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::deleteContactsByExternalId()</full_name>
-        <docblock line="859">
+        <docblock line="873">
           <description>This method removes the contacts completely from Maileon using the external id.</description>
           <long-description>WARNING: the contacts are COMPLETELY removed, not only unsubscribed. This means that not only
 the contact data is removed but also all statistics change.
 For most usecases the unsubscribe method is more appropriate.</long-description>
-          <tag name="param" line="859" description="&lt;p&gt;ID&#10; The external ID of the contact to delete. Does not need to be unique.&lt;/p&gt;" type="string" variable="$external">
+          <tag name="param" line="873" description="&lt;p&gt;ID&#10; The external ID of the contact to delete. Does not need to be unique.&lt;/p&gt;" type="string" variable="$external">
             <type>string</type>
           </tag>
-          <tag name="return" line="859" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="873" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="859" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="873" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10126,16 +10142,16 @@ For most usecases the unsubscribe method is more appropriate.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="873" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="887" package="Default">
         <name>deleteAllContacts</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::deleteAllContacts()</full_name>
-        <docblock line="873">
+        <docblock line="887">
           <description>This method DELETES ALL CONTACTS. Never ever call this unless you'd prefer a career change anyway.</description>
           <long-description></long-description>
-          <tag name="return" line="873" description="the result object of the API call, with a Contact&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="887" description="the result object of the API call, with a Contact&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="873" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="887" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10145,22 +10161,22 @@ For most usecases the unsubscribe method is more appropriate.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="894" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="908" package="Default">
         <name>createCustomField</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::createCustomField()</full_name>
-        <docblock line="894">
+        <docblock line="908">
           <description>Creates a custom contact field with the provided name and data type.</description>
           <long-description></long-description>
-          <tag name="param" line="894" description="&lt;p&gt;the name of the new field&lt;/p&gt;" type="string" variable="$name">
+          <tag name="param" line="908" description="&lt;p&gt;the name of the new field&lt;/p&gt;" type="string" variable="$name">
             <type>string</type>
           </tag>
-          <tag name="param" line="894" description="&lt;p&gt;the type of the new field. Valid values are 'string', 'integer', 'float', 'date' or 'boolean'.&lt;/p&gt;" type="string" variable="$type">
+          <tag name="param" line="908" description="&lt;p&gt;the type of the new field. Valid values are 'string', 'integer', 'float', 'date' or 'boolean'.&lt;/p&gt;" type="string" variable="$type">
             <type>string</type>
           </tag>
-          <tag name="return" line="894" description="the result object of the API call, with a Contact&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="908" description="the result object of the API call, with a Contact&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="894" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="908" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10175,37 +10191,37 @@ For most usecases the unsubscribe method is more appropriate.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="910" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="924" package="Default">
         <name>getCustomFields</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::getCustomFields()</full_name>
-        <docblock line="910">
+        <docblock line="924">
           <description>Returns the custom contact fields defined in the account.</description>
           <long-description></long-description>
-          <tag name="return" line="910" description="the result object of the API call, with a com_maileon_api_contacts_CustomFields&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="924" description="the result object of the API call, with a com_maileon_api_contacts_CustomFields&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="910" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="924" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="928" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="942" package="Default">
         <name>renameCustomField</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::renameCustomField()</full_name>
-        <docblock line="928">
+        <docblock line="942">
           <description>Renames a custom contact field. The data type and the recorded values for
 the contacts remain unchanged.</description>
           <long-description></long-description>
-          <tag name="param" line="928" description="&lt;p&gt;the current name of the field&lt;/p&gt;" type="string" variable="$oldName">
+          <tag name="param" line="942" description="&lt;p&gt;the current name of the field&lt;/p&gt;" type="string" variable="$oldName">
             <type>string</type>
           </tag>
-          <tag name="param" line="928" description="&lt;p&gt;the new name of the field&lt;/p&gt;" type="string" variable="$newName">
+          <tag name="param" line="942" description="&lt;p&gt;the new name of the field&lt;/p&gt;" type="string" variable="$newName">
             <type>string</type>
           </tag>
-          <tag name="return" line="928" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="942" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="928" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="942" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10220,20 +10236,20 @@ the contacts remain unchanged.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="946" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="960" package="Default">
         <name>deleteCustomField</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::deleteCustomField()</full_name>
-        <docblock line="946">
+        <docblock line="960">
           <description>Deletes the custom contact field with the provided name. Note that all the values of the
 field get auotmatically deleted by this call.</description>
           <long-description></long-description>
-          <tag name="param" line="946" description="&lt;p&gt;the name of the field to delete&lt;/p&gt;" type="string" variable="$name">
+          <tag name="param" line="960" description="&lt;p&gt;the name of the field to delete&lt;/p&gt;" type="string" variable="$name">
             <type>string</type>
           </tag>
-          <tag name="return" line="946" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="960" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="946" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="960" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10243,19 +10259,19 @@ field get auotmatically deleted by this call.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="962" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="976" package="Default">
         <name>deleteStandardFieldValues</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::deleteStandardFieldValues()</full_name>
-        <docblock line="962">
+        <docblock line="976">
           <description>Deletes the values of the given standard contact field for all contacts.</description>
           <long-description></long-description>
-          <tag name="param" line="962" description="&lt;p&gt;the name of the field whose values to delete&lt;/p&gt;" type="string" variable="$name">
+          <tag name="param" line="976" description="&lt;p&gt;the name of the field whose values to delete&lt;/p&gt;" type="string" variable="$name">
             <type>string</type>
           </tag>
-          <tag name="return" line="962" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="976" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="962" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="976" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10265,19 +10281,19 @@ field get auotmatically deleted by this call.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="978" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="992" package="Default">
         <name>deleteCustomFieldValues</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\ContactsService::deleteCustomFieldValues()</full_name>
-        <docblock line="978">
+        <docblock line="992">
           <description>Deletes the values of the given custom contact field for all contacts.</description>
           <long-description></long-description>
-          <tag name="param" line="978" description="&lt;p&gt;the name of the field whose values to delete&lt;/p&gt;" type="string" variable="$name">
+          <tag name="param" line="992" description="&lt;p&gt;the name of the field whose values to delete&lt;/p&gt;" type="string" variable="$name">
             <type>string</type>
           </tag>
-          <tag name="return" line="978" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="992" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="978" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="992" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -10706,20 +10722,20 @@ field get auotmatically deleted by this call.</description>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="332" code="PPC:ERR-50014">Name of argument $page_index does not match with the DocBlock's name $standard_fields in getContactsByFilterId()</error>
-      <error line="332" code="PPC:ERR-50014">Name of argument $page_size does not match with the DocBlock's name $custom_fields in getContactsByFilterId()</error>
-      <error line="332" code="PPC:ERR-50015">Argument $standard_fields is missing from the Docblock of getContactsByFilterId</error>
-      <error line="332" code="PPC:ERR-50014">Name of argument $standard_fields does not match with the DocBlock's name $custom_fields in getContactsByFilterId()</error>
-      <error line="332" code="PPC:ERR-50015">Argument $custom_fields is missing from the Docblock of getContactsByFilterId</error>
-      <error line="572" code="PPC:ERR-50014">Name of argument $nlAccountIds does not match with the DocBlock's name $nlAccounts in unsubscribeContactByEmail()</error>
-      <notice line="572" code="PPC:ERR-50013">Parameter $nlAccounts could not be found in unsubscribeContactByEmail()</notice>
-      <error line="762" code="PPC:ERR-50014">Name of argument $nlAccountIds does not match with the DocBlock's name $nlaccountid in unsubscribeContactByExternalIdFromMultipleAccounts()</error>
-      <notice line="762" code="PPC:ERR-50013">Parameter $nlaccountid could not be found in unsubscribeContactByExternalIdFromMultipleAccounts()</notice>
-      <error line="822" code="PPC:ERR-50014">Name of argument $id does not match with the DocBlock's name $email in deleteContact()</error>
-      <notice line="822" code="PPC:ERR-50013">Parameter $email could not be found in deleteContact()</notice>
-      <error line="859" code="PPC:ERR-50014">Name of argument $externalId does not match with the DocBlock's name $external in deleteContactsByExternalId()</error>
-      <notice line="859" code="PPC:ERR-50013">Parameter $external could not be found in deleteContactsByExternalId()</notice>
-      <error line="873" code="PPC:ERR-50015">Argument $authorized is missing from the Docblock of deleteAllContacts</error>
+      <error line="346" code="PPC:ERR-50014">Name of argument $page_index does not match with the DocBlock's name $standard_fields in getContactsByFilterId()</error>
+      <error line="346" code="PPC:ERR-50014">Name of argument $page_size does not match with the DocBlock's name $custom_fields in getContactsByFilterId()</error>
+      <error line="346" code="PPC:ERR-50015">Argument $standard_fields is missing from the Docblock of getContactsByFilterId</error>
+      <error line="346" code="PPC:ERR-50014">Name of argument $standard_fields does not match with the DocBlock's name $custom_fields in getContactsByFilterId()</error>
+      <error line="346" code="PPC:ERR-50015">Argument $custom_fields is missing from the Docblock of getContactsByFilterId</error>
+      <error line="586" code="PPC:ERR-50014">Name of argument $nlAccountIds does not match with the DocBlock's name $nlAccounts in unsubscribeContactByEmail()</error>
+      <notice line="586" code="PPC:ERR-50013">Parameter $nlAccounts could not be found in unsubscribeContactByEmail()</notice>
+      <error line="776" code="PPC:ERR-50014">Name of argument $nlAccountIds does not match with the DocBlock's name $nlaccountid in unsubscribeContactByExternalIdFromMultipleAccounts()</error>
+      <notice line="776" code="PPC:ERR-50013">Parameter $nlaccountid could not be found in unsubscribeContactByExternalIdFromMultipleAccounts()</notice>
+      <error line="836" code="PPC:ERR-50014">Name of argument $id does not match with the DocBlock's name $email in deleteContact()</error>
+      <notice line="836" code="PPC:ERR-50013">Parameter $email could not be found in deleteContact()</notice>
+      <error line="873" code="PPC:ERR-50014">Name of argument $externalId does not match with the DocBlock's name $external in deleteContactsByExternalId()</error>
+      <notice line="873" code="PPC:ERR-50013">Parameter $external could not be found in deleteContactsByExternalId()</notice>
+      <error line="887" code="PPC:ERR-50015">Argument $authorized is missing from the Docblock of deleteAllContacts</error>
     </parse_markers>
   </file>
   <file path="transactions\DataType.php" generated-path="transactions.DataType.html" hash="adf4f06674281dc541c2894ba3c9f50b" package="Default">
@@ -10905,7 +10921,7 @@ field get auotmatically deleted by this call.</description>
       <error line="25" code="PPC:ERR-50007">No summary for property $initialized</error>
     </parse_markers>
   </file>
-  <file path="contacts\StandardContactField.php" generated-path="contacts.StandardContactField.html" hash="d79196c147caee952079886e68ee4c7d" package="Default">
+  <file path="contacts\StandardContactField.php" generated-path="contacts.StandardContactField.html" hash="3b1df7744dffb9ce733b44ebc02e4947" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -11074,10 +11090,28 @@ field get auotmatically deleted by this call.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="65" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="65" package="Default">
+        <name>$SENDOUT_STATUS</name>
+        <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$SENDOUT_STATUS</full_name>
+        <default>"SENDOUT_STATUS"</default>
+        <docblock line="65">
+          <description>The Constant SENDOUT_STATUS. Sendout status can be "blocked" or "allowed"</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="68" package="Default">
+        <name>$PERMISSION_STATUS</name>
+        <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$PERMISSION_STATUS</full_name>
+        <default>"PERMISSION_STATUS"</default>
+        <docblock line="68">
+          <description>The Constant PERMISSION_STATUS. Permission status can be "available" (permission != none and not unsubscribed), "none" (no permission given, yet), or "unsubscribed"</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="71" package="Default">
         <name>init</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::init()</full_name>
-        <docblock line="65">
+        <docblock line="71">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -11085,7 +11119,7 @@ field get auotmatically deleted by this call.</description>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="65" code="PPC:ERR-50008">No summary for method init()</error>
+      <error line="71" code="PPC:ERR-50008">No summary for method init()</error>
     </parse_markers>
   </file>
   <file path="contacts\SynchronizationMode.php" generated-path="contacts.SynchronizationMode.html" hash="6351be023c58c8cc48cc607243684f43" package="Default">
