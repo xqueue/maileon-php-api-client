@@ -2046,11 +2046,12 @@ GET Count recipients:
 <li>
 GET opens:
 <?php
-    //$fromDate = (time()-(60*60)) . "000";
+    $fromDate = (time()-(60*60)) . "000";
     //$mailingIds = array(400); // array($TESTDATA['mailingId'])
     //$contactIds = array();
 
-	$fromDate = null;
+
+	//$fromDate = null;
 	$toDate = null;
 	$mailingIds = null;
 	$contactIds = null;
@@ -2059,7 +2060,7 @@ GET opens:
 	$formatFilter = null;
 	$socialNetworkFilter = null;
 	$deviceTypeFilter = null;
-	$embedEmailClientInfos = false;
+	$embedEmailClientInfos = true;
 	$excludeAnonymousOpens = true;
 	$standardFields = null;
 	$customFields = null;
@@ -2079,12 +2080,13 @@ GET opens:
 		}
 		echo "</ul></pre>";
 	}
+	
 ?>
 <br />
 
 GET Count opens:
 <?php
-	$response = $reportsService->getOpensCount(null, null, array($TESTDATA['mailingId']));
+$response = $reportsService->getOpensCount(null, null, null, null, null);
 	checkResult($response);
 	
 	// Print all results
@@ -2142,10 +2144,10 @@ GET clicks:
 
 
     $fromDate = null;//(time()-(60*60)) . "000";
-    $mailingIds = array(366); // array($TESTDATA['mailingId'])
+    $mailingIds = array(); // array($TESTDATA['mailingId'])
     $contactIds = array();
 
-	$response = $reportsService->getClicks($fromDate, null, $mailingIds, $contactIds, null, null, null, null, null, null, null, null, false, false, array("TITLE"), array("Dorig"), false, $TESTDATA['page_index'], $TESTDATA['page_size'], true);
+	$response = $reportsService->getClicks($fromDate, null, $mailingIds, $contactIds, null, null, null, null, null, null, null, null, true, false, array("TITLE"), array("Dorig"), false, $TESTDATA['page_index'], $TESTDATA['page_size'], true);
 	checkResult($response);
 	
 	// Print all results
@@ -2178,7 +2180,7 @@ GET Count clicks:
 GET unique clicks:
 <?php
     $embedEmailClientInfos = true;
-	$response = $reportsService->getUniqueClicks(null, null, array($TESTDATA['mailingId']), null, null, null, $embedEmailClientInfos, false, array("TITLE"), array("Dorig"), false, $TESTDATA['page_index'], $TESTDATA['page_size']);
+	$response = $reportsService->getUniqueClicks(null, null, array(), null, null, null, $embedEmailClientInfos, false, array("TITLE"), array("Dorig"), false, $TESTDATA['page_index'], $TESTDATA['page_size']);
 	checkResult($response);
 	
 	// Print all results

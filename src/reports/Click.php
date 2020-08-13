@@ -42,6 +42,16 @@ class Click extends AbstractXMLWrapper
      * @var string
      */
     public $linkTags;
+    
+    /**
+     * 
+     * @var ReportClientInfos Information about the client of the contact
+     */
+    public $clientInfos;
+    
+    public function __construct() {
+        $this->clientInfos = new ReportClientInfos();
+    }
 
     /**
      * @return string
@@ -64,7 +74,8 @@ class Click extends AbstractXMLWrapper
         ", mailingId=" . $this->mailingId .
         ", linkId=" . $this->linkId .
         ", linkUrl=" . $this->linkUrl .
-        ", linkTags=" . $linkTags ."]";
+        ", linkTags=" . $linkTags .
+        ", clientInfos=" . $this->clientInfos->toString() ."]";
     }
 
     /**
@@ -97,6 +108,10 @@ class Click extends AbstractXMLWrapper
                 array_push($this->linkTags, $field[0]);
             }
         }
+        
+        if (isset($xmlElement->client)) {
+            $this->clientInfos->fromXML($xmlElement->client);
+        }
     }
 
     /**
@@ -109,7 +124,8 @@ class Click extends AbstractXMLWrapper
         ";" . $this->contact->toCsvString() .
         ";" . $this->mailingId .
         ";" . $this->linkId .
-        ";" . $this->linkUrl;
+        ";" . $this->linkUrl .
+        ";" . $this->clientInfos->toCsvString();
     }
 
     /**

@@ -26,6 +26,16 @@ class Open extends AbstractXMLWrapper
      * @var integer
      */
     public $mailingId;
+    
+    /**
+     *
+     * @var ReportClientInfos Information about the client of the contact
+     */
+    public $clientInfos;
+    
+    public function __construct() {
+        $this->clientInfos = new ReportClientInfos();
+    }
 
     /**
      * @return string
@@ -35,7 +45,8 @@ class Open extends AbstractXMLWrapper
     {
         return "Open [timestamp=" . $this->timestamp .
         ", contact=" . $this->contact->toString() .
-        ", mailingId=" . $this->mailingId . "]";
+        ", mailingId=" . $this->mailingId .
+        ", clientInfos=" . $this->clientInfos->toString() ."]";
     }
 
     /**
@@ -46,7 +57,8 @@ class Open extends AbstractXMLWrapper
     {
         return $this->timestamp .
         ";" . $this->contact->toCsvString() .
-        ";" . $this->mailingId;
+        ";" . $this->mailingId .
+        ";" . $this->clientInfos->toCsvString();
     }
 
     /**
@@ -65,6 +77,9 @@ class Open extends AbstractXMLWrapper
         }
         if (isset($xmlElement->timestamp)) {
             $this->timestamp = $xmlElement->timestamp;
+        }
+        if (isset($xmlElement->client)) {
+            $this->clientInfos->fromXML($xmlElement->client);
         }
     }
 

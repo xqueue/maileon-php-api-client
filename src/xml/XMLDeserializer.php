@@ -159,10 +159,6 @@ class XMLDeserializer
                     $result = new CustomFields();
                     break;
 
-                case "custom_fields":
-                    $result = new CustomFields();
-                    break;
-
                 case "unsubscription":
                     $result = new Unsubscriber();
                     break;
