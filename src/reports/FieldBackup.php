@@ -6,10 +6,11 @@ namespace de\xqueue\maileon\api\client\reports;
  * Field Backups are the values of contact fields that have been backed up for mailings
  * because of a backup instruction. Note
  * that this only applies for non anonymizable field backups.
+ * 
+ * @deprecated Backup instructions are no longer supported
  *
  * @author Viktor Balogh (Wiera)
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class FieldBackup
 {

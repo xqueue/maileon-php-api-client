@@ -5,8 +5,7 @@ namespace de\xqueue\maileon\api\client\contacts;
 /**
  * The wrapper class for a Maileon synchronization mode. 1 = UPDATE, 2 = IGNORE.
  *
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class SynchronizationMode
 {
