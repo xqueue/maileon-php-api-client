@@ -10921,197 +10921,197 @@ field get auotmatically deleted by this call.</description>
       <error line="25" code="PPC:ERR-50007">No summary for property $initialized</error>
     </parse_markers>
   </file>
-  <file path="contacts\StandardContactField.php" generated-path="contacts.StandardContactField.html" hash="3b1df7744dffb9ce733b44ebc02e4947" package="Default">
+  <file path="contacts\StandardContactField.php" generated-path="contacts.StandardContactField.html" hash="8d2f8859f3d1b133b26e2c34547ddd00" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
-    <class final="false" abstract="false" namespace="de\xqueue\maileon\api\client\contacts" line="11" package="Default">
+    <class final="false" abstract="false" namespace="de\xqueue\maileon\api\client\contacts" line="10" package="Default">
       <extends/>
       <name>StandardContactField</name>
       <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField</full_name>
-      <docblock line="11">
+      <docblock line="10">
         <description>The class contains the valid names for a Maileon standard contact field</description>
         <long-description></long-description>
-        <tag name="author" line="11" description="Marcus St&amp;amp;auml;nder | Trusted Mails GmbH |&#10;&lt;a href=&quot;mailto:marcus.staender@trusted-mails.com&quot;&gt;marcus.staender@trusted-mails.com&lt;/a&gt;"/>
-        <tag name="package" line="11" description="Default"/>
+        <tag name="author" line="10" description="Marcus Beckerle | XQueue GmbH | &lt;a href=&quot;mailto:marcus.beckerle@xqueue.com&quot;&gt;marcus.beckerle@xqueue.com&lt;/a&gt;"/>
+        <tag name="package" line="10" description="Default"/>
       </docblock>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="14" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="13" package="Default">
         <name>$ADDRESS</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$ADDRESS</full_name>
         <default>"ADDRESS"</default>
-        <docblock line="14">
+        <docblock line="13">
           <description>The Constant ADDRESS.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="17" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="16" package="Default">
         <name>$BIRTHDAY</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$BIRTHDAY</full_name>
         <default>"BIRTHDAY"</default>
-        <docblock line="17">
+        <docblock line="16">
           <description>The Constant BIRTHDAY.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="20" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="19" package="Default">
         <name>$CITY</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$CITY</full_name>
         <default>"CITY"</default>
-        <docblock line="20">
+        <docblock line="19">
           <description>The Constant CITY.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="23" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="22" package="Default">
         <name>$COUNTRY</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$COUNTRY</full_name>
         <default>"COUNTRY"</default>
-        <docblock line="23">
+        <docblock line="22">
           <description>The Constant COUNTRY.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="26" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="25" package="Default">
         <name>$FIRSTNAME</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$FIRSTNAME</full_name>
         <default>"FIRSTNAME"</default>
-        <docblock line="26">
+        <docblock line="25">
           <description>The Constant FIRSTNAME.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="29" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="28" package="Default">
         <name>$FULLNAME</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$FULLNAME</full_name>
         <default>"FULLNAME"</default>
-        <docblock line="29">
+        <docblock line="28">
           <description>The Constant FULLNAME.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="32" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="31" package="Default">
         <name>$GENDER</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$GENDER</full_name>
         <default>"GENDER"</default>
-        <docblock line="32">
+        <docblock line="31">
           <description>The Constant GENDER.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="35" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="34" package="Default">
         <name>$HNR</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$HNR</full_name>
         <default>"HNR"</default>
-        <docblock line="35">
+        <docblock line="34">
           <description>The Constant HNR.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="38" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="37" package="Default">
         <name>$LASTNAME</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$LASTNAME</full_name>
         <default>"LASTNAME"</default>
-        <docblock line="38">
+        <docblock line="37">
           <description>The Constant LASTNAME.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="41" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="40" package="Default">
         <name>$LOCALE</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$LOCALE</full_name>
         <default>"LOCALE"</default>
-        <docblock line="41">
+        <docblock line="40">
           <description>The Constant LOCALE.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="44" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="43" package="Default">
         <name>$NAMEDAY</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$NAMEDAY</full_name>
         <default>"NAMEDAY"</default>
-        <docblock line="44">
+        <docblock line="43">
           <description>The Constant NAMEDAY.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="47" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="46" package="Default">
         <name>$ORGANIZATION</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$ORGANIZATION</full_name>
         <default>"ORGANIZATION"</default>
-        <docblock line="47">
+        <docblock line="46">
           <description>The Constant ORGANIZATION.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="50" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="49" package="Default">
         <name>$REGION</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$REGION</full_name>
         <default>"REGION"</default>
-        <docblock line="50">
+        <docblock line="49">
           <description>The Constant REGION.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="53" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="52" package="Default">
         <name>$SALUTATION</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$SALUTATION</full_name>
         <default>"SALUTATION"</default>
-        <docblock line="53">
+        <docblock line="52">
           <description>The Constant SALUTATION.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="56" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="55" package="Default">
         <name>$TITLE</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$TITLE</full_name>
         <default>"TITLE"</default>
-        <docblock line="56">
+        <docblock line="55">
           <description>The Constant TITLE.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="59" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="58" package="Default">
         <name>$ZIP</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$ZIP</full_name>
         <default>"ZIP"</default>
-        <docblock line="59">
+        <docblock line="58">
           <description>The Constant ZIP.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="62" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="61" package="Default">
         <name>$STATE</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$STATE</full_name>
         <default>"STATE"</default>
-        <docblock line="62">
+        <docblock line="61">
           <description>The Constant STATE.</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="65" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="64" package="Default">
         <name>$SENDOUT_STATUS</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$SENDOUT_STATUS</full_name>
         <default>"SENDOUT_STATUS"</default>
-        <docblock line="65">
+        <docblock line="64">
           <description>The Constant SENDOUT_STATUS. Sendout status can be "blocked" or "allowed"</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="68" package="Default">
+      <property static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="67" package="Default">
         <name>$PERMISSION_STATUS</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::$PERMISSION_STATUS</full_name>
         <default>"PERMISSION_STATUS"</default>
-        <docblock line="68">
+        <docblock line="67">
           <description>The Constant PERMISSION_STATUS. Permission status can be "available" (permission != none and not unsubscribed), "none" (no permission given, yet), or "unsubscribed"</description>
           <long-description></long-description>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="71" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="de\xqueue\maileon\api\client\contacts" line="70" package="Default">
         <name>init</name>
         <full_name>\de\xqueue\maileon\api\client\contacts\StandardContactField::init()</full_name>
-        <docblock line="71">
+        <docblock line="70">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -11119,7 +11119,7 @@ field get auotmatically deleted by this call.</description>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="71" code="PPC:ERR-50008">No summary for method init()</error>
+      <error line="70" code="PPC:ERR-50008">No summary for method init()</error>
     </parse_markers>
   </file>
   <file path="contacts\SynchronizationMode.php" generated-path="contacts.SynchronizationMode.html" hash="6351be023c58c8cc48cc607243684f43" package="Default">
