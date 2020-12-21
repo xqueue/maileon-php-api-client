@@ -26,6 +26,16 @@ class Recipient extends AbstractXMLWrapper
      * @var integer
      */
     public $mailingId;
+    
+    /**
+     * @var string
+     */
+    public $transactionId;
+    
+    /**
+     * @var integer
+     */
+    public $messageId;
 
     /**
      * @return string
@@ -35,7 +45,9 @@ class Recipient extends AbstractXMLWrapper
     {
         return "Recipient [timestamp=" . $this->timestamp .
         ", contact=" . $this->contact->toString() .
-        ", mailingId=" . $this->mailingId . "]";
+        ", mailingId=" . $this->mailingId .
+        ", transactionId=" . $this->transactionId .
+        ", messageId=" . $this->messageId ."]";
     }
 
     /**
@@ -46,7 +58,9 @@ class Recipient extends AbstractXMLWrapper
     {
         return $this->timestamp .
         ";" . $this->contact->toCsvString() .
-        ";" . $this->mailingId;
+        ";" . $this->mailingId .
+        ";" . $this->transactionId .
+        ";" . $this->messageId;
     }
 
     /**
@@ -65,6 +79,9 @@ class Recipient extends AbstractXMLWrapper
         }
         if (isset($xmlElement->timestamp)) {
             $this->timestamp = $xmlElement->timestamp;
+        }
+        if (isset($xmlElement->transaction_id)) {
+            $this->transactionId = $xmlElement->transaction_id;
         }
     }
 

@@ -9,7 +9,7 @@ use de\xqueue\maileon\api\client\contacts\Permission;
 use de\xqueue\maileon\api\client\contacts\StandardContactField;
 use de\xqueue\maileon\api\client\contactfilters\ContactFilter;
 use de\xqueue\maileon\api\client\account\AccountPlaceholder;
-use de\xqueue\maileon\api\client\Utils\PingService;
+use de\xqueue\maileon\api\client\utils\PingService;
 use de\xqueue\maileon\api\client\contacts\SynchronizationMode;
 use de\xqueue\maileon\api\client\contacts\Contacts;
 use de\xqueue\maileon\api\client\contactfilters\ContactfiltersService;
@@ -1897,8 +1897,10 @@ if (containsPostNeedle("reports_")) {
 GET unsubscribers:
 <?php
 
-    $fromDate = "1384516564000";
-    $toDate = "1384516588000";
+    //$fromDate = "1384516564000";
+    $fromDate = null;
+    //$toDate = "1384516588000";
+    $toDate = null;
     $mailingIds = null;
     $contactIds = null; //array($TESTDATA['userExternalId']);
     $contactEmails = null;
@@ -1915,9 +1917,7 @@ GET unsubscribers:
 		echo "</ul></pre>";
 	}
 ?>
-<br />
-
-GET Count unsubscribers:
+<br />GET Count unsubscribers:
 <?php
     $fromDate = null;
     $toDate = null;
@@ -1935,6 +1935,37 @@ GET Count unsubscribers:
 ?>
 </li>
 <?php } ?>
+
+<?php if (isset($_POST['reports_1_1'])) { ?>
+<li>
+GET unsubscriber reasons:
+<?php
+
+    //$fromDate = "1384516564000";
+    $fromDate = null;
+    //$toDate = "1384516588000";
+    $toDate = null;
+    $order = "count";
+    $asc = true;
+    $pageIndex = 1;
+    $pageSize = 10;
+
+	$response = $reportsService->getUnsubscriberReasons($fromDate, $toDate, $order, $asc, $pageIndex, $pageSize);
+	checkResult($response);
+	
+	// Print all results
+	if ($response->isSuccess()) {
+		echo "<br /><pre><ul>";
+		foreach ($response->getResult() as $unsubscriberReason) {
+		    echo "<li>" . $unsubscriberReason->toString() . "</li>";
+		}
+		echo "</ul></pre>";
+	}
+?>
+</li>
+<?php } ?>
+
+
 
 
 <?php if (isset($_POST['reports_2'])) { ?>
@@ -2046,12 +2077,12 @@ GET Count recipients:
 <li>
 GET opens:
 <?php
-    $fromDate = (time()-(60*60)) . "000";
+    //$fromDate = (time()-(60*60)) . "000";
     //$mailingIds = array(400); // array($TESTDATA['mailingId'])
     //$contactIds = array();
 
 
-	//$fromDate = null;
+	$fromDate = null;
 	$toDate = null;
 	$mailingIds = null;
 	$contactIds = null;
@@ -2067,9 +2098,10 @@ GET opens:
 	$embedFieldBackups = false;
 	$pageIndex = $TESTDATA['page_index'];
 	$pageSize = $TESTDATA['page_size'];
+	$embedTransactionId = true;
 
 
-	$response = $reportsService->getOpens($fromDate, $toDate, $mailingIds, $contactIds, $contactEmails, $contactExternalIds, $formatFilter, $socialNetworkFilter, $deviceTypeFilter, $embedEmailClientInfos, $excludeAnonymousOpens, $standardFields, $customFields, $embedFieldBackups, $pageIndex, $pageSize);
+	$response = $reportsService->getOpens($fromDate, $toDate, $mailingIds, $contactIds, $contactEmails, $contactExternalIds, $formatFilter, $socialNetworkFilter, $deviceTypeFilter, $embedEmailClientInfos, $excludeAnonymousOpens, $standardFields, $customFields, $embedFieldBackups, $pageIndex, $pageSize, $embedTransactionId);
 	checkResult($response);
 	
 	// Print all results
@@ -2146,8 +2178,10 @@ GET clicks:
     $fromDate = null;//(time()-(60*60)) . "000";
     $mailingIds = array(); // array($TESTDATA['mailingId'])
     $contactIds = array();
+    
+    $embedTransactionId = true;
 
-	$response = $reportsService->getClicks($fromDate, null, $mailingIds, $contactIds, null, null, null, null, null, null, null, null, true, false, array("TITLE"), array("Dorig"), false, $TESTDATA['page_index'], $TESTDATA['page_size'], true);
+    $response = $reportsService->getClicks($fromDate, null, $mailingIds, $contactIds, null, null, null, null, null, null, null, null, true, false, array("TITLE"), array("Dorig"), false, $TESTDATA['page_index'], $TESTDATA['page_size'], true, $embedTransactionId);
 	checkResult($response);
 	
 	// Print all results

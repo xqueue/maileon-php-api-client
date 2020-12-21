@@ -18,6 +18,7 @@ use de\xqueue\maileon\api\client\reports\FieldBackup;
 use de\xqueue\maileon\api\client\blacklists\Blacklist;
 use de\xqueue\maileon\api\client\reports\UniqueBounce;
 use de\xqueue\maileon\api\client\reports\Unsubscriber;
+use de\xqueue\maileon\api\client\reports\UnsubscriptionReason;
 use de\xqueue\maileon\api\client\contacts\CustomFields;
 use de\xqueue\maileon\api\client\mailings\CustomProperty;
 use de\xqueue\maileon\api\client\reports\UniqueConversion;
@@ -54,6 +55,7 @@ class XMLDeserializer
                 case "ignore_permission":
                 case "state":
                 case "url":
+                case "type":
                     return (string)$xmlElement;
                 case "locale":
                     return $xmlElement;
@@ -158,15 +160,26 @@ class XMLDeserializer
                 case "custom_fields":
                     $result = new CustomFields();
                     break;
-
+                    
                 case "unsubscription":
                     $result = new Unsubscriber();
                     break;
-
+                    
                 case "unsubscriptions":
                     $result = array();
                     foreach ($xmlElement as $unsubscriptionElement) {
                         $result[] = self::deserialize($unsubscriptionElement);
+                    }
+                    return $result;
+                    
+                case "unsubscription_reason":
+                    $result = new UnsubscriptionReason();
+                    break;
+                    
+                case "unsubscription_reasons":
+                    $result = array();
+                    foreach ($xmlElement as $element) {
+                        $result[] = self::deserialize($element);
                     }
                     return $result;
 

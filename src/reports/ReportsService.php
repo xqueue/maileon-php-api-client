@@ -14,6 +14,8 @@ use de\xqueue\maileon\api\client\MaileonAPIResult;
  */
 class ReportsService extends AbstractMaileonService
 {
+    
+    
 
     /**
      * Returns a page of openers.
@@ -77,7 +79,8 @@ class ReportsService extends AbstractMaileonService
         $customFields = null,
         $embedFieldBackups = false,
         $pageIndex = 1,
-        $pageSize = 100
+        $pageSize = 100,
+        $embedTransactionId = false
     ) {
         $params = $this->createQueryParameters(
             $pageIndex,
@@ -103,6 +106,9 @@ class ReportsService extends AbstractMaileonService
 
         if (isset($formatFilter)) {
             $params['format'] = $formatFilter;
+        }
+        if (isset($embedTransactionId)) {
+            $params['embed_transaction_id'] = ($embedTransactionId == true) ? "true" : "false";
         }
         $params = $this->appendArrayFields($params, "social_network", $socialNetworkFilter);
         $params = $this->appendArrayFields($params, "device_type", $deviceTypeFilter);
@@ -356,7 +362,8 @@ class ReportsService extends AbstractMaileonService
         $customFields = null,
         $embedFieldBackups = false,
         $pageIndex = 1,
-        $pageSize = 100
+        $pageSize = 100,
+        $embedTransactionId = false
     ) {
         $params = $this->createQueryParameters(
             $pageIndex,
@@ -374,6 +381,9 @@ class ReportsService extends AbstractMaileonService
         $params = $this->appendArrayFields($params, "custom_field", $customFields);
         if (isset($excludeDeletedRecipients)) {
             $params['exclude_deleted_recipients'] = ($excludeDeletedRecipients == true) ? "true" : "false";
+        }
+        if (isset($embedTransactionId)) {
+            $params['embed_transaction_id'] = ($embedTransactionId == true) ? "true" : "false";
         }
 
         return $this->get('reports/recipients', $params);
@@ -502,7 +512,8 @@ class ReportsService extends AbstractMaileonService
         $embedFieldBackups = false,
         $pageIndex = 1,
         $pageSize = 100,
-        $embedLinkTags = false
+        $embedLinkTags = false,
+        $embedTransactionId = false
     ) {
         $params = $this->createQueryParameters(
             $pageIndex,
@@ -535,6 +546,9 @@ class ReportsService extends AbstractMaileonService
         $params = $this->appendArrayFields($params, "link_id", $linkIdFilter);
         if (isset($linkUrlFilter)) {
             $params['link_url'] = $linkUrlFilter;
+        }
+        if (isset($embedTransactionId)) {
+            $params['embed_transaction_id'] = ($embedTransactionId == true) ? "true" : "false";
         }
         $params = $this->appendArrayFields($params, "link_tag", $linkTagFilter);
         $params = $this->appendArrayFields($params, "social_network", $socialNetworkFilter);
@@ -1283,6 +1297,57 @@ class ReportsService extends AbstractMaileonService
         );
 
         return $this->get('reports/unsubscriptions/count', $params);
+    }    /**
+    * Returns a page of unsubscriberss.
+    *
+    * @param integer $fromDate
+    *   If provided, only the unsubscriptions after the given date will be returned.
+    *   The value of from_date must be a numeric value representing a point in time milliseconds
+    *   afterJanuary 1, 1970 00:00:00
+    * @param integer $toDate
+    *  If provided, only the unsubscriptions before the given date will be returned. The value of
+    *  to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00
+    * @param string $order
+    *  String thatd escribes the order. Possible values are: "count" or "name". Default is "count".
+    * @param array $asc
+    *  Describes if results will be ordered ascending or descending. Can be true or false, default is true.
+    * @param integer $pageIndex
+    *  The index of the result page. The index must be greater or equal to 1.
+    * @param integer $pageSize
+    *  The maximum count of items in the result page. If provided, the value of page_size
+    *  must be in the range 1 to 1000.
+    *
+    * @return MaileonAPIResult
+    */
+    public function getUnsubscriberReasons(
+        $fromDate = null,
+        $toDate = null,
+        $order = "count",
+        $asc = true,
+        $pageIndex = 1,
+        $pageSize = 100
+        ) {
+            $params = $this->createQueryParameters(
+                $pageIndex,
+                $pageSize,
+                $fromDate,
+                $toDate,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+                );
+            
+            if (isset($asc)) {
+                $params['asc'] = ($asc == true) ? "true" : "false";
+            }
+            if (isset($order)) {
+                $params['order'] = $order;
+            }
+            
+            return $this->get('reports/unsubscriptions/reasons', $params);
     }
 
     /**

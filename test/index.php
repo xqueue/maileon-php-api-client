@@ -146,6 +146,7 @@
     <h2>Reports - Tests</h2>
     <ul>
         <li><input type="checkbox" name="reports_1" value="true"> GET unsubscribers</li>
+        <li><input type="checkbox" name="reports_1_1" value="true"> GET unsubscriber reasons</li>
         <li><input type="checkbox" name="reports_2" value="true"> GET subscribers</li>
         <li><input type="checkbox" name="reports_3" value="true"> GET recipients</li>
         <li><input type="checkbox" name="reports_4" value="true"> GET opens</li>

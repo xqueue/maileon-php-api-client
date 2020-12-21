@@ -28,6 +28,16 @@ class Unsubscriber extends AbstractXMLWrapper
      * @var integer
      */
     public $mailingId;
+    
+    /**
+     * @var string
+     */
+    public $transactionId;
+    
+    /**
+     * @var integer
+     */
+    public $messageId;
 
     /**
      * @var string
@@ -43,7 +53,9 @@ class Unsubscriber extends AbstractXMLWrapper
         return "Unsubscriber [timestamp=" . $this->timestamp .
         ", contact=" . $this->contact->toString() .
         ", mailingId=" . $this->mailingId .
-        ", source=" . $this->source . "]";
+        ", source=" . $this->source .
+        ", transactionId=" . $this->transactionId .
+        ", messageId=" . $this->messageId ."]";
     }
 
     /**
@@ -54,7 +66,9 @@ class Unsubscriber extends AbstractXMLWrapper
         return $this->timestamp .
         ";" . $this->contact->toCsvString() .
         ";" . $this->mailingId .
-        ";" . $this->source;
+        ";" . $this->source .
+        ";" . $this->transactionId .
+        ";" . $this->messageId;
     }
 
     /**
@@ -76,6 +90,12 @@ class Unsubscriber extends AbstractXMLWrapper
         }
         if (isset($xmlElement->timestamp)) {
             $this->timestamp = $xmlElement->timestamp;
+        }
+        if (isset($xmlElement->transaction_id)) {
+            $this->transactionId = $xmlElement->transaction_id;
+        }
+        if (isset($xmlElement->msg_id )) {
+            $this->messageId = $xmlElement->msg_id ;
         }
     }
 

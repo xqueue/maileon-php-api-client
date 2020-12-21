@@ -44,6 +44,16 @@ class Click extends AbstractXMLWrapper
     public $linkTags;
     
     /**
+     * @var string
+     */
+    public $transactionId;
+    
+    /**
+     * @var integer
+     */
+    public $messageId;
+    
+    /**
      * 
      * @var ReportClientInfos Information about the client of the contact
      */
@@ -75,7 +85,9 @@ class Click extends AbstractXMLWrapper
         ", linkId=" . $this->linkId .
         ", linkUrl=" . $this->linkUrl .
         ", linkTags=" . $linkTags .
-        ", clientInfos=" . $this->clientInfos->toString() ."]";
+        ", clientInfos=" . $this->clientInfos->toString() .
+        ", transactionId=" . $this->transactionId .
+        ", messageId=" . $this->messageId ."]";
     }
 
     /**
@@ -101,6 +113,12 @@ class Click extends AbstractXMLWrapper
         if (isset($xmlElement->link_url)) {
             $this->linkUrl = $xmlElement->link_url;
         }
+        if (isset($xmlElement->transaction_id)) {
+            $this->transactionId = $xmlElement->transaction_id;
+        }
+        if (isset($xmlElement->msg_id )) {
+            $this->messageId = $xmlElement->msg_id ;
+        }
 
         if (isset($xmlElement->link_tags)) {
             $this->linkTags = array();
@@ -125,7 +143,9 @@ class Click extends AbstractXMLWrapper
         ";" . $this->mailingId .
         ";" . $this->linkId .
         ";" . $this->linkUrl .
-        ";" . $this->clientInfos->toCsvString();
+        ";" . $this->clientInfos->toCsvString() .
+        ";" . $this->transactionId .
+        ";" . $this->messageId;
     }
 
     /**

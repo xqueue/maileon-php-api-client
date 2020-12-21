@@ -1,6 +1,6 @@
 <?php
 
-namespace de\xqueue\maileon\api\client\Utils;
+namespace de\xqueue\maileon\api\client\utils;
 
 use de\xqueue\maileon\api\client\AbstractMaileonService;
 use de\xqueue\maileon\api\client\MaileonAPIException;

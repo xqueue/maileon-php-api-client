@@ -21,11 +21,21 @@ class Open extends AbstractXMLWrapper
      * @var ReportContact
      */
     public $contact;
-
+    
     /**
      * @var integer
      */
     public $mailingId;
+    
+    /**
+     * @var string
+     */
+    public $transactionId;
+    
+    /**
+     * @var integer
+     */
+    public $messageId;
     
     /**
      *
@@ -46,7 +56,9 @@ class Open extends AbstractXMLWrapper
         return "Open [timestamp=" . $this->timestamp .
         ", contact=" . $this->contact->toString() .
         ", mailingId=" . $this->mailingId .
-        ", clientInfos=" . $this->clientInfos->toString() ."]";
+        ", clientInfos=" . $this->clientInfos->toString() .
+        ", transactionId=" . $this->transactionId .
+        ", messageId=" . $this->messageId ."]";
     }
 
     /**
@@ -58,7 +70,9 @@ class Open extends AbstractXMLWrapper
         return $this->timestamp .
         ";" . $this->contact->toCsvString() .
         ";" . $this->mailingId .
-        ";" . $this->clientInfos->toCsvString();
+        ";" . $this->clientInfos->toCsvString() .
+        ";" . $this->transactionId .
+        ";" . $this->messageId;
     }
 
     /**
@@ -77,6 +91,12 @@ class Open extends AbstractXMLWrapper
         }
         if (isset($xmlElement->timestamp)) {
             $this->timestamp = $xmlElement->timestamp;
+        }
+        if (isset($xmlElement->transaction_id)) {
+            $this->transactionId = $xmlElement->transaction_id;
+        }
+        if (isset($xmlElement->msg_id )) {
+            $this->messageId = $xmlElement->msg_id ;
         }
         if (isset($xmlElement->client)) {
             $this->clientInfos->fromXML($xmlElement->client);

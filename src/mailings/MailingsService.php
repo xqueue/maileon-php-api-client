@@ -50,6 +50,17 @@ class MailingsService extends AbstractMaileonService
     }
     
     /**
+     * Get the type of a mailing. It can be either 'doi', 'trigger', or 'regular
+     * 
+     * @param integer $mailingId the ID of the mailing
+     * @return \de\xqueue\maileon\api\client\MaileonAPIResult
+     */
+    public function getType($mailingId)
+    {
+        return $this->get('mailings/' . $mailingId . '/type');
+    }
+    
+    /**
      * Check if a mailing with the given name exists and return true or false
      * 
      * @param integer $mailingId the ID of the mailing
