@@ -1,8 +1,9 @@
 Date ???
 Version 1.7.2
 - Added getCount method to de\xqueue\maileon\api\client\contacts\Contacts object
-- Added getType to mailing service
+- Added getType and getMailingsByKeywords to mailing service
 - Added parameter $embedTransactionId to getRecipients, getOpens, and getClicks
+- Added method for getting unsubscription reasons
 
 Date 2020-08-13
 Version 1.7.1

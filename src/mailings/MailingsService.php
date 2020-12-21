@@ -603,6 +603,40 @@ class MailingsService extends AbstractMaileonService
         return $this->get('mailings/filter/scheduletime', $queryParameters);
     }
     
+    
+    
+    /**
+     *
+     * Method to retrieve mailingy by keywords
+     *
+     * @param string[] $keywords
+     *  This is the list of keywords to filter for
+     * @param string[] fields (default = empty)
+     *  This list contains the fields that shall be returned with the result.
+     *  If this list is empty, only the IDs will be returned. Valid fields are: state, type, name, and scheduleTime
+     * @param number page_index (default = 1)
+     *  The index of the result page. The index must be greater or equal to 1.
+     * @param number page_size (default = 100)
+     *  The maximum count of items in the result page. If provided, the value of page_size must
+     *  be in the range 1 to 1000.
+     * @return
+     * @throws MaileonAPIException
+     */
+    public function getMailingsByKeywords($keywords, $keywordsOp = "and", $fields = array(), $page_index = 1, $page_size = 100)
+    {
+        $queryParameters = array(
+            'page_index' => $page_index,
+            'page_size' => $page_size,
+            'order' => "DESC"
+        );
+        
+        $queryParameters = $this->appendArrayFields($queryParameters, "keywords", $keywords);
+        $queryParameters = $this->appendArrayFields($queryParameters, "keywordsOp", $keywordsOp);
+        $queryParameters = $this->appendArrayFields($queryParameters, "fields", $fields);
+        
+        return $this->get('mailings/filter/keywords', $queryParameters);
+    }
+    
     /**
      *
      * Method to retrieve mailingy by types

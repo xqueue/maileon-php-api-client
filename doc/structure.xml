@@ -17092,6 +17092,179 @@ that this only applies for non anonymizable field backups.</description>
       <error line="92" code="PPC:ERR-50007">No summary for property $linkUrl</error>
     </parse_markers>
   </file>
+  <file path="reports\UnsubscriptionReason.php" generated-path="reports.UnsubscriptionReason.html" hash="1cc1179b8f6b740dcdad9eb60f156fe5" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="AbstractXMLWrapper">\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</namespace-alias>
+    <class final="false" abstract="false" namespace="de\xqueue\maileon\api\client\reports" line="12" package="Default">
+      <extends>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</extends>
+      <name>UnsubscriptionReason</name>
+      <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason</full_name>
+      <docblock line="12">
+        <description>This class represents an unsubscription reason containing the value and count.</description>
+        <long-description></long-description>
+        <tag name="author" line="12" description="Marcus Beckerle | XQueue GmbH | &lt;a href=&quot;mailto:marcus.beckerle@xqueue.com&quot;&gt;marcus.beckerle@xqueue.com&lt;/a&gt;"/>
+        <tag name="package" line="12" description="Default"/>
+        <tag name="inherited_from" description="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper" refers="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper" link="/classes/de.xqueue.maileon.api.client.xml.AbstractXMLWrapper.html"/>
+      </docblock>
+      <property static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="17" package="Default">
+        <name>$reason</name>
+        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::$reason</full_name>
+        <default></default>
+        <docblock line="17">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="17" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="22" package="Default">
+        <name>$count</name>
+        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::$count</full_name>
+        <default></default>
+        <docblock line="22">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="22" description="" type="integer" variable="">
+            <type>integer</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="28" package="Default">
+        <name>toString</name>
+        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::toString()</full_name>
+        <docblock line="28">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="28" description="containing a human-readable representation of this unsubscription reason" type="string">
+            <type>string</type>
+          </tag>
+          <tag name="inherited_from" description="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toString()" refers="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toString()" link="/classes/de.xqueue.maileon.api.client.xml.AbstractXMLWrapper.html#method_toString"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="37" package="Default">
+        <name>toCsvString</name>
+        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::toCsvString()</full_name>
+        <docblock line="37">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="37" description="containing a csv pepresentation of this unsubscription reason" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="49" package="Default">
+        <name>fromXML</name>
+        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::fromXML()</full_name>
+        <docblock line="49">
+          <description>Initializes this unsubscription reason from an XML representation.</description>
+          <long-description></long-description>
+          <tag name="param" line="49" description="&lt;p&gt;the XML representation to use&lt;/p&gt;" type="\SimpleXMLElement" variable="$xmlElement">
+            <type>\SimpleXMLElement</type>
+          </tag>
+          <tag name="inherited_from" description="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::fromXML()" refers="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::fromXML()" link="/classes/de.xqueue.maileon.api.client.xml.AbstractXMLWrapper.html#method_fromXML"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$xmlElement</name>
+          <default></default>
+          <type>\SimpleXMLElement</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="66" package="Default">
+        <name>toXML</name>
+        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::toXML()</full_name>
+        <docblock line="66">
+          <description>For future use, not implemented yet.</description>
+          <long-description></long-description>
+          <tag name="return" line="66" description="containing the XML serialization of this object" type="\SimpleXMLElement">
+            <type>\SimpleXMLElement</type>
+          </tag>
+          <tag name="inherited_from" description="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toXML()" refers="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toXML()" link="/classes/de.xqueue.maileon.api.client.xml.AbstractXMLWrapper.html#method_toXML"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="21" package="Default">
+        <name>fromXML</name>
+        <full_name>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::fromXML()</full_name>
+        <docblock line="21">
+          <description>Initialization from a simple xml element.</description>
+          <long-description></long-description>
+          <tag name="param" line="21" description="&lt;p&gt;the SimpleXMLElement to initialize the object from&lt;/p&gt;" type="\SimpleXMLElement" variable="$xmlElement">
+            <type>\SimpleXMLElement</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$xmlElement</name>
+          <default></default>
+          <type>\SimpleXMLElement</type>
+        </argument>
+        <inherited_from>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="29" package="Default">
+        <name>fromXMLString</name>
+        <full_name>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::fromXMLString()</full_name>
+        <docblock line="29">
+          <description>Initialization from a xml serialized string.</description>
+          <long-description></long-description>
+          <tag name="param" line="29" description="&lt;p&gt;the raw XML to initialize the object from&lt;/p&gt;" type="string" variable="$xmlString">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$xmlString</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <inherited_from>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</inherited_from>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="41" package="Default">
+        <name>toXML</name>
+        <full_name>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toXML()</full_name>
+        <docblock line="41">
+          <description>Serialization to a simple XML element.</description>
+          <long-description></long-description>
+          <tag name="return" line="41" description="contains the serialized representation of the object" type="\SimpleXMLElement">
+            <type>\SimpleXMLElement</type>
+          </tag>
+        </docblock>
+        <inherited_from>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</inherited_from>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="50" package="Default">
+        <name>toXMLString</name>
+        <full_name>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toXMLString()</full_name>
+        <docblock line="50">
+          <description>Serialization to an XML string.</description>
+          <long-description></long-description>
+          <tag name="return" line="50" description="contains the serialized representation of the object" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</inherited_from>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="60" package="Default">
+        <name>toString</name>
+        <full_name>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toString()</full_name>
+        <docblock line="60">
+          <description></description>
+          <long-description></long-description>
+          <tag name="return" line="60" description="a human-readable representation of the object" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <inherited_from>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</inherited_from>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="28" code="PPC:ERR-50008">No summary for method toString()</error>
+      <error line="37" code="PPC:ERR-50008">No summary for method toCsvString()</error>
+      <error line="17" code="PPC:ERR-50007">No summary for property $reason</error>
+      <error line="22" code="PPC:ERR-50007">No summary for property $count</error>
+    </parse_markers>
+  </file>
   <file path="blacklists\AddEntriesAction.php" generated-path="blacklists.AddEntriesAction.html" hash="b1102185e7f853eabad5c67af0c0cb6c" package="Default">
     <docblock line="0">
       <description></description>
@@ -19889,7 +20062,7 @@ with Maileon's REST API or in the API itself.</description>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
     </parse_markers>
   </file>
-  <file path="mailings\MailingsService.php" generated-path="mailings.MailingsService.html" hash="5d0f2851fecf076f15b2e12a56e89d70" package="Default">
+  <file path="mailings\MailingsService.php" generated-path="mailings.MailingsService.html" hash="2790219c511675e2b0e7b3440781af27" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -20929,28 +21102,77 @@ For shared templates, an absolute path is returned.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="627" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="625" package="Default">
+        <name>getMailingsByKeywords</name>
+        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getMailingsByKeywords()</full_name>
+        <docblock line="625">
+          <description>Method to retrieve mailingy by keywords</description>
+          <long-description></long-description>
+          <tag name="param" line="625" description="&lt;p&gt;This is the list of keywords to filter for&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$keywords">
+            <type>array&lt;mixed,string&gt;</type>
+          </tag>
+          <tag name="param" line="625" description="&lt;p&gt;fields (default = empty)&#10;This list contains the fields that shall be returned with the result.&#10;If this list is empty, only the IDs will be returned. Valid fields are: state, type, name, and scheduleTime&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$keywordsOp">
+            <type>array&lt;mixed,string&gt;</type>
+          </tag>
+          <tag name="param" line="625" description="&lt;p&gt;page_index (default = 1)&#10;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$fields">
+            <type>\de\xqueue\maileon\api\client\mailings\number</type>
+          </tag>
+          <tag name="param" line="625" description="&lt;p&gt;page_size (default = 100)&#10;The maximum count of items in the result page. If provided, the value of page_size must&#10;be in the range 1 to 1000.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$page_index">
+            <type>\de\xqueue\maileon\api\client\mailings\number</type>
+          </tag>
+          <tag name="return" line="625" description="" type=""/>
+          <tag name="throws" line="625" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$keywords</name>
+          <default></default>
+          <type>array&lt;mixed,string&gt;</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$keywordsOp</name>
+          <default>"and"</default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$fields</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$page_index</name>
+          <default>1</default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$page_size</name>
+          <default>100</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="661" package="Default">
         <name>getMailingsByTypes</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getMailingsByTypes()</full_name>
-        <docblock line="627">
+        <docblock line="661">
           <description>Method to retrieve mailingy by types</description>
           <long-description>Types can be selected from 'doi','trigger', 'trigger_template' or 'regular' &lt;br /&gt;
 &lt;br /&gt;</long-description>
-          <tag name="see" line="627" description="" link="\de\xqueue\maileon\api\client\mailings\MailingFields"/>
-          <tag name="param" line="627" description="&lt;p&gt;This is the list of types to filter for&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$types">
+          <tag name="see" line="661" description="" link="\de\xqueue\maileon\api\client\mailings\MailingFields"/>
+          <tag name="param" line="661" description="&lt;p&gt;This is the list of types to filter for&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$types">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="627" description="&lt;p&gt;fields (default = empty)&#10;This list contains the fields that shall be returned with the result.&#10;If this list is empty, only the IDs will be returned. Valid fields are: state, type, name, and scheduleTime&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$fields">
+          <tag name="param" line="661" description="&lt;p&gt;fields (default = empty)&#10;This list contains the fields that shall be returned with the result.&#10;If this list is empty, only the IDs will be returned. Valid fields are: state, type, name, and scheduleTime&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="627" description="&lt;p&gt;page_index (default = 1)&#10;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$page_index">
+          <tag name="param" line="661" description="&lt;p&gt;page_index (default = 1)&#10;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$page_index">
             <type>\de\xqueue\maileon\api\client\mailings\number</type>
           </tag>
-          <tag name="param" line="627" description="&lt;p&gt;page_size (default = 100)&#10;The maximum count of items in the result page. If provided, the value of page_size must&#10;be in the range 1 to 1000.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$page_size">
+          <tag name="param" line="661" description="&lt;p&gt;page_size (default = 100)&#10;The maximum count of items in the result page. If provided, the value of page_size must&#10;be in the range 1 to 1000.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$page_size">
             <type>\de\xqueue\maileon\api\client\mailings\number</type>
           </tag>
-          <tag name="return" line="627" description="" type=""/>
-          <tag name="throws" line="627" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="return" line="661" description="" type=""/>
+          <tag name="throws" line="661" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -20975,29 +21197,29 @@ For shared templates, an absolute path is returned.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="662" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="696" package="Default">
         <name>getMailingsByStates</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getMailingsByStates()</full_name>
-        <docblock line="662">
+        <docblock line="696">
           <description>Method to retrieve mailings by states</description>
           <long-description>States can be selected from 'draft', 'failed', 'queued', 'checks', 'blacklist', 'preparing', 'sending',
 'canceled', 'paused', 'done', 'archiving', 'archived', 'released', and 'scheduled' (=waiting to be sent) &lt;br /&gt;
 &lt;br /&gt;</long-description>
-          <tag name="see" line="662" description="" link="\de\xqueue\maileon\api\client\mailings\MailingFields"/>
-          <tag name="param" line="662" description="&lt;p&gt;states&#10; This is the list of states to filter for&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$states">
+          <tag name="see" line="696" description="" link="\de\xqueue\maileon\api\client\mailings\MailingFields"/>
+          <tag name="param" line="696" description="&lt;p&gt;states&#10; This is the list of states to filter for&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$states">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="662" description="&lt;p&gt;fields (default = empty)&#10;This list contains the fields that shall be returned with the result.&#10;If this list is empty, only the IDs will be returned. Valid fields are: state, type, name, and scheduleTime&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$fields">
+          <tag name="param" line="696" description="&lt;p&gt;fields (default = empty)&#10;This list contains the fields that shall be returned with the result.&#10;If this list is empty, only the IDs will be returned. Valid fields are: state, type, name, and scheduleTime&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$fields">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="662" description="&lt;p&gt;page_index (default = 1)&#10;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$page_index">
+          <tag name="param" line="696" description="&lt;p&gt;page_index (default = 1)&#10;The index of the result page. The index must be greater or equal to 1.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$page_index">
             <type>\de\xqueue\maileon\api\client\mailings\number</type>
           </tag>
-          <tag name="param" line="662" description="&lt;p&gt;page_size (default = 100)&#10;The maximum count of items in the result page. If provided, the value of page_size must&#10;be in the range 1 to 1000.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$page_size">
+          <tag name="param" line="696" description="&lt;p&gt;page_size (default = 100)&#10;The maximum count of items in the result page. If provided, the value of page_size must&#10;be in the range 1 to 1000.&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$page_size">
             <type>\de\xqueue\maileon\api\client\mailings\number</type>
           </tag>
-          <tag name="return" line="662" description="" type=""/>
-          <tag name="throws" line="662" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="return" line="696" description="" type=""/>
+          <tag name="throws" line="696" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21022,17 +21244,17 @@ For shared templates, an absolute path is returned.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="684" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="718" package="Default">
         <name>sendMailingNow</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::sendMailingNow()</full_name>
-        <docblock line="684">
+        <docblock line="718">
           <description>Schedules the mailing to be instantly sent</description>
           <long-description></long-description>
-          <tag name="param" line="684" description="&lt;p&gt;mailingId&#10; The ID of the mailing to send now&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$mailingId">
+          <tag name="param" line="718" description="&lt;p&gt;mailingId&#10; The ID of the mailing to send now&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$mailingId">
             <type>\de\xqueue\maileon\api\client\mailings\number</type>
           </tag>
-          <tag name="return" line="684" description="" type=""/>
-          <tag name="throws" line="684" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="return" line="718" description="" type=""/>
+          <tag name="throws" line="718" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21042,52 +21264,52 @@ For shared templates, an absolute path is returned.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="723" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="757" package="Default">
         <name>setMailingSchedule</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::setMailingSchedule()</full_name>
-        <docblock line="723">
+        <docblock line="757">
           <description>Schedules the mailing for a given time. If &lt;code&gt;dispatchOption&lt;/code&gt; is set, the enhanced scheduling options are enabled.</description>
           <long-description></long-description>
-          <tag name="param" line="723" description="&lt;p&gt;mailingId&#10; The ID of the mailing to schedule&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$mailingId">
+          <tag name="param" line="757" description="&lt;p&gt;mailingId&#10; The ID of the mailing to schedule&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$mailingId">
             <type>\de\xqueue\maileon\api\client\mailings\number</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;date&#10;The SQL conform date of the schedule day in the format YYYY-MM-DD&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\date" variable="$date">
+          <tag name="param" line="757" description="&lt;p&gt;date&#10;The SQL conform date of the schedule day in the format YYYY-MM-DD&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\date" variable="$date">
             <type>\de\xqueue\maileon\api\client\mailings\date</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;hours&#10; The schedule hour in the format of HH, 24 hours format&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\hours" variable="$hours">
+          <tag name="param" line="757" description="&lt;p&gt;hours&#10; The schedule hour in the format of HH, 24 hours format&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\hours" variable="$hours">
             <type>\de\xqueue\maileon\api\client\mailings\hours</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;minute&#10; The schedule minutes in the format MM&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\minute" variable="$minutes">
+          <tag name="param" line="757" description="&lt;p&gt;minute&#10; The schedule minutes in the format MM&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\minute" variable="$minutes">
             <type>\de\xqueue\maileon\api\client\mailings\minute</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;dispatchOption&#10;The time distribution strategy to choose from {'hour', 'weekdayhour', 'uniform'}.&lt;/p&gt;" type="string" variable="$dispatchOption">
+          <tag name="param" line="757" description="&lt;p&gt;dispatchOption&#10;The time distribution strategy to choose from {'hour', 'weekdayhour', 'uniform'}.&lt;/p&gt;" type="string" variable="$dispatchOption">
             <type>string</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;Number of hours begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used in case of 'hour'&#10;dispatch option and 'uniform' option. Allowed values for the 'uniform' distribution are in [2..96], whereas for 'hour' strategy thery are ranging from [2..24].&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndInHours" variable="$dispatchEndInHours">
+          <tag name="param" line="757" description="&lt;p&gt;Number of hours begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used in case of 'hour'&#10;dispatch option and 'uniform' option. Allowed values for the 'uniform' distribution are in [2..96], whereas for 'hour' strategy thery are ranging from [2..24].&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndInHours" variable="$dispatchEndInHours">
             <type>\de\xqueue\maileon\api\client\mailings\dispatchEndInHours</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;Number of days begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used only with dispatch&#10;option 'weekdayhour' and its acceptable range is [1..7].&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndInDays" variable="$dispatchEndInDays">
+          <tag name="param" line="757" description="&lt;p&gt;Number of days begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used only with dispatch&#10;option 'weekdayhour' and its acceptable range is [1..7].&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndInDays" variable="$dispatchEndInDays">
             <type>\de\xqueue\maileon\api\client\mailings\dispatchEndInDays</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;The exact end date util which the dispatch time distribution has to be finished. It is used when none of the arguments above&#10;&lt;code&gt;dispatchEndInHours&lt;/code&gt;, &lt;code&gt;dispatchEndInDays&lt;/code&gt; aren't set i.e. equals 0. Note that one of &lt;code&gt;dispatchEndInHours&lt;/code&gt;, &lt;code&gt;dispatchEndInDays&lt;/code&gt;,&#10;&lt;code&gt;dispatchEndExactDatetime&lt;/code&gt; argument should be used in the request according to the selected dispatch option. Format: yyyy-MM-dd HH:mm&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndExactDatetime" variable="$dispatchEndExactDatetime">
+          <tag name="param" line="757" description="&lt;p&gt;The exact end date util which the dispatch time distribution has to be finished. It is used when none of the arguments above&#10;&lt;code&gt;dispatchEndInHours&lt;/code&gt;, &lt;code&gt;dispatchEndInDays&lt;/code&gt; aren't set i.e. equals 0. Note that one of &lt;code&gt;dispatchEndInHours&lt;/code&gt;, &lt;code&gt;dispatchEndInDays&lt;/code&gt;,&#10;&lt;code&gt;dispatchEndExactDatetime&lt;/code&gt; argument should be used in the request according to the selected dispatch option. Format: yyyy-MM-dd HH:mm&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndExactDatetime" variable="$dispatchEndExactDatetime">
             <type>\de\xqueue\maileon\api\client\mailings\dispatchEndExactDatetime</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;clicksAsResponseReference&#10;The parameter determines the inclusion/exclusion of clicks as a response criteria when selecting {'hour', 'weekdayhour'} options.&lt;/p&gt;" type="boolean" variable="$clicksAsResponseReference">
+          <tag name="param" line="757" description="&lt;p&gt;clicksAsResponseReference&#10;The parameter determines the inclusion/exclusion of clicks as a response criteria when selecting {'hour', 'weekdayhour'} options.&lt;/p&gt;" type="boolean" variable="$clicksAsResponseReference">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;dispatchWavesGroup&#10;The number determines how many consecutive sending waves will be grouped when using {'hour', 'weekdayhour'} distribution. Supported values are {1, 2, 3 (default)}.&lt;/p&gt;" type="integer" variable="$dispatchWavesGroup">
+          <tag name="param" line="757" description="&lt;p&gt;dispatchWavesGroup&#10;The number determines how many consecutive sending waves will be grouped when using {'hour', 'weekdayhour'} distribution. Supported values are {1, 2, 3 (default)}.&lt;/p&gt;" type="integer" variable="$dispatchWavesGroup">
             <type>integer</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;dispatchUniformInterval&#10;The arguments controls the interval {'hour', '30m', '20m', '15m', '10m'} for the 'uniform' strategy indicating the frequency of mailing&#10;distribution over time. It should equals null for {'hour', 'weekdayhour'} dispatch options.&lt;/p&gt;" type="string" variable="$dispatchUniformInterval">
+          <tag name="param" line="757" description="&lt;p&gt;dispatchUniformInterval&#10;The arguments controls the interval {'hour', '30m', '20m', '15m', '10m'} for the 'uniform' strategy indicating the frequency of mailing&#10;distribution over time. It should equals null for {'hour', 'weekdayhour'} dispatch options.&lt;/p&gt;" type="string" variable="$dispatchUniformInterval">
             <type>string</type>
           </tag>
-          <tag name="param" line="723" description="&lt;p&gt;allowedHours&#10;The value represents the allowed hours. Comma separated values for the allowed hours and can be combined with a range of hours. The required format looks&#10;like 0,3,5,17-21 as an example. The acceptable values rane is 0..23. Note that the if this argument is not provided, all 24H of the day will be considered as acceptable&#10;dispatch hours.&lt;/p&gt;" type="string" variable="$allowedHours">
+          <tag name="param" line="757" description="&lt;p&gt;allowedHours&#10;The value represents the allowed hours. Comma separated values for the allowed hours and can be combined with a range of hours. The required format looks&#10;like 0,3,5,17-21 as an example. The acceptable values rane is 0..23. Note that the if this argument is not provided, all 24H of the day will be considered as acceptable&#10;dispatch hours.&lt;/p&gt;" type="string" variable="$allowedHours">
             <type>string</type>
           </tag>
-          <tag name="return" line="723" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="757" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="723" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="757" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21152,17 +21374,17 @@ For shared templates, an absolute path is returned.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="750" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="784" package="Default">
         <name>deleteMailingSchedule</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::deleteMailingSchedule()</full_name>
-        <docblock line="750">
+        <docblock line="784">
           <description>Delete the schedule for the given mailing</description>
           <long-description></long-description>
-          <tag name="param" line="750" description="&lt;p&gt;mailingId&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$mailingId">
+          <tag name="param" line="784" description="&lt;p&gt;mailingId&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$mailingId">
             <type>\de\xqueue\maileon\api\client\mailings\number</type>
           </tag>
-          <tag name="return" line="750" description="" type=""/>
-          <tag name="throws" line="750" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="return" line="784" description="" type=""/>
+          <tag name="throws" line="784" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21172,17 +21394,17 @@ For shared templates, an absolute path is returned.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="762" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="796" package="Default">
         <name>getMailingSchedule</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getMailingSchedule()</full_name>
-        <docblock line="762">
+        <docblock line="796">
           <description>Get the schedule for the given mailing</description>
           <long-description></long-description>
-          <tag name="param" line="762" description="&lt;p&gt;mailingId&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$mailingId">
+          <tag name="param" line="796" description="&lt;p&gt;mailingId&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$mailingId">
             <type>\de\xqueue\maileon\api\client\mailings\number</type>
           </tag>
-          <tag name="return" line="762" description="" type=""/>
-          <tag name="throws" line="762" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="return" line="796" description="" type=""/>
+          <tag name="throws" line="796" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21192,52 +21414,52 @@ For shared templates, an absolute path is returned.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="800" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="834" package="Default">
         <name>updateMailingSchedule</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::updateMailingSchedule()</full_name>
-        <docblock line="800">
+        <docblock line="834">
           <description>Update the schedule for the given mailing. If &lt;code&gt;dispatchOption&lt;/code&gt; is set, the enhanced scheduling options are enabled.</description>
           <long-description></long-description>
-          <tag name="param" line="800" description="&lt;p&gt;mailingId&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$mailingId">
+          <tag name="param" line="834" description="&lt;p&gt;mailingId&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\number" variable="$mailingId">
             <type>\de\xqueue\maileon\api\client\mailings\number</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;date&#10;The SQL conform date of the schedule day in the format YYYY-MM-DD&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\date" variable="$date">
+          <tag name="param" line="834" description="&lt;p&gt;date&#10;The SQL conform date of the schedule day in the format YYYY-MM-DD&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\date" variable="$date">
             <type>\de\xqueue\maileon\api\client\mailings\date</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;hours&#10; The schedule hour in the format of HH, 24 hours format&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\hours" variable="$hours">
+          <tag name="param" line="834" description="&lt;p&gt;hours&#10; The schedule hour in the format of HH, 24 hours format&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\hours" variable="$hours">
             <type>\de\xqueue\maileon\api\client\mailings\hours</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;minute&#10; The schedule minutes in the format MM&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\minute" variable="$minutes">
+          <tag name="param" line="834" description="&lt;p&gt;minute&#10; The schedule minutes in the format MM&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\minute" variable="$minutes">
             <type>\de\xqueue\maileon\api\client\mailings\minute</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;dispatchOption&#10;The time distribution strategy to choose from {'hour', 'weekdayhour', 'uniform'}.&lt;/p&gt;" type="string" variable="$dispatchOption">
+          <tag name="param" line="834" description="&lt;p&gt;dispatchOption&#10;The time distribution strategy to choose from {'hour', 'weekdayhour', 'uniform'}.&lt;/p&gt;" type="string" variable="$dispatchOption">
             <type>string</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;Number of hours begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used in case of 'hour'&#10;dispatch option and 'uniform' option. Allowed values for the 'uniform' distribution are in [2..96], whereas for 'hour' strategy thery are ranging from [2..24].&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndInHours" variable="$dispatchEndInHours">
+          <tag name="param" line="834" description="&lt;p&gt;Number of hours begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used in case of 'hour'&#10;dispatch option and 'uniform' option. Allowed values for the 'uniform' distribution are in [2..96], whereas for 'hour' strategy thery are ranging from [2..24].&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndInHours" variable="$dispatchEndInHours">
             <type>\de\xqueue\maileon\api\client\mailings\dispatchEndInHours</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;Number of days begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used only with dispatch&#10;option 'weekdayhour' and its acceptable range is [1..7].&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndInDays" variable="$dispatchEndInDays">
+          <tag name="param" line="834" description="&lt;p&gt;Number of days begining from the dispatch start util which the dispatch distribution over the time has to be finished. Used only with dispatch&#10;option 'weekdayhour' and its acceptable range is [1..7].&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndInDays" variable="$dispatchEndInDays">
             <type>\de\xqueue\maileon\api\client\mailings\dispatchEndInDays</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;The exact end date util which the dispatch time distribution has to be finished. It is used when none of the arguments above&#10;&lt;code&gt;dispatchEndInHours&lt;/code&gt;, &lt;code&gt;dispatchEndInDays&lt;/code&gt; aren't set i.e. equals 0. Note that one of &lt;code&gt;dispatchEndInHours&lt;/code&gt;, &lt;code&gt;dispatchEndInDays&lt;/code&gt;,&#10;&lt;code&gt;dispatchEndExactDatetime&lt;/code&gt; argument should be used in the request according to the selected dispatch option. Format: yyyy-MM-dd HH:mm&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndExactDatetime" variable="$dispatchEndExactDatetime">
+          <tag name="param" line="834" description="&lt;p&gt;The exact end date util which the dispatch time distribution has to be finished. It is used when none of the arguments above&#10;&lt;code&gt;dispatchEndInHours&lt;/code&gt;, &lt;code&gt;dispatchEndInDays&lt;/code&gt; aren't set i.e. equals 0. Note that one of &lt;code&gt;dispatchEndInHours&lt;/code&gt;, &lt;code&gt;dispatchEndInDays&lt;/code&gt;,&#10;&lt;code&gt;dispatchEndExactDatetime&lt;/code&gt; argument should be used in the request according to the selected dispatch option. Format: yyyy-MM-dd HH:mm&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\dispatchEndExactDatetime" variable="$dispatchEndExactDatetime">
             <type>\de\xqueue\maileon\api\client\mailings\dispatchEndExactDatetime</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;clicksAsResponseReference&#10;The parameter determines the inclusion/exclusion of clicks as a response criteria when selecting {'hour', 'weekdayhour'} options.&lt;/p&gt;" type="boolean" variable="$clicksAsResponseReference">
+          <tag name="param" line="834" description="&lt;p&gt;clicksAsResponseReference&#10;The parameter determines the inclusion/exclusion of clicks as a response criteria when selecting {'hour', 'weekdayhour'} options.&lt;/p&gt;" type="boolean" variable="$clicksAsResponseReference">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;dispatchWavesGroup&#10;The number determines how many consecutive sending waves will be grouped when using {'hour', 'weekdayhour'} distribution. Supported values are {1, 2, 3 (default)}.&lt;/p&gt;" type="integer" variable="$dispatchWavesGroup">
+          <tag name="param" line="834" description="&lt;p&gt;dispatchWavesGroup&#10;The number determines how many consecutive sending waves will be grouped when using {'hour', 'weekdayhour'} distribution. Supported values are {1, 2, 3 (default)}.&lt;/p&gt;" type="integer" variable="$dispatchWavesGroup">
             <type>integer</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;dispatchUniformInterval&#10;The arguments controls the interval {'hour', '30m', '20m', '15m', '10m'} for the 'uniform' strategy indicating the frequency of mailing&#10;distribution over time. It should equals null for {'hour', 'weekdayhour'} dispatch options.&lt;/p&gt;" type="string" variable="$dispatchUniformInterval">
+          <tag name="param" line="834" description="&lt;p&gt;dispatchUniformInterval&#10;The arguments controls the interval {'hour', '30m', '20m', '15m', '10m'} for the 'uniform' strategy indicating the frequency of mailing&#10;distribution over time. It should equals null for {'hour', 'weekdayhour'} dispatch options.&lt;/p&gt;" type="string" variable="$dispatchUniformInterval">
             <type>string</type>
           </tag>
-          <tag name="param" line="800" description="&lt;p&gt;allowedHours&#10;The value represents the allowed hours. Comma separated values for the allowed hours and can be combined with a range of hours. The required format looks&#10;like 0,3,5,17-21 as an example. The acceptable values rane is 0..23. Note that the if this argument is not provided, all 24H of the day will be considered as acceptable&#10;dispatch hours.&lt;/p&gt;" type="string" variable="$allowedHours">
+          <tag name="param" line="834" description="&lt;p&gt;allowedHours&#10;The value represents the allowed hours. Comma separated values for the allowed hours and can be combined with a range of hours. The required format looks&#10;like 0,3,5,17-21 as an example. The acceptable values rane is 0..23. Note that the if this argument is not provided, all 24H of the day will be considered as acceptable&#10;dispatch hours.&lt;/p&gt;" type="string" variable="$allowedHours">
             <type>string</type>
           </tag>
-          <tag name="return" line="800" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="834" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="800" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="834" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21302,19 +21524,19 @@ For shared templates, an absolute path is returned.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="831" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="865" package="Default">
         <name>getDoiMailingKey</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getDoiMailingKey()</full_name>
-        <docblock line="831">
+        <docblock line="865">
           <description>Fetches the DOI mailing key of the mailing identified by the given ID.</description>
           <long-description></long-description>
-          <tag name="param" line="831" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="865" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="831" description="the result object of the API call, with the target group id of the mailing&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="865" description="the result object of the API call, with the target group id of the mailing&#10; available at MaileonAPIResult::getResult()" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="831" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="865" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21324,20 +21546,20 @@ For shared templates, an absolute path is returned.</long-description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="845" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="879" package="Default">
         <name>setDoiMailingKey</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::setDoiMailingKey()</full_name>
-        <docblock line="845">
+        <docblock line="879">
           <description>Sets the key of the DOI mailing identified by the given ID.</description>
           <long-description></long-description>
-          <tag name="param" line="845" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="879" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="845" description="&lt;p&gt;The new DOI key.&lt;/p&gt;" type="string" variable="$doiKey">
+          <tag name="param" line="879" description="&lt;p&gt;The new DOI key.&lt;/p&gt;" type="string" variable="$doiKey">
             <type>string</type>
           </tag>
-          <tag name="return" line="845" description="" type=""/>
-          <tag name="throws" line="845" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="return" line="879" description="" type=""/>
+          <tag name="throws" line="879" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21352,73 +21574,16 @@ For shared templates, an absolute path is returned.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="856" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="890" package="Default">
         <name>deactivateTriggerMailing</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::deactivateTriggerMailing()</full_name>
-        <docblock line="856">
+        <docblock line="890">
           <description>Deactivates a trigger mailing by ID.</description>
           <long-description></long-description>
-          <tag name="param" line="856" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="890" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="856" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
-            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$mailingId</name>
-          <default></default>
-          <type>integer</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="868" package="Default">
-        <name>getTriggerDispatchLogic</name>
-        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getTriggerDispatchLogic()</full_name>
-        <docblock line="868">
-          <description>Get the dispatch data for a trigger mailing by mailing ID.</description>
-          <long-description></long-description>
-          <tag name="param" line="868" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
-            <type>integer</type>
-          </tag>
-          <tag name="return" line="868" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
-            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$mailingId</name>
-          <default></default>
-          <type>integer</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="880" package="Default">
-        <name>getSchedule</name>
-        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getSchedule()</full_name>
-        <docblock line="880">
-          <description>Get the schedule for regular mailings by mailing ID.</description>
-          <long-description></long-description>
-          <tag name="param" line="880" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
-            <type>integer</type>
-          </tag>
-          <tag name="return" line="880" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
-            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$mailingId</name>
-          <default></default>
-          <type>integer</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="891" package="Default">
-        <name>getArchiveUrl</name>
-        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getArchiveUrl()</full_name>
-        <docblock line="891">
-          <description>Get the archive url for the mailing ID.</description>
-          <long-description></long-description>
-          <tag name="param" line="891" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
-            <type>integer</type>
-          </tag>
-          <tag name="return" line="891" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="890" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21429,10 +21594,10 @@ For shared templates, an absolute path is returned.</long-description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="902" package="Default">
-        <name>getReportUrl</name>
-        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getReportUrl()</full_name>
+        <name>getTriggerDispatchLogic</name>
+        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getTriggerDispatchLogic()</full_name>
         <docblock line="902">
-          <description>Get the report url for the mailing ID.</description>
+          <description>Get the dispatch data for a trigger mailing by mailing ID.</description>
           <long-description></long-description>
           <tag name="param" line="902" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
@@ -21447,22 +21612,79 @@ For shared templates, an absolute path is returned.</long-description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="918" package="Default">
-        <name>setName</name>
-        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::setName()</full_name>
-        <docblock line="918">
-          <description>Updates the name of the mailing referenced by the given ID.</description>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="914" package="Default">
+        <name>getSchedule</name>
+        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getSchedule()</full_name>
+        <docblock line="914">
+          <description>Get the schedule for regular mailings by mailing ID.</description>
           <long-description></long-description>
-          <tag name="param" line="918" description="&lt;p&gt;the ID of the mailing&lt;/p&gt;" type="string" variable="$mailingId">
-            <type>string</type>
+          <tag name="param" line="914" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+            <type>integer</type>
           </tag>
-          <tag name="param" line="918" description="&lt;p&gt;the name of the mailing to set&lt;/p&gt;" type="string" variable="$name">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="918" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="914" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="918" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$mailingId</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="925" package="Default">
+        <name>getArchiveUrl</name>
+        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getArchiveUrl()</full_name>
+        <docblock line="925">
+          <description>Get the archive url for the mailing ID.</description>
+          <long-description></long-description>
+          <tag name="param" line="925" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+            <type>integer</type>
+          </tag>
+          <tag name="return" line="925" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$mailingId</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="936" package="Default">
+        <name>getReportUrl</name>
+        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getReportUrl()</full_name>
+        <docblock line="936">
+          <description>Get the report url for the mailing ID.</description>
+          <long-description></long-description>
+          <tag name="param" line="936" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+            <type>integer</type>
+          </tag>
+          <tag name="return" line="936" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$mailingId</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="952" package="Default">
+        <name>setName</name>
+        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::setName()</full_name>
+        <docblock line="952">
+          <description>Updates the name of the mailing referenced by the given ID.</description>
+          <long-description></long-description>
+          <tag name="param" line="952" description="&lt;p&gt;the ID of the mailing&lt;/p&gt;" type="string" variable="$mailingId">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="952" description="&lt;p&gt;the name of the mailing to set&lt;/p&gt;" type="string" variable="$name">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="952" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
+          </tag>
+          <tag name="throws" line="952" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21477,16 +21699,16 @@ For shared templates, an absolute path is returned.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="929" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="963" package="Default">
         <name>getName</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getName()</full_name>
-        <docblock line="929">
+        <docblock line="963">
           <description>Get the name for the mailing by mailing ID.</description>
           <long-description></long-description>
-          <tag name="param" line="929" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="963" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="929" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="963" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21496,22 +21718,22 @@ For shared templates, an absolute path is returned.</long-description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="945" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="979" package="Default">
         <name>setTags</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::setTags()</full_name>
-        <docblock line="945">
+        <docblock line="979">
           <description>Updates the tags of the mailing referenced by the given ID.</description>
           <long-description></long-description>
-          <tag name="param" line="945" description="&lt;p&gt;the ID of the mailing&lt;/p&gt;" type="string" variable="$mailingId">
+          <tag name="param" line="979" description="&lt;p&gt;the ID of the mailing&lt;/p&gt;" type="string" variable="$mailingId">
             <type>string</type>
           </tag>
-          <tag name="param" line="945" description="&lt;p&gt;the tags&lt;/p&gt;" type="array" variable="$tags">
+          <tag name="param" line="979" description="&lt;p&gt;the tags&lt;/p&gt;" type="array" variable="$tags">
             <type>array</type>
           </tag>
-          <tag name="return" line="945" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="979" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="945" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="979" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21526,16 +21748,16 @@ For shared templates, an absolute path is returned.</long-description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="956" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="990" package="Default">
         <name>getTags</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getTags()</full_name>
-        <docblock line="956">
+        <docblock line="990">
           <description>Get the tags for the mailing identified by mailing ID.</description>
           <long-description></long-description>
-          <tag name="param" line="956" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="990" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="956" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="990" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21545,22 +21767,22 @@ For shared templates, an absolute path is returned.</long-description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="972" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1006" package="Default">
         <name>setLocale</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::setLocale()</full_name>
-        <docblock line="972">
+        <docblock line="1006">
           <description>Updates the locale of the mailing referenced by the given ID.</description>
           <long-description></long-description>
-          <tag name="param" line="972" description="&lt;p&gt;the ID of the mailing&lt;/p&gt;" type="string" variable="$mailingId">
+          <tag name="param" line="1006" description="&lt;p&gt;the ID of the mailing&lt;/p&gt;" type="string" variable="$mailingId">
             <type>string</type>
           </tag>
-          <tag name="param" line="972" description="&lt;p&gt;locale&#10;the locale in the form xx: e.g. de, en, fr, �&lt;/p&gt;" type="string" variable="$locale">
+          <tag name="param" line="1006" description="&lt;p&gt;locale&#10;the locale in the form xx: e.g. de, en, fr, �&lt;/p&gt;" type="string" variable="$locale">
             <type>string</type>
           </tag>
-          <tag name="return" line="972" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1006" description="the result object of the API call" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="972" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="1006" description="if there was a connection problem or a server error occurred" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21575,16 +21797,16 @@ For shared templates, an absolute path is returned.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="983" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1017" package="Default">
         <name>getLocale</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getLocale()</full_name>
-        <docblock line="983">
+        <docblock line="1017">
           <description>Get the locale for the mailing identified by mailing ID in the form xx: e.g. de, en, fr, �</description>
           <long-description></long-description>
-          <tag name="param" line="983" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1017" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="983" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1017" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21594,17 +21816,17 @@ For shared templates, an absolute path is returned.</long-description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="996" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1030" package="Default">
         <name>fillRssSmartContentTags</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::fillRssSmartContentTags()</full_name>
-        <docblock line="996">
+        <docblock line="1030">
           <description>Execute the RSS SmartMailing functionality for mailings, i.e. fill all SmartMailing
 Tags from the described RSS-Feeds.</description>
           <long-description>For more information about RSS-SmartMailing, please check our customer support at service@xqueue.com</long-description>
-          <tag name="param" line="996" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1030" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="996" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1030" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21614,16 +21836,16 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1007" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1041" package="Default">
         <name>copyMailing</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::copyMailing()</full_name>
-        <docblock line="1007">
+        <docblock line="1041">
           <description>Copy the mailing with the given mailing ID.</description>
           <long-description></long-description>
-          <tag name="param" line="1007" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1041" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1007" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1041" description="the result of the operation" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21633,28 +21855,28 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1023" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1057" package="Default">
         <name>addAttachmentFromFile</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::addAttachmentFromFile()</full_name>
-        <docblock line="1023">
+        <docblock line="1057">
           <description>Read a binary file from the file system and adds it as an attachment to this transaction.</description>
           <long-description></long-description>
-          <tag name="param" line="1023" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1057" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1023" description="" type="string" variable="$filename">
+          <tag name="param" line="1057" description="" type="string" variable="$filename">
             <type>string</type>
           </tag>
-          <tag name="param" line="1023" description="" type="string" variable="$contentType">
+          <tag name="param" line="1057" description="" type="string" variable="$contentType">
             <type>string</type>
           </tag>
-          <tag name="param" line="1023" description="&lt;p&gt;Name of the file in the attachments&lt;/p&gt;" type="string" variable="$attachmentFileName">
+          <tag name="param" line="1057" description="&lt;p&gt;Name of the file in the attachments&lt;/p&gt;" type="string" variable="$attachmentFileName">
             <type>string</type>
           </tag>
-          <tag name="return" line="1023" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1057" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="1023" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="1057" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21679,25 +21901,25 @@ Tags from the described RSS-Feeds.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1053" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1087" package="Default">
         <name>addAttachment</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::addAttachment()</full_name>
-        <docblock line="1053">
+        <docblock line="1087">
           <description>Adds an attachment to the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1053" description="&lt;p&gt;The mailing id&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1087" description="&lt;p&gt;The mailing id&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1053" description="&lt;p&gt;Filename of the attachment to be displayed in sent emails.&#10; It is recommended to keep the filename short and to use an extension corresponding&#10; to the mime type of the attachment.&lt;/p&gt;" type="string" variable="$filename">
+          <tag name="param" line="1087" description="&lt;p&gt;Filename of the attachment to be displayed in sent emails.&#10; It is recommended to keep the filename short and to use an extension corresponding&#10; to the mime type of the attachment.&lt;/p&gt;" type="string" variable="$filename">
             <type>string</type>
           </tag>
-          <tag name="param" line="1053" description="&lt;p&gt;The mime type of the attachment&lt;/p&gt;" type="string" variable="$contentType">
+          <tag name="param" line="1087" description="&lt;p&gt;The mime type of the attachment&lt;/p&gt;" type="string" variable="$contentType">
             <type>string</type>
           </tag>
-          <tag name="param" line="1053" description="&lt;p&gt;The file content&lt;/p&gt;" type="string" variable="$contents">
+          <tag name="param" line="1087" description="&lt;p&gt;The file content&lt;/p&gt;" type="string" variable="$contents">
             <type>string</type>
           </tag>
-          <tag name="return" line="1053" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1087" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21722,76 +21944,11 @@ Tags from the described RSS-Feeds.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1073" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1107" package="Default">
         <name>getAttachments</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getAttachments()</full_name>
-        <docblock line="1073">
-          <description>Returns a list of the registered attachments for the mailing with the provided id.</description>
-          <long-description></long-description>
-          <tag name="param" line="1073" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
-            <type>integer</type>
-          </tag>
-          <tag name="return" line="1073" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
-            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$mailingId</name>
-          <default></default>
-          <type>integer</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1085" package="Default">
-        <name>getAttachment</name>
-        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getAttachment()</full_name>
-        <docblock line="1085">
-          <description>Returns the attachment with the provided id as a file.</description>
-          <long-description></long-description>
-          <tag name="param" line="1085" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
-            <type>integer</type>
-          </tag>
-          <tag name="param" line="1085" description="" type="integer" variable="$attachmentId">
-            <type>integer</type>
-          </tag>
-          <tag name="return" line="1085" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
-            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$mailingId</name>
-          <default></default>
-          <type>integer</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$attachmentId</name>
-          <default></default>
-          <type>integer</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1096" package="Default">
-        <name>getAttachmentsCount</name>
-        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getAttachmentsCount()</full_name>
-        <docblock line="1096">
-          <description>Returns the count of available attachments in the mailing with the provided id.</description>
-          <long-description></long-description>
-          <tag name="param" line="1096" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
-            <type>integer</type>
-          </tag>
-          <tag name="return" line="1096" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
-            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$mailingId</name>
-          <default></default>
-          <type>integer</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1107" package="Default">
-        <name>deleteAttachments</name>
-        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::deleteAttachments()</full_name>
         <docblock line="1107">
-          <description>Deletes all the attachments that belong to the mailing with the provided id. The mailing should not be sealed.</description>
+          <description>Returns a list of the registered attachments for the mailing with the provided id.</description>
           <long-description></long-description>
           <tag name="param" line="1107" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
@@ -21806,22 +21963,87 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1121" package="Default">
-        <name>deleteAttachment</name>
-        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::deleteAttachment()</full_name>
-        <docblock line="1121">
-          <description>Deletes the attachment with the provided id from the mailing. The mailing should not be sealed.</description>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1119" package="Default">
+        <name>getAttachment</name>
+        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getAttachment()</full_name>
+        <docblock line="1119">
+          <description>Returns the attachment with the provided id as a file.</description>
           <long-description></long-description>
-          <tag name="param" line="1121" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1119" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1121" description="" type="integer" variable="$attachmentId">
+          <tag name="param" line="1119" description="" type="integer" variable="$attachmentId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1121" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1119" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="1121" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$mailingId</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$attachmentId</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1130" package="Default">
+        <name>getAttachmentsCount</name>
+        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getAttachmentsCount()</full_name>
+        <docblock line="1130">
+          <description>Returns the count of available attachments in the mailing with the provided id.</description>
+          <long-description></long-description>
+          <tag name="param" line="1130" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+            <type>integer</type>
+          </tag>
+          <tag name="return" line="1130" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$mailingId</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1141" package="Default">
+        <name>deleteAttachments</name>
+        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::deleteAttachments()</full_name>
+        <docblock line="1141">
+          <description>Deletes all the attachments that belong to the mailing with the provided id. The mailing should not be sealed.</description>
+          <long-description></long-description>
+          <tag name="param" line="1141" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+            <type>integer</type>
+          </tag>
+          <tag name="return" line="1141" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$mailingId</name>
+          <default></default>
+          <type>integer</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1155" package="Default">
+        <name>deleteAttachment</name>
+        <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::deleteAttachment()</full_name>
+        <docblock line="1155">
+          <description>Deletes the attachment with the provided id from the mailing. The mailing should not be sealed.</description>
+          <long-description></long-description>
+          <tag name="param" line="1155" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+            <type>integer</type>
+          </tag>
+          <tag name="param" line="1155" description="" type="integer" variable="$attachmentId">
+            <type>integer</type>
+          </tag>
+          <tag name="return" line="1155" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+            <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
+          </tag>
+          <tag name="throws" line="1155" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21836,21 +22058,21 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1139" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1173" package="Default">
         <name>copyAttachments</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::copyAttachments()</full_name>
-        <docblock line="1139">
+        <docblock line="1173">
           <description>Copies the attachments of a source mailing into a target mailing. Note that the target
  mailing should not be sealed and that the resulting total count of attachments in the
  target mailing should not exceed 10.</description>
           <long-description></long-description>
-          <tag name="param" line="1139" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1173" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1139" description="" type="integer" variable="$srcMailingId">
+          <tag name="param" line="1173" description="" type="integer" variable="$srcMailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1139" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1173" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21865,16 +22087,16 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1152" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1186" package="Default">
         <name>getCustomProperties</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getCustomProperties()</full_name>
-        <docblock line="1152">
+        <docblock line="1186">
           <description>Returns a list of custom properties for the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1152" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1186" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1152" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1186" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21884,19 +22106,19 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1165" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1199" package="Default">
         <name>addCustomProperties</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::addCustomProperties()</full_name>
-        <docblock line="1165">
+        <docblock line="1199">
           <description>Adds a list of custom properties to the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1165" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1199" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1165" description="&lt;p&gt;Array of CustomProperty or single property&lt;/p&gt;" type="array" variable="$properties">
+          <tag name="param" line="1199" description="&lt;p&gt;Array of CustomProperty or single property&lt;/p&gt;" type="array" variable="$properties">
             <type>array</type>
           </tag>
-          <tag name="return" line="1165" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1199" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21911,19 +22133,19 @@ Tags from the described RSS-Feeds.</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1189" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1223" package="Default">
         <name>updateCustomProperty</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::updateCustomProperty()</full_name>
-        <docblock line="1189">
+        <docblock line="1223">
           <description>Updates a custom property of the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1189" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1223" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1189" description="" type="\de\xqueue\maileon\api\client\mailings\CustomProperty" variable="$property">
+          <tag name="param" line="1223" description="" type="\de\xqueue\maileon\api\client\mailings\CustomProperty" variable="$property">
             <type>\de\xqueue\maileon\api\client\mailings\CustomProperty</type>
           </tag>
-          <tag name="return" line="1189" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1223" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21938,19 +22160,19 @@ Tags from the described RSS-Feeds.</description>
           <type>\de\xqueue\maileon\api\client\mailings\CustomProperty</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1208" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1242" package="Default">
         <name>deleteCustomProperty</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::deleteCustomProperty()</full_name>
-        <docblock line="1208">
+        <docblock line="1242">
           <description>Deletes a custom property of the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1208" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1242" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1208" description="&lt;p&gt;The name of the property to delete&lt;/p&gt;" type="string" variable="$propertyName">
+          <tag name="param" line="1242" description="&lt;p&gt;The name of the property to delete&lt;/p&gt;" type="string" variable="$propertyName">
             <type>string</type>
           </tag>
-          <tag name="return" line="1208" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1242" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21965,21 +22187,21 @@ Tags from the described RSS-Feeds.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1228" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1262" package="Default">
         <name>sendTestMail</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::sendTestMail()</full_name>
-        <docblock line="1228">
+        <docblock line="1262">
           <description>Sends a testmail for the mailing with the provided id to a given email address.</description>
           <long-description>If the email address does not exist within your contacts,
 the personalization is done according to your default personalization user configured in Maileon.
 &lt;p&gt;&lt;a href="http://dev.maileon.com/mailing-send-testmail-to-single-emailaddress"&gt;Documentation website&lt;/a&gt;&lt;/p&gt;</long-description>
-          <tag name="param" line="1228" description="&lt;p&gt;id of existing mailing&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\mailingId" variable="$mailingId">
+          <tag name="param" line="1262" description="&lt;p&gt;id of existing mailing&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\mailingId" variable="$mailingId">
             <type>\de\xqueue\maileon\api\client\mailings\mailingId</type>
           </tag>
-          <tag name="param" line="1228" description="&lt;p&gt;email address&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\email" variable="$email">
+          <tag name="param" line="1262" description="&lt;p&gt;email address&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\email" variable="$email">
             <type>\de\xqueue\maileon\api\client\mailings\email</type>
           </tag>
-          <tag name="throws" line="1228" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="1262" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -21994,19 +22216,19 @@ the personalization is done according to your default personalization user confi
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1244" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1278" package="Default">
         <name>sendTestMailToTestTargetGroup</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::sendTestMailToTestTargetGroup()</full_name>
-        <docblock line="1244">
+        <docblock line="1278">
           <description>Sends a testmail for the mailing with the provided id to a test-targetgroup givenby its ID.</description>
           <long-description></long-description>
-          <tag name="param" line="1244" description="" type="\de\xqueue\maileon\api\client\mailings\mailingId" variable="$mailingId">
+          <tag name="param" line="1278" description="" type="\de\xqueue\maileon\api\client\mailings\mailingId" variable="$mailingId">
             <type>\de\xqueue\maileon\api\client\mailings\mailingId</type>
           </tag>
-          <tag name="param" line="1244" description="" type="\de\xqueue\maileon\api\client\mailings\testTargetGroupId" variable="$testTargetGroupId">
+          <tag name="param" line="1278" description="" type="\de\xqueue\maileon\api\client\mailings\testTargetGroupId" variable="$testTargetGroupId">
             <type>\de\xqueue\maileon\api\client\mailings\testTargetGroupId</type>
           </tag>
-          <tag name="throws" line="1244" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="1278" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -22021,10 +22243,10 @@ the personalization is done according to your default personalization user confi
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1253" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1287" package="Default">
         <name>sxmlAppend</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::sxmlAppend()</full_name>
-        <docblock line="1253">
+        <docblock line="1287">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -22462,9 +22684,11 @@ the personalization is done according to your default personalization user confi
       <notice line="47" code="PPC:ERR-50013">Parameter $mailingId could not be found in getMailingIdByName()</notice>
       <error line="68" code="PPC:ERR-50014">Name of argument $mailingName does not match with the DocBlock's name $mailingId in checkIfMailingExistsByName()</error>
       <notice line="68" code="PPC:ERR-50013">Parameter $mailingId could not be found in checkIfMailingExistsByName()</notice>
-      <error line="1253" code="PPC:ERR-50015">Argument $to is missing from the Docblock of sxmlAppend</error>
-      <error line="1253" code="PPC:ERR-50015">Argument $from is missing from the Docblock of sxmlAppend</error>
-      <error line="1253" code="PPC:ERR-50008">No summary for method sxmlAppend()</error>
+      <error line="625" code="PPC:ERR-50015">Argument $page_size is missing from the Docblock of getMailingsByKeywords</error>
+      <error line="625" code="PPC:ERR-50014">Name of argument $page_size does not match with the DocBlock's name $page_index in getMailingsByKeywords()</error>
+      <error line="1287" code="PPC:ERR-50015">Argument $to is missing from the Docblock of sxmlAppend</error>
+      <error line="1287" code="PPC:ERR-50015">Argument $from is missing from the Docblock of sxmlAppend</error>
+      <error line="1287" code="PPC:ERR-50008">No summary for method sxmlAppend()</error>
     </parse_markers>
   </file>
   <file path="xml\AbstractXMLWrapper.php" generated-path="xml.AbstractXMLWrapper.html" hash="c3b7c4750af67da4e34f3eedfb97b92c" package="Default">
@@ -23926,179 +24150,6 @@ ObjectName [ property1=value1, property2=value2, .</description>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
       <error line="35" code="PPC:ERR-50008">No summary for method __construct()</error>
-    </parse_markers>
-  </file>
-  <file path="reports\UnsubscriptionReason.php" generated-path="reports.UnsubscriptionReason.html" hash="1cc1179b8f6b740dcdad9eb60f156fe5" package="Default">
-    <docblock line="0">
-      <description></description>
-      <long-description></long-description>
-      <tag name="package" line="0" description="Default"/>
-    </docblock>
-    <namespace-alias name="AbstractXMLWrapper">\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</namespace-alias>
-    <class final="false" abstract="false" namespace="de\xqueue\maileon\api\client\reports" line="12" package="Default">
-      <extends>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</extends>
-      <name>UnsubscriptionReason</name>
-      <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason</full_name>
-      <docblock line="12">
-        <description>This class represents an unsubscription reason containing the value and count.</description>
-        <long-description></long-description>
-        <tag name="author" line="12" description="Marcus Beckerle | XQueue GmbH | &lt;a href=&quot;mailto:marcus.beckerle@xqueue.com&quot;&gt;marcus.beckerle@xqueue.com&lt;/a&gt;"/>
-        <tag name="package" line="12" description="Default"/>
-        <tag name="inherited_from" description="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper" refers="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper" link="/classes/de.xqueue.maileon.api.client.xml.AbstractXMLWrapper.html"/>
-      </docblock>
-      <property static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="17" package="Default">
-        <name>$reason</name>
-        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::$reason</full_name>
-        <default></default>
-        <docblock line="17">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" line="17" description="" type="string" variable="">
-            <type>string</type>
-          </tag>
-        </docblock>
-      </property>
-      <property static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="22" package="Default">
-        <name>$count</name>
-        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::$count</full_name>
-        <default></default>
-        <docblock line="22">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" line="22" description="" type="integer" variable="">
-            <type>integer</type>
-          </tag>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="28" package="Default">
-        <name>toString</name>
-        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::toString()</full_name>
-        <docblock line="28">
-          <description></description>
-          <long-description></long-description>
-          <tag name="return" line="28" description="containing a human-readable representation of this unsubscription reason" type="string">
-            <type>string</type>
-          </tag>
-          <tag name="inherited_from" description="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toString()" refers="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toString()" link="/classes/de.xqueue.maileon.api.client.xml.AbstractXMLWrapper.html#method_toString"/>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="37" package="Default">
-        <name>toCsvString</name>
-        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::toCsvString()</full_name>
-        <docblock line="37">
-          <description></description>
-          <long-description></long-description>
-          <tag name="return" line="37" description="containing a csv pepresentation of this unsubscription reason" type="string">
-            <type>string</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="49" package="Default">
-        <name>fromXML</name>
-        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::fromXML()</full_name>
-        <docblock line="49">
-          <description>Initializes this unsubscription reason from an XML representation.</description>
-          <long-description></long-description>
-          <tag name="param" line="49" description="&lt;p&gt;the XML representation to use&lt;/p&gt;" type="\SimpleXMLElement" variable="$xmlElement">
-            <type>\SimpleXMLElement</type>
-          </tag>
-          <tag name="inherited_from" description="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::fromXML()" refers="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::fromXML()" link="/classes/de.xqueue.maileon.api.client.xml.AbstractXMLWrapper.html#method_fromXML"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$xmlElement</name>
-          <default></default>
-          <type>\SimpleXMLElement</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="66" package="Default">
-        <name>toXML</name>
-        <full_name>\de\xqueue\maileon\api\client\reports\UnsubscriptionReason::toXML()</full_name>
-        <docblock line="66">
-          <description>For future use, not implemented yet.</description>
-          <long-description></long-description>
-          <tag name="return" line="66" description="containing the XML serialization of this object" type="\SimpleXMLElement">
-            <type>\SimpleXMLElement</type>
-          </tag>
-          <tag name="inherited_from" description="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toXML()" refers="\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toXML()" link="/classes/de.xqueue.maileon.api.client.xml.AbstractXMLWrapper.html#method_toXML"/>
-        </docblock>
-      </method>
-      <method final="false" abstract="true" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="21" package="Default">
-        <name>fromXML</name>
-        <full_name>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::fromXML()</full_name>
-        <docblock line="21">
-          <description>Initialization from a simple xml element.</description>
-          <long-description></long-description>
-          <tag name="param" line="21" description="&lt;p&gt;the SimpleXMLElement to initialize the object from&lt;/p&gt;" type="\SimpleXMLElement" variable="$xmlElement">
-            <type>\SimpleXMLElement</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$xmlElement</name>
-          <default></default>
-          <type>\SimpleXMLElement</type>
-        </argument>
-        <inherited_from>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</inherited_from>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="29" package="Default">
-        <name>fromXMLString</name>
-        <full_name>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::fromXMLString()</full_name>
-        <docblock line="29">
-          <description>Initialization from a xml serialized string.</description>
-          <long-description></long-description>
-          <tag name="param" line="29" description="&lt;p&gt;the raw XML to initialize the object from&lt;/p&gt;" type="string" variable="$xmlString">
-            <type>string</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$xmlString</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <inherited_from>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</inherited_from>
-      </method>
-      <method final="false" abstract="true" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="41" package="Default">
-        <name>toXML</name>
-        <full_name>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toXML()</full_name>
-        <docblock line="41">
-          <description>Serialization to a simple XML element.</description>
-          <long-description></long-description>
-          <tag name="return" line="41" description="contains the serialized representation of the object" type="\SimpleXMLElement">
-            <type>\SimpleXMLElement</type>
-          </tag>
-        </docblock>
-        <inherited_from>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</inherited_from>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="50" package="Default">
-        <name>toXMLString</name>
-        <full_name>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toXMLString()</full_name>
-        <docblock line="50">
-          <description>Serialization to an XML string.</description>
-          <long-description></long-description>
-          <tag name="return" line="50" description="contains the serialized representation of the object" type="string">
-            <type>string</type>
-          </tag>
-        </docblock>
-        <inherited_from>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</inherited_from>
-      </method>
-      <method final="false" abstract="true" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\reports" line="60" package="Default">
-        <name>toString</name>
-        <full_name>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper::toString()</full_name>
-        <docblock line="60">
-          <description></description>
-          <long-description></long-description>
-          <tag name="return" line="60" description="a human-readable representation of the object" type="string">
-            <type>string</type>
-          </tag>
-        </docblock>
-        <inherited_from>\de\xqueue\maileon\api\client\xml\AbstractXMLWrapper</inherited_from>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="28" code="PPC:ERR-50008">No summary for method toString()</error>
-      <error line="37" code="PPC:ERR-50008">No summary for method toCsvString()</error>
-      <error line="17" code="PPC:ERR-50007">No summary for property $reason</error>
-      <error line="22" code="PPC:ERR-50007">No summary for property $count</error>
     </parse_markers>
   </file>
   <package name="Default" full_name="Default"/>
