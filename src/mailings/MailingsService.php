@@ -1086,7 +1086,8 @@ class MailingsService extends AbstractMaileonService
      */
     public function addAttachment($mailingId, $filename, $contentType, $contents)
     {
-        $queryParameters = array('filename' => $filename);
+        $queryParameters = array('filename' => urlencode($filename));
+        
         return $this->post(
             "mailings/${mailingId}/attachments",
             $contents,
