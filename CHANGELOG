@@ -1,9 +1,10 @@
-Date ???
+Date 2021-01-26
 Version 1.7.2
 - Added getCount method to de\xqueue\maileon\api\client\contacts\Contacts object
 - Added getType and getMailingsByKeywords to mailing service
 - Added parameter $embedTransactionId to getRecipients, getOpens, and getClicks
 - Added method for getting unsubscription reasons
+- Fixed bug when not being able to attach documents to a newsletter using special characters in target filename
 
 Date 2020-08-13
 Version 1.7.1

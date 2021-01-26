@@ -5620,7 +5620,7 @@ used in RESTful web services.</description>
       <error line="74" code="PPC:ERR-50007">No summary for property $verboseOut</error>
     </parse_markers>
   </file>
-  <file path="reports\ReportsService.php" generated-path="reports.ReportsService.html" hash="3b7ec76550d5e3fc52920ded209691c4" package="Default">
+  <file path="reports\ReportsService.php" generated-path="reports.ReportsService.html" hash="44a14e8d03c745334f5e38d164388870" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -7588,7 +7588,7 @@ used in RESTful web services.</description>
           <tag name="param" line="1322" description="&lt;p&gt;If provided, only the unsubscriptions before the given date will be returned. The value of&#10; to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00&lt;/p&gt;" type="integer" variable="$toDate">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1322" description="&lt;p&gt;String thatd escribes the order. Possible values are: &quot;count&quot; or &quot;name&quot;. Default is &quot;count&quot;.&lt;/p&gt;" type="string" variable="$order">
+          <tag name="param" line="1322" description="&lt;p&gt;String that describes the order. Possible values are: &quot;count&quot; or &quot;name&quot;. Default is &quot;count&quot;.&lt;/p&gt;" type="string" variable="$order">
             <type>string</type>
           </tag>
           <tag name="param" line="1322" description="&lt;p&gt;Describes if results will be ordered ascending or descending. Can be true or false, default is true.&lt;/p&gt;" type="array" variable="$asc">
@@ -20062,7 +20062,7 @@ with Maileon's REST API or in the API itself.</description>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
     </parse_markers>
   </file>
-  <file path="mailings\MailingsService.php" generated-path="mailings.MailingsService.html" hash="2790219c511675e2b0e7b3440781af27" package="Default">
+  <file path="mailings\MailingsService.php" generated-path="mailings.MailingsService.html" hash="7c2a1992a62305470d3043b1fea7480b" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -21944,16 +21944,16 @@ Tags from the described RSS-Feeds.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1107" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1108" package="Default">
         <name>getAttachments</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getAttachments()</full_name>
-        <docblock line="1107">
+        <docblock line="1108">
           <description>Returns a list of the registered attachments for the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1107" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1108" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1107" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1108" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21963,19 +21963,19 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1119" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1120" package="Default">
         <name>getAttachment</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getAttachment()</full_name>
-        <docblock line="1119">
+        <docblock line="1120">
           <description>Returns the attachment with the provided id as a file.</description>
           <long-description></long-description>
-          <tag name="param" line="1119" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1120" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1119" description="" type="integer" variable="$attachmentId">
+          <tag name="param" line="1120" description="" type="integer" variable="$attachmentId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1119" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1120" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -21990,16 +21990,16 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1130" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1131" package="Default">
         <name>getAttachmentsCount</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getAttachmentsCount()</full_name>
-        <docblock line="1130">
+        <docblock line="1131">
           <description>Returns the count of available attachments in the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1130" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1131" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1130" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1131" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -22009,16 +22009,16 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1141" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1142" package="Default">
         <name>deleteAttachments</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::deleteAttachments()</full_name>
-        <docblock line="1141">
+        <docblock line="1142">
           <description>Deletes all the attachments that belong to the mailing with the provided id. The mailing should not be sealed.</description>
           <long-description></long-description>
-          <tag name="param" line="1141" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1142" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1141" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1142" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -22028,22 +22028,22 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1155" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1156" package="Default">
         <name>deleteAttachment</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::deleteAttachment()</full_name>
-        <docblock line="1155">
+        <docblock line="1156">
           <description>Deletes the attachment with the provided id from the mailing. The mailing should not be sealed.</description>
           <long-description></long-description>
-          <tag name="param" line="1155" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1156" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1155" description="" type="integer" variable="$attachmentId">
+          <tag name="param" line="1156" description="" type="integer" variable="$attachmentId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1155" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1156" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
-          <tag name="throws" line="1155" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="1156" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -22058,21 +22058,21 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1173" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1174" package="Default">
         <name>copyAttachments</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::copyAttachments()</full_name>
-        <docblock line="1173">
+        <docblock line="1174">
           <description>Copies the attachments of a source mailing into a target mailing. Note that the target
  mailing should not be sealed and that the resulting total count of attachments in the
  target mailing should not exceed 10.</description>
           <long-description></long-description>
-          <tag name="param" line="1173" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1174" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1173" description="" type="integer" variable="$srcMailingId">
+          <tag name="param" line="1174" description="" type="integer" variable="$srcMailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1173" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1174" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -22087,16 +22087,16 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1186" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1187" package="Default">
         <name>getCustomProperties</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::getCustomProperties()</full_name>
-        <docblock line="1186">
+        <docblock line="1187">
           <description>Returns a list of custom properties for the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1186" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1187" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="return" line="1186" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1187" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -22106,19 +22106,19 @@ Tags from the described RSS-Feeds.</description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1199" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1200" package="Default">
         <name>addCustomProperties</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::addCustomProperties()</full_name>
-        <docblock line="1199">
+        <docblock line="1200">
           <description>Adds a list of custom properties to the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1199" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1200" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1199" description="&lt;p&gt;Array of CustomProperty or single property&lt;/p&gt;" type="array" variable="$properties">
+          <tag name="param" line="1200" description="&lt;p&gt;Array of CustomProperty or single property&lt;/p&gt;" type="array" variable="$properties">
             <type>array</type>
           </tag>
-          <tag name="return" line="1199" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1200" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -22133,19 +22133,19 @@ Tags from the described RSS-Feeds.</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1223" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1224" package="Default">
         <name>updateCustomProperty</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::updateCustomProperty()</full_name>
-        <docblock line="1223">
+        <docblock line="1224">
           <description>Updates a custom property of the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1223" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1224" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1223" description="" type="\de\xqueue\maileon\api\client\mailings\CustomProperty" variable="$property">
+          <tag name="param" line="1224" description="" type="\de\xqueue\maileon\api\client\mailings\CustomProperty" variable="$property">
             <type>\de\xqueue\maileon\api\client\mailings\CustomProperty</type>
           </tag>
-          <tag name="return" line="1223" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1224" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -22160,19 +22160,19 @@ Tags from the described RSS-Feeds.</description>
           <type>\de\xqueue\maileon\api\client\mailings\CustomProperty</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1242" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1243" package="Default">
         <name>deleteCustomProperty</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::deleteCustomProperty()</full_name>
-        <docblock line="1242">
+        <docblock line="1243">
           <description>Deletes a custom property of the mailing with the provided id.</description>
           <long-description></long-description>
-          <tag name="param" line="1242" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
+          <tag name="param" line="1243" description="&lt;p&gt;The ID of the mailing&lt;/p&gt;" type="integer" variable="$mailingId">
             <type>integer</type>
           </tag>
-          <tag name="param" line="1242" description="&lt;p&gt;The name of the property to delete&lt;/p&gt;" type="string" variable="$propertyName">
+          <tag name="param" line="1243" description="&lt;p&gt;The name of the property to delete&lt;/p&gt;" type="string" variable="$propertyName">
             <type>string</type>
           </tag>
-          <tag name="return" line="1242" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
+          <tag name="return" line="1243" description="" type="\de\xqueue\maileon\api\client\MaileonAPIResult">
             <type>\de\xqueue\maileon\api\client\MaileonAPIResult</type>
           </tag>
         </docblock>
@@ -22187,21 +22187,21 @@ Tags from the described RSS-Feeds.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1262" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1263" package="Default">
         <name>sendTestMail</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::sendTestMail()</full_name>
-        <docblock line="1262">
+        <docblock line="1263">
           <description>Sends a testmail for the mailing with the provided id to a given email address.</description>
           <long-description>If the email address does not exist within your contacts,
 the personalization is done according to your default personalization user configured in Maileon.
 &lt;p&gt;&lt;a href="http://dev.maileon.com/mailing-send-testmail-to-single-emailaddress"&gt;Documentation website&lt;/a&gt;&lt;/p&gt;</long-description>
-          <tag name="param" line="1262" description="&lt;p&gt;id of existing mailing&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\mailingId" variable="$mailingId">
+          <tag name="param" line="1263" description="&lt;p&gt;id of existing mailing&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\mailingId" variable="$mailingId">
             <type>\de\xqueue\maileon\api\client\mailings\mailingId</type>
           </tag>
-          <tag name="param" line="1262" description="&lt;p&gt;email address&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\email" variable="$email">
+          <tag name="param" line="1263" description="&lt;p&gt;email address&lt;/p&gt;" type="\de\xqueue\maileon\api\client\mailings\email" variable="$email">
             <type>\de\xqueue\maileon\api\client\mailings\email</type>
           </tag>
-          <tag name="throws" line="1262" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="1263" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -22216,19 +22216,19 @@ the personalization is done according to your default personalization user confi
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1278" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1279" package="Default">
         <name>sendTestMailToTestTargetGroup</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::sendTestMailToTestTargetGroup()</full_name>
-        <docblock line="1278">
+        <docblock line="1279">
           <description>Sends a testmail for the mailing with the provided id to a test-targetgroup givenby its ID.</description>
           <long-description></long-description>
-          <tag name="param" line="1278" description="" type="\de\xqueue\maileon\api\client\mailings\mailingId" variable="$mailingId">
+          <tag name="param" line="1279" description="" type="\de\xqueue\maileon\api\client\mailings\mailingId" variable="$mailingId">
             <type>\de\xqueue\maileon\api\client\mailings\mailingId</type>
           </tag>
-          <tag name="param" line="1278" description="" type="\de\xqueue\maileon\api\client\mailings\testTargetGroupId" variable="$testTargetGroupId">
+          <tag name="param" line="1279" description="" type="\de\xqueue\maileon\api\client\mailings\testTargetGroupId" variable="$testTargetGroupId">
             <type>\de\xqueue\maileon\api\client\mailings\testTargetGroupId</type>
           </tag>
-          <tag name="throws" line="1278" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
+          <tag name="throws" line="1279" description="" type="\de\xqueue\maileon\api\client\MaileonAPIException">
             <type>\de\xqueue\maileon\api\client\MaileonAPIException</type>
           </tag>
         </docblock>
@@ -22243,10 +22243,10 @@ the personalization is done according to your default personalization user confi
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1287" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="de\xqueue\maileon\api\client\mailings" line="1288" package="Default">
         <name>sxmlAppend</name>
         <full_name>\de\xqueue\maileon\api\client\mailings\MailingsService::sxmlAppend()</full_name>
-        <docblock line="1287">
+        <docblock line="1288">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -22686,9 +22686,9 @@ the personalization is done according to your default personalization user confi
       <notice line="68" code="PPC:ERR-50013">Parameter $mailingId could not be found in checkIfMailingExistsByName()</notice>
       <error line="625" code="PPC:ERR-50015">Argument $page_size is missing from the Docblock of getMailingsByKeywords</error>
       <error line="625" code="PPC:ERR-50014">Name of argument $page_size does not match with the DocBlock's name $page_index in getMailingsByKeywords()</error>
-      <error line="1287" code="PPC:ERR-50015">Argument $to is missing from the Docblock of sxmlAppend</error>
-      <error line="1287" code="PPC:ERR-50015">Argument $from is missing from the Docblock of sxmlAppend</error>
-      <error line="1287" code="PPC:ERR-50008">No summary for method sxmlAppend()</error>
+      <error line="1288" code="PPC:ERR-50015">Argument $to is missing from the Docblock of sxmlAppend</error>
+      <error line="1288" code="PPC:ERR-50015">Argument $from is missing from the Docblock of sxmlAppend</error>
+      <error line="1288" code="PPC:ERR-50008">No summary for method sxmlAppend()</error>
     </parse_markers>
   </file>
   <file path="xml\AbstractXMLWrapper.php" generated-path="xml.AbstractXMLWrapper.html" hash="c3b7c4750af67da4e34f3eedfb97b92c" package="Default">
