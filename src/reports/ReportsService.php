@@ -1308,7 +1308,7 @@ class ReportsService extends AbstractMaileonService
     *  If provided, only the unsubscriptions before the given date will be returned. The value of
     *  to_date must be a numeric value representing a point in time milliseconds afterJanuary 1, 1970 00:00:00
     * @param string $order
-    *  String thatd escribes the order. Possible values are: "count" or "name". Default is "count".
+    *  String that describes the order. Possible values are: "count" or "name". Default is "count".
     * @param array $asc
     *  Describes if results will be ordered ascending or descending. Can be true or false, default is true.
     * @param integer $pageIndex
