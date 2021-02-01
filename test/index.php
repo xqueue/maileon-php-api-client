@@ -135,6 +135,9 @@
         <li><input type="checkbox" name="mailings_32" value="true"> GET mailing subject</li>
         <li><input type="checkbox" name="mailings_33" value="true"> GET mailing cleanup option</li>
         <li><input type="checkbox" name="mailings_34" value="true"> SET mailing cleanup option</li>
+        <li><input type="checkbox" name="mailings_35" value="true"> SET mailing blacklist</li>
+        <li><input type="checkbox" name="mailings_36" value="true"> GET mailing blacklists</li>
+        <li><input type="checkbox" name="mailings_37" value="true"> DELETE mailing blacklist</li>
     </ul>
 
     <h2>Media - Tests</h2>

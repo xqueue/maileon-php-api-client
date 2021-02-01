@@ -14,6 +14,7 @@ use de\xqueue\maileon\api\client\reports\Recipient;
 use de\xqueue\maileon\api\client\reports\Conversion;
 use de\xqueue\maileon\api\client\reports\Subscriber;
 use de\xqueue\maileon\api\client\mailings\Attachment;
+use de\xqueue\maileon\api\client\mailings\MailingBlacklist;
 use de\xqueue\maileon\api\client\reports\FieldBackup;
 use de\xqueue\maileon\api\client\blacklists\Blacklist;
 use de\xqueue\maileon\api\client\reports\UniqueBounce;
@@ -93,12 +94,23 @@ class XMLDeserializer
                         $result[] = self::deserialize($contactEventTypeElement);
                     }
                     return $result;
-
+                    
                 case "targetgroup":
                     $result = new TargetGroup();
                     break;
-
+                    
                 case "targetgroups":
+                    $result = array();
+                    foreach ($xmlElement as $element) {
+                        $result[] = self::deserialize($element);
+                    }
+                    return $result;
+                    
+                case "mailing_blacklist":
+                    $result = new MailingBlacklist();
+                    break;
+                    
+                case "mailing_blacklists":
                     $result = array();
                     foreach ($xmlElement as $element) {
                         $result[] = self::deserialize($element);

@@ -1816,7 +1816,7 @@ checkResult($response);
             SET mailing cleanup option:
             <?php
 
-            $mailingId = 593;
+            $mailingId = 822;
 
             $response = $mailingService->setCleanupListsAndFilters($mailingId, true);
             checkResult($response);
@@ -1824,7 +1824,55 @@ checkResult($response);
             echo "<br />Result: " . $response->getResult();
             ?>
         </li>
+    <?php } if (isset($_POST['mailings_35'])) { ?>
+        <li>
+            SET mailing blacklist:
+            <?php
+
+            $mailingId = 822;
+            $mailingBlacklistId = 1;
+
+            $response = $mailingService->addMailingBlacklist($mailingId, $mailingBlacklistId);
+            checkResult($response);
+            ?>
+        </li>
+    <?php } if (isset($_POST['mailings_36'])) { ?>
+        <li>
+            GET mailing blacklists:
+            <?php
+
+            $mailingId = 822;
+
+            
+            $response = $mailingService->getMailingBlacklists($mailingId);
+            checkResult($response);
+            
+            
+            if ($response->isSuccess()) {
+                echo "<br /><pre><ul>";
+                foreach ($response->getResult() as $blacklist) {
+                    echo "<li>" . $blacklist->toString() . "</li>";
+                }
+                echo "</ul></pre>";
+            }
+            ?>
+        </li>
+    <?php } if (isset($_POST['mailings_37'])) { ?>
+        <li>
+            DELETE mailing blacklist:
+            <?php
+
+            $mailingId = 822;
+            $mailingBlacklistId = 1;
+
+            $response = $mailingService->deleteMailingBlacklist($mailingId, $mailingBlacklistId);
+            checkResult($response);
+            ?>
+        </li>
 <?php } ?>
+
+
+
 </ul>
 <?php } // End?>
 
