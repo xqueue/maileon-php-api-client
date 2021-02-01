@@ -1869,6 +1869,19 @@ checkResult($response);
             checkResult($response);
             ?>
         </li>
+    <?php } if (isset($_POST['mailings_38'])) { ?>
+        <li>
+            GET mailing domain:
+            <?php
+
+            $mailingId = 822;
+
+            $response = $mailingService->getMailingDomain($mailingId);
+            checkResult($response);
+            
+            var_dump($response->getResult());
+            ?>
+        </li>
 <?php } ?>
 
 

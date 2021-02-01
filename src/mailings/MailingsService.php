@@ -1309,6 +1309,19 @@ class MailingsService extends AbstractMaileonService
         return $this->delete("mailings/${mailingId}/mailingblacklists/${mailingBlacklistId}");
     }
     
+    
+    
+    /**
+     * Retrieve the domain of this mailing
+     *
+     * @param mailingId
+     * @throws MaileonAPIException
+     */
+    public function getMailingDomain($mailingId)
+    {
+        return $this->get("mailings/${mailingId}/domain/");
+    }
+    
     /**
      * Retrieve all blacklists assigned to this mailing
      *

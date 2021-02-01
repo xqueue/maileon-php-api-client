@@ -138,6 +138,7 @@
         <li><input type="checkbox" name="mailings_35" value="true"> SET mailing blacklist</li>
         <li><input type="checkbox" name="mailings_36" value="true"> GET mailing blacklists</li>
         <li><input type="checkbox" name="mailings_37" value="true"> DELETE mailing blacklist</li>
+        <li><input type="checkbox" name="mailings_38" value="true"> GET mailing domain</li>
     </ul>
 
     <h2>Media - Tests</h2>

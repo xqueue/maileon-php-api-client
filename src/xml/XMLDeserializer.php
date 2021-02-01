@@ -57,6 +57,7 @@ class XMLDeserializer
                 case "state":
                 case "url":
                 case "type":
+                case "domain":
                     return (string)$xmlElement;
                 case "locale":
                     return $xmlElement;
