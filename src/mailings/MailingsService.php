@@ -1285,6 +1285,41 @@ class MailingsService extends AbstractMaileonService
         return $this->post("mailings/${mailingId}/checks/testsendout", "", $queryParameters);
     }
     
+    /**
+     * Assigns a mailing blacklist to a mailing.
+     *
+     * @param mailingId id of the existing mailing
+     * @param mailingBlacklistId id of the mailing blacklist to be assigned to the mailing
+     * @throws MaileonAPIException
+     */
+    public function addMailingBlacklist($mailingId, $mailingBlacklistId)
+    {
+        return $this->post("mailings/${mailingId}/mailingblacklists/${mailingBlacklistId}");
+    }
+    
+    /**
+     * Deletes a mailing blacklist from a mailing.
+     *
+     * @param mailingId
+     * @param mailingBlacklistId
+     * @throws MaileonAPIException
+     */
+    public function deleteMailingBlacklist($mailingId, $mailingBlacklistId)
+    {
+        return $this->delete("mailings/${mailingId}/mailingblacklists/${mailingBlacklistId}");
+    }
+    
+    /**
+     * Retrieve all blacklists assigned to this mailing
+     *
+     * @param mailingId
+     * @throws MaileonAPIException
+     */
+    public function getMailingBlacklists($mailingId)
+    {
+        return $this->get("mailings/${mailingId}/mailingblacklists/");
+    }
+    
     public function sxmlAppend(\SimpleXMLElement $to, \SimpleXMLElement $from)
     {
         $toDom = dom_import_simplexml($to);
