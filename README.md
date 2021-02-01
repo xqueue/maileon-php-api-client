@@ -109,13 +109,7 @@ The client can then be included by adding the autoloader.
 
 	// Include the Maileon API Client classloader 
 	require "vendor/autoload.php";
-	
 
-## Running the PHPUnit tests
-
-Download [PHPUnit](http://phpunit.de/) and put its executable on your `PATH`. If you're on a system other than Windows, adjust the name of the `phpunit` executable inside `build.properties`. Make sure that your Maileon API key is entered correctly inside the file `test/conf/config.include`.
-
-Now run `ant test` inside the directory where you unzipped the distributable.
 
 ## Connecting to the API using HTTPS
 
