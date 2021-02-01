@@ -49,6 +49,11 @@ class Click extends AbstractXMLWrapper
     public $transactionId;
     
     /**
+     * @var string
+     */
+    public $contactHash;
+    
+    /**
      * @var integer
      */
     public $messageId;
@@ -87,6 +92,7 @@ class Click extends AbstractXMLWrapper
         ", linkTags=" . $linkTags .
         ", clientInfos=" . $this->clientInfos->toString() .
         ", transactionId=" . $this->transactionId .
+        ", contactHash=" . $this->contactHash .
         ", messageId=" . $this->messageId ."]";
     }
 
@@ -115,6 +121,9 @@ class Click extends AbstractXMLWrapper
         }
         if (isset($xmlElement->transaction_id)) {
             $this->transactionId = $xmlElement->transaction_id;
+        }
+        if (isset($xmlElement->contact_hash)) {
+            $this->contactHash = $xmlElement->contact_hash;
         }
         if (isset($xmlElement->msg_id )) {
             $this->messageId = $xmlElement->msg_id ;
@@ -145,6 +154,7 @@ class Click extends AbstractXMLWrapper
         ";" . $this->linkUrl .
         ";" . $this->clientInfos->toCsvString() .
         ";" . $this->transactionId .
+        ";" . $this->contactHash .
         ";" . $this->messageId;
     }
 

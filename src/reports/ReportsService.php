@@ -61,6 +61,13 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of
      *  page_size must be in the range 1 to 1000.
+     * @param bool $embedTransactionId
+     *  If the set to true, the attribut "transaction_id" of a transaction will be returned that caused this click, if available.
+     * @param bool $embedContactHash
+     *  If the set to true, anonymized contacts will be annotated with a random number that is the same for a contact within each sendout.
+     *  With this flag, it is possible to calculate unique clicks from all clicks, even if contacts are unsubscribed and therefore anonymized.
+     *  If in two opens of the same sendout the contact hash is the same, then the same contact clicked twice. 
+     *  In different mails the same contact hash might occur on a click but will most probably not belong to the same (anonymized) contact.
      * @return MaileonAPIResult
      */
     public function getOpens(
@@ -80,7 +87,8 @@ class ReportsService extends AbstractMaileonService
         $embedFieldBackups = false,
         $pageIndex = 1,
         $pageSize = 100,
-        $embedTransactionId = false
+        $embedTransactionId = false,
+        $embedContactHash = false
     ) {
         $params = $this->createQueryParameters(
             $pageIndex,
@@ -109,6 +117,9 @@ class ReportsService extends AbstractMaileonService
         }
         if (isset($embedTransactionId)) {
             $params['embed_transaction_id'] = ($embedTransactionId == true) ? "true" : "false";
+        }
+        if (isset($embedContactHash)) {
+            $params['embed_contact_hash'] = ($embedContactHash == true) ? "true" : "false";
         }
         $params = $this->appendArrayFields($params, "social_network", $socialNetworkFilter);
         $params = $this->appendArrayFields($params, "device_type", $deviceTypeFilter);
@@ -490,6 +501,13 @@ class ReportsService extends AbstractMaileonService
      *  the range 1 to 1000.
      * @param bool $embedLinkTags
      *  If the set to true, available link tags will be appended to each click.
+     * @param bool $embedTransactionId
+     *  If the set to true, the attribut "transaction_id" of a transaction will be returned that caused this click, if available.
+     * @param bool $embedContactHash
+     *  If the set to true, anonymized contacts will be annotated with a random number that is the same for a contact within each sendout.
+     *  With this flag, it is possible to calculate unique clicks from all clicks, even if contacts are unsubscribed and therefore anonymized.
+     *  If in two opens of the same sendout the contact hash is the same, then the same contact clicked twice. 
+     *  In different mails the same contact hash might occur on a click but will most probably not belong to the same (anonymized) contact.
      * @return MaileonAPIResult
      */
     public function getClicks(
@@ -513,7 +531,8 @@ class ReportsService extends AbstractMaileonService
         $pageIndex = 1,
         $pageSize = 100,
         $embedLinkTags = false,
-        $embedTransactionId = false
+        $embedTransactionId = false,
+        $embedContactHash = false
     ) {
         $params = $this->createQueryParameters(
             $pageIndex,
@@ -549,6 +568,9 @@ class ReportsService extends AbstractMaileonService
         }
         if (isset($embedTransactionId)) {
             $params['embed_transaction_id'] = ($embedTransactionId == true) ? "true" : "false";
+        }
+        if (isset($embedContactHash)) {
+            $params['embed_contact_hash'] = ($embedContactHash == true) ? "true" : "false";
         }
         $params = $this->appendArrayFields($params, "link_tag", $linkTagFilter);
         $params = $this->appendArrayFields($params, "social_network", $socialNetworkFilter);

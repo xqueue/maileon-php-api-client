@@ -1,5 +1,6 @@
 Date 2021-02-01
 Version 1.7.3
+- Added parameter "embedContactHash" to getOpens and getClicks
 - Added method to get domain used for a mailing
 - Added methods for adding, deleting and retrieving mailing specific blacklists (Versandsperrlisten) to MailingsService
 - Fixing problem of being not able to set values containing XML special characters in MailingsService #setSender, #setSubject, #setPreviewText, and #setTemplate

@@ -2153,16 +2153,17 @@ GET opens:
 	$socialNetworkFilter = null;
 	$deviceTypeFilter = null;
 	$embedEmailClientInfos = true;
-	$excludeAnonymousOpens = true;
+	$excludeAnonymousOpens = false;
 	$standardFields = null;
 	$customFields = null;
 	$embedFieldBackups = false;
 	$pageIndex = $TESTDATA['page_index'];
 	$pageSize = $TESTDATA['page_size'];
 	$embedTransactionId = true;
+	$embedContactHash = true;
 
 
-	$response = $reportsService->getOpens($fromDate, $toDate, $mailingIds, $contactIds, $contactEmails, $contactExternalIds, $formatFilter, $socialNetworkFilter, $deviceTypeFilter, $embedEmailClientInfos, $excludeAnonymousOpens, $standardFields, $customFields, $embedFieldBackups, $pageIndex, $pageSize, $embedTransactionId);
+	$response = $reportsService->getOpens($fromDate, $toDate, $mailingIds, $contactIds, $contactEmails, $contactExternalIds, $formatFilter, $socialNetworkFilter, $deviceTypeFilter, $embedEmailClientInfos, $excludeAnonymousOpens, $standardFields, $customFields, $embedFieldBackups, $pageIndex, $pageSize, $embedTransactionId, $embedContactHash);
 	checkResult($response);
 	
 	// Print all results
@@ -2241,8 +2242,9 @@ GET clicks:
     $contactIds = array();
     
     $embedTransactionId = true;
+    $embedContactHash = true;
 
-    $response = $reportsService->getClicks($fromDate, null, $mailingIds, $contactIds, null, null, null, null, null, null, null, null, true, false, array("TITLE"), array("Dorig"), false, $TESTDATA['page_index'], $TESTDATA['page_size'], true, $embedTransactionId);
+    $response = $reportsService->getClicks($fromDate, null, $mailingIds, $contactIds, null, null, null, null, null, null, null, null, true, false, array("TITLE"), array("Dorig"), false, $TESTDATA['page_index'], $TESTDATA['page_size'], true, $embedTransactionId, $embedContactHash);
 	checkResult($response);
 	
 	// Print all results

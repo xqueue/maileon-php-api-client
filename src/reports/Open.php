@@ -33,6 +33,11 @@ class Open extends AbstractXMLWrapper
     public $transactionId;
     
     /**
+     * @var string
+     */
+    public $contactHash;
+    
+    /**
      * @var integer
      */
     public $messageId;
@@ -58,6 +63,7 @@ class Open extends AbstractXMLWrapper
         ", mailingId=" . $this->mailingId .
         ", clientInfos=" . $this->clientInfos->toString() .
         ", transactionId=" . $this->transactionId .
+        ", contactHash=" . $this->contactHash .
         ", messageId=" . $this->messageId ."]";
     }
 
@@ -72,6 +78,7 @@ class Open extends AbstractXMLWrapper
         ";" . $this->mailingId .
         ";" . $this->clientInfos->toCsvString() .
         ";" . $this->transactionId .
+        ";" . $this->contactHash .
         ";" . $this->messageId;
     }
 
@@ -94,6 +101,9 @@ class Open extends AbstractXMLWrapper
         }
         if (isset($xmlElement->transaction_id)) {
             $this->transactionId = $xmlElement->transaction_id;
+        }
+        if (isset($xmlElement->contact_hash)) {
+            $this->transactionId = $xmlElement->contact_hash;
         }
         if (isset($xmlElement->msg_id )) {
             $this->messageId = $xmlElement->msg_id ;
