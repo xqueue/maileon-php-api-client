@@ -309,7 +309,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function setSender($mailingId, $email)
     {
-        return $this->post('mailings/' . $mailingId . '/contents/sender', "<sender>" . $email . "</sender>");
+        return $this->post('mailings/' . $mailingId . '/contents/sender', "<sender><![CDATA[" . $email . "]]></sender>");
     }
     
     /**
@@ -355,7 +355,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function setSubject($mailingId, $subject)
     {
-        return $this->post('mailings/' . $mailingId . '/contents/subject', "<subject>" . $subject . "</subject>");
+        return $this->post('mailings/' . $mailingId . '/contents/subject', "<subject><![CDATA[" . $subject . "]]></subject>");
     }
     
     /**
@@ -388,7 +388,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post(
             'mailings/' . $mailingId . '/contents/previewtext',
-            "<previewtext>" . $previewText . "</previewtext>"
+            "<previewtext><![CDATA[" . $previewText . "]]></previewtext>"
         );
     }
     
@@ -425,7 +425,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function setTemplate($mailingId, $template)
     {
-        return $this->put('mailings/' . $mailingId . '/template', "<templateId>" . $template . "</templateId>");
+        return $this->put('mailings/' . $mailingId . '/template', "<templateId><![CDATA[" . $template . "]]></templateId>");
     }
     
     /**
@@ -951,7 +951,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function setName($mailingId, $name)
     {
-        return $this->post('mailings/' . $mailingId . '/name', "<name>" . $name . "</name>");
+        return $this->post('mailings/' . $mailingId . '/name', "<name><![CDATA[" . $name . "]]></name>");
     }
     
     /**
@@ -978,7 +978,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function setTags($mailingId, $tags)
     {
-        return $this->post('mailings/' . $mailingId . '/settings/tags', "<tags>" . join("#", $tags) . "</tags>");
+        return $this->post('mailings/' . $mailingId . '/settings/tags', "<tags><![CDATA[" . join("#", $tags) . "]]></tags>");
     }
     
     /**
