@@ -2,11 +2,10 @@
 
 namespace de\xqueue\maileon\api\client\mailings;
 
-use de\xqueue\maileon\api\client\MaileonAPIException;
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
 
 /**
- * The wrapper class for a Maileon Mailing Blacklist (Versandsperrliste in German). This class wraps the XML structure.
+ * The wrapper class for a Maileon mailing blacklist (Versandsperrliste in German). This class wraps the XML structure.
  *
  * @author Marcus Beckerle | XQueue GmbH | <a href="marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
@@ -66,7 +65,21 @@ class MailingBlacklist extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        throw new MaileonAPIException('not implemented');
+        $xmlString = "<?xml version=\"1.0\"?><mailing_blacklist></mailing_blacklist>";
+        $xml = new \SimpleXMLElement($xmlString);
+        
+        if (isset($this->id)) {
+            $xml->addChild("id", $this->id);
+        }
+        if (isset($this->name)) {
+            $xml->addChild("name", $this->name);
+        }
+        if (isset($this->createdTime)) {
+            $xml->addChild("created_time", $this->createdTime);
+        }
+        if (isset($this->createdUser)) {
+            $xml->addChild("created_user", $this->createdUser);
+        }
     }
     
     /**

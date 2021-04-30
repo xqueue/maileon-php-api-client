@@ -28,6 +28,8 @@ use de\xqueue\maileon\api\client\account\AccountPlaceholder;
 use de\xqueue\maileon\api\client\contactfilters\ContactFilter;
 use de\xqueue\maileon\api\client\transactions\TransactionType;
 use de\xqueue\maileon\api\client\contactevents\ContactEventType;
+use de\xqueue\maileon\api\client\blacklists\mailings\MailingBlacklistExpressions;
+use de\xqueue\maileon\api\client\blacklists\mailings\FilteredMailingBlacklistExpression;
 
 class XMLDeserializer
 {
@@ -117,6 +119,24 @@ class XMLDeserializer
                         $result[] = self::deserialize($element);
                     }
                     return $result;
+                    
+                case "filtered_expression":
+                    $result = new FilteredMailingBlacklistExpression();
+                    break;
+                    
+                case "filtered_expressions":
+                    $result = array();
+                    foreach ($xmlElement as $element) {
+                        $result[] = self::deserialize($element);
+                    }
+                    return $result;
+                    
+                case "mailing_blacklist_expression":
+                    break;
+                    
+                case "mailing_blacklist_expressions":
+                    $result = new MailingBlacklistExpressions();
+                    break;
 
                 case "contactfilter":
                     $result = new ContactFilter();

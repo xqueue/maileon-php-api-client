@@ -33,7 +33,7 @@ class Blacklist extends AbstractXMLWrapper
      */
     public function toString()
     {
-        return "Blacklist [id=" . $this->id . ", name=" . $this->id . ", entries=[" .
+        return "Blacklist [id=" . $this->id . ", name=" . $this->name . ", entries=[" .
             (is_array($this->entries) ? implode(", ", $this->entries) : "") . "]]";
     }
 
