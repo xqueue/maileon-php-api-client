@@ -133,7 +133,7 @@ class TransactionsService extends AbstractMaileonService
      * @param array $transactions
      * an array of Transaction objects
      * @param boolean $release
-     * whether the transaction should be released instantly.
+     * Deprecated parameter that is not used anymore
      * @param boolean $ignoreInvalidEvents
      * If set to false, exceptions like invalid contacts will cause the service to return 400 Bad request.
      * @return MaileonAPIResult

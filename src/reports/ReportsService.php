@@ -62,12 +62,12 @@ class ReportsService extends AbstractMaileonService
      *  The maximum count of items in the result page. If provided, the value of
      *  page_size must be in the range 1 to 1000.
      * @param bool $embedTransactionId
-     *  If the set to true, the attribut "transaction_id" of a transaction will be returned that caused this click, if available.
+     *  If the set to true, the attribut "transaction_id" of a transaction will be returned that caused this open, if available.
      * @param bool $embedContactHash
      *  If the set to true, anonymized contacts will be annotated with a random number that is the same for a contact within each sendout.
-     *  With this flag, it is possible to calculate unique clicks from all clicks, even if contacts are unsubscribed and therefore anonymized.
-     *  If in two opens of the same sendout the contact hash is the same, then the same contact clicked twice. 
-     *  In different mails the same contact hash might occur on a click but will most probably not belong to the same (anonymized) contact.
+     *  With this flag, it is possible to calculate unique opens from all opens, even if contacts are unsubscribed and therefore anonymized.
+     *  If in two opens of the same sendout the contact hash is the same, then the same contact opened twice. 
+     *  In different mails the same contact hash might occur on an open but will most probably not belong to the same (anonymized) contact.
      * @return MaileonAPIResult
      */
     public function getOpens(
@@ -506,7 +506,7 @@ class ReportsService extends AbstractMaileonService
      * @param bool $embedContactHash
      *  If the set to true, anonymized contacts will be annotated with a random number that is the same for a contact within each sendout.
      *  With this flag, it is possible to calculate unique clicks from all clicks, even if contacts are unsubscribed and therefore anonymized.
-     *  If in two opens of the same sendout the contact hash is the same, then the same contact clicked twice. 
+     *  If in two clicks of the same sendout the contact hash is the same, then the same contact clicked twice. 
      *  In different mails the same contact hash might occur on a click but will most probably not belong to the same (anonymized) contact.
      * @return MaileonAPIResult
      */
