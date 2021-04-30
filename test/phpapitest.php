@@ -31,6 +31,8 @@ use de\xqueue\maileon\api\client\Blacklists\BlacklistsService;
 use de\xqueue\maileon\api\client\account\AccountService;
 use de\xqueue\maileon\api\client\transactions\TransactionType;
 use de\xqueue\maileon\api\client\transactions\DataType;
+use de\xqueue\maileon\api\client\blacklists\mailings\MailingBlacklistsService;
+use de\xqueue\maileon\api\client\blacklists\mailings\MailingBlacklistExpressions;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -3029,6 +3031,99 @@ POST add entries to blacklist
 	
 	$response = $blacklistsService->addEntriesToBlacklist(39602, array('someone@toblacklist.com', 'another.person@isblacklisted.com'));
 	checkResult($response);
+?>
+</li>
+<?php } ?>
+<?php } ?>
+
+<?php 
+if (isset($_POST['mailing_blacklists_1'])
+    || isset($_POST['mailing_blacklists_2'])
+    || isset($_POST['mailing_blacklists_3'])
+    || isset($_POST['mailing_blacklists_4'])
+    || isset($_POST['mailing_blacklists_5'])
+    || isset($_POST['mailing_blacklists_6'])) {?>
+<h2>Blacklists - Tests</h2>
+
+<?php
+	$mailingBlacklistsService = new MailingBlacklistsService($config);
+	$mailingBlacklistsService->setDebug($debug);
+?>
+
+
+        
+        
+<ul>
+<?php if (isset($_POST['mailing_blacklists_1'])) { ?>
+<li>
+GET a list of all mailing blacklists
+<?php
+    $response = $mailingBlacklistsService->getMailingBlacklists(1,1000);
+
+	checkResult($response);
+	if ($response->isSuccess()) {
+		echo '<br /><pre>Returned mailing blacklists: <ul>';
+		foreach ($response->getResult() as $blacklist) {
+			echo '<li>' . $blacklist->toString() . '</li>';
+		}
+		echo "</ul></pre>";
+	}
+?>
+</li>
+<?php } if (isset($_POST['mailing_blacklists_2'])) { ?>
+<li>
+GET a particular mailing blacklist
+<?php
+$response = $mailingBlacklistsService->getMailingBlacklist(562);
+	checkResult($response);
+	if ($response->isSuccess()) {
+		echo '<br /><pre><ul><li>' . $response->getResult()->toString() . '</li></ul></pre>';
+	}
+?>
+</li>
+<?php } if (isset($_POST['mailing_blacklists_3'])) { ?>
+<li>
+POST create a mailing blacklist
+<?php
+    $response = $mailingBlacklistsService->createMailingBlacklist("My new mailing blacklist");
+	checkResult($response);
+	if ($response->isSuccess()) {
+	    echo '<br /><pre><ul><li>' . $response->getBodyData() . '</li></ul></pre>';
+	}
+?>
+</li>
+<?php } if (isset($_POST['mailing_blacklists_4'])) { ?>
+<li>
+PUT update a mailing blacklist
+<?php
+$response = $mailingBlacklistsService->updateMailingBlacklist(562, "My new mailing blacklist name");
+	checkResult($response);
+?>
+</li>
+<?php } if (isset($_POST['mailing_blacklists_5'])) { ?>
+<li>
+DELETE delete a mailing blacklist   
+<?php
+$response = $mailingBlacklistsService->deleteMailingBlacklist(562);
+	checkResult($response);
+?>
+</li>
+<?php } if (isset($_POST['mailing_blacklists_6'])) { ?>
+<li>
+POST add entries to a mailing blacklist
+<?php
+    $expressions = new MailingBlacklistExpressions(array("*.gmx","max.mustermann@xqueue.com","max.mustermann*"));
+    
+    $response = $mailingBlacklistsService->addEntriesToBlacklist(562, $expressions);
+    checkResult($response);
+    
+    if ($response->isSuccess()) {
+        echo '<br /><pre>Returned filter reasons: <ul>';
+        foreach ($response->getResult() as $filteredExpression) {
+            echo '<li>' . $filteredExpression->toString() . '</li>';
+        }
+        echo "</ul></pre>";
+    }
 ?>
 </li>
 <?php } ?>

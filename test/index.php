@@ -190,6 +190,16 @@
         <li><input type="checkbox" name="blacklists_3" value="true"> POST add entries to blacklist</li>
     </ul>
 
+    <h2>Mailing Blacklists - Tests</h2>
+    <ul>
+        <li><input type="checkbox" name="mailing_blacklists_1" value="true"> GET get mailing blacklists</li>
+        <li><input type="checkbox" name="mailing_blacklists_2" value="true"> GET get a mailing blacklist</li>
+        <li><input type="checkbox" name="mailing_blacklists_3" value="true"> POST create a mailing blacklist</li>
+        <li><input type="checkbox" name="mailing_blacklists_4" value="true"> PUT update a mailing blacklist</li>
+        <li><input type="checkbox" name="mailing_blacklists_5" value="true"> DELETE delete a mailing blacklist</li>
+        <li><input type="checkbox" name="mailing_blacklists_6" value="true"> POST add entries to a mailing blacklist</li>
+    </ul>
+
     <h2>Account - Tests</h2>
     <ul>
         <li><input type="checkbox" name="account_1" value="true"> GET a list of all account placeholders</li>
