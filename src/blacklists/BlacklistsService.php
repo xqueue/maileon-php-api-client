@@ -1,6 +1,6 @@
 <?php
 
-namespace de\xqueue\maileon\api\client\Blacklists;
+namespace de\xqueue\maileon\api\client\blacklists;
 
 use de\xqueue\maileon\api\client\AbstractMaileonService;
 use de\xqueue\maileon\api\client\MaileonAPIException;
