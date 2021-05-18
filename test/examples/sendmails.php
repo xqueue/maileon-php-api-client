@@ -1,7 +1,6 @@
 <?php
     namespace Maileon\Test\Examples;
 
-    use Maileon\HTTPResponseCodes;
     use de\xqueue\maileon\api\client\contacts\ContactsService;
     use de\xqueue\maileon\api\client\mailings\MailingsService;
     use de\xqueue\maileon\api\client\targetgroups\TargetGroupsService;
@@ -12,7 +11,8 @@
     use de\xqueue\maileon\api\client\contacts\Permission;
     use de\xqueue\maileon\api\client\contactfilters\ContactFilter;
     use de\xqueue\maileon\api\client\contacts\SynchronizationMode;
-
+    use de\xqueue\maileon\api\client\HTTPResponseCodes;
+                
     // The maileon configuration
     $config = array(
         "BASE_URI" => "http://api.maileon.com/1.0",
