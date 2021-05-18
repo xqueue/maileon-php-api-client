@@ -1324,7 +1324,7 @@ checkResult($response);
         <?php
 		$name= "APITest".generateRandomString();
         $subject = "test subject";
-        $response = $mailingService->createMailing($name . "_regular", $subject, true, "regular");
+        $response = $mailingService->createMailing($name . "_regular", $subject, true, "regular", "v1");
         checkResult($response);
 
 		$mailingId = $response->getResult();
@@ -3074,7 +3074,7 @@ GET a list of all mailing blacklists
 <li>
 GET a particular mailing blacklist
 <?php
-$response = $mailingBlacklistsService->getMailingBlacklist(562);
+$response = $mailingBlacklistsService->getMailingBlacklist(2);
 	checkResult($response);
 	if ($response->isSuccess()) {
 		echo '<br /><pre><ul><li>' . $response->getResult()->toString() . '</li></ul></pre>';
@@ -3096,7 +3096,7 @@ POST create a mailing blacklist
 <li>
 PUT update a mailing blacklist
 <?php
-$response = $mailingBlacklistsService->updateMailingBlacklist(562, "My new mailing blacklist name");
+$response = $mailingBlacklistsService->updateMailingBlacklist(2, "My new mailing blacklist name");
 	checkResult($response);
 ?>
 </li>
@@ -3114,7 +3114,7 @@ POST add entries to a mailing blacklist
 <?php
     $expressions = new MailingBlacklistExpressions(array("*.gmx","max.mustermann@xqueue.com","max.mustermann*"));
     
-    $response = $mailingBlacklistsService->addEntriesToBlacklist(562, $expressions);
+    $response = $mailingBlacklistsService->addEntriesToBlacklist(2, $expressions);
     checkResult($response);
     
     if ($response->isSuccess()) {

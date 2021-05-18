@@ -25,15 +25,21 @@ class MailingsService extends AbstractMaileonService
      *  this parameter was never used by the API
      * @param string $type
      *  the type of the mailing, which can be one of 'doi', 'trigger', or 'regular'.
+     * @param string $editorVersion
+     *  the version of the CMS to create the mailing for.
+     *  Valid values for CMS1: 'v1', '1'. 
+     *  Valid values for CMS2: 'v2', '2'. 
+     *  By default (no value), the mailing will be created as a CMS2 template, if CMS2 is activated.
      * @return MaileonAPIResult
      *  the result of the operation
      */
-    public function createMailing($name, $subject, $deprecatedParameter = false, $type = "regular")
+    public function createMailing($name, $subject, $deprecatedParameter = false, $type = "regular", $editorVersion = "")
     {
         $queryParameters = array(
             'name' => urlencode($name),
             'subject' => urlencode($subject),
             'type' => urlencode($type),
+            'editorVersion' => urlencode($editorVersion)
         );
         
         return $this->post('mailings', "", $queryParameters);
