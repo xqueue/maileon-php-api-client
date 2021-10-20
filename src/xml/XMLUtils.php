@@ -38,7 +38,10 @@ abstract class XMLUtils
         if ($new_child !== null) {
             $node = dom_import_simplexml($new_child);
             $no = $node->ownerDocument;
-            $node->appendChild($no->createCDATASection($value));
+            // createCDATASection() returns an empty CDATA if value is a false boolean
+            // workaround: use intval of value instead
+            $cdata = $no->createCDATASection(is_bool($value) ? intval($value) : $value);
+            $node->appendChild($cdata);
         }
 
         return $new_child;
