@@ -1371,7 +1371,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getTrackingStrategy($mailingId)
     {
-        return $this->get('mailings/' . $mailingId . '/settings/trackingstrategy');
+        return $this->get("mailings/${mailingId}/settings/trackingstrategy");
     }
     
     /**
