@@ -1345,4 +1345,49 @@ class MailingsService extends AbstractMaileonService
         $fromDom = dom_import_simplexml($from);
         $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
     }
+    
+    /**
+     * Get the configured recipient alias for the given mailing
+     *
+     * @param mailingId
+     * @throws MaileonAPIException
+     */
+    public function getRecipientAlias($mailingId)
+    {
+        return $this->get("mailings/${mailingId}/contents/recipientalias");
+    }
+
+    /**
+     * Get the tracking strategy for the given mailing
+     *
+     * @param number mailingId
+     * @return
+     * @throws MaileonAPIException
+     */
+    public function getTrackingStrategy($mailingId)
+    {
+        return $this->get('mailings/' . $mailingId . '/settings/trackingstrategy');
+    }
+    
+    /**
+     * Get the configured speed level for the given mailing
+     *
+     * @param mailingId
+     * @throws MaileonAPIException
+     */
+    public function getSpeedLevel($mailingId)
+    {
+        return $this->get("mailings/${mailingId}/settings/speedlevel");
+    }
+    
+    /**
+     * Get the configured post sendout cleanup state for the given mailing
+     *
+     * @param mailingId
+     * @throws MaileonAPIException
+     */
+    public function getPostSendoutCleanupState($mailingId)
+    {
+        return $this->get("mailings/${mailingId}/settings/post_sendout_cleanup");
+    }
 }
