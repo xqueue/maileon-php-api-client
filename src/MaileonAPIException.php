@@ -23,7 +23,8 @@ class MaileonAPIException extends \RuntimeException
     /**
      *
      * @return false|string
-     *  the HTTP response body if there was one, false otherwise
+     *  the HTTP response body if there was one, false otherwise.
+     *  If a CURL error occured, this returns the ID of the CURL exception, see e.g. https://curl.se/libcurl/c/libcurl-errors.html
      */
     public function getResponse()
     {

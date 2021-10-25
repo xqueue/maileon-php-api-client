@@ -39,8 +39,13 @@ class MailingsService extends AbstractMaileonService
             'name' => urlencode($name),
             'subject' => urlencode($subject),
             'type' => urlencode($type),
-            'editorVersion' => urlencode($editorVersion)
         );
+        
+        // As of deployment on 23.08.2021 empty strings are not accepted anymore. This will be changed to work again in
+        // near future but to make the client work again, leave the variable if not set.
+        if (!empty($editorVersion)) {
+            $queryParameters['editorVersion'] = urlencode($editorVersion);
+        }
         
         return $this->post('mailings', "", $queryParameters);
     }
