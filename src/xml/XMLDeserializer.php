@@ -55,6 +55,7 @@ class XMLDeserializer
                 case 'templateid':
                 case "previewtext":
                 case "subject":
+                case "sender":
                 case "senderalias":
                 case "ignore_permission":
                 case "state":
