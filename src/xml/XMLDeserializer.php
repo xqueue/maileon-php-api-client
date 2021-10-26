@@ -52,6 +52,7 @@ class XMLDeserializer
                 case "name":
                     return $xmlElement;
                 case "templateId":
+                case 'templateid':
                 case "previewtext":
                 case "subject":
                 case "senderalias":
@@ -60,6 +61,9 @@ class XMLDeserializer
                 case "url":
                 case "type":
                 case "domain":
+                case 'tracking_strategy':
+                case "speed_level":
+                case 'recipientalias':
                     return (string)$xmlElement;
                 case "locale":
                     return $xmlElement;
