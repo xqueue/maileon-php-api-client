@@ -24,6 +24,7 @@ class Contact extends AbstractXMLWrapper
     public $updated;
     public $standard_fields;
     public $custom_fields;
+    public $preferences;
 
     /**
      * Constructor initializing default values.
@@ -51,7 +52,8 @@ class Contact extends AbstractXMLWrapper
         $standard_fields = array(),
         $custom_fields = array(),
         $created = null,
-        $updated = null
+        $updated = null,
+        $preferences = array()
     ) {
         $this->id = $id;
         $this->email = $email;
@@ -62,6 +64,7 @@ class Contact extends AbstractXMLWrapper
         $this->custom_fields = $custom_fields;
         $this->created = $created;
         $this->updated = $updated;
+        $this->preferences = $preferences;
     }
 
     /**
@@ -110,6 +113,15 @@ class Contact extends AbstractXMLWrapper
                 // The trim is required to make a safer string from the object
             }
         }
+
+        if (isset($xmlElement->preferences)) {
+            $this->preferences = array();
+            foreach ($xmlElement->preferences->children() as $preference) {
+                $preference_obj = new Preference();
+                $preference_obj->fromXML($preference);
+                array_push($this->preferences, $preference_obj);
+            }
+        }
     }
 
     /**
@@ -146,7 +158,6 @@ class Contact extends AbstractXMLWrapper
         if (isset($this->anonymous)) {
             $xml->addChild("anonymous", $this->anonymous);
         }
-
         if (isset($this->created)) {
             $xml->addChild("created", $this->created);
         }
@@ -173,6 +184,19 @@ class Contact extends AbstractXMLWrapper
 
                 XMLUtils::addChildAsCDATA($field, "value", $value);
                 //$field->addChild("value", $value);
+            }
+        }
+
+        if (isset($this->preferences)) {
+            $preferences_field = $xml->addChild("preferences");
+            foreach ($this->preferences as $preference) {
+                $preference_field = $preferences_field->addChild("preference");
+                $preference_field->addChild("name", $preference->name);
+                $preference_field->addChild("category", $preference->category);
+                
+                XMLUtils::addChildAsCDATA($preference_field, "value", $preference->value);
+
+                $preference_field->addChild("source", $preference->source);
             }
         }
 
@@ -218,6 +242,14 @@ class Contact extends AbstractXMLWrapper
             $customfields = rtrim($customfields, ',');
         }
 
+        $preferences = "";
+        if (isset($this->preferences)) {
+            foreach ($this->preferences as $preference) {
+                $preferences .= $preference->toString() . ",";
+            }
+            $preferences = rtrim($preferences, ',');
+        }
+
         $permission = "";
         if (isset($this->permission)) {
             $permission = $this->permission->getCode();
@@ -227,7 +259,8 @@ class Contact extends AbstractXMLWrapper
         . $this->email . ", permission=" . $permission . ", external_id=" . $this->external_id
         . ", anonymous=" . (($this->anonymous == true) ? "true" : "false") .
         ", created=" . $this->created . ", updated=" . $this->updated
-        . ", standard_fields={" . $standard_fields . "}, customfields={" . $customfields . "}]";
+        . ", standard_fields={" . $standard_fields . "}, customfields={" . $customfields .
+        "}, preferences={" . $preferences . "}]";
     }
 
     /**
@@ -259,6 +292,16 @@ class Contact extends AbstractXMLWrapper
         }
         $customfields .= "}";
 
+        // Generate preferences string
+        $preferences = "{";
+        if (isset($this->preferences)) {
+            foreach ($this->preferences as $preference) {
+                $preferences .= "{" . $preference->toCsvString() . "},";
+            }
+            $preferences = rtrim($preferences, ',');
+        }
+        $preferences .= "}";
+
         $permission = "";
         if (isset($this->permission)) {
             $permission = $this->permission->getCode();
@@ -272,6 +315,7 @@ class Contact extends AbstractXMLWrapper
         . ";" . $this->created
         . ";" . $this->updated
         . ";\"" . $standard_fields . "\""
-        . ";\"" . $customfields . "\"";
+        . ";\"" . $customfields . "\""
+        . ";\"" . $preferences . "\"";
     }
 }

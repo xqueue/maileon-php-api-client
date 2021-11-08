@@ -12,6 +12,8 @@ use de\xqueue\maileon\api\client\account\AccountPlaceholder;
 use de\xqueue\maileon\api\client\utils\PingService;
 use de\xqueue\maileon\api\client\contacts\SynchronizationMode;
 use de\xqueue\maileon\api\client\contacts\Contacts;
+use de\xqueue\maileon\api\client\contacts\Preference;
+use de\xqueue\maileon\api\client\contacts\PreferenceCategory;
 use de\xqueue\maileon\api\client\contactfilters\ContactfiltersService;
 use de\xqueue\maileon\api\client\contactfilters\Rule;
 use de\xqueue\maileon\api\client\targetgroups\TargetGroupsService;
@@ -170,25 +172,30 @@ POST Create contact:
 	$newContact->external_id = $TESTDATA['external_id'];
 	$newContact->permission = Permission::$SOI;
 
-	//$newContact->custom_fields['someKey'] = "someVal";
-	$newContact->standard_fields[StandardContactField::$FIRSTNAME] = "max";
-	$newContact->standard_fields[StandardContactField::$LASTNAME] = "mustermann";
-	$newContact->standard_fields[StandardContactField::$ZIP] = "1337";
-	$newContact->standard_fields[StandardContactField::$SALUTATION] = "Herr";
-	$newContact->standard_fields[StandardContactField::$COUNTRY] = "De";
-	$newContact->standard_fields[StandardContactField::$ADDRESS] = "Christian-Pless-Straße";
-	$newContact->standard_fields[StandardContactField::$CITY] = "Offenbach";
-	$newContact->standard_fields[StandardContactField::$HNR] = "11-13";
-	$newContact->standard_fields[StandardContactField::$BIRTHDAY] = "04.06.1982";
+    //$newContact->custom_fields['someKey'] = "someVal";
+    $newContact->standard_fields[StandardContactField::$FIRSTNAME] = "max";
+    $newContact->standard_fields[StandardContactField::$LASTNAME] = "mustermann";
+    $newContact->standard_fields[StandardContactField::$ZIP] = "1337";
+    $newContact->standard_fields[StandardContactField::$SALUTATION] = "Herr";
+    $newContact->standard_fields[StandardContactField::$COUNTRY] = "De";
+    $newContact->standard_fields[StandardContactField::$ADDRESS] = "Christian-Pless-Straße";
+    $newContact->standard_fields[StandardContactField::$CITY] = "Offenbach";
+    $newContact->standard_fields[StandardContactField::$HNR] = "11-13";
+    $newContact->standard_fields[StandardContactField::$BIRTHDAY] = "04.06.1982";
 
 	//$newContact->custom_fields["Kundenart"] = "Newsletter-Empfänger";
 	//$newContact->custom_fields["Firmenname"] = "XQueue";
-//	$newContact->custom_fields["Telefonnummer"] = "069-830089820";
+    //$newContact->custom_fields["Telefonnummer"] = "069-830089820";
+
+    $newContact->preferences = array(
+        new Preference('EmailSegment1', null, 'Email', 'true'),
+        new Preference('EmailSegment2', null, 'Email', 'true')
+    );
 	
-	$response = $contactsService->createContact($newContact, SynchronizationMode::$UPDATE, null, "test subscriptionPage", true, false);//, $TESTDATA['doiMailingKey']);
+	$response = $contactsService->createContact($newContact, SynchronizationMode::$UPDATE, null, "test subscriptionPage", false, false);//, $TESTDATA['doiMailingKey']);
 	checkResult($response);
 
-	echo "<pre><ul><li>".$newContact->toXMLString()."</li></ul></pre>";
+	echo "<pre><ul><li>" . htmlentities($newContact->toXMLString()) . "</li></ul></pre>";
 	
 	echo "Clone test (print cloned object):";
 				
@@ -211,6 +218,11 @@ POST Create contact:
 	//$newContact->custom_fields['someKey'] = "someVal";
 	$newContact->standard_fields[StandardContactField::$FIRSTNAME] = "FirstName";
 	$newContact->standard_fields[StandardContactField::$LASTNAME] = "<test>";
+
+    $newContact->preferences = array(
+        new Preference('EmailSegment1', null, 'Email', 'true'),
+        new Preference('EmailSegment2', null, 'Email', 'false', 'test')
+    );
 	
 	$response = $contactsService->createContactByExternalId($newContact, SynchronizationMode::$UPDATE, "src", "subscriptionPage", true, true, $TESTDATA['doiMailingKey']);
 	checkResult($response);
@@ -235,6 +247,13 @@ POST Create contact:
 		//$updateContact->custom_fields['Medical'] = "true";
 		//$updateContact->custom_fields['Office, Fotografie, Gaming, Industrie'] = "false";
 
+        $updateContact->preferences = array(
+            new Preference('EmailSegment1', null, 'Email', 'false'),
+            new Preference('EmailSegment2', null, 'Email', 'false'),
+            new Preference('EmailSegment3', null, 'Email', 'false'),
+            new Preference('EmailSegment4', null, 'Email', 'true')
+        );
+
 		$response = $contactsService->updateContact($updateContact, "", "src", "subscriptionPage", true, null, true);
 		checkResult($response);
 		?>
@@ -254,7 +273,7 @@ GET contacts count:
 <li>
 GET contacts count with update_after parameter:
 <?php
-    $response = $contactsService->getContactsCount("2020-07-20 00:00:00");
+    $response = $contactsService->getContactsCount("2021-10-26 00:00:00");
 	checkResult($response);
 	if ($response->isSuccess()) {
 		echo '<br /><pre><ul><li>Returned contacts count: ' . $response->getResult() . '</li></ul>';
@@ -297,7 +316,7 @@ GET all contacts [page <?= $TESTDATA['page_index']?>, pagesize <?= $TESTDATA['pa
 //array('FIRSTNAME','LASTNAME')
 
 	$start = time();
-	$response = $contactsService->getContacts($TESTDATA['page_index'], $TESTDATA['page_size'], array('FIRSTNAME', 'LASTNAME', 'SENDOUT_STATUS', 'PERMISSION_STATUS'), array(), "2020-07-20 00:00:00");
+	$response = $contactsService->getContacts($TESTDATA['page_index'], $TESTDATA['page_size'], array('FIRSTNAME', 'LASTNAME', 'SENDOUT_STATUS', 'PERMISSION_STATUS'), array(), "2021-10-26 00:00:00", array('Email', 'SMS'));
 	checkResult($response);
 	$end = time();
 
@@ -323,7 +342,7 @@ GET all contacts [page <?= $TESTDATA['page_index']?>, pagesize <?= $TESTDATA['pa
 <li>
 GET contact with ID <?= $TESTDATA['userId']?> (ignore checksum):
 <?php
-	$response = $contactsService->getContact($TESTDATA['userId'], null, array('FIRSTNAME','LASTNAME'), array(), true);
+	$response = $contactsService->getContact($TESTDATA['userId'], null, array('FIRSTNAME','LASTNAME'), array(), true, array('Email', 'SMS'));
 	checkResult($response);
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul><li>" . $response->getResult()->toString() . "</li></ul>";
@@ -336,14 +355,21 @@ PUT update contact with ID <?= $TESTDATA['userId']?> (ignore checksum):
 <?php
 
 	$newUpdateContact = new Contact();
-	$newUpdateContact->id = 196837;
+	$newUpdateContact->id = 10679707;
 //	$newUpdateContact->external_id = $TESTDATA['userExternalId']."_updated";
 	$newUpdateContact->standard_fields[StandardContactField::$FIRSTNAME] = "max";
+
+    $newUpdateContact->preferences = array(
+        new Preference('EmailSegment1', null, 'Email', 'true'),
+        new Preference('EmailSegment2', null, 'Email', 'true'),
+        new Preference('EmailSegment3', null, 'Email', 'false'),
+        new Preference('EmailSegment4', null, 'Email', 'false')
+    );
 	
 	echo "\n<pre>" . htmlentities($newUpdateContact->toXMLString()) . "</pre>\n";
 
 	//$response = $contactsService->updateContact($newUpdateContact, $TESTDATA['userChecksum'], null, null, false, null, true);
-	$response = $contactsService->updateContact($newUpdateContact, "Dkp-gA8sZ4A", null, null, false, null, false);
+	$response = $contactsService->updateContact($newUpdateContact, "WE1vOUc-TPwwzsTx", null, null, false, null, false);
 
 	checkResult($response);
 	if ($response->isSuccess()) {
@@ -357,13 +383,20 @@ PUT update contact with its email as identifier:
 <?php
 
 	$newUpdateContact = new Contact();
-	$newUpdateContact->email = "maxi.mustermann@xqueue.com";
+	$newUpdateContact->email = "max.mustermann3@xqueue.de";
 	$newUpdateContact->permission = Permission::$OTHER; // Not mandatory
 	$newUpdateContact->standard_fields[StandardContactField::$FIRSTNAME] = "maxi";
+
+    $newUpdateContact->preferences = array(
+        new Preference('EmailSegment1', null, 'Email', 'false'),
+        new Preference('EmailSegment2', null, 'Email', 'true'),
+        new Preference('EmailSegment3', null, 'Email', 'false'),
+        new Preference('EmailSegment4', null, 'Email', 'true')
+    );
 	
 	echo "\n<pre>" . htmlentities($newUpdateContact->toXMLString()) . "</pre>\n";
 
-	$response = $contactsService->updateContactByEmail("maxi.mustermann@baunzt.de", $newUpdateContact);
+	$response = $contactsService->updateContactByEmail("max.mustermann2@xqueue.de", $newUpdateContact);
 
 	checkResult($response);
 ?>
@@ -374,14 +407,21 @@ PUT update contact with its external ID as identifier:
 <?php
 
 	$newUpdateContact = new Contact();
-	$newUpdateContact->external_id = "test123";
-	$newUpdateContact->email = "maxi2.mustermann@baunzt.de";
+	$newUpdateContact->external_id = "someExternalTestId";
+	$newUpdateContact->email = "max.mustermann3@xqueue.de";
 	$newUpdateContact->permission = Permission::$NONE; // Not mandatory
 	$newUpdateContact->standard_fields[StandardContactField::$FIRSTNAME] = "maxi external test";
+
+    $newUpdateContact->preferences = array(
+        new Preference('EmailSegment1', null, 'Email', 'true'),
+        new Preference('EmailSegment2', null, 'Email', 'false'),
+        new Preference('EmailSegment3', null, 'Email', 'true'),
+        new Preference('EmailSegment4', null, 'Email', 'false')
+    );
 	
 	echo "\n<pre>" . htmlentities($newUpdateContact->toXMLString()) . "</pre>\n";
 
-	$response = $contactsService->updateContactByExternalId("test123", $newUpdateContact);
+	$response = $contactsService->updateContactByExternalId("someExternalId", $newUpdateContact);
 
 	checkResult($response);
 ?>
@@ -424,7 +464,12 @@ GET contact with emailadress [page <?= $TESTDATA['getEmailNotExisting']?>, pages
 		echo "<br /><pre><ul><li>" . $response->getResult()->toString() . "</li></ul></pre>";
 	}
 
-	$response = $contactsService->getContactByEmail($TESTDATA['getEmail'], array('FIRSTNAME','LASTNAME'));
+	$response = $contactsService->getContactByEmail(
+        $TESTDATA['getEmail'],
+        array('FIRSTNAME','LASTNAME'),
+        array('CUSTOMFIELD1', 'CUSTOMFIELD2', 'CUSTOMFIELD3'),
+        array('Email', 'SMS')
+    );
 	checkResult($response);
 
 	if ($response->isSuccess()) {
@@ -436,7 +481,7 @@ GET contact with emailadress [page <?= $TESTDATA['getEmailNotExisting']?>, pages
 	<li>
 		GET contacts (!) with emailadress [page <?= $TESTDATA['getEmailNotExisting']?>, pagesize <?= $TESTDATA['page_size']?>]:
 		<?php
-		$response = $contactsService->getContactsByEmail($TESTDATA['getEmailNotExisting'], array('FIRSTNAME','LASTNAME'));
+		$response = $contactsService->getContactsByEmail($TESTDATA['getEmailNotExisting'], array('FIRSTNAME','LASTNAME'), array(), array('Email', 'SMS'));
 		checkResult($response);
 
 		if ($response->isSuccess()) {
@@ -445,7 +490,7 @@ GET contact with emailadress [page <?= $TESTDATA['getEmailNotExisting']?>, pages
 		?>
 		GET contacts (!) with emailadress [page <?= $TESTDATA['getEmail']?>, pagesize <?= $TESTDATA['page_size']?>]:
 		<?php
-		$response = $contactsService->getContactsByEmail($TESTDATA['getEmail'], array('FIRSTNAME','LASTNAME'));
+		$response = $contactsService->getContactsByEmail($TESTDATA['getEmail'], array('FIRSTNAME','LASTNAME'), array(), array('Email', 'SMS'));
 		checkResult($response);
 
 		if ($response->isSuccess()) {
@@ -458,7 +503,7 @@ GET contact with emailadress [page <?= $TESTDATA['getEmailNotExisting']?>, pages
 GET contacts with external ID [page <?= $TESTDATA['userExternalId']?>, pagesize <?= $TESTDATA['page_size']?>]:
 <?php
 //	$response = $contactsService->getContactsByExternalId($TESTDATA['userExternalId'], array('FIRSTNAME','LASTNAME'), array('Main ID', 'CV ID', 'Kategoria', 'Port�l'));
-	$response = $contactsService->getContactsByExternalId($TESTDATA['userExternalId']);
+	$response = $contactsService->getContactsByExternalId($TESTDATA['userExternalId'], array(), array(), array('Email', 'SMS'));
 	checkResult($response);
 	
 	if ($response->isSuccess()) {
@@ -474,7 +519,7 @@ GET contacts with external ID [page <?= $TESTDATA['userExternalId']?>, pagesize 
 <li>
 GET contacts matching filter [page <?= $TESTDATA['contactFilterId']?>]:
 <?php
-	$response = $contactsService->getContactsByFilterId($TESTDATA['contactFilterId']);
+	$response = $contactsService->getContactsByFilterId($TESTDATA['contactFilterId'], 1, 100, array('FIRSTNAME','LASTNAME'), array('teszt'), array('Email', 'SMS'));
 	checkResult($response);
 
 	if ($response->isSuccess()) {
@@ -729,6 +774,125 @@ DELETE values of custom field <?= $TESTDATA['field_name1'] ?>::
 		checkResult($response);
 		?>
 	</li>
+<?php } if (isset($_POST['contact_21'])) { ?>
+    <li>
+    GET contact preference categories:
+    <?php
+        $response = $contactsService->getContactPreferenceCategories();
+        checkResult($response);
+
+        // Print all results
+        if ($response->isSuccess()) {
+            echo "<br /><pre><ul>";
+                foreach ($response->getResult() as $preference_category) {
+                    echo "<li>" . $preference_category->toString() . "</li>";
+                }
+            echo "</ul></pre>";
+        }
+    ?>
+    </li>
+<?php } if (isset($_POST['contact_22'])) { ?>
+    <li>
+    POST create contact preference category "Email":
+    <?php
+        $preference_category = new PreferenceCategory('Email', 'Category for email segments');
+
+        $response = $contactsService->createContactPreferenceCategory($preference_category);
+        checkResult($response);
+    ?>
+    </li>
+<?php } if (isset($_POST['contact_23'])) { ?>
+    <li>
+    GET contact preference category "Email":
+    <?php
+        $response = $contactsService->getContactPreferenceCategoryByName('Email');
+        checkResult($response);
+
+        if ($response->isSuccess()) {
+            echo "<br /><pre><ul><li>" . $response->getResult()->toString() . "</li></ul>";
+        }
+    ?>
+    </li>
+<?php } if (isset($_POST['contact_24'])) { ?>
+    <li>
+    PUT update contact preference category "Email":
+    <?php
+        $preference_category = new PreferenceCategory('Email', 'Updated email category description.');
+
+        $response = $contactsService->updateContactPreferenceCategory('Email', $preference_category);
+        checkResult($response);
+    ?>
+    </li>
+<?php } if (isset($_POST['contact_25'])) { ?>
+    <li>
+    DELETE delete contact preference category "category_for_deleted":
+    <?php
+        $response = $contactsService->deleteContactPreferenceCategory('category_for_deleted');
+        checkResult($response);
+    ?>
+    </li>
+<?php } if (isset($_POST['contact_26'])) { ?>
+    <li>
+    GET preferences of contact preferences category "Email":
+    <?php
+        $response = $contactsService->getPreferencesOfContactPreferencesCategory('Email');
+        checkResult($response);
+
+        // Print all results
+        if ($response->isSuccess()) {
+            echo "<br /><pre><ul>";
+                foreach ($response->getResult() as $preference) {
+                    echo "<li>" . $preference->toString() . "</li>";
+                }
+            echo "</ul></pre>";
+        }
+    ?>
+    </li>
+<?php } if (isset($_POST['contact_27'])) { ?>
+    <li>
+    POST create contact preference to "Email"; "EmailSegment1", "Email segment 1 preference description.":
+    <?php
+        $preference = new Preference('EmailSegment1', 'Email segment 1 preference description.');
+
+        $response = $contactsService->createContactPreference('Email', $preference);
+        checkResult($response);
+    ?>
+    </li>
+<?php } if (isset($_POST['contact_28'])) { ?>
+    <li>
+    GET contact preference, category name: "Email", preference name: "EmailSegment1":
+    <?php
+        $response = $contactsService->getContactPreference('Email', 'EmailSegment1');
+        checkResult($response);
+
+        if ($response->isSuccess()) {
+            echo "<br /><pre><ul><li>" . $response->getResult()->toString() . "</li></ul>";
+        }
+    ?>
+    </li>
+<?php } if (isset($_POST['contact_29'])) { ?>
+    <li>
+    PUT update contact preference, category name:"Email", preference name: "EmailSegment1":
+    <?php
+        $preference = new Preference('EmailSegment1', 'Updated test preference description.');
+
+        $response = $contactsService->updateContactPreference(
+            'Email',
+            'EmailSegment1',
+            $preference
+        );
+
+        checkResult($response);
+    ?>
+    </li>
+<?php } if (isset($_POST['contact_30'])) { ?>
+    <li>
+    DELETE delete contact preference, category name: "SMS", preference name: "SMSSegment1":
+    <?php
+        $response = $contactsService->deleteContactPreference('SMS', 'SMSSegment5');
+        checkResult($response);
+    ?>
+    </li>
 <?php } ?>
 </ul>
 <?php } // End?>

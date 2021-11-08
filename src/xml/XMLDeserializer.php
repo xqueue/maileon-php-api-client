@@ -27,7 +27,8 @@ use de\xqueue\maileon\api\client\targetgroups\TargetGroup;
 use de\xqueue\maileon\api\client\account\AccountPlaceholder;
 use de\xqueue\maileon\api\client\contactfilters\ContactFilter;
 use de\xqueue\maileon\api\client\transactions\TransactionType;
-use de\xqueue\maileon\api\client\contactevents\ContactEventType;
+use de\xqueue\maileon\api\client\contacts\Preference;
+use de\xqueue\maileon\api\client\contacts\PreferenceCategory;
 use de\xqueue\maileon\api\client\blacklists\mailings\MailingBlacklistExpressions;
 use de\xqueue\maileon\api\client\blacklists\mailings\FilteredMailingBlacklistExpression;
 
@@ -88,20 +89,9 @@ class XMLDeserializer
                     }
                     return $result;
 
-                case "contacteventtype":
-                    $result = new ContactEventType();
-                    break;
-
                 case "schedule":
                     $result = new Schedule();
                     break;
-
-                case "contacteventtypes":
-                    $result = array();
-                    foreach ($xmlElement as $contactEventTypeElement) {
-                        $result[] = self::deserialize($contactEventTypeElement);
-                    }
-                    return $result;
                     
                 case "targetgroup":
                     $result = new TargetGroup();
@@ -151,6 +141,28 @@ class XMLDeserializer
                     $result = array();
                     foreach ($xmlElement as $contactFilterElement) {
                         $result[] = self::deserialize($contactFilterElement);
+                    }
+                    return $result;
+
+                case "preference":
+                    $result = new Preference();
+                    break;
+
+                case "preferences":
+                    $result = array();
+                    foreach ($xmlElement as $preferenceCategoryElement) {
+                        $result[] = self::deserialize($preferenceCategoryElement);
+                    }
+                    return $result;
+
+                case "preference_category":
+                    $result = new PreferenceCategory();
+                    break;
+
+                case "preference_categories":
+                    $result = array();
+                    foreach ($xmlElement as $preferenceCategoryElement) {
+                        $result[] = self::deserialize($preferenceCategoryElement);
                     }
                     return $result;
 

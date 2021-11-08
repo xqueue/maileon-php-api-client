@@ -2,6 +2,17 @@ Date
 Version 
 - Due to more strict validation empty strings are not valid for editorVersion when creating Mails. Removed that parameter if not set from API call.
 
+Date 2021-11-08
+Version 1.8.4
+- Remove 'contacteventtype' and 'contacteventtypes' from XMLDeserializer
+- Added Preference and PreferenceCategory models to Contacts
+- Added preferences to Contact
+- Added 'getContactPreferenceCategories', 'createContactPreferenceCategory', 'getContactPreferenceCategoryByName', 'updateContactPreferenceCategory', 'deleteContactPreferenceCategory', 'getPreferencesOfContactPreferencesCategory', 'createContactPreference', 'getContactPreference', 'updateContactPreference', 'deleteContactPreference' to ContactsService
+- Complement get, post, put methods at ContactService to work with contact preferences
+- Added format and deviceType to Open and Click
+- Added messageId to Bounce
+- Added permissionStatus, permissonType, standard_fields, custom_fields to ReportContact
+
 Date 2021-10-25
 Version 1.8.3
 - Added functions 'getRecipientAlias', 'getTrackingStrategy', 'getSpeedLevel' and 'getPostSendoutCleanupState' to the MailingsService

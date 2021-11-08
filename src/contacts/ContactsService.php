@@ -82,7 +82,10 @@ class ContactsService extends AbstractMaileonService
             $contact->external_id,
             null,
             $contact->standard_fields,
-            $contact->custom_fields
+            $contact->custom_fields,
+            null,
+            null,
+            $contact->preferences
         );
 
         return $this->post("contacts/email/" . $contactToSend->email, $contactToSend->toXMLString(), $queryParameters);
@@ -146,7 +149,10 @@ class ContactsService extends AbstractMaileonService
             $contact->external_id,
             null,
             $contact->standard_fields,
-            $contact->custom_fields
+            $contact->custom_fields,
+            null,
+            null,
+            $contact->preferences
         );
 
         return $this->post(
@@ -173,6 +179,8 @@ class ContactsService extends AbstractMaileonService
      *  the custom fields to retrieve with the contact
      * @param bool $ignoreChecksum
      *  if set to true, no checksum is required
+     * @param string[] $preference_categories
+     *  the preference categories to return with the contact
      * @return MaileonAPIResult
      *    the result object of the API call, with a Contact
      *  available at MaileonAPIResult::getResult()
@@ -184,7 +192,8 @@ class ContactsService extends AbstractMaileonService
         $checksum,
         $standard_fields = array(),
         $custom_fields = array(),
-        $ignoreChecksum = false
+        $ignoreChecksum = false,
+        $preference_categories = array()
     ) {
         $queryParameters = array(
             'id' => $contactId,
@@ -194,6 +203,7 @@ class ContactsService extends AbstractMaileonService
         );
 
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
+        $queryParameters = $this->appendArrayFields($queryParameters, 'preference_categories', $preference_categories);
 
         return $this->get('contacts/contact', $queryParameters);
     }
@@ -202,7 +212,8 @@ class ContactsService extends AbstractMaileonService
      * This method returns the number of contacts in the maileon newsletter account.
      *
      * @param string $updatedAfter
-     *  returns contacts only, which were updated after the given datetime. The format must be in SQL format: Y-m-d H:i:s
+     *  returns contacts only, which were updated after the given datetime.
+     *  The format must be in SQL format: Y-m-d H:i:s
      * @return MaileonAPIResult
      *    the result object of the API call, with the count of contacts
      *  available at MaileonAPIResult::getResult()
@@ -231,15 +242,24 @@ class ContactsService extends AbstractMaileonService
      * @param string[] $custom_fields
      *  the custom fields to retrieve for the contacts
      * @param string $updatedAfter
-     *  returns contacts only, which were updated after the given datetime. The format must be in SQL format: Y-m-d H:i:s
+     *  returns contacts only, which were updated after the given datetime.
+     *  The format must be in SQL format: Y-m-d H:i:s
+     * @param string[] $preference_categories
+     *  the preference categories to return with the contact
      * @return MaileonAPIResult
      *    the result object of the API call, with a Contacts
      *  available at MaileonAPIResult::getResult()
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
      */
-    public function getContacts($page_index = 1, $page_size = 100, $standard_fields = array(), $custom_fields = array(), $updatedAfter = null)
-    {
+    public function getContacts(
+        $page_index = 1,
+        $page_size = 100,
+        $standard_fields = array(),
+        $custom_fields = array(),
+        $updatedAfter = null,
+        $preference_categories = array()
+    ) {
         $queryParameters = array(
             'page_index' => $page_index,
             'page_size' => $page_size,
@@ -252,6 +272,7 @@ class ContactsService extends AbstractMaileonService
         }
 
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
+        $queryParameters = $this->appendArrayFields($queryParameters, 'preference_categories', $preference_categories);
 
         return $this->get('contacts', $queryParameters);
     }
@@ -265,19 +286,26 @@ class ContactsService extends AbstractMaileonService
      *  the standard fields to return with the contact
      * @param string[] $custom_fields
      *  the custom fields to return with the contact
+     * @param string[] $preference_categories
+     *  the preference categories to return with the contact
      * @return MaileonAPIResult
      *    the result object of the API call, with a Contact
      *  available at MaileonAPIResult::getResult()
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
      */
-    public function getContactByEmail($email, $standard_fields = array(), $custom_fields = array())
-    {
+    public function getContactByEmail(
+        $email,
+        $standard_fields = array(),
+        $custom_fields = array(),
+        $preference_categories = array()
+    ) {
         $queryParameters = array(
             'standard_field' => $standard_fields
         );
 
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
+        $queryParameters = $this->appendArrayFields($queryParameters, 'preference_categories', $preference_categories);
 
         return $this->get('contacts/email/' . utf8_encode($email), $queryParameters);
     }
@@ -291,19 +319,26 @@ class ContactsService extends AbstractMaileonService
      *  the standard fields to return with the contact
      * @param string[] $custom_fields
      *  the custom fields to return with the contact
+     * @param string[] $preference_categories
+     *  the preference categories to return with the contact
      * @return MaileonAPIResult
      *  the result object of the API call, with an array of Contact
      *  available at MaileonAPIResult::getResult()
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
      */
-    public function getContactsByEmail($email, $standard_fields = array(), $custom_fields = array())
-    {
+    public function getContactsByEmail(
+        $email,
+        $standard_fields = array(),
+        $custom_fields = array(),
+        $preference_categories = array()
+    ) {
         $queryParameters = array(
             'standard_field' => $standard_fields
         );
 
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
+        $queryParameters = $this->appendArrayFields($queryParameters, 'preference_categories', $preference_categories);
 
         return $this->get('contacts/emails/' . utf8_encode($email), $queryParameters);
     }
@@ -311,22 +346,32 @@ class ContactsService extends AbstractMaileonService
     /**
      * Retrieves all contacts with a given external ID.
      *
-     * @param string $externalId the external ID to search for
+     * @param string $externalId
+     *  the external ID to search for
      * @param string[] $standard_fields
+     *  the standard fields to return with the contact
      * @param string[] $custom_fields
+     *  the custom fields to return with the contact
+     * @param string[] $preference_categories
+     *  the preference categories to return with the contact
      * @return MaileonAPIResult
      *  the result object of the API call, with a Contacts
      *  available at MaileonAPIResult::getResult()
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
      */
-    public function getContactsByExternalId($externalId, $standard_fields = array(), $custom_fields = array())
-    {
+    public function getContactsByExternalId(
+        $externalId,
+        $standard_fields = array(),
+        $custom_fields = array(),
+        $preference_categories = array()
+    ) {
         $queryParameters = array(
             'standard_field' => $standard_fields
         );
 
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
+        $queryParameters = $this->appendArrayFields($queryParameters, 'preference_categories', $preference_categories);
 
         return $this->get('contacts/externalid/' . utf8_encode($externalId), $queryParameters);
     }
@@ -334,9 +379,14 @@ class ContactsService extends AbstractMaileonService
     /**
      * Retrieves all contacts with a given contact filter ID.
      *
-     * @param string $filterId the filter ID to use to select contacts
+     * @param string $filterId
+     *  the filter ID to use to select contacts
      * @param string[] $standard_fields
+     *  the standard fields to return with the contact
      * @param string[] $custom_fields
+     *  the custom fields to return with the contact
+     * @param string[] $preference_categories
+     *  the preference categories to return with the contact
      * @return MaileonAPIResult
      *  the result object of the API call, with a Contacts
      *  available at MaileonAPIResult::getResult()
@@ -348,21 +398,26 @@ class ContactsService extends AbstractMaileonService
         $page_index = 1,
         $page_size = 100,
         $standard_fields = array(),
-        $custom_fields = array()
+        $custom_fields = array(),
+        $preference_categories = array()
     ) {
         $queryParameters = array(
             'page_index' => $page_index,
             'page_size' => $page_size,
             'standard_field' => $standard_fields
         );
+
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
+        $queryParameters = $this->appendArrayFields($queryParameters, 'preference_categories', $preference_categories);
+
         return $this->get('contacts/filter/' . utf8_encode($filterId), $queryParameters);
     }
 
     /**
      * Retrieves the number of contacts matching a given contact filter ID.
      *
-     * @param string $filterId the filter ID to use to select contacts
+     * @param string $filterId
+     *  the filter ID to use to select contacts
      * @return MaileonAPIResult
      *  the result object of the API call, with the number
      *  available at MaileonAPIResult::getResult()
@@ -377,9 +432,10 @@ class ContactsService extends AbstractMaileonService
     /**
      * Retrieves the number of active contacts matching a given contact filter ID.
      *
-     * @param string $filterId the filter ID to use to select contacts
+     * @param string $filterId
+     *  the filter ID to use to select contacts
      * @return MaileonAPIResult
-     *    the result object of the API call, with the number
+     *  the result object of the API call, with the number
      *  available at MaileonAPIResult::getResult()
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
@@ -453,7 +509,10 @@ class ContactsService extends AbstractMaileonService
             $contact->external_id,
             null,
             $contact->standard_fields,
-            $contact->custom_fields
+            $contact->custom_fields,
+            null,
+            null,
+            $contact->preferences
         );
 
         return $this->put("contacts/contact", $contactToSend->toXMLString(), $queryParameters);
@@ -522,7 +581,10 @@ class ContactsService extends AbstractMaileonService
                 $contact->external_id,
                 null,
                 $contact->standard_fields,
-                $contact->custom_fields
+                $contact->custom_fields,
+                null,
+                null,
+                $contact->preferences
             );
             $cleanedContacts->addContact($cleanedContact);
         }
@@ -541,8 +603,8 @@ class ContactsService extends AbstractMaileonService
     * @throws MaileonAPIException
     *  if there was a connection problem or a server error occurred
     */
-    public function updateContactByEmail( $email, $contact ) {
-
+    public function updateContactByEmail($email, $contact)
+    {
         $queryParameters = array();
             
         if (isset($contact->permission)) {
@@ -557,8 +619,11 @@ class ContactsService extends AbstractMaileonService
             $contact->external_id,
             null,
             $contact->standard_fields,
-            $contact->custom_fields
-            );
+            $contact->custom_fields,
+            null,
+            null,
+            $contact->preferences
+        );
         
         $encodedEmail = utf8_encode($email);
         return $this->put("contacts/email/${encodedEmail}", $contactToSend->toXMLString(), $queryParameters);
@@ -703,8 +768,8 @@ class ContactsService extends AbstractMaileonService
      * @throws MaileonAPIException
      *  if there was a connection problem or a server error occurred
      */
-    public function updateContactByExternalId( $externalId, $contact ) {
-        
+    public function updateContactByExternalId($externalId, $contact)
+    {
         $queryParameters = array();
         
         if (isset($contact->permission)) {
@@ -719,8 +784,11 @@ class ContactsService extends AbstractMaileonService
             $contact->external_id,
             null,
             $contact->standard_fields,
-            $contact->custom_fields
-            );
+            $contact->custom_fields,
+            null,
+            null,
+            $contact->preferences
+        );
         
         $encodedExternalId = urlencode($externalId);
         return $this->put("contacts/externalid/{$encodedExternalId}", $contactToSend->toXMLString(), $queryParameters);
@@ -995,5 +1063,196 @@ class ContactsService extends AbstractMaileonService
         return $this->delete("contacts/fields/custom/{$encodedName}/values");
     }
     
-    
+    /**
+     * This method retrieves the list of contact preference categories.
+     *
+     * @return MaileonAPIResult
+     *  The result object of the API call.
+     * @throws MaileonAPIException
+     *  If there was a connection problem or a server error occurred.
+     */
+    public function getContactPreferenceCategories()
+    {
+        return $this->get('contacts/preference_categories');
+    }
+
+    /**
+     * This method creates a contact preference category.
+     *
+     * @param PreferenceCategory $preference_category
+     * The preference category model to create.
+     * @return MaileonAPIResult
+     * The result object of the API call.
+     * @throws MaileonAPIException
+     *  If there was a connection problem or a server error occurred.
+     */
+    public function createContactPreferenceCategory($preference_category)
+    {
+        return $this->post(
+            "contacts/preference_categories/",
+            $preference_category->toXMLString()
+        );
+    }
+
+    /**
+     * Returns a preference category with the provided name.
+     *
+     * @param string $category_name
+     *  The name to retrieve a preference category for.
+     * @return MaileonAPIResult
+     *  The result object of the API call.
+     * @throws MaileonAPIException
+     *  If there was a connection problem or a server error occurred.
+     */
+    public function getContactPreferenceCategoryByName($category_name)
+    {
+        $encodedCategoryName = rawurlencode(mb_convert_encoding($category_name, "UTF-8"));
+
+        return $this->get("contacts/preference_categories/{$encodedCategoryName}");
+    }
+
+    /**
+     * This method updates a contact preference category.
+     *
+     * @param string $category_name
+     *  The name of the contact preference category.
+     * @param PreferenceCategory $preference_category
+     *  The preference category model to update.
+     * @return MaileonAPIResult
+     *  The result object of the API call.
+     * @throws MaileonAPIException
+     *  If there was a connection problem or a server error occurred.
+     */
+    public function updateContactPreferenceCategory($category_name, $preference_category)
+    {
+        $encodedCategoryName = rawurlencode(mb_convert_encoding($category_name, "UTF-8"));
+
+        return $this->put(
+            "contacts/preference_categories/{$encodedCategoryName}",
+            $preference_category->toXMLString()
+        );
+    }
+
+    /**
+     * This method deletes a contact preference category.
+     *
+     * @param string $category_name
+     *  The name of the contact preference category.
+     * @return MaileonAPIResult
+     *  The result object of the API call.
+     * @throws MaileonAPIException
+     *  If there was a connection problem or a server error occurred.
+     */
+    public function deleteContactPreferenceCategory($category_name)
+    {
+        $encodedCategoryName = urlencode(mb_convert_encoding($category_name, "UTF-8"));
+
+        return $this->delete("contacts/preference_categories/{$encodedCategoryName}");
+    }
+
+    /**
+     * This method retrieves information about the preferences of a contact preference category.
+     *
+     * @param string $category_name
+     *  The name of the contact preference category.
+     * @return MaileonAPIResult
+     *  The result object of the API call.
+     * @throws MaileonAPIException
+     *  If there was a connection problem or a server error occurred.
+     */
+    public function getPreferencesOfContactPreferencesCategory($category_name)
+    {
+        $encodedCategoryName = urlencode(mb_convert_encoding($category_name, "UTF-8"));
+
+        return $this->get("contacts/preference_categories/{$encodedCategoryName}/preferences");
+    }
+
+    /**
+     * This method creates a contact preference under a given contact preference category.
+     *
+     * @param string $category_name
+     *  The name of the contact preference category.
+     * @param Preference $preference
+     *  The name of the contact preference.
+     * @return MaileonAPIResult
+     *  The result object of the API call.
+     * @throws MaileonAPIException
+     *  If there was a connection problem or a server error occurred.
+     */
+    public function createContactPreference($category_name, $preference)
+    {
+        $encodedCategoryName = urlencode(mb_convert_encoding($category_name, "UTF-8"));
+
+        return $this->post(
+            "contacts/preference_categories/{$encodedCategoryName}/preferences",
+            $preference->toXMLString()
+        );
+    }
+
+    /**
+     * This method gets details about a contact preference under a given contact preference category.
+     *
+     * @param string $category_name
+     *  The name of the contact preference category.
+     * @param string $preference_name
+     *  The name of the preference to retrieve.
+     * @return MaileonAPIResult
+     *  The result object of the API call.
+     * @throws MaileonAPIException
+     *  If there was a connection problem or a server error occurred.
+     */
+    public function getContactPreference($category_name, $preference_name)
+    {
+        $encodedCategoryName = rawurlencode(mb_convert_encoding($category_name, "UTF-8"));
+        $encodedPreferenceName = rawurlencode(mb_convert_encoding($preference_name, "UTF-8"));
+
+        return $this->get("contacts/preference_categories/{$encodedCategoryName}/preferences/{$encodedPreferenceName}");
+    }
+
+    /**
+     * This method updates a contact preference under a given contact preference category.
+     *
+     * @param string $category_name
+     *  The name of the contact preference category.
+     * @param string $preference_name
+     *  The name of the preference to update
+     * @param Preference $preference
+     *  The updated preference model.
+     * @return MaileonAPIResult
+     *  The result object of the API call.
+     * @throws MaileonAPIException
+     *  If there was a connection problem or a server error occurred.
+     */
+    public function updateContactPreference($category_name, $preference_name, $preference)
+    {
+        $encodedCategoryName = rawurlencode(mb_convert_encoding($category_name, "UTF-8"));
+        $encodedPreferenceName = rawurlencode(mb_convert_encoding($preference_name, "UTF-8"));
+
+        return $this->put(
+            "contacts/preference_categories/{$encodedCategoryName}/preferences/{$encodedPreferenceName}",
+            $preference->toXMLString()
+        );
+    }
+
+    /**
+     * This method deletes a contact preference under a given contact preference category.
+     *
+     * @param string $category_name
+     *  The name of the contact preference category.
+     * @param string $preference_name
+     *  The name of the preference to delete.
+     * @return MaileonAPIResult
+     *  The result object of the API call.
+     * @throws MaileonAPIException
+     *  If there was a connection problem or a server error occurred.
+     */
+    public function deleteContactPreference($category_name, $preference_name)
+    {
+        $encodedCategoryName = urlencode(mb_convert_encoding($category_name, "UTF-8"));
+        $encodedPreferenceName = rawurlencode(mb_convert_encoding($preference_name, "UTF-8"));
+
+        return $this->delete(
+            "contacts/preference_categories/{$encodedCategoryName}/preferences/{$encodedPreferenceName}"
+        );
+    }
 }

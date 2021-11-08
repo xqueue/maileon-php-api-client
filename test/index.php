@@ -66,6 +66,16 @@
         <li><input type="checkbox" name="contact_18" value="true"> DELETE standard field values</li>
         <li><input type="checkbox" name="contact_19" value="true"> DELETE custom field values</li>
         <li><input type="checkbox" name="contact_20" value="true"> DELETE custom field values and synchronize contacts with new values</li>
+        <li><input type="checkbox" name="contact_21" value="true"> GET Contact Preference Categories</li>
+        <li><input type="checkbox" name="contact_22" value="true"> POST Contact Preference Category from config</li>
+        <li><input type="checkbox" name="contact_23" value="true"> GET Contact Preference Category from config</li>
+        <li><input type="checkbox" name="contact_24" value="true"> PUT Contact Preference Category from config</li>
+        <li><input type="checkbox" name="contact_25" value="true"> DELETE Contact Preference Category from config</li>
+        <li><input type="checkbox" name="contact_26" value="true"> GET Preferences of Contact Preferences Category from config</li>
+        <li><input type="checkbox" name="contact_27" value="true"> POST Contact Preference from config</li>
+        <li><input type="checkbox" name="contact_28" value="true"> GET Contact Preference from config</li>
+        <li><input type="checkbox" name="contact_29" value="true"> PUT Contact Preference from config</li>
+        <li><input type="checkbox" name="contact_30" value="true"> DELETE Contact Preference from config</li>
     </ul>
 
     <h2>Contactfilter - Tests</h2>

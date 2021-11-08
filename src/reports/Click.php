@@ -39,7 +39,7 @@ class Click extends AbstractXMLWrapper
     public $linkUrl;
 
     /**
-     * @var string
+     * @var array
      */
     public $linkTags;
     
@@ -57,14 +57,25 @@ class Click extends AbstractXMLWrapper
      * @var integer
      */
     public $messageId;
+
+    /**
+     * @var string
+     */
+    public $format;
+
+    /**
+     * @var string
+     */
+    public $deviceType;
     
     /**
-     * 
+     *
      * @var ReportClientInfos Information about the client of the contact
      */
     public $clientInfos;
     
-    public function __construct() {
+    public function __construct()
+    {
         $this->clientInfos = new ReportClientInfos();
     }
 
@@ -93,7 +104,9 @@ class Click extends AbstractXMLWrapper
         ", clientInfos=" . $this->clientInfos->toString() .
         ", transactionId=" . $this->transactionId .
         ", contactHash=" . $this->contactHash .
-        ", messageId=" . $this->messageId ."]";
+        ", messageId=" . $this->messageId .
+        ", format=" . $this->format .
+        ", deviceType=" . $this->deviceType . "]";
     }
 
     /**
@@ -125,8 +138,14 @@ class Click extends AbstractXMLWrapper
         if (isset($xmlElement->contact_hash)) {
             $this->contactHash = $xmlElement->contact_hash;
         }
-        if (isset($xmlElement->msg_id )) {
+        if (isset($xmlElement->msg_id)) {
             $this->messageId = $xmlElement->msg_id ;
+        }
+        if (isset($xmlElement->format)) {
+            $this->format = $xmlElement->format;
+        }
+        if (isset($xmlElement->device_type)) {
+            $this->deviceType = $xmlElement->device_type;
         }
 
         if (isset($xmlElement->link_tags)) {
@@ -155,7 +174,9 @@ class Click extends AbstractXMLWrapper
         ";" . $this->clientInfos->toCsvString() .
         ";" . $this->transactionId .
         ";" . $this->contactHash .
-        ";" . $this->messageId;
+        ";" . $this->messageId .
+        ";" . $this->format .
+        ";" . $this->deviceType;
     }
 
     /**

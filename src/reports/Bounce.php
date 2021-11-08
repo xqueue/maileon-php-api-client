@@ -47,6 +47,11 @@ class Bounce extends AbstractXMLWrapper
     public $source;
 
     /**
+     * @var integer
+     */
+    public $messageId;
+
+    /**
      * @return string
      *  containing a human-readable representation of this bounce
      */
@@ -57,7 +62,8 @@ class Bounce extends AbstractXMLWrapper
         ", mailingId=" . $this->mailingId .
         ", type=" . $this->type .
         ", statusCode=" . $this->statusCode .
-        ", source=" . $this->source . "]";
+        ", source=" . $this->source .
+        ", messageId=" . $this->messageId . "]";
     }
 
     /**
@@ -71,7 +77,8 @@ class Bounce extends AbstractXMLWrapper
         ";" . $this->mailingId .
         ";" . $this->type .
         ";" . $this->statusCode .
-        ";" . $this->source;
+        ";" . $this->source .
+        ";" . $this->messageId;
     }
 
     /**
@@ -99,6 +106,9 @@ class Bounce extends AbstractXMLWrapper
         }
         if (isset($xmlElement->source)) {
             $this->source = $xmlElement->source;
+        }
+        if (isset($xmlElement->msg_id)) {
+            $this->messageId = $xmlElement->msg_id ;
         }
     }
 

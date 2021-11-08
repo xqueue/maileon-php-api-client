@@ -2,6 +2,7 @@
 
 use de\xqueue\maileon\api\client\contacts\Contact;
 use de\xqueue\maileon\api\client\contacts\Contacts;
+use de\xqueue\maileon\api\client\contacts\Preference;
 
 $contactsToSync = new Contacts();
 	
@@ -12,9 +13,16 @@ $contactsToSync->addContact(new Contact(
 		'external-id-4',
 		$anonymous = null,
 		array(
-				'LASTNAME' => 'Mustermann',
-				'FIRSTNAME' => 'Max'
-		), array()));
+            'LASTNAME' => 'Mustermann',
+            'FIRSTNAME' => 'Max'
+		),
+        array(),
+        array(
+            new Preference('EmailSegment1', null, 'Email', 'true'),
+            new Preference('EmailSegment2', null, 'Email', 'true')
+        )
+    )
+);
 	
 $TESTDATA = array(
 		"custom_field_name_delete_values" => "abär",
