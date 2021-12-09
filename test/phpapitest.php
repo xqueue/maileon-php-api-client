@@ -191,8 +191,11 @@ POST Create contact:
         new Preference('EmailSegment1', null, 'Email', 'true'),
         new Preference('EmailSegment2', null, 'Email', 'true')
     );
+    
+    $src = "";
+    $subscriptionPage = "";
 	
-	$response = $contactsService->createContact($newContact, SynchronizationMode::$UPDATE, null, "test subscriptionPage", false, false);//, $TESTDATA['doiMailingKey']);
+	$response = $contactsService->createContact($newContact, SynchronizationMode::$UPDATE, $src, $subscriptionPage, false, false);//, $TESTDATA['doiMailingKey']);
 	checkResult($response);
 
 	echo "<pre><ul><li>" . htmlentities($newContact->toXMLString()) . "</li></ul></pre>";
@@ -224,7 +227,11 @@ POST Create contact:
         new Preference('EmailSegment2', null, 'Email', 'false', 'test')
     );
 	
-	$response = $contactsService->createContactByExternalId($newContact, SynchronizationMode::$UPDATE, "src", "subscriptionPage", true, true, $TESTDATA['doiMailingKey']);
+    
+    $src = "";
+    $subscriptionPage = "";
+    
+	$response = $contactsService->createContactByExternalId($newContact, SynchronizationMode::$UPDATE, $src, $subscriptionPage, true, true, $TESTDATA['doiMailingKey']);
 	checkResult($response);
 ?>
 </li>
@@ -253,8 +260,11 @@ POST Create contact:
             new Preference('EmailSegment3', null, 'Email', 'false'),
             new Preference('EmailSegment4', null, 'Email', 'true')
         );
+        
+        $src = "";
+        $subscriptionPage = "";
 
-		$response = $contactsService->updateContact($updateContact, "", "src", "subscriptionPage", true, null, true);
+		$response = $contactsService->updateContact($updateContact, "", $src, $subscriptionPage, true, null, true);
 		checkResult($response);
 		?>
 	</li>
