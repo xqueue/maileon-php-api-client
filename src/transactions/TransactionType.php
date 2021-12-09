@@ -42,7 +42,7 @@ class TransactionType extends AbstractXMLWrapper
      * 0 and empty = forever (default)
      */
     public $archivingDuration;
-    
+
     /**
      *
      * @var boolean If true, event has extended limitations for data types
@@ -110,13 +110,13 @@ class TransactionType extends AbstractXMLWrapper
             $this->archivingDuration = (int)$xmlElement->archivingDuration;
         }
         if (isset($xmlElement->storeOnly)) {
-            $this->storeOnly = (string)$xmlElement->storeOnly;
+            $this->storeOnly = ((string)$xmlElement->storeOnly) === 'true';
         }
 
         if (isset($xmlElement->attributes)) {
             $this->attributes = array();
             foreach ($xmlElement->attributes->children() as $xmlAttribute) {
-                $attribute = new \stdClass();
+                $attribute = new AttributeType();
                 if (isset($xmlAttribute->id)) {
                     $attribute->id = (int)$xmlAttribute->id;
                 }
@@ -130,7 +130,7 @@ class TransactionType extends AbstractXMLWrapper
                     $attribute->type = DataType::getDataType($xmlAttribute->type);
                 }
                 if (isset($xmlAttribute->required)) {
-                    $attribute->required = (string)$xmlAttribute->required;
+                    $attribute->required = ((string)$xmlAttribute->required) === 'true';
                 }
 
                 array_push($this->attributes, $attribute);
@@ -148,11 +148,10 @@ class TransactionType extends AbstractXMLWrapper
         $attributes = "[";
         if (isset($this->attributes)) {
             foreach ($this->attributes as $index => $value) {
-                echo $value['name']."<br />";
-                $attributes .= "attribute (id=" . $value['id'] . ", name=" . $value['name'] .
-                    ", description=" . ((!empty($value['description']))?$value['description']:"") .
-                    ", type=" . $value['type']->getValue() . ", required=" .
-                    (($value['required'] == true) ? "true" : "false") . "), ";
+                $attributes .= "attribute (id=" . $value->id . ", name=" . $value->name .
+                    ", description=" . ((!empty($value->description))?$value->description:"") .
+                    ", type=" . $value->type->getValue() . ", required=" .
+                    (($value->required == true) ? "true" : "false") . "), ";
             }
             $attributes = rtrim($attributes, ' ');
             $attributes = rtrim($attributes, ',');
