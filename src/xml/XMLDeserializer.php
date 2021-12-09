@@ -74,7 +74,7 @@ class XMLDeserializer
 
                 case "events":
                     return false; // deserialization not yet supported.
-                    
+
                 case "ignorepermission":
                 case "cleanup":
                     return boolval($xmlElement);
@@ -92,43 +92,43 @@ class XMLDeserializer
                 case "schedule":
                     $result = new Schedule();
                     break;
-                    
+
                 case "targetgroup":
                     $result = new TargetGroup();
                     break;
-                    
+
                 case "targetgroups":
                     $result = array();
                     foreach ($xmlElement as $element) {
                         $result[] = self::deserialize($element);
                     }
                     return $result;
-                    
+
                 case "mailing_blacklist":
                     $result = new MailingBlacklist();
                     break;
-                    
+
                 case "mailing_blacklists":
                     $result = array();
                     foreach ($xmlElement as $element) {
                         $result[] = self::deserialize($element);
                     }
                     return $result;
-                    
+
                 case "filtered_expression":
                     $result = new FilteredMailingBlacklistExpression();
                     break;
-                    
+
                 case "filtered_expressions":
                     $result = array();
                     foreach ($xmlElement as $element) {
                         $result[] = self::deserialize($element);
                     }
                     return $result;
-                    
+
                 case "mailing_blacklist_expression":
                     break;
-                    
+
                 case "mailing_blacklist_expressions":
                     $result = new MailingBlacklistExpressions();
                     break;
@@ -195,11 +195,11 @@ class XMLDeserializer
                 case "contacts":
                     $result = new Contacts();
                     break;
-                
+
                 case "attachment":
                     $result = new Attachment();
                     break;
-                
+
                 case "attachments":
                     $result = array();
                     foreach ($xmlElement as $attachmentElement) {
@@ -210,22 +210,22 @@ class XMLDeserializer
                 case "custom_fields":
                     $result = new CustomFields();
                     break;
-                    
+
                 case "unsubscription":
                     $result = new Unsubscriber();
                     break;
-                    
+
                 case "unsubscriptions":
                     $result = array();
                     foreach ($xmlElement as $unsubscriptionElement) {
                         $result[] = self::deserialize($unsubscriptionElement);
                     }
                     return $result;
-                    
+
                 case "unsubscription_reason":
                     $result = new UnsubscriptionReason();
                     break;
-                    
+
                 case "unsubscription_reasons":
                     $result = array();
                     foreach ($xmlElement as $element) {
@@ -380,6 +380,9 @@ class XMLDeserializer
                         $result[] = self::deserialize($element);
                     }
                     return $result;
+
+                case "template_path":
+                    return (string)$xmlElement;
 
                 default:
                     $result = null;
