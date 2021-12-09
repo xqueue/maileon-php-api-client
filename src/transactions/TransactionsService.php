@@ -28,7 +28,7 @@ class TransactionsService extends AbstractMaileonService
     {
         return $this->get('transactions/types/count');
     }
-        
+
     /**
      * Gets the TransactionTypes defined in the system.
      *
@@ -51,7 +51,7 @@ class TransactionsService extends AbstractMaileonService
 
         return $this->get('transactions/types', $queryParameters);
     }
-    
+
     /**
      * Gets information about a transaction type.
      *
@@ -66,7 +66,7 @@ class TransactionsService extends AbstractMaileonService
     {
         return $this->get("transactions/types/" . $id);
     }
-    
+
     /**
      * Gets information about a transaction type by its name.
      *
@@ -81,7 +81,7 @@ class TransactionsService extends AbstractMaileonService
     {
         return $this->get("transactions/types/" . urlencode($name));
     }
-        
+
     /**
      * Creates a new contact event type.
      *
@@ -96,7 +96,7 @@ class TransactionsService extends AbstractMaileonService
     {
         return $this->post("transactions/types", $trt -> toXMLString());
     }
-        
+
     /**
      * Deletes a transaction type from the system.
      *
@@ -111,7 +111,7 @@ class TransactionsService extends AbstractMaileonService
     {
         return $this->delete("transactions/types/" . $id);
     }
-    
+
     /**
      * Deletes a transaction type from the system by name.
      *
@@ -126,7 +126,7 @@ class TransactionsService extends AbstractMaileonService
     {
         return $this->delete("transactions/types/" . urlencode($name));
     }
-        
+
     /**
      * Creates a transaction
      *
@@ -148,7 +148,7 @@ class TransactionsService extends AbstractMaileonService
         );
 
         $data = JSONSerializer::json_encode($transactions);
-        
+
         $result = $this->post(
             "transactions",
             $data,
@@ -156,10 +156,10 @@ class TransactionsService extends AbstractMaileonService
             "application/json",
             'ProcessingReports'
         );
-        
+
         return $result;
     }
-        
+
     /**
      * Delete all transactions of a given type before a given date in the account.
      * Any previously-released transactions will be ignored.
@@ -180,7 +180,7 @@ class TransactionsService extends AbstractMaileonService
             'type_id' => $type_id,
             'before_timestamp' => $before_timestamp
         );
-                
+
         return $this->delete("transactions", $queryParameters);
     }
 
@@ -199,7 +199,7 @@ class TransactionsService extends AbstractMaileonService
     {
         return $this->getTransactionType($type_name);
     }
-        
+
     /**
     * Gets the last $count transaction events of a given transaction type.
     *
@@ -207,6 +207,10 @@ class TransactionsService extends AbstractMaileonService
     *  the ID of the transaction type to get transaction events for
     * @param int $count
     *  The number of last transactions to get. Valid range: [1..2000]
+    * @return MaileonAPIResult
+    * the result object of the API call
+    * @throws MaileonAPIException
+    * if there was a connection problem or a server error occurred
     */
     public function getRecentTransactions($type_id, $count = 1000, $minExcludedTxId = 0)
     {
@@ -229,5 +233,53 @@ class TransactionsService extends AbstractMaileonService
             "application/json",
             array('array', 'de\xqueue\maileon\api\client\transactions\RecentTransaction')
         );
+    }
+
+    /**
+     * Retreives the content of a transaction of the given type with the given ID.
+     * The ID of the transaction must be specified in a special transaction attribute “transaction_id”.
+     *
+     * If the transaction_id is generated externally, it is not guaranteed to be unique,
+     * in this case Maileon returns the first found result, only. As the same ID might be
+     * used in transactions of different transaction types, the type must also be specified.
+     *
+     * @see https://maileon.com/support/create-transaction-type/#articleTOC_4.
+     *
+     * @param string|integer $type_id
+     *  The ID of the transaction type.
+     * @param string $transaction_id
+     *  The transaction ID. If not unique, the first found occurence will be used.
+     * @return MaileonAPIResult
+     * the result object of the API call
+     * @throws MaileonAPIException
+     * if there was a connection problem or a server error occurred
+     */
+    public function getTransaction($type_id, $transaction_id)
+    {
+        return $this->get("transactions/" . $type_id . "/transaction_id/" . urlencode($transaction_id), [], 'application/json');
+    }
+
+    /**
+     * Retreives the content of a transaction of the given type with the given ID.
+     * The ID of the transaction must be specified in a special transaction attribute “transaction_id”.
+     *
+     * If the transaction_id is generated externally, it is not guaranteed to be unique,
+     * in this case Maileon returns the first found result, only. As the same ID might be
+     * used in transactions of different transaction types, the type must also be specified.
+     *
+     * @see https://maileon.com/support/create-transaction-type/#articleTOC_4.
+     *
+     * @param string|integer $type_id
+     *  The ID of the transaction type.
+     * @param string $transaction_id
+     *  The transaction ID. If not unique, the first found occurence will be used.
+     * @return MaileonAPIResult
+     * the result object of the API call
+     * @throws MaileonAPIException
+     * if there was a connection problem or a server error occurred
+     */
+    public function deleteTransaction($type_id, $transaction_id)
+    {
+        return $this->delete("transactions/" . $type_id . "/transaction_id/" . urlencode($transaction_id), [], 'application/json');
     }
 }
