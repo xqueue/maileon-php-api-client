@@ -52,7 +52,7 @@ class MailingBlacklistExpressions extends AbstractXMLWrapper
     {
         $xmlString = "<?xml version=\"1.0\"?><mailing_blacklist_expressions></mailing_blacklist_expressions>";
         $xml = new \SimpleXMLElement($xmlString);
-        
+
         if (isset($this->expressions)) {
             $expressions = $xml->addChild("expressions");
             foreach ($this->expressions as $expression) {
@@ -61,7 +61,7 @@ class MailingBlacklistExpressions extends AbstractXMLWrapper
         }
         return $xml;
     }
-    
+
     /**
      * Human readable representation of this wrapper.
      *
