@@ -35,6 +35,10 @@ use de\xqueue\maileon\api\client\transactions\TransactionType;
 use de\xqueue\maileon\api\client\transactions\DataType;
 use de\xqueue\maileon\api\client\blacklists\mailings\MailingBlacklistsService;
 use de\xqueue\maileon\api\client\blacklists\mailings\MailingBlacklistExpressions;
+use de\xqueue\maileon\api\client\webhooks\Webhook;
+use de\xqueue\maileon\api\client\webhooks\WebhookBodySpecification;
+use de\xqueue\maileon\api\client\webhooks\WebhooksService;
+use de\xqueue\maileon\api\client\webhooks\WebhookUrlParameter;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -45,6 +49,22 @@ if (!@include("./conf/config.php")) {
 }
 if (!@include("./conf/testdata.include")) {
     die("'conf/testdata.include' not found. Make sure you copied it there.");
+}
+
+function followRedirect($url)
+{
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_HEADER, false);
+	curl_setopt($ch, CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,0);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+	$html = curl_exec($ch);
+	$redirectURL = curl_getinfo($ch,CURLINFO_EFFECTIVE_URL );
+	curl_close($ch);
+
+	return $redirectURL;
 }
 
 function checkResult($result = "")
@@ -76,7 +96,7 @@ pre {
     white-space: pre-wrap;       /* css-3 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
     white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;   
+    word-wrap: break-word;
 }
 </style>
 <title>Maileon PHP API Client Testpage</title>
@@ -191,7 +211,7 @@ POST Create contact:
         new Preference('EmailSegment1', null, 'Email', 'true'),
         new Preference('EmailSegment2', null, 'Email', 'true')
     );
-    
+
     $src = "";
     $subscriptionPage = "";
 	
@@ -199,9 +219,9 @@ POST Create contact:
 	checkResult($response);
 
 	echo "<pre><ul><li>" . htmlentities($newContact->toXMLString()) . "</li></ul></pre>";
-	
+
 	echo "Clone test (print cloned object):";
-				
+
 	$nc = new Contact();
 	$nc->fromXMLString($newContact->toXMLString());
 	echo "<pre><ul><li>" . $nc->toString() . "</li></ul></pre>";
@@ -226,7 +246,7 @@ POST Create contact:
         new Preference('EmailSegment1', null, 'Email', 'true'),
         new Preference('EmailSegment2', null, 'Email', 'false', 'test')
     );
-	
+
     
     $src = "";
     $subscriptionPage = "";
@@ -289,7 +309,7 @@ GET contacts count with update_after parameter:
 		echo '<br /><pre><ul><li>Returned contacts count: ' . $response->getResult() . '</li></ul>';
 	}
 ?>
-</li>    
+</li>
 <?php } if (isset($_POST['contact_3'])) { ?>
 <li>
 GET all contacts [page <?= $TESTDATA['page_index']?>, pagesize <?= $TESTDATA['page_size']?>]:
@@ -375,7 +395,7 @@ PUT update contact with ID <?= $TESTDATA['userId']?> (ignore checksum):
         new Preference('EmailSegment3', null, 'Email', 'false'),
         new Preference('EmailSegment4', null, 'Email', 'false')
     );
-	
+
 	echo "\n<pre>" . htmlentities($newUpdateContact->toXMLString()) . "</pre>\n";
 
 	//$response = $contactsService->updateContact($newUpdateContact, $TESTDATA['userChecksum'], null, null, false, null, true);
@@ -403,7 +423,7 @@ PUT update contact with its email as identifier:
         new Preference('EmailSegment3', null, 'Email', 'false'),
         new Preference('EmailSegment4', null, 'Email', 'true')
     );
-	
+
 	echo "\n<pre>" . htmlentities($newUpdateContact->toXMLString()) . "</pre>\n";
 
 	$response = $contactsService->updateContactByEmail("max.mustermann2@xqueue.de", $newUpdateContact);
@@ -428,7 +448,7 @@ PUT update contact with its external ID as identifier:
         new Preference('EmailSegment3', null, 'Email', 'true'),
         new Preference('EmailSegment4', null, 'Email', 'false')
     );
-	
+
 	echo "\n<pre>" . htmlentities($newUpdateContact->toXMLString()) . "</pre>\n";
 
 	$response = $contactsService->updateContactByExternalId("someExternalId", $newUpdateContact);
@@ -453,7 +473,7 @@ GET all contacts [page <?= $TESTDATA['page_index']?>, pagesize <?= $TESTDATA['pa
 <?php
 	$response = $contactsService->getContacts($TESTDATA['page_index'], $TESTDATA['page_size'], array('FIRSTNAME','LASTNAME'), array('abär'));
 	checkResult($response);
-	
+
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
 			foreach ($response->getResult() as $contact) {
@@ -515,7 +535,7 @@ GET contacts with external ID [page <?= $TESTDATA['userExternalId']?>, pagesize 
 //	$response = $contactsService->getContactsByExternalId($TESTDATA['userExternalId'], array('FIRSTNAME','LASTNAME'), array('Main ID', 'CV ID', 'Kategoria', 'Port�l'));
 	$response = $contactsService->getContactsByExternalId($TESTDATA['userExternalId'], array(), array(), array('Email', 'SMS'));
 	checkResult($response);
-	
+
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
 		foreach ($response->getResult() as $contact) {
@@ -647,7 +667,7 @@ GET blocked contacts [page <?= $TESTDATA['userExternalId']?>, pagesize <?= $TEST
 <?php
 	$response = $contactsService->getBlockedContacts(array('FIRSTNAME','LASTNAME'), array('COLOR'));
 	checkResult($response);
-	
+
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
 		foreach ($response->getResult() as $contact) {
@@ -946,7 +966,7 @@ GET all contactfilters:
 <?php
 	$response = $contactfiltersService->getContactFilters();
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
@@ -976,7 +996,7 @@ POST change name of contact filter with ID <?= $TESTDATA['contactFilterId']?> to
 
 	$response = $contactfiltersService->updateContactFilter(1, $filter);
 	checkResult($response);
-	
+
 	$response = $contactfiltersService->getContactFilter(1);
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul><li>" . $response->getResult()->toString() . "</li></ul>";
@@ -1190,17 +1210,17 @@ if (containsPostNeedle("mailing")) {?>
 <?php if (isset($_POST['mailings_1'])) { ?>
 <li>
 GET get HTML of mailing with ID  <?= $TESTDATA['mailingId']?>:
-<?php	
+<?php
 
 	$response = $mailingService->getHTMLContent($TESTDATA['mailingId']);
-	
+
 	checkResult($response);
 ?>
 </li>
 <?php } if (isset($_POST['mailings_2'])) { ?>
 <li>
 POST set HTML of mailing with ID <?= $TESTDATA['setMailingId']?>:
-<?php	
+<?php
 
 	//$html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html>   <head>      <title>[[MAILING|SUBJECT|]]</title>	</head>   <body bgcolor="#ebebeb">      <img src="http://www.xqueue.de/system/scripts/../../tl_files/layout/logo.png" /> 	  <a href="http://www.xqueue.de">XQueue</a>   </body></html>';
 	$html = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -1417,13 +1437,13 @@ POST set HTML of mailing with ID <?= $TESTDATA['setMailingId']?>:
 <?php } if (isset($_POST['mailings_3'])) { ?>
 <li>
 GET get last 10 mailings:
-<?php	
+<?php
 
 	// Check till end of day to make sure not to miss anything
 	$now = date('Y-m-d+');
-	
+
 	$fields = array(MailingFields::$STATE,
-					MailingFields::$TYPE, 
+					MailingFields::$TYPE,
 					MailingFields::$NAME,
 					MailingFields::$SCHEDULE_TIME);
 
@@ -1437,7 +1457,7 @@ GET get last 10 mailings:
     echo "<br /><hr /><br />";
 
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
@@ -1451,7 +1471,7 @@ GET get last 10 mailings:
 <?php } if (isset($_POST['mailings_4_1'])) { ?>
 <li>
 GET get sender alias:
-<?php	
+<?php
 $response = $mailingService->getSenderAlias($TESTDATA['mailingId']);
 checkResult($response);
 
@@ -1461,7 +1481,7 @@ echo "<br />Result: " . $response->getResult();
 <?php } if (isset($_POST['mailings_4'])) { ?>
 <li>
 GET get sender:
-<?php	
+<?php
 $response = $mailingService->getSender($TESTDATA['mailingId']);
 checkResult($response);
 
@@ -1471,7 +1491,7 @@ echo "<br />Result: " . $response->getResult();
 <?php } if (isset($_POST['mailings_5'])) { ?>
 <li>
 POST set sender:
-<?php	
+<?php
 $response = $mailingService->setSender($TESTDATA['mailingId'], "maxX@api.testing.news-mailer.eu");
 checkResult($response);
 ?>
@@ -1673,7 +1693,7 @@ checkResult($response);
 		<?php
 		$mailingService->deleteMailingSchedule(593);
 		//$response = $mailingService->setMailingSchedule(593, "2021-03-20", 14, 01, 'weekdayhour', null, 0, "2021-03-25 18:00", false, 2, null, "5-10,12,13-15");
-		
+
 		$response = $mailingService->setMailingSchedule(593, "2021-03-20", 14, 01, 'uniform', 24, null, null, false, 1, null, "2-5,7,13-18");
 		checkResult($response);
 		?>
@@ -1972,7 +1992,7 @@ checkResult($response);
 
             $response = $mailingService->getSubject($mailingId);
             checkResult($response);
-            
+
             echo "<br />Result: " . $response->getResult();
             ?>
         </li>
@@ -1996,7 +2016,7 @@ checkResult($response);
 
             $response = $mailingService->setCleanupListsAndFilters($mailingId, true);
             checkResult($response);
-            
+
             echo "<br />Result: " . $response->getResult();
             ?>
         </li>
@@ -2019,11 +2039,11 @@ checkResult($response);
 
             $mailingId = 822;
 
-            
+
             $response = $mailingService->getMailingBlacklists($mailingId);
             checkResult($response);
-            
-            
+
+
             if ($response->isSuccess()) {
                 echo "<br /><pre><ul>";
                 foreach ($response->getResult() as $blacklist) {
@@ -2054,8 +2074,68 @@ checkResult($response);
 
             $response = $mailingService->getMailingDomain($mailingId);
             checkResult($response);
-            
+
             var_dump($response->getResult());
+            ?>
+        </li>
+<?php } if (isset($_POST['mailings_cms2_1'])) { ?>
+        <li>
+			POST CMS2 grab the images for the mailing with ID from config:
+            <?php
+
+			$randomNumber = rand(1, 5);
+			$html = ['<html>', '<body>'];
+
+			for($i = 0; $i < $randomNumber; $i++) {
+				$html []= sprintf('<img src="%s">', followRedirect('https://loremflickr.com/320/240'));
+			}
+
+			$html []= sprintf('<img src="%s">', 'http://example.com/unsupported-image.tiff');
+			$html []= sprintf('<img src="%s">', 'http://this-is-not-a-valid-url.abcdefg');
+
+			$html []= '</body>';
+			$html []= '</html>';
+
+            $response = $mailingService->cms2GrabImages($TESTDATA['cms2MailingId'], implode('', $html), $TESTDATA['cms2ImageDestinationFolder']);
+            checkResult($response);
+
+			if ($response->isSuccess()) {
+                echo "<br><pre>";
+                echo $response->getResult()->toString();
+                echo "</pre>";
+            }
+            ?>
+        </li>
+<?php } if (isset($_POST['mailings_cms2_2'])) { ?>
+        <li>
+			GET CMS2 mailing as ZIP for the mailing with ID from config:
+            <?php
+
+            $response = $mailingService->cms2GetMailingAsZip($TESTDATA['cms2MailingId']);
+            checkResult($response);
+
+			if ($response->isSuccess()) {
+				$data = 'data:application/zip;base64,' . base64_encode($response->getResult());
+				printf('<p><a href="%s">Download response</a></p>', $data);
+			}
+            ?>
+        </li>
+<?php } if (isset($_POST['mailings_cms2_3'])) { ?>
+        <li>
+			POST CMS2 save mailing with ID from config to media library:
+            <?php
+
+            $response = $mailingService->cms2SaveMailingToFolder($TESTDATA['cms2MailingId'], $TESTDATA['cms2MailingTemplatePath']);
+            checkResult($response);
+            ?>
+        </li>
+<?php } if (isset($_POST['mailings_cms2_4'])) { ?>
+        <li>
+			PUT CMS2 set template for mailing with ID from config from the media library
+            <?php
+
+            $response = $mailingService->cms2SetTemplate($TESTDATA['cms2MailingId'], $TESTDATA['cms2MailingTemplatePath']);
+            checkResult($response);
             ?>
         </li>
 <?php } ?>
@@ -2074,19 +2154,19 @@ if (containsPostNeedle("media_")) {
 ?>
 
     <h2>Reportings - Tests</h2>
-    
+
     <?php
     	$mediaService = new MediaService($config);
     ?>
     <ul>
-    
+
     <?php if (isset($_POST['media_1'])) { ?>
         <li>
         	GET list of mailing templates:
-        	
+
         	<?php
         	$response = $mediaService->getMailingTemplates();
-        	
+
         	if ($response->isSuccess()) {
         	    echo "<br /><pre><ul>";
         	    foreach ($response->getResult() as $template) {
@@ -2100,12 +2180,12 @@ if (containsPostNeedle("media_")) {
         	}
         	?>
         </li>
-        
+
     <?php
     }
     ?>
     </ul>
-    <?php 
+    <?php
 }
 
 ?>
@@ -2124,7 +2204,7 @@ if (containsPostNeedle("reports_")) {
 <h2>Reportings - Tests</h2>
 
 <?php
-	$reportsService = new ReportsService($config); 
+	$reportsService = new ReportsService($config);
 	$reportsService->setDebug($debug);
 ?>
 <ul>
@@ -2144,7 +2224,7 @@ GET unsubscribers:
 
 	$response = $reportsService->getUnsubscribers($fromDate, $toDate, $mailingIds, $contactIds, $contactEmails);
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
@@ -2164,7 +2244,7 @@ GET unsubscribers:
 
 	$response = $reportsService->getUnsubscribersCount($fromDate, $toDate, $mailingIds, $contactIds, $contactEmails);
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo '<br /><pre><ul><li>Returned unsubscriber count: ' . $response->getResult() . '</li></ul>';
@@ -2189,7 +2269,7 @@ GET unsubscriber reasons:
 
 	$response = $reportsService->getUnsubscriberReasons($fromDate, $toDate, $order, $asc, $pageIndex, $pageSize);
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
@@ -2279,7 +2359,7 @@ GET recipients:
     $to = null;//"1427714818000";
 	$response = $reportsService->getRecipients($from, $to, null, null, null, null, true, array("TITLE"), array("abär"), false, $TESTDATA['page_index'], $TESTDATA['page_size']);
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
@@ -2300,7 +2380,7 @@ GET Count recipients:
 
     $response = $reportsService->getRecipientsCount(strtotime("2015-09-07")."000", strtotime("2015-09-08")."000");
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo '<br /><pre><ul><li>Returned recipients count: ' . $response->getResult() . '</li></ul>';
@@ -2341,7 +2421,7 @@ GET opens:
 
 	$response = $reportsService->getOpens($fromDate, $toDate, $mailingIds, $contactIds, $contactEmails, $contactExternalIds, $formatFilter, $socialNetworkFilter, $deviceTypeFilter, $embedEmailClientInfos, $excludeAnonymousOpens, $standardFields, $customFields, $embedFieldBackups, $pageIndex, $pageSize, $embedTransactionId, $embedContactHash);
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
@@ -2350,7 +2430,7 @@ GET opens:
 		}
 		echo "</ul></pre>";
 	}
-	
+
 ?>
 <br />
 
@@ -2358,7 +2438,7 @@ GET Count opens:
 <?php
 $response = $reportsService->getOpensCount(null, null, null, null, null);
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo '<br /><pre><ul><li>Returned opens count: ' . $response->getResult() . '</li></ul>';
@@ -2381,7 +2461,7 @@ GET unique opens:
 
 	$response = $reportsService->getUniqueOpens(null, null, $mailingIds, null, null, null, $embedEmailClientInfos, $excludeAnonymousOpens, null, null, false, $TESTDATA['page_index'], $TESTDATA['page_size']);
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
@@ -2397,7 +2477,7 @@ GET Count unique opens:
 <?php
 	$response = $reportsService->getUniqueOpensCount(null, null, array($TESTDATA['mailingId']));
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo '<br /><pre><ul><li>Returned unique opens count: ' . $response->getResult() . '</li></ul>';
@@ -2416,13 +2496,13 @@ GET clicks:
     $fromDate = null;//(time()-(60*60)) . "000";
     $mailingIds = array(); // array($TESTDATA['mailingId'])
     $contactIds = array();
-    
+
     $embedTransactionId = true;
     $embedContactHash = true;
 
     $response = $reportsService->getClicks($fromDate, null, $mailingIds, $contactIds, null, null, null, null, null, null, null, null, true, false, array("TITLE"), array("Dorig"), false, $TESTDATA['page_index'], $TESTDATA['page_size'], true, $embedTransactionId, $embedContactHash);
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
@@ -2438,7 +2518,7 @@ GET Count clicks:
 <?php
 	$response = $reportsService->getClicksCount(null, null, array($TESTDATA['mailingId']));
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo '<br /><pre><ul><li>Returned clicks count: ' . $response->getResult() . '</li></ul>';
@@ -2455,7 +2535,7 @@ GET unique clicks:
     $embedEmailClientInfos = true;
 	$response = $reportsService->getUniqueClicks(null, null, array(), null, null, null, $embedEmailClientInfos, false, array("TITLE"), array("Dorig"), false, $TESTDATA['page_index'], $TESTDATA['page_size']);
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
@@ -2472,7 +2552,7 @@ GET Count unique clicks:
 <?php
 	$response = $reportsService->getUniqueClicksCount(null, null, array($TESTDATA['mailingId']));
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo '<br /><pre><ul><li>Returned unique clicks count: ' . $response->getResult() . '</li></ul>';
@@ -2491,7 +2571,7 @@ GET bounces:
 
 	$response = $reportsService->getBounces(null, null, $mailingIds, null, $emails, null, null, null, null, $excludeAnonymousBounces, array(), array(), false, $TESTDATA['page_index'], $TESTDATA['page_size']);
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo "<br /><pre><ul>";
@@ -2507,7 +2587,7 @@ GET Count bounces:
 <?php
 	$response = $reportsService->getBouncesCount();
 	checkResult($response);
-	
+
 	// Print all results
 	if ($response->isSuccess()) {
 		echo '<br /><pre><ul><li>Returned bounces count: ' . $response->getResult() . '</li></ul>';
@@ -2826,7 +2906,7 @@ GET transaction type
 DELETE transaction type
 <?php
     $response = $transactionsService->deleteTransactionType($TESTDATA['transactionTypeId']);
-	
+
     checkResult($response);
 ?>
 </li>
@@ -3040,15 +3120,19 @@ DELETE transaction type
 	</li>
 <?php } if (isset($_POST['transactions_6_3'])) { ?>
 	<li>
-		POST create transaction by name
+		POST create transactions with TYPE NAME and TRANSACTION ID from config
 		<?php
 		$transaction = new Transaction();
 		$transaction->contact = new ContactReference();
 		$transaction->contact->email = "max.mustermann@baunzt.de";
-		$transaction->typeName = "Bestellbestätigung_TEST1";
-		
+		//$transaction->typeName = $TESTDATA['transactionTypeName'];
+		$transaction->type = $TESTDATA['transactionTypeId'];
+
 		// Some sample content
-		$transaction->content['transaction_id'] = "123äöü45";
+		$transaction->content = [
+			'transaction_id' => $TESTDATA['transactionId'],
+			'something' => 'good'
+		];
 
 		$transactions = array($transaction);
 
@@ -3075,18 +3159,18 @@ POST create transactions and non existing contact
     $transaction->import->contact->external_id = "ztfhtfg";
 	$transaction->import->contact->permission = Permission::$SOI->getCode();
     $transaction->type = $TESTDATA['transactionTypeId'];
-    
+
     $transaction->content['total'] = 12;
     $transaction->content['name'] = "This is some content";
-    
+
     echo "<br />";
     echo json_encode( array($transaction));
 
 
     //$transactions = array($transaction1, $transaction2);
     $transactions = array($transaction);
-	
-	$response = $transactionsService->createTransactions($transactions, true, false);	
+
+	$response = $transactionsService->createTransactions($transactions, true, false);
 	checkResult($response);
 
 	if ($response->isSuccess() && is_array($response->getResult()->reports)) {
@@ -3155,11 +3239,33 @@ POST create transactions and non existing contact
 			echo '</ul>';
 			?>
 		</li>
+		<?php }
+		if (isset($_POST['transactions_11'])) { ?>
+		<li>
+			GET transaction with TYPE ID and TRANSACTION ID from config
+			<?php
+			$response = $transactionsService->getTransaction($TESTDATA['transactionTypeId'], $TESTDATA['transactionId']);
+			checkResult($response);
+
+			if ($response->isSuccess()) {
+				echo '<br><br>Transaction content: <pre>' . json_encode($response->getResult()) . '</pre>';
+			}
+			?>
+		</li>
+		<?php }
+		if (isset($_POST['transactions_12'])) { ?>
+		<li>
+			DELETE transaction with TYPE ID and TRANSACTION ID from config
+			<?php
+			$response = $transactionsService->deleteTransaction($TESTDATA['transactionTypeId'], $TESTDATA['transactionId']);
+			checkResult($response);
+			?>
+		</li>
 		<?php } ?>
 </ul>
 <?php } // End?>
 
-<?php 
+<?php
 if (isset($_POST['blacklists_1'])
 || isset($_POST['blacklists_2'])
 || isset($_POST['blacklists_3'])) {?>
@@ -3202,7 +3308,7 @@ GET a particular blacklist
 <li>
 POST add entries to blacklist
 <?php
-	
+
 	$response = $blacklistsService->addEntriesToBlacklist(39602, array('someone@toblacklist.com', 'another.person@isblacklisted.com'));
 	checkResult($response);
 ?>
@@ -3210,13 +3316,14 @@ POST add entries to blacklist
 <?php } ?>
 <?php } ?>
 
-<?php 
+<?php
 if (isset($_POST['mailing_blacklists_1'])
     || isset($_POST['mailing_blacklists_2'])
     || isset($_POST['mailing_blacklists_3'])
     || isset($_POST['mailing_blacklists_4'])
     || isset($_POST['mailing_blacklists_5'])
-    || isset($_POST['mailing_blacklists_6'])) {?>
+    || isset($_POST['mailing_blacklists_6'])
+	|| isset($_POST['mailing_blacklists_7'])) {?>
 <h2>Blacklists - Tests</h2>
 
 <?php
@@ -3225,8 +3332,8 @@ if (isset($_POST['mailing_blacklists_1'])
 ?>
 
 
-        
-        
+
+
 <ul>
 <?php if (isset($_POST['mailing_blacklists_1'])) { ?>
 <li>
@@ -3276,7 +3383,7 @@ $response = $mailingBlacklistsService->updateMailingBlacklist(2, "My new mailing
 </li>
 <?php } if (isset($_POST['mailing_blacklists_5'])) { ?>
 <li>
-DELETE delete a mailing blacklist   
+DELETE delete a mailing blacklist
 <?php
 $response = $mailingBlacklistsService->deleteMailingBlacklist(562);
 	checkResult($response);
@@ -3287,10 +3394,26 @@ $response = $mailingBlacklistsService->deleteMailingBlacklist(562);
 POST add entries to a mailing blacklist
 <?php
     $expressions = new MailingBlacklistExpressions(array("*.gmx","max.mustermann@xqueue.com","max.mustermann*"));
-    
-    $response = $mailingBlacklistsService->addEntriesToBlacklist(2, $expressions);
+
+    $response = $mailingBlacklistsService->addEntriesToBlacklist($TESTDATA['mailingBlacklistId'], $expressions);
     checkResult($response);
-    
+
+    if ($response->isSuccess()) {
+        echo '<br /><pre>Returned filter reasons: <ul>';
+        foreach ($response->getResult() as $filteredExpression) {
+            echo '<li>' . $filteredExpression->toString() . '</li>';
+        }
+        echo "</ul></pre>";
+    }
+?>
+</li>
+<?php } if (isset($_POST['mailing_blacklists_7'])) { ?>
+<li>
+GET the entries from a mailing blacklist
+<?php
+    $response = $mailingBlacklistsService->getEntriesForBlacklist($TESTDATA['mailingBlacklistId']);
+    checkResult($response);
+
     if ($response->isSuccess()) {
         echo '<br /><pre>Returned filter reasons: <ul>';
         foreach ($response->getResult() as $filteredExpression) {
@@ -3367,6 +3490,101 @@ DELETE remove account placeholder
 
 	$response = $accountService->deleteAccountPlaceholder("ApiTest");
 	checkResult($response);
+?>
+</li>
+<?php } ?>
+</ul>
+<?php } // End?>
+
+<?php if (containsPostNeedle("webhook_")) {?>
+<h2>Webhook - Tests</h2>
+
+<?php
+	$webhooksService = new WebhooksService($config);
+    $webhooksService->setDebug($debug);
+?>
+
+<ul>
+<?php if (isset($_POST['webhook_1'])) { ?>
+<li>
+GET a webhook with ID from config
+<?php
+        $response = $webhooksService->getWebhook($TESTDATA['webhookId']);
+
+		checkResult($response);
+		if ($response->isSuccess()) {
+			$webhook = $response->getResult();
+			echo '<br /><br />Returned webhook:<pre>';
+			echo $webhook->toString() . '</pre>';
+		}
+?>
+</li>
+<?php } if (isset($_POST['webhook_2'])) { ?>
+<li>
+DELETE the webhook with ID from config
+<?php
+        $response = $webhooksService->deleteWebhook($TESTDATA['deleteWebhookId']);
+
+		checkResult($response);
+?>
+</li>
+<?php } if (isset($_POST['webhook_3'])) { ?>
+<li>
+PUT update the webhook with ID from config
+<?php
+		$webhook = new Webhook();
+		$webhook->url = "http://example.com/" . generateRandomString();
+		$webhook->urlParams = [
+			new WebhookUrlParameter(['name' => 'test', 'standardContactField' => 'external_id'])
+		];
+		$webhook->body = new WebhookBodySpecification([
+			'standardFields' => ['email']
+		]);
+		$webhook->event = Webhook::$EVENT_UNSUBSCRIPTION;
+
+        $response = $webhooksService->updateWebhook($TESTDATA['webhookId'], $webhook);
+
+		checkResult($response);
+?>
+</li>
+<?php } if (isset($_POST['webhook_4'])) { ?>
+<li>
+POST create a new webhook
+<?php
+		$webhook = new Webhook();
+		$webhook->url = "http://example.com/" . generateRandomString();
+		$webhook->urlParams = [
+			new WebhookUrlParameter(['name' => 'test', 'standardContactField' => 'external_id'])
+		];
+		$webhook->body = new WebhookBodySpecification([
+			'standardFields' => [StandardContactField::$FIRSTNAME, 'email']
+		]);
+		$webhook->event = Webhook::$EVENT_UNSUBSCRIPTION;
+
+        $response = $webhooksService->createWebhook($webhook);
+
+		checkResult($response);
+		if ($response->isSuccess()) {
+			$id = $response->getResult();
+			echo '<br /><br />Created webhook:';
+			echo '<ul><li>URL: ' . $webhook->url . '</li><li>ID: ' . $id . '</li></ul>';
+		}
+?>
+</li>
+<?php } if (isset($_POST['webhook_5'])) { ?>
+<li>
+GET a list of webhooks
+<?php
+        $response = $webhooksService->getWebhooks();
+
+		checkResult($response);
+		if ($response->isSuccess()) {
+			echo '<br /><br />Returned webhooks:<ul>';
+			foreach($response->getResult() as $webhook) {
+				echo '<li><pre>' . $webhook->toString() . '</pre></li>';
+			}
+			echo '</ul>';
+		}
 ?>
 </li>
 <?php } ?>
