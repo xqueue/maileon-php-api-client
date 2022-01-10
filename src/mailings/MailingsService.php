@@ -27,8 +27,8 @@ class MailingsService extends AbstractMaileonService
      *  the type of the mailing, which can be one of 'doi', 'trigger', or 'regular'.
      * @param string $editorVersion
      *  the version of the CMS to create the mailing for.
-     *  Valid values for CMS1: 'v1', '1'. 
-     *  Valid values for CMS2: 'v2', '2'. 
+     *  Valid values for CMS1: 'v1', '1'.
+     *  Valid values for CMS2: 'v2', '2'.
      *  By default (no value), the mailing will be created as a CMS2 template, if CMS2 is activated.
      * @return MaileonAPIResult
      *  the result of the operation
@@ -40,29 +40,29 @@ class MailingsService extends AbstractMaileonService
             'subject' => urlencode($subject),
             'type' => urlencode($type),
         );
-        
+
         // As of deployment on 23.08.2021 empty strings are not accepted anymore. This will be changed to work again in
         // near future but to make the client work again, leave the variable if not set.
         if (!empty($editorVersion)) {
             $queryParameters['editorVersion'] = urlencode($editorVersion);
         }
-        
+
         return $this->post('mailings', "", $queryParameters);
     }
-    
+
     /**
      * Get the ID of a mailing by its name
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      */
     public function getMailingIdByName($mailingName)
     {
         return $this->get('mailings/name/' . rawurlencode($mailingName));
     }
-    
+
     /**
      * Get the type of a mailing. It can be either 'doi', 'trigger', or 'regular
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return \de\xqueue\maileon\api\client\MaileonAPIResult
      */
@@ -70,10 +70,10 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/type');
     }
-    
+
     /**
      * Check if a mailing with the given name exists and return true or false
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      */
     public function checkIfMailingExistsByName($mailingName)
@@ -81,10 +81,10 @@ class MailingsService extends AbstractMaileonService
         $response = $this->get('mailings/name/' . rawurlencode($mailingName));
         return ($response->isSuccess());
     }
-    
+
     /**
      * Disable all QoS checks for a given mailing
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      */
     public function disableQosChecks($mailingId)
@@ -112,10 +112,10 @@ class MailingsService extends AbstractMaileonService
             "<ignore_permission>$ignorePermission</ignore_permission>"
         );
     }
-    
+
     /**
      * Check if a (trigger) mail is set to ignore permission during sendout (order confirmation, invoices, ...)
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return "true" or "false"
      */
@@ -123,7 +123,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/settings/ignorepermission');
     }
-    
+
     /**
      * Set cleanup option for post sendout processing.
      * This flag defines if the used contact list and filter should be deleted after sendout.
@@ -143,7 +143,7 @@ class MailingsService extends AbstractMaileonService
             "<cleanup>$cleanup</cleanup>"
             );
     }
-    
+
     /**
      * Retrieve the cleanup option for post sendout processing.
      * This flag defines if the used contact list and filter should be deleted after sendout.
@@ -155,10 +155,10 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/settings/post_sendout_cleanup');
     }
-    
+
     /**
      * Sets the dispatch logic for trigger mailings
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @param string $logic the string representation of the logic (xml)
      */
@@ -167,20 +167,20 @@ class MailingsService extends AbstractMaileonService
         $queryParameters = array();
         return $this->put('mailings/' . $mailingId . '/dispatching', $logic, $queryParameters);
     }
-    
+
     /**
      * Used for DOI Mailings
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * */
     public function setTriggerActive($mailingId)
     {
         return $this->post('mailings/' . $mailingId . '/dispatching/activate', "");
     }
-    
+
     /**
      * Deletes an active trigger mailing.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return MaileonAPIResult
      *  the result of the operation
@@ -189,10 +189,10 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->delete("mailings/" . $mailingId . "/dispatching");
     }
-    
+
     /**
      * Deletes a mailing by ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return MaileonAPIResult
      *  the result of the operation
@@ -201,7 +201,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->delete("mailings/" . $mailingId);
     }
-    
+
     /**
      * Updates the HTML content of the mailing referenced by the given ID.
      *
@@ -225,10 +225,10 @@ class MailingsService extends AbstractMaileonService
         );
         return $this->post('mailings/' . $mailingId . '/contents/html', $html, $queryParameters, "text/html");
     }
-    
+
     /**
      * Updates the TEXT content of the mailing referenced by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @param string $text
      *  the new TEXT content of the mailing
@@ -241,10 +241,10 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post('mailings/' . $mailingId . '/contents/text', $text, array(), "text/plain");
     }
-    
+
     /**
      * Fetches the HTML content of the mailing identified by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return MaileonAPIResult
      *    the result object of the API call, with the HTML content string of the mailing
@@ -256,10 +256,10 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/contents/html', null, "text/html");
     }
-    
+
     /**
      * Fetches the TEXT content of the mailing identified by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return MaileonAPIResult
      *    the result object of the API call, with the TEXT content string of the mailing
@@ -271,10 +271,10 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/contents/text', null, "text/plain");
     }
-    
+
     /**
      * Updates the target group id of the mailing referenced by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @param string $targetGroupId
      *  the ID of the target group to set
@@ -290,10 +290,10 @@ class MailingsService extends AbstractMaileonService
             "<targetgroupid>" . $targetGroupId . "</targetgroupid>"
         );
     }
-    
+
     /**
      * Fetches the target group id of the mailing identified by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return MaileonAPIResult
      *    the result object of the API call, with the target group id of the mailing
@@ -305,11 +305,11 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/targetgroupid', null);
     }
-    
+
     /**
      * Updates the sender email address of the mailing referenced by the given ID. <br />
      * Note: if not only the local part but also the domain is provided, make sure that is exists in Maileon.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @param string $email
      *  the ID of the target group to set
@@ -322,10 +322,10 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post('mailings/' . $mailingId . '/contents/sender', "<sender><![CDATA[" . $email . "]]></sender>");
     }
-    
+
     /**
      * Fetches the sender email address of the mailing identified by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return MaileonAPIResult
      *    the result object of the API call, with the sender email address of the mailing
@@ -340,7 +340,7 @@ class MailingsService extends AbstractMaileonService
 
     /**
      * Fetches the state of the mailing identified by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return MaileonAPIResult
      *  the result object of the API call, with the state of the mailing
@@ -352,10 +352,10 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/state');
     }
-    
+
     /**
      * Updates the subject of the mailing referenced by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @param string $subject
      *  the subject of the mailing to set
@@ -368,10 +368,10 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post('mailings/' . $mailingId . '/contents/subject', "<subject><![CDATA[" . $subject . "]]></subject>");
     }
-    
+
     /**
      * Fetches the subject of the mailing identified by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return MaileonAPIResult
      *    the result object of the API call, with the subject of the mailing
@@ -383,10 +383,10 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/contents/subject');
     }
-    
+
     /**
      * Updates the preview text of the mailing referenced by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @param string $previewText
      *  the preview text of the mailing to set, limit: 255 characters
@@ -402,10 +402,10 @@ class MailingsService extends AbstractMaileonService
             "<previewtext><![CDATA[" . $previewText . "]]></previewtext>"
         );
     }
-    
+
     /**
      * Fetches the preview text of the mailing identified by the given ID.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @return MaileonAPIResult
      *    the result object of the API call, with the preview text of the mailing
@@ -417,7 +417,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/contents/previewtext');
     }
-    
+
     /**
      * Sets the template for a mailing. Be careful, all HTML/text contents will be resettet.
      * For templates from the same account, relative paths can be used in the form
@@ -425,7 +425,7 @@ class MailingsService extends AbstractMaileonService
      * For shared templates, an absolute path is required. The easiest way to find the
      * correct path is to set the template
      * manually and use getTemplate() to retrieve the name.
-     * 
+     *
      * @param integer $mailingId the ID of the mailing
      * @param string $template
      *  the template id of the mailing to set
@@ -438,15 +438,15 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->put('mailings/' . $mailingId . '/template', "<templateId><![CDATA[" . $template . "]]></templateId>");
     }
-    
+
     /**
      * Returns the template of the mailing with the provided id.
      * For templates from the same account, relative paths will be returned
      * in the form "my template" of with sub folders "someSubFolder/my template".
      * For shared templates, an absolute path is returned.
      *
-     * 
-     * 
+     *
+     *
      * @param integer $mailingId the ID of the mailing
      *  the ID of the mailing
      * @return MaileonAPIResult
@@ -459,7 +459,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/template');
     }
-    
+
     /**
      * Resets the HTML/text contents of the mailing to its template state.
      *
@@ -474,7 +474,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->put('mailings/' . $mailingId . '/contents/reset');
     }
-    
+
     /**
      * Updates the senderalias of the mailing referenced by the given ID. <br />
      *
@@ -493,7 +493,7 @@ class MailingsService extends AbstractMaileonService
             "<senderalias><![CDATA[" . $senderalias . "]]></senderalias>"
         );
     }
-    
+
     /**
      * Fetches the sender alias of the mailing identified by the given ID.
      *
@@ -508,7 +508,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/contents/senderalias');
     }
-    
+
     /**
      * Updates the recipientalias of the mailing referenced by the given ID. <br />
      *
@@ -527,7 +527,7 @@ class MailingsService extends AbstractMaileonService
             "<recipientalias><![CDATA[" . $recipientalias . "]]></recipientalias>"
         );
     }
-    
+
     /**
      * Fetches the reply-to address of the mailing identified by the given ID.
      *
@@ -542,7 +542,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/settings/replyto');
     }
-    
+
     /**
      * Sets the reply-to address of the mailing identified by the given ID.
      *
@@ -561,10 +561,10 @@ class MailingsService extends AbstractMaileonService
             'auto' => ($auto == true) ? "true" : "false",
             'customEmail' => $customEmail
         );
-        
+
         return $this->post('mailings/' . $mailingId . '/settings/replyto', null, $queryParameters);
     }
-    
+
     /**
      *
      * Method to retrieve mailingy by scheduling time
@@ -608,14 +608,14 @@ class MailingsService extends AbstractMaileonService
             'orderBy' => $orderBy,
             'order' => $order
         );
-        
+
         $queryParameters = $this->appendArrayFields($queryParameters, "fields", $fields);
-        
+
         return $this->get('mailings/filter/scheduletime', $queryParameters);
     }
-    
-    
-    
+
+
+
     /**
      *
      * Method to retrieve mailingy by keywords
@@ -640,14 +640,14 @@ class MailingsService extends AbstractMaileonService
             'page_size' => $page_size,
             'order' => "DESC"
         );
-        
+
         $queryParameters = $this->appendArrayFields($queryParameters, "keywords", $keywords);
         $queryParameters = $this->appendArrayFields($queryParameters, "keywordsOp", $keywordsOp);
         $queryParameters = $this->appendArrayFields($queryParameters, "fields", $fields);
-        
+
         return $this->get('mailings/filter/keywords', $queryParameters);
     }
-    
+
     /**
      *
      * Method to retrieve mailingy by types
@@ -676,13 +676,13 @@ class MailingsService extends AbstractMaileonService
             'page_size' => $page_size,
             'order' => "DESC"
         );
-        
+
         $queryParameters = $this->appendArrayFields($queryParameters, "types", $types);
         $queryParameters = $this->appendArrayFields($queryParameters, "fields", $fields);
-        
+
         return $this->get('mailings/filter/types', $queryParameters);
     }
-    
+
     /**
      * Method to retrieve mailings by states
      *
@@ -711,13 +711,13 @@ class MailingsService extends AbstractMaileonService
             'page_size' => $page_size,
             'order' => "DESC"
         );
-        
+
         $queryParameters = $this->appendArrayFields($queryParameters, "states", $states);
         $queryParameters = $this->appendArrayFields($queryParameters, "fields", $fields);
-        
+
         return $this->get('mailings/filter/states', $queryParameters);
     }
-    
+
     /**
      * Schedules the mailing to be instantly sent
      *
@@ -730,7 +730,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post('mailings/' . $mailingId . '/sendnow');
     }
-    
+
     /**
      * Schedules the mailing for a given time. If <code>dispatchOption</code> is set, the enhanced scheduling options are enabled.
      *
@@ -755,10 +755,10 @@ class MailingsService extends AbstractMaileonService
      *  The parameter determines the inclusion/exclusion of clicks as a response criteria when selecting {'hour', 'weekdayhour'} options.
      * @param int dispatchWavesGroup
      *  The number determines how many consecutive sending waves will be grouped when using {'hour', 'weekdayhour'} distribution. Supported values are {1, 2, 3 (default)}.
-     * @param string dispatchUniformInterval 
+     * @param string dispatchUniformInterval
      *  The arguments controls the interval {'hour', '30m', '20m', '15m', '10m'} for the 'uniform' strategy indicating the frequency of mailing
      *  distribution over time. It should equals null for {'hour', 'weekdayhour'} dispatch options.
-     * @param string allowedHours 
+     * @param string allowedHours
      *  The value represents the allowed hours. Comma separated values for the allowed hours and can be combined with a range of hours. The required format looks
      *  like 0,3,5,17-21 as an example. The acceptable values rane is 0..23. Note that the if this argument is not provided, all 24H of the day will be considered as acceptable
      *  dispatch hours.
@@ -772,7 +772,7 @@ class MailingsService extends AbstractMaileonService
             'hours' => $hours,
             'minutes' => $minutes
         );
-        
+
         if (!empty($dispatchOption)) { $queryParameters ['dispatchOption'] = urlencode($dispatchOption); }
         if (!empty($dispatchEndInHours)) { $queryParameters ['dispatchEndInHours'] = urlencode($dispatchEndInHours); }
         if (!empty($dispatchEndInDays)) { $queryParameters ['dispatchEndInDays'] = urlencode($dispatchEndInDays); }
@@ -781,7 +781,7 @@ class MailingsService extends AbstractMaileonService
         if (!empty($dispatchWavesGroup)) { $queryParameters ['dispatchWavesGroup'] = urlencode($dispatchWavesGroup); }
         if (!empty($dispatchUniformInterval)) { $queryParameters ['dispatchUniformInterval'] = urlencode($dispatchUniformInterval); }
         if (!empty($allowedHours)) { $queryParameters ['allowedHours'] = urlencode($allowedHours); }
-        
+
         return $this->put('mailings/' . $mailingId . '/schedule', "", $queryParameters);
     }
 
@@ -796,7 +796,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->delete('mailings/' . $mailingId . '/schedule');
     }
-    
+
     /**
      * Get the schedule for the given mailing
      *
@@ -808,7 +808,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/schedule');
     }
-    
+
     /**
      * Update the schedule for the given mailing. If <code>dispatchOption</code> is set, the enhanced scheduling options are enabled.
      *
@@ -832,10 +832,10 @@ class MailingsService extends AbstractMaileonService
      *  The parameter determines the inclusion/exclusion of clicks as a response criteria when selecting {'hour', 'weekdayhour'} options.
      * @param int dispatchWavesGroup
      *  The number determines how many consecutive sending waves will be grouped when using {'hour', 'weekdayhour'} distribution. Supported values are {1, 2, 3 (default)}.
-     * @param string dispatchUniformInterval 
+     * @param string dispatchUniformInterval
      *  The arguments controls the interval {'hour', '30m', '20m', '15m', '10m'} for the 'uniform' strategy indicating the frequency of mailing
      *  distribution over time. It should equals null for {'hour', 'weekdayhour'} dispatch options.
-     * @param string allowedHours 
+     * @param string allowedHours
      *  The value represents the allowed hours. Comma separated values for the allowed hours and can be combined with a range of hours. The required format looks
      *  like 0,3,5,17-21 as an example. The acceptable values rane is 0..23. Note that the if this argument is not provided, all 24H of the day will be considered as acceptable
      *  dispatch hours.
@@ -849,7 +849,7 @@ class MailingsService extends AbstractMaileonService
             'hours' => $hours,
             'minutes' => $minutes
         );
-        
+
         if (!empty($dispatchOption)) { $queryParameters ['dispatchOption'] = urlencode($dispatchOption); }
         if (!empty($dispatchEndInHours)) { $queryParameters ['dispatchEndInHours'] = urlencode($dispatchEndInHours); }
         if (!empty($dispatchEndInDays)) { $queryParameters ['dispatchEndInDays'] = urlencode($dispatchEndInDays); }
@@ -858,11 +858,11 @@ class MailingsService extends AbstractMaileonService
         if (!empty($dispatchWavesGroup)) { $queryParameters ['dispatchWavesGroup'] = urlencode($dispatchWavesGroup); }
         if (!empty($dispatchUniformInterval)) { $queryParameters ['dispatchUniformInterval'] = urlencode($dispatchUniformInterval); }
         if (!empty($allowedHours)) { $queryParameters ['allowedHours'] = urlencode($allowedHours); }
-        
+
         return $this->post('mailings/' . $mailingId . '/schedule', "", $queryParameters);
     }
-    
-    
+
+
     /**
      * Fetches the DOI mailing key of the mailing identified by the given ID.
      *
@@ -877,7 +877,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get('mailings/' . $mailingId . '/settings/doi_key', null, "text/html");
     }
-    
+
     /**
      * Sets the key of the DOI mailing identified by the given ID.
      *
@@ -891,7 +891,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post('mailings/' . $mailingId . '/settings/doi_key', "<doi_key>$doiKey</doi_key>");
     }
-    
+
     /**
      * Deactivates a trigger mailing by ID.
      * @param integer $mailingId The ID of the mailing
@@ -902,8 +902,8 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->delete("mailings/${mailingId}/dispatching");
     }
-    
-    
+
+
     /**
      * Get the dispatch data for a trigger mailing by mailing ID.
      * @param integer $mailingId The ID of the mailing
@@ -914,8 +914,8 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/dispatching");
     }
-    
-    
+
+
     /**
      * Get the schedule for regular mailings by mailing ID.
      * @param integer $mailingId The ID of the mailing
@@ -926,7 +926,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/schedule");
     }
-    
+
     /**
      * Get the archive url for the mailing ID.
      * @param integer $mailingId The ID of the mailing
@@ -937,7 +937,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/archiveurl");
     }
-    
+
     /**
      * Get the report url for the mailing ID.
      * @param integer $mailingId The ID of the mailing
@@ -948,7 +948,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/reporturl");
     }
-    
+
     /**
      * Updates the name of the mailing referenced by the given ID.
      *
@@ -964,7 +964,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post('mailings/' . $mailingId . '/name', "<name><![CDATA[" . $name . "]]></name>");
     }
-    
+
     /**
      * Get the name for the mailing by mailing ID.
      * @param integer $mailingId The ID of the mailing
@@ -975,7 +975,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/name");
     }
-    
+
     /**
      * Updates the tags of the mailing referenced by the given ID.
      *
@@ -991,7 +991,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post('mailings/' . $mailingId . '/settings/tags', "<tags><![CDATA[" . join("#", $tags) . "]]></tags>");
     }
-    
+
     /**
      * Get the tags for the mailing identified by mailing ID.
      * @param integer $mailingId The ID of the mailing
@@ -1002,7 +1002,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/settings/tags");
     }
-    
+
     /**
      * Updates the locale of the mailing referenced by the given ID.
      *
@@ -1018,7 +1018,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post('mailings/' . $mailingId . '/settings/locale', "<locale>$locale</locale>");
     }
-    
+
     /**
      * Get the locale for the mailing identified by mailing ID in the form xx: e.g. de, en, fr, �
      * @param integer $mailingId The ID of the mailing
@@ -1029,7 +1029,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/settings/locale");
     }
-    
+
     /**
      * Execute the RSS SmartMailing functionality for mailings, i.e. fill all SmartMailing
      * Tags from the described RSS-Feeds.
@@ -1042,7 +1042,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post("mailings/${mailingId}/contents/smartmailing/rss");
     }
-    
+
     /**
      * Copy the mailing with the given mailing ID.
      * @param integer $mailingId The ID of the mailing
@@ -1053,7 +1053,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post("mailings/${mailingId}/copy");
     }
-    
+
     /**
      * Read a binary file from the file system and adds it as an attachment to this transaction.
      *
@@ -1079,10 +1079,10 @@ class MailingsService extends AbstractMaileonService
         if ($attachmentFileName === null) {
             $attachmentFileName = basename($filename);
         }
-        
+
         return $this->addAttachment($mailingId, $attachmentFileName, $contentType, $contents);
     }
-    
+
     /**
      * Adds an attachment to the mailing with the provided id.
      *
@@ -1098,7 +1098,7 @@ class MailingsService extends AbstractMaileonService
     public function addAttachment($mailingId, $filename, $contentType, $contents)
     {
         $queryParameters = array('filename' => urlencode($filename));
-        
+
         return $this->post(
             "mailings/${mailingId}/attachments",
             $contents,
@@ -1109,7 +1109,7 @@ class MailingsService extends AbstractMaileonService
             strlen($contents)
         );
     }
-    
+
     /**
      * Returns a list of the registered attachments for the mailing with the provided id.
      *
@@ -1120,7 +1120,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/attachments");
     }
-    
+
     /**
      * Returns the attachment with the provided id as a file.
      *
@@ -1132,7 +1132,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/attachments/${attachmentId}");
     }
-    
+
     /**
      * Returns the count of available attachments in the mailing with the provided id.
      *
@@ -1143,7 +1143,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/attachments/count");
     }
-    
+
     /**
      * Deletes all the attachments that belong to the mailing with the provided id. The mailing should not be sealed.
      *
@@ -1154,7 +1154,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->delete("mailings/${mailingId}/attachments/");
     }
-    
+
     /**
      * Deletes the attachment with the provided id from the mailing. The mailing should not be sealed.
      *
@@ -1169,10 +1169,10 @@ class MailingsService extends AbstractMaileonService
         if (empty($attachmentId)) {
             throw new MaileonAPIException("no attachment id specified");
         }
-        
+
         return $this->delete("mailings/${mailingId}/attachments/${attachmentId}");
     }
-    
+
     /**
      * Copies the attachments of a source mailing into a target mailing. Note that the target
      *  mailing should not be sealed and that the resulting total count of attachments in the
@@ -1185,10 +1185,10 @@ class MailingsService extends AbstractMaileonService
     public function copyAttachments($mailingId, $srcMailingId)
     {
         $queryParameters = array('src_mailing_id' => $srcMailingId);
-        
+
         return $this->put("mailings/${mailingId}/attachments", "", $queryParameters);
     }
-    
+
     /**
      * Returns a list of custom properties for the mailing with the provided id.
      *
@@ -1199,8 +1199,8 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/settings/properties");
     }
-    
-    
+
+
     /**
      * Adds a list of custom properties to the mailing with the provided id.
      *
@@ -1210,9 +1210,9 @@ class MailingsService extends AbstractMaileonService
      */
     public function addCustomProperties($mailingId, $properties)
     {
-        
+
         $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><properties></properties>");
-        
+
         if (is_array($properties)) {
             foreach ($properties as $property) {
                 $this->sxmlAppend($xml, $property->toXML());
@@ -1220,11 +1220,11 @@ class MailingsService extends AbstractMaileonService
         } else {
             $this->sxmlAppend($xml, $properties->toXML());
         }
-        
+
         return $this->post("mailings/${mailingId}/settings/properties", $xml->asXML());
     }
-    
-    
+
+
     /**
      * Updates a custom property of the mailing with the provided id.
      *
@@ -1234,16 +1234,16 @@ class MailingsService extends AbstractMaileonService
      */
     public function updateCustomProperty($mailingId, $property)
     {
-        
+
         $queryParameters = array(
             'name' => $property->key,
             'value' => $property->value
         );
-        
+
         return $this->put("mailings/${mailingId}/settings/properties", "", $queryParameters);
     }
-    
-    
+
+
     /**
      * Deletes a custom property of the mailing with the provided id.
      *
@@ -1256,11 +1256,11 @@ class MailingsService extends AbstractMaileonService
         $queryParameters = array(
             'name' => $propertyName,
         );
-        
+
         return $this->delete("mailings/${mailingId}/settings/properties", $queryParameters);
     }
-    
-    
+
+
     /**
      * Sends a testmail for the mailing with the provided id to a given email address.
      * If the email address does not exist within your contacts,
@@ -1276,10 +1276,10 @@ class MailingsService extends AbstractMaileonService
         $queryParameters = array(
             'email' => $email
         );
-        
+
         return $this->post("mailings/${mailingId}/sendtestemail", "", $queryParameters);
     }
-    
+
     /**
      * Sends a testmail for the mailing with the provided id to a test-targetgroup givenby its ID.
      *
@@ -1292,10 +1292,10 @@ class MailingsService extends AbstractMaileonService
         $queryParameters = array(
             'test_targetgroup_id' => $testTargetGroupId
         );
-        
+
         return $this->post("mailings/${mailingId}/checks/testsendout", "", $queryParameters);
     }
-    
+
     /**
      * Assigns a mailing blacklist to a mailing.
      *
@@ -1307,7 +1307,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->post("mailings/${mailingId}/mailingblacklists/${mailingBlacklistId}");
     }
-    
+
     /**
      * Deletes a mailing blacklist from a mailing.
      *
@@ -1319,9 +1319,9 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->delete("mailings/${mailingId}/mailingblacklists/${mailingBlacklistId}");
     }
-    
-    
-    
+
+
+
     /**
      * Retrieve the domain of this mailing
      *
@@ -1332,7 +1332,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/domain/");
     }
-    
+
     /**
      * Retrieve all blacklists assigned to this mailing
      *
@@ -1343,14 +1343,14 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/mailingblacklists/");
     }
-    
+
     public function sxmlAppend(\SimpleXMLElement $to, \SimpleXMLElement $from)
     {
         $toDom = dom_import_simplexml($to);
         $fromDom = dom_import_simplexml($from);
         $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
     }
-    
+
     /**
      * Get the configured recipient alias for the given mailing
      *
@@ -1373,7 +1373,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/settings/trackingstrategy");
     }
-    
+
     /**
      * Get the configured speed level for the given mailing
      *
@@ -1384,7 +1384,7 @@ class MailingsService extends AbstractMaileonService
     {
         return $this->get("mailings/${mailingId}/settings/speedlevel");
     }
-    
+
     /**
      * Get the configured post sendout cleanup state for the given mailing
      *
@@ -1394,5 +1394,91 @@ class MailingsService extends AbstractMaileonService
     public function getPostSendoutCleanupState($mailingId)
     {
         return $this->get("mailings/${mailingId}/settings/post_sendout_cleanup");
+    }
+
+    /**
+     * Grabs images for the CMS2 media library from the specified HTML content for the mailing referenced by the given ID.
+     * Returns encountered errors and the transformed HTML.
+     *
+     * @param integer $mailingId
+     *  the ID of the mailing
+     * @param string $html
+     *  the HTML content to grab images from
+     * @param bool $destinationFolder
+     *  specifies the media library path
+     * @return MaileonAPIResult
+     *    the result object of the API call
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function cms2GrabImages($mailingId, $html, $destinationFolder = '')
+    {
+        $queryParameters = array(
+            'destinationFolder' => urlencode($destinationFolder)
+        );
+        return $this->post('mailings/' . $mailingId . '/cms2/contents/grab_images', $html, $queryParameters, "application/json", ImageGrabbingResult::class, "text/html");
+    }
+
+    /**
+     * Returns the mailing as a byte array as possible in the UI. The archive contains the HTML code as well as the linked images.
+     *
+     * @param integer $mailingId
+     *  the ID of the mailing
+     * @param boolean $removeTemplateLanguageMarkup
+     *  defines if the  Maileon Markup Language should be removed from the HTML or not
+     * @return MaileonAPIResult
+     *    the result object of the API call
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function cms2GetMailingAsZip($mailingId, $removeTemplateLanguageMarkup = true)
+    {
+        $queryParameters = array(
+            'removeTemplateLanguageMarkup' => $removeTemplateLanguageMarkup ? 'true' : 'false'
+        );
+        return $this->get('mailings/' . $mailingId . '/cms2/contents', $queryParameters, "application/json");
+    }
+
+    /**
+     * Saves a CMS2 mailing as a template in the media library for later access.
+     *
+     * @param integer $mailingId
+     *    the ID of the mailing
+     * @param string $templatePath
+     *    the path including the filename where the template will be placed inside the media library
+     * @param boolean $removeTemplateLanguageMarkup
+     *    defines if the  Maileon Markup Language should be removed from the HTML or not
+     * @return MaileonAPIResult
+     *    the result object of the API call
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function cms2SaveMailingToFolder($mailingId, $templatePath, $removeTemplateLanguageMarkup = false)
+    {
+        $queryParameters = array(
+            'templatePath' => urlencode($templatePath),
+            'removeTemplateLanguageMarkup' => $removeTemplateLanguageMarkup ? 'true' : 'false'
+        );
+        return $this->post('mailings/' . $mailingId . '/cms2/contents', '', $queryParameters);
+    }
+
+    /**
+     * Sets a template from the media library to a CMS2 mailing.
+     *
+     * @param integer $mailingId
+     *    the ID of the mailing
+     * @param string $templatePath
+     *    the path including the filename where the template is in the media library
+     * @return MaileonAPIResult
+     *    the result object of the API call
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function cms2SetTemplate($mailingId, $templatePath)
+    {
+        $queryParameters = array(
+            'templatePath' => urlencode($templatePath),
+        );
+        return $this->put('mailings/' . $mailingId . '/cms2/contents', '', $queryParameters);
     }
 }
