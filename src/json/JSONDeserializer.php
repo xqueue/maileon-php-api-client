@@ -33,7 +33,7 @@ class JSONDeserializer
         // return self::fromArray(json_decode($jsonString, true), $type, $innerType);
         return self::fromArray(json_decode($jsonString), $type, $innerType);
     }
-    
+
     /**
      * Helper function used to build this class from an array.
      *
@@ -53,13 +53,13 @@ class JSONDeserializer
                 // call this method on each element
                 $result[]= self::fromArray($element, $innerType);
             }
-            
+
             // return the processed array
             return $result;
         } elseif (class_exists($type)) {
             // create the class we are deserializing
             $class = new $type();
-            
+
             // if we can call fromArray on the class call it, otherwise
             // return the object as-is and trigger a warning
             if (is_subclass_of($class, 'de\xqueue\maileon\api\client\json\AbstractJSONWrapper')) {

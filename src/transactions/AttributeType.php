@@ -49,7 +49,7 @@ class AttributeType
      * @param string $description
      *    the description of the attribute
      */
-    public function __construct($id, $name, $type, $required, $description = "")
+    public function __construct($id = null, $name = '', $type = '', $required = false, $description = "")
     {
         $this->id = $id;
         $this->name = $name;

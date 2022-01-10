@@ -151,6 +151,14 @@
         <li><input type="checkbox" name="mailings_38" value="true"> GET mailing domain</li>
     </ul>
 
+    <h2>Mailings CMS2 - Tests</h2>
+    <ul>
+        <li><input type="checkbox" name="mailings_cms2_1" value="true"> POST CMS2 grab the images for the mailing with ID from config</li>
+        <li><input type="checkbox" name="mailings_cms2_2" value="true"> GET CMS2 mailing as ZIP for the mailing with ID from config</li>
+        <li><input type="checkbox" name="mailings_cms2_3" value="true"> POST CMS2 save mailing with ID from config to media library</li>
+        <li><input type="checkbox" name="mailings_cms2_4" value="true"> PUT CMS2 set template for mailing with ID from config from the media library</li>
+    </ul>
+
     <h2>Media - Tests</h2>
 
     <p>
@@ -186,11 +194,13 @@
         <li><input type="checkbox" name="transactions_6" value="true"> POST create transactions</li>
         <li><input type="checkbox" name="transactions_6_1" value="true"> POST create complex transactions</li>
         <li><input type="checkbox" name="transactions_6_2" value="true"> POST create 10 transactions fast</li>
-        <li><input type="checkbox" name="transactions_6_3" value="true"> POST create transactions by name</li>
+        <li><input type="checkbox" name="transactions_6_3" value="true"> POST create transactions with TYPE NAME and TRANSACTION ID from config</li>
         <li><input type="checkbox" name="transactions_7" value="true"> POST create transactions and create non existing contact</li>
         <li><input type="checkbox" name="transactions_8" value="true"> POST create transactions with attachment</li>
         <li><input type="checkbox" name="transactions_9" value="true"> DELETE transactions before a given date</li>
         <li><input type="checkbox" name="transactions_10" value="true"> GET recent transactions</li>
+        <li><input type="checkbox" name="transactions_11" value="true"> GET transaction with TYPE ID and TRANSACTION ID from config </li>
+        <li><input type="checkbox" name="transactions_12" value="true"> DELETE transaction with TYPE ID and TRANSACTION ID from config </li>
     </ul>
 
     <h2>Blacklists - Tests</h2>
@@ -208,6 +218,7 @@
         <li><input type="checkbox" name="mailing_blacklists_4" value="true"> PUT update a mailing blacklist</li>
         <li><input type="checkbox" name="mailing_blacklists_5" value="true"> DELETE delete a mailing blacklist</li>
         <li><input type="checkbox" name="mailing_blacklists_6" value="true"> POST add entries to a mailing blacklist</li>
+        <li><input type="checkbox" name="mailing_blacklists_7" value="true"> GET the entries from a mailing blacklist</li>
     </ul>
 
     <h2>Account - Tests</h2>
@@ -216,6 +227,15 @@
         <li><input type="checkbox" name="account_2" value="true"> POST set account placeholders</li>
         <li><input type="checkbox" name="account_3" value="true"> PUT update/add account placeholders</li>
         <li><input type="checkbox" name="account_4" value="true"> DELETE remove account placeholder</li>
+    </ul>
+
+    <h2>Webhook - Tests</h2>
+    <ul>
+        <li><input type="checkbox" name="webhook_1" value="true"> GET a webhook with ID from config</li>
+        <li><input type="checkbox" name="webhook_2" value="true"> DELETE the webhook with ID from config</li>
+        <li><input type="checkbox" name="webhook_3" value="true"> PUT update the webhook with ID from config</li>
+        <li><input type="checkbox" name="webhook_4" value="true"> POST create a new webhook</li>
+        <li><input type="checkbox" name="webhook_5" value="true"> GET a list of webhooks</li>
     </ul>
 
     <br/>
