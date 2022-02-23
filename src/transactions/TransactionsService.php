@@ -136,15 +136,20 @@ class TransactionsService extends AbstractMaileonService
      * Deprecated parameter that is not used anymore
      * @param boolean $ignoreInvalidEvents
      * If set to false, exceptions like invalid contacts will cause the service to return 400 Bad request.
+     * @param boolean $generateTransactionId
+     * If the transaction type contains the special attribute "transaction_id", setting this method to true will
+     * generate and fill a random ID in this field and return the ID in the report. This can be used if the ID
+     * is not generated externally.
      * @return MaileonAPIResult
      * the result object of the API call
      * @throws MaileonAPIException
      * if there was a connection problem or a server error occurred
      */
-    public function createTransactions($transactions, $release = true, $ignoreInvalidEvents = false)
+    public function createTransactions($transactions, $release = true, $ignoreInvalidEvents = false, $generateTransactionId = false)
     {
         $queryParameters = array(
-            'ignore_invalid_transactions' => ($ignoreInvalidEvents == true)?'true':'false'
+            'ignore_invalid_transactions' => ($ignoreInvalidEvents == true)?'true':'false',
+            'generate_transaction_id' => ($generateTransactionId == true)?'true':'false',
         );
 
         $data = JSONSerializer::json_encode($transactions);
