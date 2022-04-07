@@ -390,7 +390,7 @@ abstract class AbstractMaileonService
                 } else if ($value === false) {
                     $params ["$name"] [] = "false";
                 } else if ($value instanceof PreferenceCategory) {
-                    $params[$name] = (string)$value->name;
+                    $params[$name] = urlencode((string)$value->name);
                 } else {
                     $params ["$name"] [] = urlencode($value);
                 }
