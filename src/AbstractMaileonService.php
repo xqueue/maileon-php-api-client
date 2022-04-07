@@ -2,6 +2,8 @@
 
 namespace de\xqueue\maileon\api\client;
 
+use de\xqueue\maileon\api\client\contacts\PreferenceCategory;
+
 /**
  * Abstract base class for all the service accessing individual resources. This class handles
  * the basic authentication and provides convenience methods to access the four HTTP methods
@@ -387,6 +389,8 @@ abstract class AbstractMaileonService
                     $params ["$name"] [] = "true";
                 } else if ($value === false) {
                     $params ["$name"] [] = "false";
+                } else if ($value instanceof PreferenceCategory) {
+                    $params[$name] = (string)$value->name;
                 } else {
                     $params ["$name"] [] = urlencode($value);
                 }
