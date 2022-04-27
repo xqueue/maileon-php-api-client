@@ -1,3 +1,7 @@
+Data 2022-04-27
+Version 1.8.7
+- Changed annotation of MaileonAPIResult::getStatusCode to the correct data type
+
 Date 2022-02-23
 Version 1.8.6
 - Added generate_transaction_id to CreateTransactions of TransactionsService
