@@ -157,7 +157,7 @@ class MaileonAPIResult
     }
 
     /**
-     * @return number
+     * @return int
      *  the HTTP status code that was returned by the HTTP request
      */
     public function getStatusCode()
