@@ -20,7 +20,7 @@
 		<copy todir="${dir.deploy}">
 			<fileset refid="fileset_test" />
 		</copy>
-		<copy todir="${dir.deploy}/includes">
+		<copy todir="${dir.deploy}/vendor/xqueue/maileon-api-client/src">
 			<fileset refid="fileset_client" />
 		</copy>
 	</target>

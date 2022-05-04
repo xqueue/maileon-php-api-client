@@ -48,25 +48,31 @@ class MaileonAPIResult
      */
     public function __construct($response, $curlSession, $throwException = true, $deserializationType = null)
     {
-            $this->bodyData = $this->getBodyFromCurlResponse($response);
+            $this->bodyData = $this->getBodyFromCurlResponse($curlSession, $response);
             $this->curlSession = $curlSession;
             $this->deserializationType = $deserializationType;
-            $this->responseHeaders = $this->getHeaderArrayFromCurlResponse($response);
+            $this->responseHeaders = $this->getHeaderArrayFromCurlResponse($curlSession, $response);
             $this->checkResult($throwException);
     }
 
-    // See https://stackoverflow.com/questions/10589889/returning-header-as-array-using-curl
-    private function getHeaderArrayFromCurlResponse($response)
+    private function getHeaderArrayFromCurlResponse($curlSession, $response)
     {
         $headers = array();
 
         $start = 0;
 
-        // Check if there is a proxy
-        if (strpos($response, "\r\n\r\n") != strrpos($response, "\r\n\r\n")) {
-            $start = strpos($response, "\r\n\r\n")+4;
+        $headerSize = curl_getinfo( $curlSession , CURLINFO_HEADER_SIZE );
+
+		// The header is separated by \n\r\n\r, so trim those 4 bytes from the header as we do not need them
+        $header_text = substr($response, $start, $headerSize-4);
+
+        // Check if there is a proxy header. If so, select last header section (from Maileon)
+        // Maybe it makes sense to return an array with one entry for each header section (proxies, then normal headers), each containing the entries of the apropriate header section.
+        // As this is not backwards compatible, skip for now.
+        if (strpos($header_text, "\r\n\r\n") !== false) {
+            $start = strrpos($header_text, "\r\n\r\n")+4;
+            $header_text = substr($header_text, $start, strlen($header_text));
         }
-        $header_text = substr($response, $start, strrpos($response, "\r\n\r\n"));
 
         foreach (explode("\r\n", $header_text) as $i => $line) {
             if ($i === 0) {
@@ -82,9 +88,12 @@ class MaileonAPIResult
         return $headers;
     }
     
-    private function getBodyFromCurlResponse($response)
+    private function getBodyFromCurlResponse($curlSession, $response)
     {
-        return substr($response, strrpos($response, "\r\n\r\n")+4, strlen($response));
+        // In a recent case, a CMS2 mailing contained \r\n\r\n, so the old approach failed (https://stackoverflow.com/questions/10589889/returning-header-as-array-using-curl).
+	    // Now, we use CURLINFO_HEADER_SIZE (https://blog.devgenius.io/how-to-get-the-response-headers-with-curl-in-php-2173b10d4fc5) and only split up the headers at \r\n\r\n.
+        $headerSize = curl_getinfo( $curlSession , CURLINFO_HEADER_SIZE );
+        return substr($response, $headerSize, strlen($response));
     }
 
     private function checkResult($throwException)
