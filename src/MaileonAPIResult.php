@@ -59,19 +59,17 @@ class MaileonAPIResult
     {
         $headers = array();
 
-        $start = 0;
-
         $headerSize = curl_getinfo( $curlSession , CURLINFO_HEADER_SIZE );
 
-		// The header is separated by \n\r\n\r, so trim those 4 bytes from the header as we do not need them
-        $header_text = substr($response, $start, $headerSize-4);
+		// The header sectionsis separated by \n\r\n\r, so trim those 4 bytes from the header as we do not need them
+        $header_text = substr($response, 0, $headerSize-4);
 
-        // Check if there is a proxy header. If so, select last header section (from Maileon)
+        // Check if there is a proxy header section. If so, select last header section (from Maileon)
         // Maybe it makes sense to return an array with one entry for each header section (proxies, then normal headers), each containing the entries of the apropriate header section.
         // As this is not backwards compatible, skip for now.
         if (strpos($header_text, "\r\n\r\n") !== false) {
             $start = strrpos($header_text, "\r\n\r\n")+4;
-            $header_text = substr($header_text, $start, strlen($header_text));
+            $header_text = substr($header_text, $start);
         }
 
         foreach (explode("\r\n", $header_text) as $i => $line) {
@@ -92,8 +90,9 @@ class MaileonAPIResult
     {
         // In a recent case, a CMS2 mailing contained \r\n\r\n, so the old approach failed (https://stackoverflow.com/questions/10589889/returning-header-as-array-using-curl).
 	    // Now, we use CURLINFO_HEADER_SIZE (https://blog.devgenius.io/how-to-get-the-response-headers-with-curl-in-php-2173b10d4fc5) and only split up the headers at \r\n\r\n.
-        $headerSize = curl_getinfo( $curlSession , CURLINFO_HEADER_SIZE );
-        return substr($response, $headerSize, strlen($response));
+        // CURLINFO_HEADER_SIZE returns the size of the header including \r\n\r\n.
+        $headerSize = curl_getinfo( $curlSession , CURLINFO_HEADER_SIZE);
+        return substr($response, $headerSize);
     }
 
     private function checkResult($throwException)
