@@ -96,10 +96,10 @@ class DispatchLogic extends AbstractXMLWrapper
     public $rssOrderBy;
 
     /**
-     * @var DispatchLogicRSSOrderDir rssOrderDir
+     * @var bool rssOrderAsc
      * Defines if the order direction is ASC or DESC. If 'true' elements are handled in ascending order.
      */
-    public $rssOrderDir;
+    public $rssOrderAsc;
 
     /**
      * @var int rssMinNewEntries 
@@ -158,7 +158,7 @@ class DispatchLogic extends AbstractXMLWrapper
             $this->contactFilterId = (int) $xmlElement->contact_filter_id;
         }
         if (isset($xmlElement->start_trigger)) {
-            $this->startTrigger = (bool) $xmlElement->start_trigger;
+            $this->startTrigger = filter_var($xmlElement->start_trigger, FILTER_VALIDATE_BOOLEAN);
         }
         if (isset($xmlElement->rss_unique_feature)) {
             $this->rssUniqueFeature = DispatchLogicRSSUniqueFeature::getObject($xmlElement->rss_unique_feature);
@@ -170,7 +170,7 @@ class DispatchLogic extends AbstractXMLWrapper
             $this->rssOrderBy = DispatchLogicRSSOrderBy::getObject($xmlElement->rss_order_by);
         }
         if (isset($xmlElement->rss_order_asc)) {
-            $this->rssOrderDir = DispatchLogicRSSOrderDir::getObject($xmlElement->rss_order_asc);
+            $this->rssOrderAsc = filter_var($xmlElement->rss_order_asc, FILTER_VALIDATE_BOOLEAN);
         }
         if (isset($xmlElement->rss_min_new_entries)) {
             $this->rssUniqueFeature = DispatchLogicRSSUniqueFeature::getObject($xmlElement->rss_unique_feature);
@@ -238,8 +238,8 @@ class DispatchLogic extends AbstractXMLWrapper
         if (isset($this->rssOrderBy)) {
             $xml->addChild("rss_order_by", $this->rssOrderBy->getValue());
         }
-        if (isset($this->rssOrderDir)) {
-            $xml->addChild("rss_order_asc", $this->rssOrderDir->getValue());
+        if (isset($this->rssOrderAsc)) {
+            $xml->addChild("rss_order_asc", $this->rssOrderAsc ? 'true' : 'false');
         }
         if (isset($this->rssMinNewEntries)) {
             $xml->addChild("rss_min_new_entries", $this->rssMinNewEntries);
@@ -276,6 +276,6 @@ class DispatchLogic extends AbstractXMLWrapper
         return "Dispatch Logic [type={$this->type}, event={$this->event}, target={$this->target}, speedLevel={$this->speedLevel}, interval={$this->interval}, ".
                "dayOfMonth={$this->dayOfMonth}, dayOfWeek={$this->dayOfWeek}, hours={$this->hours}, minutes={$this->minutes}, contactFilterId={$this->contactFilterId}, ".
                "startTrigger={($this->startTrigger)?'true':'false'}, rssUniqueFeature={$this->rssUniqueFeature}, rssFeedUrl={$this->rssFeedUrl}, rssOrderBy={$this->rssOrderBy}, ".
-               "rssOrderDir={$this->rssOrderDir}, rssMinNewEntries={$this->rssMinNewEntries}, deliveryLimit={$this->deliveryLimit}, deliveryLimitUnit={$this->deliveryLimitUnit}]"; 
+               "rssOrderAsc={($this->rssOrderAsc)?'true':'false'}, rssMinNewEntries={$this->rssMinNewEntries}, deliveryLimit={$this->deliveryLimit}, deliveryLimitUnit={$this->deliveryLimitUnit}]"; 
     }
 }
