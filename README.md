@@ -1,8 +1,8 @@
-# xqueue/maileon-api-client
-
 [![Latest Stable Version](https://poser.pugx.org/xqueue/maileon-api-client/v/stable.png)](https://packagist.org/packages/xqueue/maileon-api-client)
 [![License](http://poser.pugx.org/xqueue/maileon-api-client/license)](https://mit-license.org/)
 [![PHP Version Require](http://poser.pugx.org/xqueue/maileon-api-client/require/php)](https://www.php.net/releases/)
+
+# Maileon API Client
 
 Provides an API client to connect to XQueue Maileon's REST API and (de-)serializes all API functions and data for easier use in PHP projects.
 
@@ -16,7 +16,7 @@ Maileon's REST API documentation can be found [here](https://maileon.com/support
 
 ## Requirements
 
-The API client requires `PHP >= 7.0`, `libxml` and `libcurl`.
+The API client requires `PHP >= 7.0` with `libxml` and `libcurl`.
 
 Additionally all requests use an SSL encrypted API endpoint.
 To enable SSL support in CURL, please follow these steps:
@@ -258,15 +258,15 @@ $transaction->contact = new ContactReference([
 
 $transaction->content = [
     'foo' => 'bar',
-    "items" => [
+    'items' => [
         [
-            "name" => "foo",
-            "quantity" => 2,
+            'name' => 'foo',
+            'quantity' => 2,
             'price' => 27.99
         ],
         [
-            "name" => "bar",
-            "quantity" => 1,
+            'name' => 'bar',
+            'quantity' => 1,
             'price' => 16.49
         ],
     ],
