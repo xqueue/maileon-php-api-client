@@ -84,8 +84,11 @@ abstract class AbstractMaileonService
     public function __construct(array $config)
     {
         // check for valid configuration object
-        if (!array_key_exists('BASE_URI', $config) || !array_key_exists('API_KEY', $config)) {
-            apiError((get_class($this) . ': invalid config object (BASE_URI or API_KEY not set)'));
+        if (!array_key_exists('API_KEY', $config)) {
+            apiError((get_class($this) . ': invalid config object: API_KEY not set'));
+        }
+        if (!array_key_exists('BASE_URI', $config)) {
+            $config['BASE_URI'] = "https://api.maileon.com/1.0";
         }
         if (array_key_exists('THROW_EXCEPTION', $config)) {
             $this->throwException = $config['THROW_EXCEPTION'];
