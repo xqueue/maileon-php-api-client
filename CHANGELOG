@@ -1,3 +1,10 @@
+Data 2022-09-09
+Version 1.9.0
+- Added contact filter restrictions to MailingsService
+- Added parameters for retrieving custom-/standardfiels to getUnsubscriber report
+- Removed documentation in preparation of central deployment and minimizing API client size
+- Removed tests/examples in preparation of central deployment and minimizing API client size
+
 Date 2022-06-06
 Version 1.8.10
 - Changed DispatchLogic attribute 'RSSOrderDir' to boolean 'RSSOrderAsc' according to API specs
@@ -6,11 +13,11 @@ Date 2022-06-05
 Version 1.8.9
 - Added DispatchLogic and it's data types
 
-Date 2022-05-04
+Data 2022-05-04
 Version 1.8.8
 - Fixed problem when parsing header and body information and server response body contained \r\n\r\n
 
-Date 2022-04-27
+Data 2022-04-27
 Version 1.8.7
 - Changed annotation of MaileonAPIResult::getStatusCode to the correct data type
 
