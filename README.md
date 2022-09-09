@@ -1,124 +1,276 @@
-# README
+# xqueue/maileon-api-client
 
-## License
+[![Latest Stable Version](https://poser.pugx.org/xqueue/maileon-api-client/v/stable.png)](https://packagist.org/packages/xqueue/maileon-api-client)
+[![License](http://poser.pugx.org/xqueue/maileon-api-client/license)](https://mit-license.org/)
+[![PHP Version Require](http://poser.pugx.org/xqueue/maileon-api-client/require/php)](https://www.php.net/releases/)
 
-This piece of software is released under the terms of the following license:
+Provides an API client to connect to XQueue Maileon's REST API and (de-)serializes all API functions and data for easier use in PHP projects.
 
-The MIT License (MIT)
+Maileon's REST API documentation can be found [here](https://maileon.com/support/rest-api-1-0/).
 
-Copyright (c) 2013-2020 XQueue GmbH
+## Table of contents
+ * [Requirements](#requirements)
+ * [Installation](#installation)
+ * [Usage](#usage)
+ * [Examples](#examples)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## Requirements
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The API client requires `PHP >= 7.0`, `libxml` and `libcurl`.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-## Package contents
-
-Upon unpacking the distributed .zip file, you will see the following elements in the extracted folder:
-
-	client/                   - the client code
-	doc/                      - the API documentation
-	test/                     - the testing app and the phphunit tests
-	CHANGELOG                 - The changelog file
-	LICENSE                   - a copy of the MIT license this software is released under
-	README.md                 - this file
-	build.properties          - the build configuration
-	build.xml                 - the ant build file
-	phpunit-configuration.xml - the phpunit configuration file
-
-## Accessing the documentation
-
-Point your browser to `doc/index.html`.
-
-## Installing the tester application
-
-You will need a web server with a working PHP installation. If you are developing on Windows, [XAMPP](https://www.apachefriends.org) is an easy way to provide such an environment.
-
-Next, open `build.properties` in your favorite text editor. Adjust the build settings so that `dir.deploy` points somewhere into your webservers document directory (ignore the phpunit setting for now):
-
-	# point this to where you want to deploy the api tester
-	dir.deploy=C:\\xampp\\htdocs\\maileon-api-tester
-	
-	# your phpunit executable
-	phpunit=phpunit.bat
-
-Now enter your Maileon API key inside the file `test/conf/config.include`.
-
-For the next step, you will need a working installation of [Apache Ant](http://ant.apache.org/). Make sure to put the directory that contains the `ant` executable on your system's `PATH`.
-
-Once ant is installed, run it inside the directory where you unpacked the API client:
-
-	C:\projects\maileon-php-client-1.6.2>ant
-	Buildfile: C:\projects\eagle_kunde\php-api-client\target\maileon-php-client-0.10.3\build.xml
-	
-	deploy:
-	     [echo] [deploying project to C:\xampp\htdocs\maileon-api-tester]
-	
-	BUILD SUCCESSFUL
-	Total time: 0 seconds
-
-Now, you should be able to access the tester app using your browser. Given the example configuration above, just point your Browser to [http://localhost/maileon-api-tester/](http://localhost/maileon-api-tester/).
-
-To verify that your installation works, check all the checkboxes in the "Ping - Tests" section and click the button "Run tests" on the bottom of the page. In order to perform the other tests, you will have to look at the source code and adjust the input data to match the data that is available inside your account.
+Additionally all requests use an SSL encrypted API endpoint.
+To enable SSL support in CURL, please follow these steps:
+ 1. Download the official SSL cert bundle by CURL from https://curl.haxx.se/ca/cacert.pem
+ 2. Save the bundle to a directory that can be accessed by your PHP installation
+ 3. Add the following entry to your php.ini (remember to change the path to where you put the cert bundle):
+```
+curl.cainfo="your-path-to-the-bundle/cacert.pem"
+```
 
 
-## Installing the API client into your PHP application
+## Installation
 
-The client is distributed using [Packagist](https://packagist.org/packages/xqueue/maileon-api-client) and thus, can easily be included using composer.
+You can add this library to your project using [Composer](https://getcomposer.org/):
 
-A sample composer file would be
+```
+composer require xqueue/maileon-api-client
+```
 
-    {
-        "name" : "myvendor/myapplication",
-        "description" : "Some sample application",
-        "version" : "1.0.0",
-        "keywords" : [
-            "XQueue",
-            "Maileon"
-	],
-        "homepage" : "https://www.maileon.de",
-        "type" : "library",
-        "license" : "MIT",
-        "authors" : [{
-            "name" : "XQueue GmbH, Max Mustermann",
-            "email" : "max.mustermann@xqueue.com"
-        }],
-        "require" : {
-            "xqueue/maileon-api-client/" : "@dev"
-        },
-        "require-dev" : {
-            "phpunit/phpunit" : "^4"
-        }
+## Usage
+
+The API client divides the features of Maileon's REST API into specific consumable services. Each service provides all functions of it's specific category.
+
+The following services are available:
+
+* **Contacts**<br>
+Read, subscribe, edit, unsubscribe or delete contacts. Functions for individual contacts or bulk requests if required.
+
+* **Blacklists**<br>
+Manage your blacklists.
+
+* **Contactfilters**<br>
+Segmentate your address pool by filter rules.
+
+* **Targetgroups**<br>
+Manage distribution lists to specify who gets which mailing.
+
+* **Reports**<br>
+Get all [KPI](https://kpi.org/KPI-Basics) information about your mailings and general reportings about your contact pool.
+
+* **Mailings**<br>
+Manage and control your mailings.
+
+* **Transactions**<br>
+Manage transaction endpoints (events) or send new transactions to trigger sendouts or Marketing Automation programs.
+
+* **Marketing Automations**<br>
+Start your predefined Marketing Automation programs.
+
+* **Accounts**<br>
+Configure specific account features.
+
+* **Medias**<br>
+Manage mailing templates.
+
+* **Webhooks**<br>
+Manage automatic data distributions to notify external systems of specific events.
+
+## Examples
+
+### Contact examples
+
+Request basic contact data identified by their email address:
+
+```php
+<?php
+
+use de\xqueue\maileon\api\client\contacts\ContactsService;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$contactsService = new ContactsService([
+    'API_KEY' => 'Your API key',
+]);
+
+$contact = $contactsService->getContactByEmail('foo@bar.com')->getResult();
+
+/**
+ * The contact object stores all information you requested.
+ * 
+ * Identifiers (Maileon ID, Maileon external id and email address), marketing permission
+ * level, creation date and last update date are always included if they are set in Maileon.
+ * 
+ * ID: $contact->id
+ * Email: $contact->email
+ * Permission: $contact->permission->getType()
+ */
+```
+
+Request a contact identified by it's email address including their first name and a predefined custom field and also check for a valid response:
+
+```php
+<?php
+
+use de\xqueue\maileon\api\client\contacts\ContactsService;
+use de\xqueue\maileon\api\client\contacts\StandardContactField;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$contactsService = new ContactsService([
+    'API_KEY' => 'Your API key',
+]);
+
+$getContact = $contactsService->getContactByEmail(
+    email:'foo@bar.com',
+    standard_fields:[StandardContactField::$FIRSTNAME],
+    custom_fields:['My custom field in Maileon']
+);
+
+if (!$getContact->isSuccess()) {
+    die($getContact->getResultXML()->message);
+}
+
+$contact = $getContact->getResult();
+
+/**
+ * The contact object stores all information you requested.
+ * 
+ * Identifiers (Maileon ID, Maileon external id and email address), marketing permission
+ * level, creation date and last update date are always included if they are set in Maileon.
+ * 
+ * ID: $contact->id
+ * Email: $contact->email
+ * Permission: $contact->permission->getType()
+ * First name: $contact->standard_fields[StandardContactField::$FIRSTNAME];
+ * Custom field: $contact->custom_fields['My custom field in Maileon'];
+ */
+```
+
+### Report example
+
+Print all unsubscriptions:
+
+```php
+<?php
+
+use de\xqueue\maileon\api\client\reports\ReportsService;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$reportsService = new ReportsService([
+    'API_KEY' => 'Your API key',
+]);
+
+$index = 1;
+do {
+    $getUnsubscribers = $reportsService->getUnsubscribers(
+        pageIndex:$index++,
+        pageSize:1000
+    );
+    
+    foreach ($getUnsubscribers->getResult() as $unsubscriber) {
+        printf('%s unsusbcribed in mailing %u at %s'.PHP_EOL,
+            $unsubscriber->contact->email,
+            $unsubscriber->mailing_id,
+            $unsubscriber->timestamp
+        );
     }
+} while($getUnsubscribers->getResponseHeaders()['X-Pages'] >= $index);
+```
 
-The client can then be included by adding the autoloader.
+Get [KPI](https://kpi.org/KPI-Basics) data for a specific mailing:
 
-	// Include the Maileon API Client classloader 
-	require "vendor/autoload.php";
+```php
+<?php
 
+use de\xqueue\maileon\api\client\reports\ReportsService;
 
-## Connecting to the API using HTTPS
+require __DIR__ . '/vendor/autoload.php';
 
-Since it is likely that you will be transmitting sensible customer data over the API, you should use the SSL-enabled API endpoint `https://api.maileon.com/1.0` instead of the plain HTTP version. In order to do so, you will have to install a root certificate bundle for cURL by following these steps:
+$reportsService = new ReportsService([
+    'API_KEY' => 'Your API key',
+]);
 
-1. Download the bundle from http://curl.haxx.se/ca/cacert.pem .
-2. Copy the bundle to a directory that can be accessed by PHP.
-3. Add the following entry to your php.ini (remember to change the path to where you put the cert bundle):
+$mailingId = 123;
 
-	curl.cainfo="C:\xampp\php\cacert.pem"
+$recipients = $reportsService->getRecipientsCount(mailingIds:[$mailingId])->getResult();
+$opens = $reportsService->getOpensCount(mailingIds:[$mailingId])->getResult();
+$clicks = $reportsService->getClicksCount(mailingIds:[$mailingId])->getResult();
+$unsubscribers = $reportsService->getUnsubscribersCount(mailingIds:[$mailingId])->getResult();
+$conversions = $reportsService->getConversionsCount(mailingIds:[$mailingId])->getResult();
+```
 
-You should now be able to connect to the SSL-enabled API endpoint.
+### Mailing example
+
+Create a new mailing, add custom HTML content, attach a target group and send it immediately:
+
+```php
+<?php
+
+use de\xqueue\maileon\api\client\mailings\MailingsService;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$mailingsService = new MailingsService([
+    'API_KEY' => 'Your API key',
+]);
+
+$mailingId = $mailingsService->createMailing(
+    name:'My campaign name',
+    subject:'Hi [CONTACT|FIRSTNAME]! We got some news for you!'
+)->getResult();
+
+$mailingsService->setSender($mailingId, 'foo@bar.com');
+$mailingsService->setSenderAlias($mailingId, 'Maileon news team');
+$mailingsService->setHTMLContent(
+    mailingId:$mailingId,
+    html:'<html>...</html>',
+    doImageGrabbing:true,
+    doLinkTracking:true
+);
+$mailingsService->setTargetGroupId($mailingId, 123);
+$mailingsService->sendMailingNow($mailingId);
+```
+
+### Transaction example
+
+Send a new transaction including product information as an order confirmation:
+
+```php
+<?php
+
+use de\xqueue\maileon\api\client\transactions\ContactReference;
+use de\xqueue\maileon\api\client\transactions\Transaction;
+use de\xqueue\maileon\api\client\transactions\TransactionsService;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$transactionsService = new TransactionsService([
+    'API_KEY' => 'Your API key',
+]);
+
+$transaction = new Transaction();
+$transaction->typeName = 'My event to trigger';
+
+$transaction->contact = new ContactReference([
+    'email' => 'foo@bar.com'
+]);
+
+$transaction->content = [
+    'foo' => 'bar',
+    "items" => [
+        [
+            "name" => "foo",
+            "quantity" => 2,
+            'price' => 27.99
+        ],
+        [
+            "name" => "bar",
+            "quantity" => 1,
+            'price' => 16.49
+        ],
+    ],
+];
+
+$transactionsService->createTransactions([$transaction]);
+```
