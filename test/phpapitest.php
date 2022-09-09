@@ -106,8 +106,6 @@ pre {
 
 <h1>Maileon API Client Testpage</h1>
 
-
-
     <?php
     // ----------------------------------------------------------------------------------------------------------
     // Ping
@@ -2078,6 +2076,52 @@ checkResult($response);
             var_dump($response->getResult());
             ?>
         </li>
+    <?php } if (isset($_POST['mailings_39'])) { ?>
+        <li>
+			GET mailing contact filter restrictions count:
+            <?php
+
+            $mailingId = 43062;
+
+            $response = $mailingService->getContactFilterRestrictionsCount($mailingId);
+            checkResult($response);
+
+            var_dump($response->getResult());
+            ?>
+        </li>
+    <?php } if (isset($_POST['mailings_40'])) { ?>
+        <li>
+			POST add mailing contact filter restriction:
+            <?php
+
+			$mailingId = 43062;
+			$contactFilterId = 3544;
+
+            $response = $mailingService->addContactFilterRestriction($mailingId, $contactFilterId);
+            checkResult($response);
+
+            var_dump($response->getResult());
+            ?>
+        </li>
+    <?php } if (isset($_POST['mailings_41'])) { ?>
+        <li>
+			DELETE remove contact filter restriction:
+            <?php
+
+            $mailingId = 43062;
+			$contactFilterId = 3544;
+
+            $response = $mailingService->deleteContactFilterRestriction($mailingId, $contactFilterId);
+            checkResult($response);
+
+            var_dump($response->getResult());
+            ?>
+        </li>
+
+
+
+
+
 <?php } if (isset($_POST['mailings_cms2_1'])) { ?>
         <li>
 			POST CMS2 grab the images for the mailing with ID from config:
@@ -2222,7 +2266,11 @@ GET unsubscribers:
     $contactIds = null; //array($TESTDATA['userExternalId']);
     $contactEmails = null;
 
-	$response = $reportsService->getUnsubscribers($fromDate, $toDate, $mailingIds, $contactIds, $contactEmails);
+	// Be aware: that those values are only available if Maileon is set up to move those values to unsubscriber table on unsubscription.
+	$standardFields = array("FIRSTNAME");
+	$customFields = array("Dorig");
+
+	$response = $reportsService->getUnsubscribers($fromDate, $toDate, $mailingIds, $contactIds, $contactEmails, null, null, false, 1, 100, $standardFields, $customFields);
 	checkResult($response);
 
 	// Print all results

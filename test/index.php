@@ -149,6 +149,9 @@
         <li><input type="checkbox" name="mailings_36" value="true"> GET mailing blacklists</li>
         <li><input type="checkbox" name="mailings_37" value="true"> DELETE mailing blacklist</li>
         <li><input type="checkbox" name="mailings_38" value="true"> GET mailing domain</li>
+        <li><input type="checkbox" name="mailings_39" value="true"> GET mailing contact filter restrictions count</li>
+        <li><input type="checkbox" name="mailings_40" value="true"> POST add mailing contact filter restriction</li>
+        <li><input type="checkbox" name="mailings_41" value="true"> DELETE remove contact filter restriction</li>
     </ul>
 
     <h2>Mailings CMS2 - Tests</h2>
