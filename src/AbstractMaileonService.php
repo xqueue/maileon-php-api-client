@@ -2,6 +2,7 @@
 
 namespace de\xqueue\maileon\api\client;
 
+use CurlHandle;
 use de\xqueue\maileon\api\client\contacts\PreferenceCategory;
 
 /**
@@ -9,10 +10,8 @@ use de\xqueue\maileon\api\client\contacts\PreferenceCategory;
  * the basic authentication and provides convenience methods to access the four HTTP methods
  * used in RESTful web services.
  *
- * @author Felix Heinrichs | Trusted Mails GmbH |
- * <a href="mailto:felix.heinrichs@trusted-mails.com">felix.heinrichs@trusted-mails.com</a>
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Felix Heinrichs
+ * @author Marcus Beckerle
  */
 abstract class AbstractMaileonService
 {
@@ -262,6 +261,9 @@ abstract class AbstractMaileonService
         return $this->performRequest($curlSession, $deserializationType);
     }
 
+    /**
+     * @return false|CurlHandle
+     */
     private function prepareSession(
         $resourcePath,
         $queryParameters,
@@ -353,7 +355,7 @@ abstract class AbstractMaileonService
     /**
      * Perform the currently initialized request
      *
-     * @param resource $curlSession
+     * @param CurlHandle $curlSession
      *  the curl session
      * @param mixed $deserializationType
      *  The name of the class this result should be deserialized as. Use
