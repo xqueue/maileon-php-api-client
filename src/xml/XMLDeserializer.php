@@ -43,6 +43,7 @@ class XMLDeserializer
                 case "id":
                 case "targetgroupid":
                 case "count_attachments":
+                case "count_filters":
                     return (int)$xmlElement;
                     // __toString() caused error (not found) on several servers
                     // return (int)$xmlElement->__toString();

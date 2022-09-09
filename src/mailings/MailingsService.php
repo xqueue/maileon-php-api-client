@@ -272,6 +272,59 @@ class MailingsService extends AbstractMaileonService
         return $this->get('mailings/' . $mailingId . '/contents/text', null, "text/plain");
     }
 
+
+
+
+    /**
+     * Adds a contactfilter to the contact filter restrictions of the mailing with the given ID.
+     *
+     * @param integer $mailingId the ID of the mailing
+     * @param integer $contactFilterId the ID of the contact filter
+     * @return MaileonAPIResult
+     *  the result object of the API call available at MaileonAPIResult::getResult()
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function addContactFilterRestriction($mailingId, $contactFilterId)
+    {
+        return $this->post("mailings/$mailingId/restrictions/$contactFilterId", null);
+    }
+
+    /**
+     * Removes a contactfilter from the contact filter restrictions of the mailing with the given ID.
+     *
+     * @param integer $mailingId the ID of the mailing
+     * @param integer $contactFilterId the ID of the contact filter
+     * @return MaileonAPIResult
+     *  the result object of the API call available at MaileonAPIResult::getResult()
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function deleteContactFilterRestriction($mailingId, $contactFilterId)
+    {
+        return $this->delete("mailings/$mailingId/restrictions/$contactFilterId", null);
+    }
+
+    /**
+     * Retrieve the number of contact filter restrictions set for the mailing with the given ID.
+     *
+     * @param integer $mailingId the ID of the mailing
+     * @return MaileonAPIResult
+     *  the result object of the API call available at MaileonAPIResult::getResult()
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function getContactFilterRestrictionsCount($mailingId)
+    {
+        return $this->get('mailings/' . $mailingId . '/restrictions/count', null);
+    }
+
+
+
+
+
+
+
     /**
      * Updates the target group id of the mailing referenced by the given ID.
      *
