@@ -48,9 +48,9 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousOpens
      *  If this is set to true (default), only openers that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @param bool $standardFields
+     * @param array $standardFields
      *  The list of standard contact fields to return.
-     * @param bool $customFields
+     * @param array $customFields
      *  The list of custom contact fields to return.
      * @param bool $embedFieldBackups
      *  Supported values: true / false. Field Backups are the values of contact fields that have been
@@ -151,9 +151,9 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousOpens
      *  If this is set to true (default), only openers that have not yet been
      *  anonymized (due to deletion/unsubscription) are returned.
-     * @param bool $standardFields
+     * @param array $standardFields
      *  The list of standard contact fields to return.
-     * @param bool $customFields
+     * @param array $customFields
      *  The list of custom contact fields to return.
      * @param bool $embedFieldBackups
      *  Supported values: true / false. Field Backups are the values of contact fields that have
@@ -345,9 +345,9 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeDeletedRecipients
      *  Supported values: true / false. If set to true, the recipients that have been removed from
      *  maileon will be excluded.
-     * @param bool $standardFields
+     * @param array $standardFields
      *  The list of standard contact fields to return.
-     * @param bool $customFields
+     * @param array $customFields
      *  The list of custom contact fields to return.
      * @param bool $embedFieldBackups
      *  Supported values: true / false. Field Backups are the values of contact fields that have
@@ -486,9 +486,9 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousClicks
      *  If this is set to true (default), only clicks that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @param bool $standardFields
+     * @param array $standardFields
      *  The list of standard contact fields to return.
-     * @param bool $customFields
+     * @param array $customFields
      *  The list of custom contact fields to return.
      * @param bool $embedFieldBackups
      *  Supported values: true / false. Field Backups are the values of contact fields that have been backed
@@ -602,9 +602,9 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousClicks
      *  If this is set to true (default), only clicks that have not yet been anonymized (due to
      *  deletion/unsubscription) are returned.
-     * @param bool $standardFields
+     * @param array $standardFields
      *  The list of standard contact fields to return.
-     * @param bool $customFields
+     * @param array $customFields
      *  The list of custom contact fields to return.
      * @param bool $embedFieldBackups
      *  Supported values: true / false. Field Backups are the values of contact fields that have been backed
@@ -819,9 +819,9 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousBounces
      *  If this is set to true (default), only bounces that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @param bool $standardFields
+     * @param array $standardFields
      *  The list of standard contact fields to return.
-     * @param bool $customFields
+     * @param array $customFields
      *  The list of custom contact fields to return.
      * @param bool $embedFieldBackups
      *  Supported values: true / false. Field Backups are the values of contact fields that have been
@@ -901,9 +901,9 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousBounces
      *  If this is set to true (default), only bounces that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @param bool $standardFields
+     * @param array $standardFields
      *  The list of standard contact fields to return.
-     * @param bool $customFields
+     * @param array $customFields
      *  The list of custom contact fields to return.
      * @param bool $embedFieldBackups
      *  Supported values: true / false. Field Backups are the values of contact fields that have been backed
@@ -1092,9 +1092,9 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousBlocks
      *  If this is set to true (default), only bounces that have not yet been anonymized
      *  (due to deletion/unsubscription) are returned.
-     * @param bool $standardFields
+     * @param array $standardFields
      *  The list of standard contact fields to return.
-     * @param bool $customFields
+     * @param array $customFields
      *  The list of custom contact fields to return.
      * @param integer $pageIndex
      *  The index of the result page. The index must be greater or equal to 1.
@@ -1244,6 +1244,12 @@ class ReportsService extends AbstractMaileonService
      * @param integer $pageSize
      *  The maximum count of items in the result page. If provided, the value of page_size
      *  must be in the range 1 to 1000.
+     * @param array $standardFields
+     *  The list of standard contact fields to return. Please note, that those values are only available if 
+     *  Maileon is set up to move those values to unsubscriber table on unsubscription.
+     * @param array $customFields
+     *  The list of custom contact fields to return. Please note, that those values are only available if 
+     *  Maileon is set up to move those values to unsubscriber table on unsubscription.
      *
      * @return MaileonAPIResult
      */
@@ -1257,7 +1263,9 @@ class ReportsService extends AbstractMaileonService
         $source = null,
         $embedFieldBackups = false,
         $pageIndex = 1,
-        $pageSize = 100
+        $pageSize = 100,
+        $standardFields = null,
+        $customFields = null
     ) {
         $params = $this->createQueryParameters(
             $pageIndex,
@@ -1271,6 +1279,9 @@ class ReportsService extends AbstractMaileonService
             $source,
             $embedFieldBackups
         );
+        
+        $params = $this->appendArrayFields($params, "standard_field", $standardFields);
+        $params = $this->appendArrayFields($params, "custom_field", $customFields);
 
         return $this->get('reports/unsubscriptions', $params);
     }
@@ -1393,9 +1404,9 @@ class ReportsService extends AbstractMaileonService
      * @param bool $excludeAnonymousContacts
      *  If this is set to true (default), only subscribers that have not yet been anonymized
      *  (due to deletion) are returned.
-     * @param bool $standardFields
+     * @param array $standardFields
      *  The list of standard contact fields to return.
-     * @param bool $customFields
+     * @param array $customFields
      *  The list of custom contact fields to return.
      * @param bool $embedFieldBackups
      *  Supported values: true / false. Field Backups are the values of contact fields that have been backed
