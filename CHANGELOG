@@ -1,4 +1,7 @@
-Data 2022-09-09
+Date 2022-09-10
+- Updated README to an expected and modern format and to mirror deletions in last version
+
+Date 2022-09-09
 Version 1.9.0
 - Added contact filter restrictions to MailingsService
 - Added parameters for retrieving custom-/standardfiels to getUnsubscriber report
