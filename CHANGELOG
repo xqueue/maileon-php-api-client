@@ -1,8 +1,9 @@
 Date 2022-09-13
-Version 1.9.1
+Version 1.9.2
 - Added parameter "exclude_anonymous" to getUnsubscriber report
 
 Date 2022-09-10
+Version 1.9.1
 - Updated README to an expected and modern format and to mirror deletions in last version
 
 Date 2022-09-09
