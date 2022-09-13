@@ -1250,6 +1250,8 @@ class ReportsService extends AbstractMaileonService
      * @param array $customFields
      *  The list of custom contact fields to return. Please note, that those values are only available if 
      *  Maileon is set up to move those values to unsubscriber table on unsubscription.
+     * @param bool $exclude_anonymous
+     *  If this is set to true, only unsubscribers that have not yet been anonymized (due to setting) are returned.
      *
      * @return MaileonAPIResult
      */
@@ -1265,7 +1267,8 @@ class ReportsService extends AbstractMaileonService
         $pageIndex = 1,
         $pageSize = 100,
         $standardFields = null,
-        $customFields = null
+        $customFields = null,
+        $excludeAnonymous = false
     ) {
         $params = $this->createQueryParameters(
             $pageIndex,
@@ -1279,6 +1282,10 @@ class ReportsService extends AbstractMaileonService
             $source,
             $embedFieldBackups
         );
+
+        if (isset($excludeAnonymous)) {
+            $params['exclude_anonymous'] = ($excludeAnonymous == true) ? "true" : "false";
+        }
         
         $params = $this->appendArrayFields($params, "standard_field", $standardFields);
         $params = $this->appendArrayFields($params, "custom_field", $customFields);
@@ -1307,6 +1314,8 @@ class ReportsService extends AbstractMaileonService
      * @param string $source
      *  Filters the unsubscriptions by their source. The source can be an unsubscription link
      *  (link), a reply mail (reply) or other.
+     * @param bool $exclude_anonymous
+     *  If this is set to true, only unsubscribers that have not yet been anonymized (due to setting) are returned.
      *
      * @return MaileonAPIResult
      */
@@ -1317,7 +1326,8 @@ class ReportsService extends AbstractMaileonService
         $contactIds = null,
         $contactEmails = null,
         $contactExternalIds = null,
-        $source = null
+        $source = null,
+        $excludeAnonymous = false
     ) {
         $params = $this->createCountQueryParameters(
             $fromDate,
@@ -1328,6 +1338,10 @@ class ReportsService extends AbstractMaileonService
             $mailingIds,
             $source
         );
+
+        if (isset($excludeAnonymous)) {
+            $params['exclude_anonymous'] = ($excludeAnonymous == true) ? "true" : "false";
+        }
 
         return $this->get('reports/unsubscriptions/count', $params);
     }    /**
