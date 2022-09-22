@@ -146,6 +146,52 @@ $contact = $getContact->getResult();
  */
 ```
 
+Create a contact in Maileon
+
+```php
+<?php
+
+use de\xqueue\maileon\api\client\contacts\ContactsService;
+use de\xqueue\maileon\api\client\contacts\Contact;
+use de\xqueue\maileon\api\client\contacts\Permission;
+use de\xqueue\maileon\api\client\contacts\StandardContactField;
+use de\xqueue\maileon\api\client\contacts\SynchronizationMode;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$contactsService = new ContactsService([
+    'API_KEY' => 'Your API key',
+    'DEBUG'=> true // Remove on production config!
+]);
+
+// Create the contact object
+$newContact = new Contact();
+$newContact->email = "max.mustermann@xqueue.com";
+$newContact->permission = Permission::$NONE; // The initial permission of the newly created contact. This ccan be converted to DOI after DOI process or can be set to something else, e.g. SOI, here already
+
+// If required, fill custom fields
+$newContact->standard_fields[StandardContactField::$FIRSTNAME] = "Max";
+$newContact->standard_fields[StandardContactField::$LASTNAME] = "Mustermann";
+
+// Also customfields are available
+//$newContact->custom_fields["type"] = "b2c";
+
+// And a list of contact preferences can also be added
+//$newContact->preferences = array(
+//    new Preference('EmailSegment1', null, 'Email', 'true'),
+//    new Preference('EmailSegment2', null, 'Email', 'true')
+//);
+
+// Configuration of behavior or additional data
+$src = ""; // a free to be chosen key for the source of the subscription
+$subscriptionPage = ""; // a free to be chosen key to identify the subscription page
+$doi = true; // true = a DOI mailing will be issued, this will cause an error, if no DOI mail is active in the newsletter account
+$doiplus = true; // true = DOI + agreement for single user tracking is enabled, so clicks and opens are not anonymously logged
+$doimailingkey = ""; // if several DOI mailings are enabled, this key decides which DOI to trigger
+
+$response = $contactsService->createContact($newContact, SynchronizationMode::$UPDATE, $src, $subscriptionPage, $doi, $doiplus, $doimailingkey);
+```
+
 ### Report example
 
 Print all unsubscriptions:
@@ -171,7 +217,7 @@ do {
     foreach ($getUnsubscribers->getResult() as $unsubscriber) {
         printf('%s unsusbcribed in mailing %u at %s'.PHP_EOL,
             $unsubscriber->contact->email,
-            $unsubscriber->mailing_id,
+            $unsubscriber->mailingId,
             $unsubscriber->timestamp
         );
     }
