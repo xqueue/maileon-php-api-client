@@ -1,0 +1,18 @@
+parameters:
+  # Use local .cache dir instead of /tmp
+  tmpDir: .cache/phpstan
+
+  parallel:
+    # Don't be overly greedy on machines with more CPU's to be a good neighbor especially on CI
+    maximumNumberOfProcesses: 5
+
+  level: 6
+
+  # level 2 parameters which are set to opposite values in the original level 2 configuration. Parameters need to be
+  # set to their opposite values and the resulting errors need to be fixed. Once they are fixed, the parameters can be
+  # removed from this file.
+  checkThisOnly: false
+  checkPhpDocMissingReturn: false
+  reportUnmatchedIgnoredErrors: true
+  paths:
+    - %currentWorkingDirectory%/src
