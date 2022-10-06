@@ -213,7 +213,7 @@ class Schedule extends AbstractXMLWrapper
             $xml->addChild("minutes", $this->minutes);
         }
         if (isset($this->hours)) {
-            $xml->addChild("hours", $this->hour);
+            $xml->addChild("hours", $this->hours);
         }
         if (isset($this->state)) {
             $xml->addChild("state", $this->state);
@@ -270,7 +270,7 @@ class Schedule extends AbstractXMLWrapper
     public function toString()
     {
         return "Schedule [minutes={$this->minutes}, hours={$this->hours}, state={$this->state}, date={$this->date}, dispatchOption={$this->dispatchOption}, ".
-               "dispatchEndInHoursOrDays={$this->dispatchEndInHoursOrDays}, dispatchEndExactDatetime={$this->dispatchEndExactDatetime}, clicksAsResponseReference={($this->clicksAsResponseReference)?'true':'false'},".
+               "dispatchEndInHours={$this->dispatchEndInHours}, dispatchEndInDays={$this->dispatchEndInDays}, dispatchEndExactDatetime={$this->dispatchEndExactDatetime}, clicksAsResponseReference={($this->clicksAsResponseReference)?'true':'false'},".
                " dispatchWavesGroup={$this->dispatchWavesGroup}, dispatchUniformInterval={$this->dispatchUniformInterval}, allowedHours={ $this->allowedHours}]"; 
     }
 

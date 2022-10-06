@@ -15,21 +15,60 @@ use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
  */
 class Contact extends AbstractXMLWrapper
 {
+    /**
+     * @var int $id
+     */
     public $id;
+
+    /**
+     * @var string $email
+     */
     public $email;
+
+    /**
+     * @var Permission $permission
+     */
     public $permission;
+
+    /**
+     * @var string $external_id
+     */
     public $external_id;
+
+    /**
+     * @var bool $anonymous
+     */
     public $anonymous;
+
+    /**
+     * @var string $created
+     */
     public $created;
+    
+    /**
+     * @var string updated
+     */
     public $updated;
+
+    /**
+     * @var array $standard_fields
+     */
     public $standard_fields;
+
+    /**
+     * @var array $custom_fields
+     */
     public $custom_fields;
+
+    /**
+     * @var array $preferences
+     */
     public $preferences;
 
     /**
      * Constructor initializing default values.
      *
-     * @param number $id
+     * @param int $id
      *  The Maileon contact id.
      * @param string $email
      *  The email-address of the contact.

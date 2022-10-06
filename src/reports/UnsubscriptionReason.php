@@ -65,6 +65,16 @@ class UnsubscriptionReason extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        // Not implemented yet.
+        $xmlString = "<?xml version=\"1.0\"?><unsubscription_reason></unsubscription_reason>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->reason)) {
+            $xml->addChild("reason", $this->reason);
+        }        
+        if (isset($this->count)) {
+            $xml->addChild("count", $this->count);
+        }
+
+        return $xml;
     }
 }

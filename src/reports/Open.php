@@ -118,7 +118,7 @@ class Open extends AbstractXMLWrapper
             $this->transactionId = $xmlElement->transaction_id;
         }
         if (isset($xmlElement->contact_hash)) {
-            $this->transactionId = $xmlElement->contact_hash;
+            $this->contactHash = $xmlElement->contact_hash;
         }
         if (isset($xmlElement->msg_id)) {
             $this->messageId = $xmlElement->msg_id;
@@ -142,6 +142,34 @@ class Open extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        // Not implemented yet.
+        $xmlString = "<?xml version=\"1.0\"?><open></open>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->mailingId)) {
+            $xml->addChild("mailing_id", $this->mailingId);
+        }
+        if (isset($this->timestamp)) {
+            $xml->addChild("timestamp", $this->timestamp);
+        }
+        if (isset($this->transactionId)) {
+            $xml->addChild("transaction_id", $this->transactionId);
+        }
+        if (isset($this->contactHash)) {
+            $xml->addChild("contact_hash", $this->contactHash);
+        }
+        if (isset($this->messageId)) {
+            $xml->addChild("msg_id", $this->messageId);
+        }
+        if (isset($this->format)) {
+            $xml->addChild("format", $this->format);
+        }
+        if (isset($this->deviceType)) {
+            $xml->addChild("device_type", $this->deviceType);
+        }
+        if (isset($this->clientInfos)) {
+            $xml->addChild("client", $this->clientInfos->toXML());
+        }
+
+        return $xml;
     }
 }

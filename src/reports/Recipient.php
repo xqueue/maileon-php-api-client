@@ -93,6 +93,22 @@ class Recipient extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        // Not implemented yet.
+        $xmlString = "<?xml version=\"1.0\"?><recipient></recipient>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->contact)) {
+            $xml->addChild("contact", $this->contact->toXML());
+        }        
+        if (isset($this->mailingId)) {
+            $xml->addChild("mailing_id", $this->mailingId);
+        }
+        if (isset($this->timestamp)) {
+            $xml->addChild("timestamp", $this->timestamp);
+        }
+        if (isset($this->transactionId)) {
+            $xml->addChild("transaction_id", $this->transactionId);
+        }
+
+        return $xml;
     }
 }

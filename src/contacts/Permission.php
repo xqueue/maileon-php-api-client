@@ -58,7 +58,7 @@ class Permission
      * Get the code of this permission.
      * 1 = NONE, 2 = SOI, 3 = COI, 4 = DOI, 5 = DOI+, 6 = OTHER.
      *
-     * @return number
+     * @return int
      *  the code of the permission object
      */
     public function getCode()

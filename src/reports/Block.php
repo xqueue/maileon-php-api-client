@@ -98,6 +98,25 @@ class Block extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        // Not implemented yet.
+        $xmlString = "<?xml version=\"1.0\"?><block></block>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->contact)) {
+            $xml->addChild("contact", $this->contact->toXML());
+        }
+        if (isset($this->timestamp)) {
+            $xml->addChild("timestamp", $this->timestamp);
+        }
+        if (isset($this->old_status)) {
+            $xml->addChild("old_status", $this->oldStatus);
+        }
+        if (isset($this->new_status)) {
+            $xml->addChild("new_status", $this->newStatus);
+        }
+        if (isset($this->reason)) {
+            $xml->addChild("reason", $this->reason);
+        }
+
+        return $xml;
     }
 }

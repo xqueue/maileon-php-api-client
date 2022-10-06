@@ -246,7 +246,6 @@ class XMLDeserializer
                     return $result;
 
                 case "field_backup":
-                    $result = new FieldBackup();
                     break;
 
                 case "field_backups":

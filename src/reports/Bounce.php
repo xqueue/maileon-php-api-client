@@ -120,6 +120,6 @@ class Bounce extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        // Not implemented yet.
+        return null;
     }
 }

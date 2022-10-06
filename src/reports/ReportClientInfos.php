@@ -127,6 +127,31 @@ class ReportClientInfos extends AbstractXMLWrapper
      *  containing the XML serialization of this object
      */
     public function toXML() {
-        // Not implemented yet.
+        $xmlString = "<?xml version=\"1.0\"?><client></client>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->os)) {
+            $xml->addChild("os_name", $this->os);
+        }
+        if (isset($this->osGroup)) {
+            $xml->addChild("os_group", $this->osGroup);
+        }
+        if (isset($this->browser)) {
+            $xml->addChild("browser", $this->browser);
+        }
+        if (isset($this->browserGroup)) {
+            $xml->addChild("browser_group", $this->browserGroup);
+        }
+        if (isset($this->browserType)) {
+            $xml->addChild("browser_type", $this->browserType);
+        }
+        if (isset($this->userAgent)) {
+            $xml->addChild("user_agent", $this->userAgent);
+        }
+        if (isset($this->renderingEngine)) {
+            $xml->addChild("rendering_engine", $this->renderingEngine);
+        }
+
+        return $xml;
     }
 }

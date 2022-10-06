@@ -92,6 +92,22 @@ class UniqueConversion extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        // Not implemented yet.
+        $xmlString = "<?xml version=\"1.0\"?><unique_conversion></unique_conversion>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->contactId)) {
+            $xml->addChild("contact_id", $this->contactId);
+        }
+        if (isset($this->contactEmail)) {
+            $xml->addChild("contact_email", $this->contactEmail);
+        }
+        if (isset($this->revenue)) {
+            $xml->addChild("revenue", $this->revenue);
+        }
+        if (isset($this->countTotal)) {
+            $xml->addChild("count_total", $this->countTotal);
+        }
+
+        return $xml;
     }
 }

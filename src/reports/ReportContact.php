@@ -28,7 +28,7 @@ class ReportContact extends Contact
 
     /**
      * Constructor for initializing a Report Contact from a given contact
-     * @param Contact $ctontact
+     * @param Contact $contact
      */
     public function __construct($contact = null)
     {
@@ -39,8 +39,7 @@ class ReportContact extends Contact
             $this->id = $contact->id;
             $this->created = $contact->created;
             $this->updated = $contact->updated;
-            $this->permissionStatus = $contact->permissionStatus;
-            $this->permissionType   = $contact->permissionType;
+            $this->permission = $contact->permission;
             $this->standard_fields = $contact->standard_fields;
             $this->custom_fields = $contact->custom_fields;
         }
@@ -58,12 +57,6 @@ class ReportContact extends Contact
 
         if (isset($xmlElement->permissionType)) {
             $this->permission = Permission::getPermission($xmlElement->permissionType);
-        }
-        if (isset($xmlElement->permissionStatus)) {
-            $this->permissionStatus = $xmlElement->permissionStatus;
-        }
-        if (isset($xmlElement->permissionType)) {
-            $this->permissionType = $xmlElement->permissionType;
         }
         if (isset($xmlElement->standard_fields)) {
             $this->standard_fields = array();

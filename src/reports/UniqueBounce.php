@@ -116,6 +116,31 @@ class UniqueBounce extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        // Not implemented yet.
+        $xmlString = "<?xml version=\"1.0\"?><unique_bounce></unique_bounce>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->contact)) {
+            $xml->addChild("contact", $this->contact->toXML());
+        }        
+        if (isset($this->mailingId)) {
+            $xml->addChild("mailing_id", $this->mailingId);
+        }
+        if (isset($this->timestamp)) {
+            $xml->addChild("timestamp", $this->timestamp);
+        }
+        if (isset($this->lastType)) {
+            $xml->addChild("last_type", $this->lastType);
+        }
+        if (isset($this->count)) {
+            $xml->addChild("count", $this->count);
+        }
+        if (isset($this->countHard)) {
+            $xml->addChild("count_hard", $this->countHard);
+        }
+        if (isset($this->countSoft)) {
+            $xml->addChild("count_soft", $this->countSoft);
+        }
+
+        return $xml;
     }
 }

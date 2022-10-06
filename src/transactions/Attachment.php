@@ -30,6 +30,6 @@ class Attachment
     public function toString()
     {
         return "Attachment [filename=" . $this->filename .
-            ", mimetype=(" . $this->mimetype . "), content=(" . $this->content . ")]";
+            ", mimetype=(" . $this->mimetype . "), data=(" . $this->data . ")]";
     }
 }

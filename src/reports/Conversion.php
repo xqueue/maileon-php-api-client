@@ -206,6 +206,58 @@ class Conversion extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        // Not implemented yet.
+        $xmlString = "<?xml version=\"1.0\"?><conversion></conversion>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->timestamp)) {
+            $xml->addChild("timestamp", $this->timestamp);
+        }
+        if (isset($this->timestamp_sql)) {
+            $xml->addChild("timestamp_sql", $this->timestampSql);
+        }
+        if (isset($this->contact_id)) {
+            $xml->addChild("contact_id", $this->contactId);
+        }
+        if (isset($this->contact_email)) {
+            $xml->addChild("contact_email", $this->contactEmail);
+        }
+        if (isset($this->contact_external_id)) {
+            $xml->addChild("contact_external_id", $this->contactExternalId);
+        }
+        if (isset($this->value)) {
+            $xml->addChild("value", $this->value);
+        }
+        if (isset($this->mailing_sent_date)) {
+            $xml->addChild("mailing_sent_date", $this->mailingSentTimestamp);
+        }
+        if (isset($this->mailing_sent_date_sql)) {
+            $xml->addChild("mailing_sent_date_sql", $this->mailingSentTimestampSql);
+        }
+        if (isset($this->mailing_id)) {
+            $xml->addChild("mailing_id", $this->mailingId);
+        }
+        if (isset($this->mailing_name)) {
+            $xml->addChild("mailing_name", $this->mailingName);
+        }
+        if (isset($this->site_id)) {
+            $xml->addChild("site_id", $this->siteId);
+        }
+        if (isset($this->site_name)) {
+            $xml->addChild("site_name", $this->siteName);
+        }
+        if (isset($this->goal_id)) {
+            $xml->addChild("goal_id", $this->goalId);
+        }
+        if (isset($this->goal_name)) {
+            $xml->addChild("goal_name", $this->goalName);
+        }
+        if (isset($this->link_id)) {
+            $xml->addChild("link_id", $this->linkId);
+        }
+        if (isset($this->link_url)) {
+            $xml->addChild("link_url", $this->linkUrl);
+        }
+
+        return $xml;
     }
 }

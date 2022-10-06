@@ -187,6 +187,52 @@ class Click extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        // Not implemented yet.
+        $xmlString = "<?xml version=\"1.0\"?><click></click>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->contact)) {
+            $xml->addChild("contact", $this->contact->toXML());
+        }        
+        if (isset($this->mailingId)) {
+            $xml->addChild("mailing_id", $this->mailingId);
+        }
+        if (isset($this->timestamp)) {
+            $xml->addChild("timestamp", $this->timestamp);
+        }
+        if (isset($this->linkId)) {
+            $xml->addChild("link_id", $this->linkId);
+        }
+        if (isset($this->linkUrl)) {
+            $xml->addChild("link_url", $this->linkUrl);
+        }
+        if (isset($this->transactionId)) {
+            $xml->addChild("transaction_id", $this->transactionId);
+        }
+        if (isset($this->contactHash)) {
+            $xml->addChild("contact_hash", $this->contactHash);
+        }
+        if (isset($this->messageId)) {
+            $xml->addChild("msg_id", $this->messageId);
+        }
+        if (isset($this->format)) {
+            $xml->addChild("format", $this->format);
+        }
+        if (isset($this->deviceType)) {
+            $xml->addChild("device_type", $this->deviceType);
+        }
+
+        if (isset($this->linkTags)) {
+            $linkTags = $xml->addChild("link_tags");
+
+            foreach ($this->linkTags as $linkTag) {
+                $linkTags->addChild("field", $linkTag);
+            }
+        }
+        
+        if (isset($this->clientInfos)) {
+            $xml->addChild("client", $this->clientInfos->toXML());
+        }
+
+        return $xml;
     }
 }

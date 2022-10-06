@@ -91,13 +91,14 @@ class ContactfiltersService extends AbstractMaileonService
             $queryParameters = array(
                 'createTargetGroup' => ($createTargetGroup) ? "true" : "false"
             );
-            return $this->put("contactfilters/contactfilter", $newFilterObject->toXMLString(), $queryParameters);
+            $return = $this->put("contactfilters/contactfilter", $newFilterObject->toXMLString(), $queryParameters);
         } elseif ($version == 2.0) {
             $queryParameters = array(
                 'createTargetGroup' => ($createTargetGroup) ? "true" : "false"
             );
-            return $this->post("contactfilters/v2", $newFilterObject, $queryParameters, "application/json");
+            $return = $this->post("contactfilters/v2", $newFilterObject, $queryParameters, "application/json");
         }
+        return $return;
     }
 
     /**

@@ -80,6 +80,8 @@ class MailingBlacklist extends AbstractXMLWrapper
         if (isset($this->createdUser)) {
             $xml->addChild("created_user", $this->createdUser);
         }
+
+        return $xml;
     }
     
     /**

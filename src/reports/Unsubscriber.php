@@ -107,6 +107,28 @@ class Unsubscriber extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        // Not implemented yet.
+        $xmlString = "<?xml version=\"1.0\"?><unsubscriber></unsubscriber>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->contact)) {
+            $xml->addChild("contact", $this->contact->toXML());
+        }        
+        if (isset($this->timestamp)) {
+            $xml->addChild("timestamp", $this->timestamp);
+        }
+        if (isset($this->mailingId)) {
+            $xml->addChild("mailing_id", $this->mailingId);
+        }
+        if (isset($this->transactionId)) {
+            $xml->addChild("transaction_id", $this->transactionId);
+        }
+        if (isset($this->messageId )) {
+            $xml->addChild("msg_id", $this->messageId);
+        }
+        if (isset($this->source)) {
+            $xml->addChild("source", $this->source);
+        }
+
+        return $xml;
     }
 }

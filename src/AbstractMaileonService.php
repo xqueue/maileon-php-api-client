@@ -4,6 +4,7 @@ namespace de\xqueue\maileon\api\client;
 
 use CurlHandle;
 use de\xqueue\maileon\api\client\contacts\PreferenceCategory;
+use RuntimeException;
 
 /**
  * Abstract base class for all the service accessing individual resources. This class handles
@@ -79,12 +80,13 @@ abstract class AbstractMaileonService
      *
      * @param string[] $config
      *  the API call configuration array
+     * @throws RuntimeException if API key is not set
      */
     public function __construct(array $config)
     {
         // check for valid configuration object
         if (!array_key_exists('API_KEY', $config)) {
-            apiError((get_class($this) . ': invalid config object: API_KEY not set'));
+            throw new RuntimeException('API_KEY not set');
         }
         if (!array_key_exists('BASE_URI', $config)) {
             $config['BASE_URI'] = "https://api.maileon.com/1.0";

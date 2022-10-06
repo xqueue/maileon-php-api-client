@@ -62,6 +62,23 @@ class Blacklist extends AbstractXMLWrapper
 
     public function toXML()
     {
-        // not supported
+        $xmlString = "<?xml version=\"1.0\"?><blacklist></blacklist>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->id)) {
+            $xml->addChild("id", $this->id);
+        }
+        if (isset($this->name)) {
+            $xml->addChild("name", $this->name);
+        }
+
+        if (isset($this->entries)) {
+            $entries = $xml->addChild("entries", 'entries');
+            foreach ($this->entries as $entry) {
+                $entries->addChild($entry, $entry);
+            }
+        }
+
+        return $xml;
     }
 }
