@@ -1,3 +1,7 @@
+Date 2022-10-06
+Version 1.9.2.2
+- Added toXML() functions to several classes
+
 Date 2022-09-13
 Version 1.9.2
 - Added parameter "exclude_anonymous" to getUnsubscriber report
