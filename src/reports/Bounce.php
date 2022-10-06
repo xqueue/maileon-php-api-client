@@ -120,6 +120,31 @@ class Bounce extends AbstractXMLWrapper
      */
     public function toXML()
     {
-        return null;
+        $xmlString = "<?xml version=\"1.0\"?><bounce></bounce>";
+        $xml = new \SimpleXMLElement($xmlString);
+
+        if (isset($this->contact)) {
+            $xml->addChild("contact", $this->contact->toXML());
+        }        
+        if (isset($this->mailing_id)) {
+            $xml->addChild("mailing_id", $this->mailingId);
+        }
+        if (isset($this->timestamp)) {
+            $xml->addChild("timestamp", $this->timestamp);
+        }
+        if (isset($this->type)) {
+            $xml->addChild("type", $this->type);
+        }
+        if (isset($this->status_code)) {
+            $xml->addChild("status_code", $this->statusCode);
+        }
+        if (isset($this->source)) {
+            $xml->addChild("source", $this->source);
+        }
+        if (isset($this->msg_id)) {
+            $xml->addChild("msg_id", $this->messageId);
+        }
+
+        return $xml;
     }
 }
