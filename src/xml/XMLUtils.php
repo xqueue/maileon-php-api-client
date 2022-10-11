@@ -7,8 +7,8 @@ namespace de\xqueue\maileon\api\client\xml;
  *
  * @author Felix Heinrichs | Trusted Mails GmbH |
  * <a href="mailto:felix.heinrichs@trusted-mails.com">felix.heinrichs@trusted-mails.com</a>
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Marcus Beckerle | XQueue GmbH |
+ * <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 abstract class XMLUtils
 {
@@ -40,7 +40,7 @@ abstract class XMLUtils
             $no = $node->ownerDocument;
             // createCDATASection() returns an empty CDATA if value is a false boolean
             // workaround: use intval of value instead
-            $cdata = $no->createCDATASection(is_bool($value) ? intval($value) : $value);
+            $cdata = $no->createCDATASection((string)(is_bool($value) ? intval($value) : $value));
             $node->appendChild($cdata);
         }
 
