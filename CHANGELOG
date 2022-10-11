@@ -1,5 +1,5 @@
 Date 2022-10-11
-Version 1.9.2.3
+Version 1.9.3
 - Cast parameter of DOMDocument::createCDATASection to string as passing null to a string parameter is deprecated in PHP 8.1+
 
 Date 2022-10-06
