@@ -5,8 +5,8 @@ namespace de\xqueue\maileon\api\client\contacts;
 /**
  * The wrapper class for a Maileon permission. 1 = NONE, 2 = SOI, 3 = COI, 4 = DOI, 5 = DOI+, 6 = OTHER.
  *
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Marcus Beckerle | XQueue GmbH |
+ * <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class Permission
 {

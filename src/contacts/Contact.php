@@ -10,8 +10,8 @@ use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
  *
  * @author Felix Heinrichs | Trusted Mails GmbH |
  * <a href="mailto:felix.heinrichs@trusted-mails.com">felix.heinrichs@trusted-mails.com</a>
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Marcus Beckerle | XQueue GmbH |
+ * <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class Contact extends AbstractXMLWrapper
 {
@@ -76,7 +76,7 @@ class Contact extends AbstractXMLWrapper
      *  The permission NONE, SOI, COI, DOI, DOI_PLUS, OTHER.
      * @param string $external_id
      *  The external id to identify the contact.
-     * @param boolean $anonymous
+     * @param bool $anonymous
      * @param array $standard_fields
      *  An array of standard fields.
      * @param array $custom_fields
@@ -262,7 +262,6 @@ class Contact extends AbstractXMLWrapper
      */
     public function toString()
     {
-
         // Generate standard field string
         $standard_fields = "";
         if (isset($this->standard_fields)) {
@@ -310,7 +309,6 @@ class Contact extends AbstractXMLWrapper
      */
     public function toCsvString()
     {
-
         // Generate standard field string
         $standard_fields = "{";
         if (isset($this->standard_fields)) {

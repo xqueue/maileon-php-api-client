@@ -15,7 +15,7 @@ class Contacts extends AbstractXMLWrapper implements \IteratorAggregate
     /**
      * Creates a new list of contacts.
      *
-     * @param Contacts[] $contacts
+     * @param array $contacts
      * the contacts in the list of contacts
      */
     public function __construct($contacts = array())
@@ -37,7 +37,7 @@ class Contacts extends AbstractXMLWrapper implements \IteratorAggregate
      * @return \ArrayIterator
      * an iterator for the contacts in this list of contacts
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->contacts);
     }

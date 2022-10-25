@@ -5,24 +5,55 @@ namespace de\xqueue\maileon\api\client\contacts;
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
 
 /**
- * The wrapper class for a Maileon Preference Category. This class wraps the XML structure.
+ * The wrapper class for a Maileon Preference. This class wraps the XML structure.
  */
 class Preference extends AbstractXMLWrapper
 {
+    /**
+     * @var string $name
+     */
     public $name;
+    
+    /**
+     * @var string $description
+     */
     public $description;
+
+    /**
+     * @var string $category
+     */
     public $category;
+
+    /**
+     * @var string $value
+     */
     public $value;
+
+    /**
+     * @var string $source
+     */
     public $source;
+
+    /**
+     * @var string $last_modified
+     */
     public $last_modified;
 
     /**
      * Constructor initializing default values.
      *
      * @param string $name
-     *  The preference category name.
+     *  The preference name.
      * @param string $description
-     *  The preference category description.
+     *  The preference description.
+     * @param string $category
+     *  The preference category name.
+     * @param string $value
+     *  The preference value.
+     * @param string $source
+     *  The preference source.
+     * @param string $last_modified
+     *  The preference last modified timestamp.
      */
     public function __construct(
         $name = null,
@@ -41,10 +72,10 @@ class Preference extends AbstractXMLWrapper
     }
 
     /**
-     * Initialization of the preference category from a simple xml element.
+     * Initialization of the preference from a simple xml element.
      *
      * @param \SimpleXMLElement $xmlElement
-     *  The xml element that is used to parse the preference category from.
+     *  The xml element that is used to parse the preference from.
      */
     public function fromXML($xmlElement)
     {
@@ -79,7 +110,7 @@ class Preference extends AbstractXMLWrapper
      * @param bool $addXMLDeclaration
      *
      * @return \SimpleXMLElement
-     * Generate a XML element from the preference category object.
+     * Generate a XML element from the preference object.
      */
     public function toXML($addXMLDeclaration = true)
     {
@@ -117,7 +148,7 @@ class Preference extends AbstractXMLWrapper
      * Serialization to a simple XML element as string
      *
      * @return string
-     *  The string representation of the XML document for this preference category.
+     *  The string representation of the XML document for this preference.
      */
     public function toXMLString()
     {
@@ -129,7 +160,7 @@ class Preference extends AbstractXMLWrapper
      * Human readable representation of this wrapper.
      *
      * @return string
-     *  A human readable version of the preference category.
+     *  A human readable version of the preference.
      */
     public function toString()
     {
@@ -146,7 +177,7 @@ class Preference extends AbstractXMLWrapper
      * CSV representation of this wrapper.
      *
      * @return string
-     *  A csv version of the category reference.
+     *  A csv version of the reference.
      */
     public function toCsvString()
     {

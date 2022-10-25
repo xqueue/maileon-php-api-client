@@ -7,8 +7,8 @@ use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
 /**
  * The wrapper class for a list of custom fields.
  *
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Marcus Beckerle | XQueue GmbH |
+ * <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class CustomFields extends AbstractXMLWrapper
 {
@@ -80,7 +80,6 @@ class CustomFields extends AbstractXMLWrapper
      */
     public function toString()
     {
-
         // Generate custom field string
         $customfields = "";
         if (isset($this->custom_fields)) {

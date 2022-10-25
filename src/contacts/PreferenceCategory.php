@@ -9,7 +9,14 @@ use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
  */
 class PreferenceCategory extends AbstractXMLWrapper
 {
+    /**
+     * @var string $name
+     */
     public $name;
+
+    /**
+     * @var string $description
+     */
     public $description;
 
     /**
