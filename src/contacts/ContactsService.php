@@ -630,7 +630,7 @@ class ContactsService extends AbstractMaileonService
         );
         
         $encodedEmail = utf8_encode($email);
-        return $this->put("contacts/email/${encodedEmail}", $contactToSend->toXMLString(), $queryParameters);
+        return $this->put("contacts/email/{$encodedEmail}", $contactToSend->toXMLString(), $queryParameters);
     }
 
     /**
@@ -678,7 +678,7 @@ class ContactsService extends AbstractMaileonService
         $queryParameters = $this->appendArrayFields($queryParameters, "nlaccountid", $nlAccountIds);
 
         $encodedEmail = utf8_encode($email);
-        return $this->delete("contacts/email/${encodedEmail}/unsubscribe", $queryParameters);
+        return $this->delete("contacts/email/{$encodedEmail}/unsubscribe", $queryParameters);
     }
 
     /**
@@ -830,7 +830,7 @@ class ContactsService extends AbstractMaileonService
         }
 
         $encodedExternalId = utf8_encode($externalId);
-        return $this->delete("contacts/externalid/${encodedExternalId}/unsubscribe", $queryParameters);
+        return $this->delete("contacts/externalid/{$encodedExternalId}/unsubscribe", $queryParameters);
     }
 
     /**
@@ -851,7 +851,7 @@ class ContactsService extends AbstractMaileonService
         $queryParameters = $this->appendArrayFields($queryParameters, "nlaccountid", $nlAccountIds);
 
         $encodedExternalId = utf8_encode($externalId);
-        return $this->delete("contacts/externalid/${encodedExternalId}/unsubscribe", $queryParameters);
+        return $this->delete("contacts/externalid/{$encodedExternalId}/unsubscribe", $queryParameters);
     }
 
     /**
@@ -981,7 +981,7 @@ class ContactsService extends AbstractMaileonService
     {
         $queryParameters = array('type' => $type);
         $encodedName = rawurlencode(mb_convert_encoding($name, "UTF-8"));
-        return $this->post("contacts/fields/custom/${encodedName}", "", $queryParameters);
+        return $this->post("contacts/fields/custom/{$encodedName}", "", $queryParameters);
     }
 
     /**
@@ -1015,7 +1015,7 @@ class ContactsService extends AbstractMaileonService
     {
         $encodedOldName = rawurlencode(mb_convert_encoding($oldName, "UTF-8"));
         $encodedNewName = rawurlencode(mb_convert_encoding($newName, "UTF-8"));
-        return $this->put("contacts/fields/custom/${encodedOldName}/${encodedNewName}");
+        return $this->put("contacts/fields/custom/{$encodedOldName}/{$encodedNewName}");
     }
 
     /**

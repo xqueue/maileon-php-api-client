@@ -953,7 +953,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function deactivateTriggerMailing($mailingId)
     {
-        return $this->delete("mailings/${mailingId}/dispatching");
+        return $this->delete("mailings/{$mailingId}/dispatching");
     }
 
 
@@ -965,7 +965,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getTriggerDispatchLogic($mailingId)
     {
-        return $this->get("mailings/${mailingId}/dispatching");
+        return $this->get("mailings/{$mailingId}/dispatching");
     }
 
 
@@ -977,7 +977,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getSchedule($mailingId)
     {
-        return $this->get("mailings/${mailingId}/schedule");
+        return $this->get("mailings/{$mailingId}/schedule");
     }
 
     /**
@@ -988,7 +988,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getArchiveUrl($mailingId)
     {
-        return $this->get("mailings/${mailingId}/archiveurl");
+        return $this->get("mailings/{$mailingId}/archiveurl");
     }
 
     /**
@@ -999,7 +999,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getReportUrl($mailingId)
     {
-        return $this->get("mailings/${mailingId}/reporturl");
+        return $this->get("mailings/{$mailingId}/reporturl");
     }
 
     /**
@@ -1026,7 +1026,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getName($mailingId)
     {
-        return $this->get("mailings/${mailingId}/name");
+        return $this->get("mailings/{$mailingId}/name");
     }
 
     /**
@@ -1053,7 +1053,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getTags($mailingId)
     {
-        return $this->get("mailings/${mailingId}/settings/tags");
+        return $this->get("mailings/{$mailingId}/settings/tags");
     }
 
     /**
@@ -1080,7 +1080,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getLocale($mailingId)
     {
-        return $this->get("mailings/${mailingId}/settings/locale");
+        return $this->get("mailings/{$mailingId}/settings/locale");
     }
 
     /**
@@ -1093,7 +1093,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function fillRssSmartContentTags($mailingId)
     {
-        return $this->post("mailings/${mailingId}/contents/smartmailing/rss");
+        return $this->post("mailings/{$mailingId}/contents/smartmailing/rss");
     }
 
     /**
@@ -1104,7 +1104,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function copyMailing($mailingId)
     {
-        return $this->post("mailings/${mailingId}/copy");
+        return $this->post("mailings/{$mailingId}/copy");
     }
 
     /**
@@ -1153,7 +1153,7 @@ class MailingsService extends AbstractMaileonService
         $queryParameters = array('filename' => urlencode($filename));
 
         return $this->post(
-            "mailings/${mailingId}/attachments",
+            "mailings/{$mailingId}/attachments",
             $contents,
             $queryParameters,
             null,
@@ -1171,7 +1171,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getAttachments($mailingId)
     {
-        return $this->get("mailings/${mailingId}/attachments");
+        return $this->get("mailings/{$mailingId}/attachments");
     }
 
     /**
@@ -1183,7 +1183,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getAttachment($mailingId, $attachmentId)
     {
-        return $this->get("mailings/${mailingId}/attachments/${attachmentId}");
+        return $this->get("mailings/{$mailingId}/attachments/{$attachmentId}");
     }
 
     /**
@@ -1194,7 +1194,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getAttachmentsCount($mailingId)
     {
-        return $this->get("mailings/${mailingId}/attachments/count");
+        return $this->get("mailings/{$mailingId}/attachments/count");
     }
 
     /**
@@ -1205,7 +1205,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function deleteAttachments($mailingId)
     {
-        return $this->delete("mailings/${mailingId}/attachments/");
+        return $this->delete("mailings/{$mailingId}/attachments/");
     }
 
     /**
@@ -1223,7 +1223,7 @@ class MailingsService extends AbstractMaileonService
             throw new MaileonAPIException("no attachment id specified");
         }
 
-        return $this->delete("mailings/${mailingId}/attachments/${attachmentId}");
+        return $this->delete("mailings/{$mailingId}/attachments/{$attachmentId}");
     }
 
     /**
@@ -1239,7 +1239,7 @@ class MailingsService extends AbstractMaileonService
     {
         $queryParameters = array('src_mailing_id' => $srcMailingId);
 
-        return $this->put("mailings/${mailingId}/attachments", "", $queryParameters);
+        return $this->put("mailings/{$mailingId}/attachments", "", $queryParameters);
     }
 
     /**
@@ -1250,7 +1250,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getCustomProperties($mailingId)
     {
-        return $this->get("mailings/${mailingId}/settings/properties");
+        return $this->get("mailings/{$mailingId}/settings/properties");
     }
 
 
@@ -1274,7 +1274,7 @@ class MailingsService extends AbstractMaileonService
             $this->sxmlAppend($xml, $properties->toXML());
         }
 
-        return $this->post("mailings/${mailingId}/settings/properties", $xml->asXML());
+        return $this->post("mailings/{$mailingId}/settings/properties", $xml->asXML());
     }
 
 
@@ -1293,7 +1293,7 @@ class MailingsService extends AbstractMaileonService
             'value' => $property->value
         );
 
-        return $this->put("mailings/${mailingId}/settings/properties", "", $queryParameters);
+        return $this->put("mailings/{$mailingId}/settings/properties", "", $queryParameters);
     }
 
 
@@ -1310,7 +1310,7 @@ class MailingsService extends AbstractMaileonService
             'name' => $propertyName,
         );
 
-        return $this->delete("mailings/${mailingId}/settings/properties", $queryParameters);
+        return $this->delete("mailings/{$mailingId}/settings/properties", $queryParameters);
     }
 
 
@@ -1330,7 +1330,7 @@ class MailingsService extends AbstractMaileonService
             'email' => $email
         );
 
-        return $this->post("mailings/${mailingId}/sendtestemail", "", $queryParameters);
+        return $this->post("mailings/{$mailingId}/sendtestemail", "", $queryParameters);
     }
 
     /**
@@ -1346,7 +1346,7 @@ class MailingsService extends AbstractMaileonService
             'test_targetgroup_id' => $testTargetGroupId
         );
 
-        return $this->post("mailings/${mailingId}/checks/testsendout", "", $queryParameters);
+        return $this->post("mailings/{$mailingId}/checks/testsendout", "", $queryParameters);
     }
 
     /**
@@ -1358,7 +1358,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function addMailingBlacklist($mailingId, $mailingBlacklistId)
     {
-        return $this->post("mailings/${mailingId}/mailingblacklists/${mailingBlacklistId}");
+        return $this->post("mailings/{$mailingId}/mailingblacklists/{$mailingBlacklistId}");
     }
 
     /**
@@ -1370,7 +1370,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function deleteMailingBlacklist($mailingId, $mailingBlacklistId)
     {
-        return $this->delete("mailings/${mailingId}/mailingblacklists/${mailingBlacklistId}");
+        return $this->delete("mailings/{$mailingId}/mailingblacklists/{$mailingBlacklistId}");
     }
 
 
@@ -1383,7 +1383,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getMailingDomain($mailingId)
     {
-        return $this->get("mailings/${mailingId}/domain/");
+        return $this->get("mailings/{$mailingId}/domain/");
     }
 
     /**
@@ -1394,7 +1394,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getMailingBlacklists($mailingId)
     {
-        return $this->get("mailings/${mailingId}/mailingblacklists/");
+        return $this->get("mailings/{$mailingId}/mailingblacklists/");
     }
 
     public function sxmlAppend(\SimpleXMLElement $to, \SimpleXMLElement $from)
@@ -1412,7 +1412,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getRecipientAlias($mailingId)
     {
-        return $this->get("mailings/${mailingId}/contents/recipientalias");
+        return $this->get("mailings/{$mailingId}/contents/recipientalias");
     }
 
     /**
@@ -1424,7 +1424,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getTrackingStrategy($mailingId)
     {
-        return $this->get("mailings/${mailingId}/settings/trackingstrategy");
+        return $this->get("mailings/{$mailingId}/settings/trackingstrategy");
     }
 
     /**
@@ -1435,7 +1435,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getSpeedLevel($mailingId)
     {
-        return $this->get("mailings/${mailingId}/settings/speedlevel");
+        return $this->get("mailings/{$mailingId}/settings/speedlevel");
     }
 
     /**
@@ -1446,7 +1446,7 @@ class MailingsService extends AbstractMaileonService
      */
     public function getPostSendoutCleanupState($mailingId)
     {
-        return $this->get("mailings/${mailingId}/settings/post_sendout_cleanup");
+        return $this->get("mailings/{$mailingId}/settings/post_sendout_cleanup");
     }
 
     /**

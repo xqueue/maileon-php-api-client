@@ -112,7 +112,7 @@ class MaileonAPIResult
             $curlErrorMessage = curl_error($this->curlSession);
             $curlErrorCode = curl_errno($this->curlSession);
             throw new MaileonAPIException(
-                "An error occurred in the connection to the REST API. Original cURL error message: ${curlErrorMessage}",
+                "An error occurred in the connection to the REST API. Original cURL error message: {$curlErrorMessage}",
                 $curlErrorCode
             );
         }
@@ -123,7 +123,7 @@ class MaileonAPIResult
         $statusCode = $this->statusCode;
         if ($statusCode >= 500 && $statusCode <= 599) {
             throw new MaileonAPIException(
-                "A server error occurred in the REST API (HTTP status code ${statusCode}).",
+                "A server error occurred in the REST API (HTTP status code {$statusCode}).",
                 $this->bodyData
             );
         }
