@@ -1,5 +1,9 @@
+Date 2023-04-20
+Version 1.9.6.2
+- Fixed a bug in AbstractMaileonService, which could create a faulty query string
+
 Date 2023-02-17
-Version 1.9.5.2
+Version 1.9.6
 - Changed variable substitution from ${var} to {$var}
 
 Version 1.9.5

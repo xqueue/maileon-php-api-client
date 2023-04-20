@@ -320,8 +320,8 @@ abstract class AbstractMaileonService
                 // Multivalued parameters are being handled in Maileon by sending duplicate parameters.
                 // Example query: ?emails=foo@bar.baz&emails=alice@bob.eve&emails=a@b.xy
 
-                // Furthermore the API client's functions and parameters haven't been designed to
-                // support or use query parameters as arrays.
+                // Furthermore the API client's functions and their parameters haven't been designed to
+                // support or use query parameters with type array.
                 if (is_array($value)) {
                     foreach ($value as $innerValue) {
                         if ($innerValue === true) {
