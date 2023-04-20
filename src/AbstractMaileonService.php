@@ -311,17 +311,31 @@ abstract class AbstractMaileonService
             $requestUrl = $requestUrl . '?';
 
             foreach ($queryParameters as $key => $value) {
+                // If the query parameter is an array, then walk through the array, create a multi-
+                // valued query string and replace boolean fields with it's string counterpart.
+
+                // Such query parameters usually won't ever occur since Maileon doesn't support them.
+                // Example query: ?emails[]=foo@bar.baz&emails[]=alice@bob.eve&emails[]=a@b.xy
+
+                // Multivalued parameters are being handled in Maileon by sending duplicate parameters.
+                // Example query: ?emails=foo@bar.baz&emails=alice@bob.eve&emails=a@b.xy
+
+                // Furthermore the API client's functions and parameters haven't been designed to
+                // support or use query parameters as arrays.
                 if (is_array($value)) {
-                    foreach ($value as $innerKey => $innerValue) {
+                    foreach ($value as $innerValue) {
                         if ($innerValue === true) {
-                            $requestUrl .= $innerValue . '=true&';
-                        } elseif ($value === false) {
-                            $requestUrl .= $innerValue . '=false&';
+                            $requestUrl .= $key . '=true&';
+                        } elseif ($innerValue === false) {
+                            $requestUrl .= $key . '=false&';
                         } else {
                             $requestUrl .= $key . '=' . $innerValue . '&';
                         }
                     }
-                } else {
+                }
+                
+                // Handle non array query parameters
+                else {
                     if ($value === true) {
                         $requestUrl .= $key . '=true&';
                     } elseif ($value === false) {
