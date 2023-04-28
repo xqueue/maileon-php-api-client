@@ -99,6 +99,7 @@ class Webhook extends AbstractJSONWrapper
         $result = parent::toArray();
         unset($result['body']);
 
-        return array_merge($result, $this->body->toArray());
+        // Body can be empty, if no body instantiated externally and no fromArray is used
+        return array_merge($result, ($this->body)?$this->body->toArray():[]);
     }
 }
