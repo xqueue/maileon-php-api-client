@@ -178,7 +178,7 @@ class TransactionType extends AbstractXMLWrapper
         if (isset($this->name)) {
             $xml->addChild("name", $this->name);
         }
-        if (isset($this->name)) {
+        if (isset($this->description)) {
             $xml->addChild("description", $this->description);
         }
         if (isset($this->archivingDuration)) {
@@ -224,5 +224,19 @@ class TransactionType extends AbstractXMLWrapper
     {
         $xml = $this->toXML();
         return $xml->asXML();
+    }
+
+    /**
+     * @return TransactionType
+     *  sanitize this transaction type by removing the ID of ebery single sttribute and return this object for more fluent programming styles
+     */
+    public function sanitize() {
+        if (isset($this->attributes) && sizeof($this->attributes) > 0) {
+            /** @var AttributeType $value  */
+            foreach ($this->attributes as $index => $value) {
+                $value->id = null;
+            }
+        }
+        return $this;
     }
 }

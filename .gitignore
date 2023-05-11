@@ -1,3 +1,7 @@
 vendor/
 composer.lock
 level*errors.txt
+.buildpath
+.project
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.wst.validation.prefs
