@@ -10,9 +10,8 @@ use de\xqueue\maileon\api\client\AbstractMaileonService;
 /**
  * Facade that wraps the REST service for transactions.
  *
- * @author Viktor Balogh | Wanadis Kft. | <a href="balogh.viktor@maileon.hu">balogh.viktor@maileon.hu</a>
- * @author Marcus St&auml;nder | Trusted Technologies GmbH |
- * <a href="mailto:marcus.staender@trusted-technologies.de">marcus.staender@trusted-technologies.de</a>
+ * @author Viktor Balogh | Maileon Digital Kft. | <a href="balogh.viktor@maileon.hu">balogh.viktor@maileon.hu</a>
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 
 class TransactionsService extends AbstractMaileonService
@@ -22,7 +21,7 @@ class TransactionsService extends AbstractMaileonService
      * the result object of the API call, with the count of transaction types available
      * at MaileonAPIResult::getResult()
      * @throws MaileonAPIException
-     *      if there was a connection problem or a server error occurred
+     * if there was a connection problem or a server error occurred
      */
     public function getTransactionTypesCount()
     {
@@ -60,7 +59,7 @@ class TransactionsService extends AbstractMaileonService
      * @return MaileonAPIResult
      * the result object of the API call
      * @throws MaileonAPIException
-     *      if there was a connection problem or a server error occurred
+     * if there was a connection problem or a server error occurred
      */
     public function getTransactionType($id)
     {
@@ -75,7 +74,7 @@ class TransactionsService extends AbstractMaileonService
      * @return MaileonAPIResult
      * the result object of the API call
      * @throws MaileonAPIException
-     *      if there was a connection problem or a server error occurred
+     * if there was a connection problem or a server error occurred
      */
     public function getTransactionTypeByName($name)
     {
@@ -90,11 +89,43 @@ class TransactionsService extends AbstractMaileonService
      * @return MaileonAPIResult
      * the result object of the API call
      * @throws MaileonAPIException
-     *      if there was a connection problem or a server error occurred
+     * if there was a connection problem or a server error occurred
      */
     public function createTransactionType($trt)
     {
-        return $this->post("transactions/types", $trt -> toXMLString());
+        return $this->post("transactions/types", $trt->sanitize()->toXMLString());
+    }
+
+    /**
+     * Updates an existing transaction type with the given ID in the account.
+     * Currently you can:
+     * Add new attributes to transaction type
+     * Change the transaction type name
+     * Change the transaction type description
+     * Change the transaction type archival duration
+     * The XML definition is identical to creating a transaction type:
+     * https://support.maileon.com/support/create-transaction-type/.
+     *
+     * Please be aware: due to backwards compatibility of the types with regard to mailings or filters,
+     * you cannot change existing attributes or delete them. This means the definition in the update must
+     * at least contain all attributes of the original transaction type but might contain 0..n new attributes.
+     * However, regarding old attributes, only the name is evaluated, all other attributes are ignored and
+     * not processed or even updated.
+     *
+     * @see https://support.maileon.com/support/update-transaction-type/
+     *
+     * @param integer $id
+     * the id of the transaction type
+     * @param TransactionType $trt
+     * the TransactionType defining the new transaction type to create
+     * @return MaileonAPIResult
+     * the result object of the API call
+     * @throws MaileonAPIException
+     * if there was a connection problem or a server error occurred
+     */
+    public function updateTransactionType($id, $trt)
+    {
+        return $this->put("transactions/types/" . $id, $trt->sanitize()->toXMLString());
     }
 
     /**
@@ -145,8 +176,12 @@ class TransactionsService extends AbstractMaileonService
      * @throws MaileonAPIException
      * if there was a connection problem or a server error occurred
      */
-    public function createTransactions($transactions, $release = true, $ignoreInvalidEvents = false, $generateTransactionId = false)
-    {
+    public function createTransactions(
+        $transactions,
+        $release = true,
+        $ignoreInvalidEvents = false,
+        $generateTransactionId = false
+    ) {
         $queryParameters = array(
             'ignore_invalid_transactions' => ($ignoreInvalidEvents == true)?'true':'false',
             'generate_transaction_id' => ($generateTransactionId == true)?'true':'false',
@@ -261,7 +296,11 @@ class TransactionsService extends AbstractMaileonService
      */
     public function getTransaction($type_id, $transaction_id)
     {
-        return $this->get("transactions/" . $type_id . "/transaction_id/" . urlencode($transaction_id), [], 'application/json');
+        return $this->get(
+            "transactions/" . $type_id . "/transaction_id/" . urlencode($transaction_id),
+            [],
+            'application/json'
+        );
     }
 
     /**
@@ -285,6 +324,10 @@ class TransactionsService extends AbstractMaileonService
      */
     public function deleteTransaction($type_id, $transaction_id)
     {
-        return $this->delete("transactions/" . $type_id . "/transaction_id/" . urlencode($transaction_id), [], 'application/json');
+        return $this->delete(
+            "transactions/" . $type_id . "/transaction_id/" . urlencode($transaction_id),
+            [],
+            'application/json'
+        );
     }
 }
