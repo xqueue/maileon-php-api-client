@@ -1,3 +1,7 @@
+Date 2023-06-30
+Version 1.9.8
+- Added method to retrieve thumbnails of CMS2 mailings
+
 Date 2023-05-11
 Version 1.9.7
 - Added method to update transaction types
