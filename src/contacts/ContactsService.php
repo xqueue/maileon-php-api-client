@@ -307,7 +307,7 @@ class ContactsService extends AbstractMaileonService
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
         $queryParameters = $this->appendArrayFields($queryParameters, 'preference_categories', $preference_categories);
 
-        return $this->get('contacts/email/' . utf8_encode($email), $queryParameters);
+        return $this->get('contacts/email/' . mb_convert_encoding($email, "UTF-8"), $queryParameters);
     }
 
     /**
@@ -340,7 +340,7 @@ class ContactsService extends AbstractMaileonService
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
         $queryParameters = $this->appendArrayFields($queryParameters, 'preference_categories', $preference_categories);
 
-        return $this->get('contacts/emails/' . utf8_encode($email), $queryParameters);
+        return $this->get('contacts/emails/' . mb_convert_encoding($email, "UTF-8"), $queryParameters);
     }
 
     /**
@@ -373,7 +373,7 @@ class ContactsService extends AbstractMaileonService
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
         $queryParameters = $this->appendArrayFields($queryParameters, 'preference_categories', $preference_categories);
 
-        return $this->get('contacts/externalid/' . utf8_encode($externalId), $queryParameters);
+        return $this->get('contacts/externalid/' . mb_convert_encoding($externalId, "UTF-8"), $queryParameters);
     }
 
     /**
@@ -414,7 +414,7 @@ class ContactsService extends AbstractMaileonService
         $queryParameters = $this->appendArrayFields($queryParameters, 'custom_field', $custom_fields);
         $queryParameters = $this->appendArrayFields($queryParameters, 'preference_categories', $preference_categories);
 
-        return $this->get('contacts/filter/' . utf8_encode($filterId), $queryParameters);
+        return $this->get('contacts/filter/' . mb_convert_encoding($filterId, "UTF-8"), $queryParameters);
     }
 
     /**
@@ -430,7 +430,7 @@ class ContactsService extends AbstractMaileonService
      */
     public function getCountContactsByFilterId($filterId)
     {
-        return $this->get('contacts/filter/' . utf8_encode($filterId) . '/count');
+        return $this->get('contacts/filter/' . mb_convert_encoding($filterId, "UTF-8") . '/count');
     }
 
     /**
@@ -446,7 +446,7 @@ class ContactsService extends AbstractMaileonService
      */
     public function getCountActiveContactsByFilterId($filterId)
     {
-        return $this->get('contacts/filter/' . utf8_encode($filterId) . '/count/active');
+        return $this->get('contacts/filter/' . mb_convert_encoding($filterId, "UTF-8") . '/count/active');
     }
 
     /**
@@ -629,7 +629,7 @@ class ContactsService extends AbstractMaileonService
             $contact->preferences
         );
         
-        $encodedEmail = utf8_encode($email);
+        $encodedEmail = mb_convert_encoding($email, "UTF-8");
         return $this->put("contacts/email/{$encodedEmail}", $contactToSend->toXMLString(), $queryParameters);
     }
 
@@ -677,7 +677,7 @@ class ContactsService extends AbstractMaileonService
 
         $queryParameters = $this->appendArrayFields($queryParameters, "nlaccountid", $nlAccountIds);
 
-        $encodedEmail = utf8_encode($email);
+        $encodedEmail = mb_convert_encoding($email, "UTF-8");
         return $this->delete("contacts/email/{$encodedEmail}/unsubscribe", $queryParameters);
     }
 
@@ -829,7 +829,7 @@ class ContactsService extends AbstractMaileonService
             }
         }
 
-        $encodedExternalId = utf8_encode($externalId);
+        $encodedExternalId = mb_convert_encoding($externalId, "UTF-8");
         return $this->delete("contacts/externalid/{$encodedExternalId}/unsubscribe", $queryParameters);
     }
 
@@ -850,7 +850,7 @@ class ContactsService extends AbstractMaileonService
         $queryParameters = array();
         $queryParameters = $this->appendArrayFields($queryParameters, "nlaccountid", $nlAccountIds);
 
-        $encodedExternalId = utf8_encode($externalId);
+        $encodedExternalId = mb_convert_encoding($externalId, "UTF-8");
         return $this->delete("contacts/externalid/{$encodedExternalId}/unsubscribe", $queryParameters);
     }
 
@@ -926,7 +926,7 @@ class ContactsService extends AbstractMaileonService
      */
     public function deleteContactByEmail($email)
     {
-        return $this->delete("contacts/email/" . utf8_encode($email));
+        return $this->delete("contacts/email/" . mb_convert_encoding($email, "UTF-8"));
     }
 
     /**
@@ -944,7 +944,7 @@ class ContactsService extends AbstractMaileonService
      */
     public function deleteContactsByExternalId($externalId)
     {
-        return $this->delete("contacts/externalid/" . utf8_encode($externalId));
+        return $this->delete("contacts/externalid/" . mb_convert_encoding($externalId, "UTF-8"));
     }
 
     /**
