@@ -71,7 +71,7 @@ abstract class AbstractMaileonService
      *
      * @var int $timeout
      */
-    protected $timeout;
+    protected $timeout = 5;
 
     private $verboseOut = null;
 
