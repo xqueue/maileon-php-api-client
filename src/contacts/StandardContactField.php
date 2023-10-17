@@ -65,6 +65,12 @@ class StandardContactField
     
     /** The Constant PERMISSION_STATUS. Permission status can be "available" (permission != none and not unsubscribed), "none" (no permission given, yet), or "unsubscribed" */
     public static $PERMISSION_STATUS = "PERMISSION_STATUS";
+    
+	/** The Constant CUSTOM_SOURCE. The name of the source, as specified during creation of the contact (parameter src). */
+    public static $CUSTOM_SOURCE = "CUSTOM_SOURCE";
+    
+    /** The Constant CHECKSUM. The checksum of the contact, used to retrieve or update contact information in insecure envorinments, e.g. publicly available landingpages (e.g. profile update pages) that use email, ID or external ID to identify a contact. As a second parameter, you can use the checksum to avoid users passing guessed identifyers. */
+    public static $CHECKSUM = "CHECKSUM";
 
 
     public static function init()
