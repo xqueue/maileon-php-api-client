@@ -187,8 +187,8 @@ $creation = $contactsService->createContact(
     doiMailingKey:'A key to identify the DOI mailing',
 );
 
-if (!$contact->isSuccess()) {
-    die($contact->getResultXML()->message);
+if (!$creation->isSuccess()) {
+    die($creation->getResultXML()->message);
 }
 ```
 
