@@ -177,7 +177,7 @@ $contact = new Contact(
     ],
 );
 
-$contactsService->createContact(
+$creation = $contactsService->createContact(
     contact:$contact,
     syncMode:SynchronizationMode::$IGNORE,
     src:'An optional source of the contact creation',
@@ -186,6 +186,10 @@ $contactsService->createContact(
     doiPlus:true, // Enable single user tracking with the DOI process
     doiMailingKey:'A key to identify the DOI mailing',
 );
+
+if (!$contact->isSuccess()) {
+    die($contact->getResultXML()->message);
+}
 ```
 
 * Synchronize a larger list of contacts in bulk
