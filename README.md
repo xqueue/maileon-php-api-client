@@ -80,280 +80,268 @@ Manage automatic data distributions to notify external systems of specific event
 ### Contact examples
 
 * Request basic **contact data** identified by their email address: 
-  ```php
-  <?php
+```php
+<?php
 
-    use de\xqueue\maileon\api\client\contacts\ContactsService;
+use de\xqueue\maileon\api\client\contacts\ContactsService;
 
-    require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-    $contactsService = new ContactsService([
-        'API_KEY' => 'Your API key',
-    ]);
+$contactsService = new ContactsService([
+    'API_KEY' => 'Your API key',
+]);
 
-    $contact = $contactsService->getContactByEmail('foo@bar.com')->getResult();
+$contact = $contactsService->getContactByEmail('foo@bar.com')->getResult();
 
-    /**
-    * The contact object stores all information you requested.
-    * 
-    * Identifiers (Maileon ID, Maileon external id and email address), marketing permission
-    * level, creation date and last update date are always included if they are set in Maileon.
-    * 
-    * ID: $contact->id
-    * Email: $contact->email
-    * Permission: $contact->permission->getType()
-    */
-    ```
+/**
+* The contact object stores all information you requested.
+* 
+* Identifiers (Maileon ID, Maileon external id and email address), marketing permission
+* level, creation date and last update date are always included if they are set in Maileon.
+* 
+* ID: $contact->id
+* Email: $contact->email
+* Permission: $contact->permission->getType()
+*/
+```
 
-* Request a contact identified by it's email address including their **first name and a predefined custom field** and also check for a valid response:
-    ```php
-    <?php
+* Request a contact identified by it's email address including their first name and a predefined custom field and also check for a valid response:
+```php
+<?php
 
-    use de\xqueue\maileon\api\client\contacts\ContactsService;
-    use de\xqueue\maileon\api\client\contacts\StandardContactField;
+use de\xqueue\maileon\api\client\contacts\ContactsService;
+use de\xqueue\maileon\api\client\contacts\StandardContactField;
 
-    require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-    $contactsService = new ContactsService([
-        'API_KEY' => 'Your API key',
-    ]);
+$contactsService = new ContactsService([
+    'API_KEY' => 'Your API key',
+]);
 
-    $getContact = $contactsService->getContactByEmail(
-        email:'foo@bar.com',
-        standard_fields:[StandardContactField::$FIRSTNAME],
-        custom_fields:['My custom field in Maileon']
+$getContact = $contactsService->getContactByEmail(
+    email:'foo@bar.com',
+    standard_fields:[
+        StandardContactField::$FIRSTNAME,
+        StandardContactField::$LASTNAME,
+    ],
+    custom_fields:[
+        'My custom field in Maileon',
+    ]
+);
+
+if (!$getContact->isSuccess()) {
+    die($getContact->getResultXML()->message);
+}
+
+$contact = $getContact->getResult();
+
+/**
+ * The contact object stores all information you requested.
+ * 
+ * Identifiers (Maileon ID, Maileon external id and email address), marketing permission
+ * level, creation date and last update date are always included if they are set in Maileon.
+ * 
+ * ID: $contact->id
+ * Email: $contact->email
+ * Permission: $contact->permission->getType()
+ * First name: $contact->standard_fields[StandardContactField::$FIRSTNAME];
+ * Custom field: $contact->custom_fields['My custom field in Maileon'];
+ */
+```
+
+* Create a contact in Maileon
+```php
+<?php
+
+use de\xqueue\maileon\api\client\contacts\ContactsService;
+use de\xqueue\maileon\api\client\contacts\Contact;
+use de\xqueue\maileon\api\client\contacts\Permission;
+use de\xqueue\maileon\api\client\contacts\Preference;
+use de\xqueue\maileon\api\client\contacts\StandardContactField;
+use de\xqueue\maileon\api\client\contacts\SynchronizationMode;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$contactsService = new ContactsService([
+    'API_KEY' => 'Your API key',
+]);
+
+$contact = new Contact(
+    email:'foo@bar.com',
+    standard_fields:[
+        StandardContactField::$FIRSTNAME => 'Foo',
+        StandardContactField::$LASTNAME => 'Bar',
+    ],
+    custom_fields:[
+        'My custom field in Maileon' => 'A value corresponding to the field type',
+    ],
+);
+
+$contactsService->createContact(
+    contact:$contact,
+    syncMode:SynchronizationMode::$IGNORE,
+    src:'An optional source of the contact creation',
+    subscriptionPage:'An additional source of the contact creation',
+    doi:true,
+    doiPlus:true, // Enable single user tracking with the DOI process
+    doiMailingKey:'A key to identify the DOI mailing',
+);
+```
+
+* Synchronize a larger list of contacts in bulk
+```php
+<?php
+
+use de\xqueue\maileon\api\client\contacts\ContactsService;
+use de\xqueue\maileon\api\client\contacts\Contacts;
+use de\xqueue\maileon\api\client\contacts\Contact;
+use de\xqueue\maileon\api\client\contacts\Permission;
+use de\xqueue\maileon\api\client\contacts\SynchronizationMode;
+use de\xqueue\maileon\api\client\contacts\StandardContactField;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$contactsService = new ContactsService([
+    'API_KEY' => 'Your API key',
+]);
+
+$contactList = new Contacts();
+
+for ($i=1; $i<=10000; $i++) {
+    $contactList->addContact(
+        new Contact(
+            email:"foo-{$i}@bar.com",
+            standard_fields:[
+                StandardContactField::$FIRSTNAME => 'Foo',
+                StandardContactField::$LASTNAME => 'Bar',
+            ],
+            custom_fields:[
+                'My custom field in Maileon' => 'A value corresponding to the field type',
+            ],
+        )
     );
+}
 
-    if (!$getContact->isSuccess()) {
-        die($getContact->getResultXML()->message);
-    }
+$response = $contactsService->synchronizeContacts(
+    contacts:$contactList,
+    syncMode:SynchronizationMode::$IGNORE,
+    useExternalId:false,
+    ignoreInvalidContacts:true,
+    reimportUnsubscribedContacts:false,
+    overridePermission:false,
+    updateOnly:false,
+);
 
-    $contact = $getContact->getResult();
-
-    /**
-     * The contact object stores all information you requested.
-     * 
-     * Identifiers (Maileon ID, Maileon external id and email address), marketing permission
-     * level, creation date and last update date are always included if they are set in Maileon.
-     * 
-     * ID: $contact->id
-     * Email: $contact->email
-     * Permission: $contact->permission->getType()
-     * First name: $contact->standard_fields[StandardContactField::$FIRSTNAME];
-     * Custom field: $contact->custom_fields['My custom field in Maileon'];
-     */
-    ```
-
-* **Create** a contact in Maileon
-    ```php
-    <?php
-
-    use de\xqueue\maileon\api\client\contacts\ContactsService;
-    use de\xqueue\maileon\api\client\contacts\Contact;
-    use de\xqueue\maileon\api\client\contacts\Permission;
-    use de\xqueue\maileon\api\client\contacts\StandardContactField;
-    use de\xqueue\maileon\api\client\contacts\SynchronizationMode;
-
-    require __DIR__ . '/vendor/autoload.php';
-
-    $contactsService = new ContactsService([
-        'API_KEY' => 'Your API key',
-        'DEBUG'=> true // Remove on production config!
-    ]);
-
-    // Create the contact object
-    $newContact = new Contact();
-    $newContact->email = "max.mustermann@xqueue.com";
-    $newContact->permission = Permission::$NONE; // The initial permission of the newly created contact. This ccan be converted to DOI after DOI process or can be set to something else, e.g. SOI, here already
-
-    // If required, fill custom fields
-    $newContact->standard_fields[StandardContactField::$FIRSTNAME] = "Max";
-    $newContact->standard_fields[StandardContactField::$LASTNAME] = "Mustermann";
-
-    // Also customfields are available
-    //$newContact->custom_fields["type"] = "b2c";
-
-    // And a list of contact preferences can also be added
-    //$newContact->preferences = array(
-    //    new Preference('EmailSegment1', null, 'Email', 'true'),
-    //    new Preference('EmailSegment2', null, 'Email', 'true')
-    //);
-
-    // Configuration of behavior or additional data
-    $src = ""; // a free to be chosen key for the source of the subscription
-    $subscriptionPage = ""; // a free to be chosen key to identify the subscription page
-    $doi = true; // true = a DOI mailing will be issued, this will cause an error, if no DOI mail is active in the newsletter account
-    $doiplus = true; // true = DOI + agreement for single user tracking is enabled, so clicks and opens are not anonymously logged
-    $doimailingkey = ""; // if several DOI mailings are enabled, this key decides which DOI to trigger
-
-    $response = $contactsService->createContact($newContact, SynchronizationMode::$UPDATE, $src, $subscriptionPage, $doi, $doiplus, $doimailingkey);
-    ```
-
-* **Synchronize** a larger list of contacts with Maileon
-    ```php
-    <?php
-
-    use de\xqueue\maileon\api\client\contacts\ContactsService;
-    use de\xqueue\maileon\api\client\contacts\Contacts;
-    use de\xqueue\maileon\api\client\contacts\Contact;
-    use de\xqueue\maileon\api\client\contacts\Permission;
-    use de\xqueue\maileon\api\client\contacts\SynchronizationMode;
-    use de\xqueue\maileon\api\client\contacts\StandardContactField;
-
-    require __DIR__ . '/vendor/autoload.php';
-
-    $contactsService = new ContactsService([
-        'API_KEY' => 'Your API key',
-        'DEBUG'=> true // Remove on production config!
-    ]);
-
-    // Some setup variables, see https://maileon.com/support/synchronize-contacts/
-    $useExternalId = false;
-	$ignoreInvalidContacts = true;
-	$reimportUnsubscribedContacts = true;
-	$overridePermission = false;
-	$updateOnly = false;
-
-    // Creating 10.000 dummy contacts
-    $contactsToSyncTmp = new Contacts();
-    for ($i=0; $i<10000; $i++) {
-        $contactsToSyncTmp->addContact(
-            new Contact(
-                null,
-                'max_'.$i.'.mustermann@baunzt.de',
-                null,
-                'external-id-'.$i,
-                $anonymous = null,
-                array(
-                    StandardContactField::$LASTNAME => 'Mustermann',
-                    StandardContactField::$FIRSTNAME => 'Max_'.$i
-                ),array(
-                    'my_customfield_1' => 'value_'.$i,
-                    'my_customfield_2' => 'another_value_'.$i
-                )
-    }
-
-    $response = $contactsService->synchronizeContacts(
-        $contactsToSyncTmp,
-        Permission::$NONE,
-        SynchronizationMode::$UPDATE,
-        $useExternalId,
-        $ignoreInvalidContacts,
-        $reimportUnsubscribedContacts,
-        $overridePermission,
-        $updateOnly);
-
-    // The response contains some statistics and, if ignore_invalid_contatcs is set to true, information about possibly failed contact creations, see https://maileon.com/support/synchronize-contacts/#articleTOC_3
-
-    ```
+// The response contains some statistics and, if ignore_invalid_contacts is set
+// to true, information about possibly failed contact creations, see
+// https://maileon.com/support/synchronize-contacts/#articleTOC_3
+```
 
 ### Report example
 
 * Print all unsubscriptions:
-    ```php
-    <?php
+```php
+<?php
 
-    use de\xqueue\maileon\api\client\reports\ReportsService;
+use de\xqueue\maileon\api\client\reports\ReportsService;
 
-    require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-    $reportsService = new ReportsService([
-        'API_KEY' => 'Your API key',
-    ]);
+$contactsService = new ReportsService([
+    'API_KEY' => 'Your API key',
+]);
 
-    $index = 1;
-    do {
-        $getUnsubscribers = $reportsService->getUnsubscribers(
-            pageIndex:$index++,
-            pageSize:1000
+$index = 1;
+do {
+    $getUnsubscribers = $contactsService->getUnsubscribers(
+        pageIndex:$index++,
+        pageSize:1000
+    );
+    
+    foreach ($getUnsubscribers->getResult() as $unsubscriber) {
+        printf('%s unsusbcribed in mailing %u at %s'.PHP_EOL,
+            $unsubscriber->contact->email,
+            $unsubscriber->mailingId,
+            $unsubscriber->timestamp
         );
-        
-        foreach ($getUnsubscribers->getResult() as $unsubscriber) {
-            printf('%s unsusbcribed in mailing %u at %s'.PHP_EOL,
-                $unsubscriber->contact->email,
-                $unsubscriber->mailingId,
-                $unsubscriber->timestamp
-            );
-        }
-    } while($getUnsubscribers->getResponseHeaders()['X-Pages'] >= $index);
-    ```
+    }
+} while($getUnsubscribers->getResponseHeaders()['X-Pages'] >= $index);
+```
 
 * Get [KPI](https://kpi.org/KPI-Basics) data for a specific mailing:
-    ```php
-    <?php
+```php
+<?php
 
-    use de\xqueue\maileon\api\client\reports\ReportsService;
+use de\xqueue\maileon\api\client\reports\ReportsService;
 
-    require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-    $reportsService = new ReportsService([
-        'API_KEY' => 'Your API key',
-    ]);
+$reportsService = new ReportsService([
+    'API_KEY' => 'Your API key',
+]);
 
-    $mailingId = 123;
+$mailingId = 123;
 
-    $recipients = $reportsService->getRecipientsCount(mailingIds:[$mailingId])->getResult();
-    $opens = $reportsService->getOpensCount(mailingIds:[$mailingId])->getResult();
-    $clicks = $reportsService->getClicksCount(mailingIds:[$mailingId])->getResult();
-    $unsubscribers = $reportsService->getUnsubscribersCount(mailingIds:[$mailingId])->getResult();
-    $conversions = $reportsService->getConversionsCount(mailingIds:[$mailingId])->getResult();
-    ```
+$recipients = $reportsService->getRecipientsCount(mailingIds:[$mailingId])->getResult();
+$opens = $reportsService->getOpensCount(mailingIds:[$mailingId])->getResult();
+$clicks = $reportsService->getClicksCount(mailingIds:[$mailingId])->getResult();
+$unsubscribers = $reportsService->getUnsubscribersCount(mailingIds:[$mailingId])->getResult();
+$conversions = $reportsService->getConversionsCount(mailingIds:[$mailingId])->getResult();
+```
 
 ### Mailing example
 
 * Create a new mailing, add custom HTML content, attach a target group and send it immediately:
-    ```php
-    <?php
+```php
+<?php
 
-    use de\xqueue\maileon\api\client\mailings\MailingsService;
+use de\xqueue\maileon\api\client\mailings\MailingsService;
 
-    require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-    $mailingsService = new MailingsService([
-        'API_KEY' => 'Your API key',
-    ]);
+$mailingsService = new MailingsService([
+    'API_KEY' => 'Your API key',
+]);
 
-    $mailingId = $mailingsService->createMailing(
-        name:'My campaign name',
-        subject:'Hi [CONTACT|FIRSTNAME]! We got some news for you!'
-    )->getResult();
+$mailingId = $mailingsService->createMailing(
+    name:'My campaign name',
+    subject:'Hi [CONTACT|FIRSTNAME]! We got some news for you!'
+)->getResult();
 
-    $mailingsService->setSender($mailingId, 'foo@bar.com');
-    $mailingsService->setSenderAlias($mailingId, 'Maileon news team');
-    $mailingsService->setHTMLContent(
-        mailingId:$mailingId,
-        html:'<html>...</html>',
-        doImageGrabbing:true,
-        doLinkTracking:true
-    );
-    $mailingsService->setTargetGroupId($mailingId, 123);
-    $mailingsService->sendMailingNow($mailingId);
-    ```
+$mailingsService->setSender($mailingId, 'foo@bar.com');
+$mailingsService->setSenderAlias($mailingId, 'Maileon news team');
+$mailingsService->setHTMLContent(
+    mailingId:$mailingId,
+    html:'<html>...</html>',
+    doImageGrabbing:true,
+    doLinkTracking:true
+);
+$mailingsService->setTargetGroupId($mailingId, 123);
+$mailingsService->sendMailingNow($mailingId);
+```
 
 ### Transaction example
 
 * Send a new transaction including product information as an order confirmation:
-    ```php
-    <?php
+```php
+<?php
 
-    use de\xqueue\maileon\api\client\transactions\ContactReference;
-    use de\xqueue\maileon\api\client\transactions\Transaction;
-    use de\xqueue\maileon\api\client\transactions\TransactionsService;
+use de\xqueue\maileon\api\client\transactions\ContactReference;
+use de\xqueue\maileon\api\client\transactions\Transaction;
+use de\xqueue\maileon\api\client\transactions\TransactionsService;
 
-    require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-    $transactionsService = new TransactionsService([
-        'API_KEY' => 'Your API key',
-    ]);
+$transactionsService = new TransactionsService([
+    'API_KEY' => 'Your API key',
+]);
 
-    $transaction = new Transaction();
-    $transaction->typeName = 'My event to trigger';
-
-    $transaction->contact = new ContactReference([
-        'email' => 'foo@bar.com'
-    ]);
-
-    $transaction->content = [
+$transaction = new Transaction(
+    typeName:'My event to trigger',
+    contact:new ContactReference(
+        email:'foo@bar.com'
+    ),
+    content:[
         'foo' => 'bar',
         'items' => [
             [
@@ -367,7 +355,8 @@ Manage automatic data distributions to notify external systems of specific event
                 'price' => 16.49
             ],
         ],
-    ];
+    ]
+);
 
-    $transactionsService->createTransactions([$transaction]);
-    ```
+$transactionsService->createTransactions([$transaction]);
+```
