@@ -13,6 +13,20 @@ use de\xqueue\maileon\api\client\MaileonAPIResult;
 class AccountService extends AbstractMaileonService
 {
     /**
+     * Get account informations
+     *
+     * @return MaileonAPIResult
+     */
+    public function getAccountInfo()
+    {
+        return $this->get(
+            "account/info",
+            [],
+            "application/json"
+        );
+    }
+    
+    /**
      * Get list of all account placeholders.
      *
      * @return MaileonAPIResult

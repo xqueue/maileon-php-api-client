@@ -495,10 +495,10 @@ class ContactsService extends AbstractMaileonService
             $queryParameters['permission'] = $contact->permission->getCode();
         }
         if (isset($src)) {
-            $queryParameters['src'] = $src;
+            $queryParameters['src'] = urlencode($src);
         }
         if (isset($subscriptionPage)) {
-            $queryParameters['page_key'] = $subscriptionPage;
+            $queryParameters['page_key'] = urlencode($subscriptionPage);
         }
         $doiMailingKey = trim((string) $doiMailingKey);
         if (!empty($doiMailingKey)) {
