@@ -1534,4 +1534,19 @@ class MailingsService extends AbstractMaileonService
         );
         return $this->put('mailings/' . $mailingId . '/cms2/contents', '', $queryParameters);
     }
+
+    /**
+     * Returns the mailing thumbnail as a byte array. 
+     *
+     * @param integer $mailingId
+     *  the ID of the mailing
+     * @return MaileonAPIResult
+     *    the result object of the API call
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function cms2GetThumbnail($mailingId)
+    {
+        return $this->get('mailings/' . $mailingId . '/cms2/contents/thumbnail', [], "application/json");
+    }
 }
