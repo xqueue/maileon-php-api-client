@@ -180,7 +180,11 @@ class ReportsService extends AbstractMaileonService
         $customFields = null,
         $embedFieldBackups = false,
         $pageIndex = 1,
-        $pageSize = 100
+        $pageSize = 100,
+        $embedTransactionId = false,
+        $formatFilter = null,
+        $socialNetworkFilter = null,
+        $deviceTypeFilter = null
     ) {
         $params = $this->createQueryParameters(
             $pageIndex,
@@ -203,6 +207,14 @@ class ReportsService extends AbstractMaileonService
         if (isset($excludeAnonymousOpens)) {
             $params['exclude_anonymous_opens'] = ($excludeAnonymousOpens == true) ? "true" : "false";
         }
+        if (isset($formatFilter)) {
+            $params['format'] = $formatFilter;
+        }
+        if (isset($embedTransactionId)) {
+            $params['embed_transaction_id'] = ($embedTransactionId == true) ? "true" : "false";
+        }
+        $params = $this->appendArrayFields($params, "social_network", $socialNetworkFilter);
+        $params = $this->appendArrayFields($params, "device_type", $deviceTypeFilter);
 
         return $this->get('reports/opens/unique', $params);
     }
@@ -305,7 +317,10 @@ class ReportsService extends AbstractMaileonService
         $contactIds = null,
         $contactEmails = null,
         $contactExternalIds = null,
-        $excludeAnonymousOpens = false
+        $excludeAnonymousOpens = false,
+        $formatFilter = null,
+        $socialNetworkFilter = null,
+        $deviceTypeFilter = null
     ) {
         $params = $this->createCountQueryParameters(
             $fromDate,
@@ -320,6 +335,11 @@ class ReportsService extends AbstractMaileonService
         if (isset($excludeAnonymousOpens)) {
             $params['exclude_anonymous_opens'] = ($excludeAnonymousOpens == true) ? "true" : "false";
         }
+        if (isset($formatFilter)) {
+            $params['format'] = $formatFilter;
+        }
+        $params = $this->appendArrayFields($params, "social_network", $socialNetworkFilter);
+        $params = $this->appendArrayFields($params, "device_type", $deviceTypeFilter);
 
         return $this->get('reports/opens/unique/count', $params);
     }
@@ -633,7 +653,9 @@ class ReportsService extends AbstractMaileonService
         $embedFieldBackups = false,
         $pageIndex = 1,
         $pageSize = 100,
-        $embedLinkTags = false
+        $embedLinkTags = false,
+        $socialNetworkFilter = null,
+        $deviceTypeFilter = null
     ) {
         $params = $this->createQueryParameters(
             $pageIndex,
@@ -659,6 +681,8 @@ class ReportsService extends AbstractMaileonService
         if (isset($excludeAnonymousClicks)) {
             $params['exclude_anonymous_clicks'] = ($excludeAnonymousClicks == true) ? "true" : "false";
         }
+        $params = $this->appendArrayFields($params, "social_network", $socialNetworkFilter);
+        $params = $this->appendArrayFields($params, "device_type", $deviceTypeFilter);
 
         return $this->get('reports/clicks/unique', $params);
     }
@@ -773,7 +797,9 @@ class ReportsService extends AbstractMaileonService
         $contactIds = null,
         $contactEmails = null,
         $contactExternalIds = null,
-        $excludeAnonymousClicks = false
+        $excludeAnonymousClicks = false,
+        $socialNetworkFilter = null,
+        $deviceTypeFilter = null
     ) {
         $params = $this->createCountQueryParameters(
             $fromDate,
@@ -788,6 +814,8 @@ class ReportsService extends AbstractMaileonService
         if (isset($excludeAnonymousClicks)) {
             $params['exclude_anonymous_clicks'] = ($excludeAnonymousClicks == true) ? "true" : "false";
         }
+        $params = $this->appendArrayFields($params, "social_network", $socialNetworkFilter);
+        $params = $this->appendArrayFields($params, "device_type", $deviceTypeFilter);
 
         return $this->get('reports/clicks/unique/count', $params);
     }
