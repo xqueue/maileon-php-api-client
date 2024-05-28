@@ -1,3 +1,7 @@
+Date 2024-05-28
+Version 1.9.11
+- Updated methods getUniqueOpens, getUniqueOpensCount, getUniqueClicks and getUniqueClicksCount
+
 Date 2024-04-04
 Version 1.9.10
 - Added get account information method
