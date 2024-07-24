@@ -49,6 +49,8 @@ class JSONDeserializer
     private static function fromArray($object, $type = null, $innerType = null)
     {
         if ($type == 'array') {
+            $result = [];
+            
             foreach ($object as $element) {
                 // call this method on each element
                 $result[]= self::fromArray($element, $innerType);

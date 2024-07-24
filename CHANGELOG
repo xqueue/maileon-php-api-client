@@ -1,3 +1,7 @@
+Date 2024-07-24
+Version 1.9.12
+- Fixed bug when get webhooks and no webhook exists in the account
+
 Date 2024-05-28
 Version 1.9.11
 - Updated methods getUniqueOpens, getUniqueOpensCount, getUniqueClicks and getUniqueClicksCount
