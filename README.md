@@ -1,6 +1,6 @@
-[![Latest Stable Version](http://poser.pugx.org/xqueue/maileon-api-client/v)](https://packagist.org/packages/xqueue/maileon-api-client)
-[![License](http://poser.pugx.org/xqueue/maileon-api-client/license)](https://packagist.org/packages/xqueue/maileon-api-client)
-[![PHP Version Require](http://poser.pugx.org/xqueue/maileon-api-client/require/php)](https://packagist.org/packages/xqueue/maileon-api-client)
+[![Latest Version](https://img.shields.io/packagist/v/xqueue/maileon-api-client)](https://packagist.org/packages/xqueue/maileon-api-client)
+[![License](https://img.shields.io/packagist/l/xqueue/maileon-api-client)](https://packagist.org/packages/xqueue/maileon-api-client)
+[![PHP Version Require](https://img.shields.io/packagist/dependency-v/xqueue/maileon-api-client/php)](https://packagist.org/packages/xqueue/maileon-api-client)
 
 # Maileon API Client
 
