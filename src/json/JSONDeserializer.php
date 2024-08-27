@@ -50,7 +50,7 @@ class JSONDeserializer
     {
         if ($type == 'array') {
             $result = [];
-            
+
             foreach ($object as $element) {
                 // call this method on each element
                 $result[]= self::fromArray($element, $innerType);
@@ -58,7 +58,7 @@ class JSONDeserializer
 
             // return the processed array
             return $result;
-        } elseif (class_exists($type)) {
+        } elseif ($type !== null && class_exists($type)) {
             // create the class we are deserializing
             $class = new $type();
 

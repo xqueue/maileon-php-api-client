@@ -1,3 +1,7 @@
+Date 2024-08-26
+Version 1.9.13
+- Fixed a PHP deprecation warning for class_exists
+
 Date 2024-07-24
 Version 1.9.12
 - Fixed bug when get webhooks and no webhook exists in the account
