@@ -14,6 +14,7 @@ Maileon's REST API documentation can be found [here](https://maileon.com/support
  * [Usage](#usage)
  * [Examples](#examples)
 
+## Requirements
 
 The API client requires `PHP >= 7.0` with `libxml` and `libcurl`.
 
