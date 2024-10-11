@@ -1,4 +1,6 @@
 Date 2024-10-11
+Version 1.10.1
+- Fixed mime type for new resource
 Version 1.10.0
 - Added new resource "Get Account Mailing Domains"
 
