@@ -25,6 +25,7 @@ use de\xqueue\maileon\api\client\mailings\CustomProperty;
 use de\xqueue\maileon\api\client\reports\UniqueConversion;
 use de\xqueue\maileon\api\client\targetgroups\TargetGroup;
 use de\xqueue\maileon\api\client\account\AccountPlaceholder;
+use de\xqueue\maileon\api\client\account\MailingDomain;
 use de\xqueue\maileon\api\client\contactfilters\ContactFilter;
 use de\xqueue\maileon\api\client\transactions\TransactionType;
 use de\xqueue\maileon\api\client\contacts\Preference;
@@ -375,6 +376,17 @@ class XMLDeserializer
                     break;
 
                 case "account_placeholders":
+                    $result = array();
+                    foreach ($xmlElement as $element) {
+                        $result[] = self::deserialize($element);
+                    }
+                    return $result;
+
+                case "mailing_domain":
+                    $result = new MailingDomain();
+                    break;
+
+                case "mailing_domains":
                     $result = array();
                     foreach ($xmlElement as $element) {
                         $result[] = self::deserialize($element);
