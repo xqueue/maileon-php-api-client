@@ -99,7 +99,23 @@ class AccountService extends AbstractMaileonService
         return $this->delete("account/placeholders", $queryParameters);
     }
 
+    /**
+     * Get list of all subdomains
+     * 
+     * @return MaileonAPIResult
+     */
+    public function getAccountMailingDomains()
+    {
+        return $this->get("account/mailing_domains");
+    }
 
+    /**
+     * Append a SimpleXMLElement to another
+     * 
+     * @param \SimpleXMLElement $to
+     * @param \SimpleXMLElement $from
+     * @return void
+     */
     public function sxmlAppend(\SimpleXMLElement $to, \SimpleXMLElement $from)
     {
         $toDom = dom_import_simplexml($to);

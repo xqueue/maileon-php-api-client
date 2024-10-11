@@ -1,3 +1,7 @@
+Date 2024-10-11
+Version 1.10.0
+- Added new resource "Get Account Mailing Domains"
+
 Date 2024-08-27
 Version 1.9.14
 - Fixed Readme Badges
