@@ -1,4 +1,6 @@
 Date 2024-10-11
+Version 1.10.3
+- Fixed MaileonAPIResult
 Version 1.10.2
 - Added XML deserialization for mailing domains
 Version 1.10.1
