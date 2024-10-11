@@ -106,7 +106,7 @@ class AccountService extends AbstractMaileonService
      */
     public function getAccountMailingDomains()
     {
-        return $this->get("account/mailing_domains");
+        return $this->get("account/mailing_domains", [], "application/xml");
     }
 
     /**
