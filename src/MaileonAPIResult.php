@@ -88,6 +88,10 @@ class MaileonAPIResult
     
     private function getBodyFromCurlResponse($curlSession, $response)
     {
+        if ($response === null) {
+            return null;
+        }
+        
         // In a recent case, a CMS2 mailing contained \r\n\r\n, so the old approach failed (https://stackoverflow.com/questions/10589889/returning-header-as-array-using-curl).
 	    // Now, we use CURLINFO_HEADER_SIZE (https://blog.devgenius.io/how-to-get-the-response-headers-with-curl-in-php-2173b10d4fc5) and only split up the headers at \r\n\r\n.
         // CURLINFO_HEADER_SIZE returns the size of the header including \r\n\r\n.
