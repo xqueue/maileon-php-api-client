@@ -35,6 +35,8 @@ class JSONSerializer
         $type = gettype($object);
         
         if ($type == 'array') {
+            $result = [];
+            
             foreach ($object as $element) {
                 // call this method on each object in the array
                 $result[]= self::toArray($element);
