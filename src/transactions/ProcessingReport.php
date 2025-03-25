@@ -26,6 +26,14 @@ class ProcessingReport extends AbstractJSONWrapper
     public $queued;
     
     /**
+     * The identifier of the transaction.
+     * Available when generated automatically (generate_transaction_id=true) or generated externally
+     *
+     * @var string
+     */
+    public $transaction_id;
+    
+    /**
      * The error message (if there was any)
      *
      * @var string
