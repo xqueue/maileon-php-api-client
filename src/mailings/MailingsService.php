@@ -3,6 +3,7 @@
 namespace de\xqueue\maileon\api\client\mailings;
 
 use de\xqueue\maileon\api\client\AbstractMaileonService;
+use de\xqueue\maileon\api\client\json\JSONSerializer;
 use de\xqueue\maileon\api\client\MaileonAPIException;
 use de\xqueue\maileon\api\client\MaileonAPIResult;
 
@@ -1490,6 +1491,52 @@ class MailingsService extends AbstractMaileonService
             'removeTemplateLanguageMarkup' => $removeTemplateLanguageMarkup ? 'true' : 'false'
         );
         return $this->get('mailings/' . $mailingId . '/cms2/contents', $queryParameters, "application/json");
+    }
+
+    /**
+     * Upload the mailing content from a Maileon Zip file as possible in the UI.
+     * The archive contains the HTML code as well as the linked images.
+     *
+     * @param integer $mailingId
+     *  the ID of the mailing
+     * @param boolean $removeTemplateLanguageMarkup
+     *  defines if the  Maileon Markup Language should be removed from the HTML or not
+     *
+     * @return MaileonAPIResult
+     *    the result object of the API call
+     * @throws MaileonAPIException
+     *  if there was a connection problem or a server error occurred
+     */
+    public function cms2SetMailingFromZipFromFile($mailingId, $filename)
+    {
+        // Read the file
+        $handle = fopen($filename, "rb");
+        if (false === $filename) {
+            throw new MaileonAPIException("Cannot read file " . $filename . ".");
+        }
+        $fileContent = '';
+        while (!feof($handle)) {
+            $fileContent .= fread($handle, 8192);
+        }
+        fclose($handle);
+
+        return $this->cms2SetMailingFromZipFromBase64($mailingId, base64_encode($fileContent));
+    }
+
+    public function cms2SetMailingFromZipFromBase64($mailingId, $base64Content)
+    {
+        $data = [
+            'content' => $base64Content
+        ];
+
+        $data = json_encode($data);
+
+        $result = $this->put(
+            "mailings/" . $mailingId . "/cms2/contents",
+            $data,
+            [],
+            "application/json"
+        );
     }
 
     /**

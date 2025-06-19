@@ -1,3 +1,7 @@
+Date 2025-06-19
+Version 1.11.0
+- Adding method to upload Zip file as template for mailing
+
 Date 2024-10-11
 Version 1.10.3
 - Fixed MaileonAPIResult
