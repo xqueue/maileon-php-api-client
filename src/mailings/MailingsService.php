@@ -1537,6 +1537,8 @@ class MailingsService extends AbstractMaileonService
             [],
             "application/json"
         );
+
+        return $result;
     }
 
     /**
