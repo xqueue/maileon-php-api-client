@@ -36,6 +36,11 @@ class Click extends AbstractXMLWrapper
     /**
      * @var string
      */
+    public $linkType;
+
+    /**
+     * @var string
+     */
     public $linkUrl;
 
     /**
@@ -99,6 +104,7 @@ class Click extends AbstractXMLWrapper
         ", contact=" . $this->contact->toString() .
         ", mailingId=" . $this->mailingId .
         ", linkId=" . $this->linkId .
+        ", linkType=" . $this->linkType .
         ", linkUrl=" . $this->linkUrl .
         ", linkTags=" . $linkTags .
         ", clientInfos=" . $this->clientInfos->toString() .
@@ -128,6 +134,9 @@ class Click extends AbstractXMLWrapper
         }
         if (isset($xmlElement->link_id)) {
             $this->linkId = $xmlElement->link_id;
+        }
+        if (isset($xmlElement->link_type)) {
+            $this->linkType = $xmlElement->link_type;
         }
         if (isset($xmlElement->link_url)) {
             $this->linkUrl = $xmlElement->link_url;
@@ -170,6 +179,7 @@ class Click extends AbstractXMLWrapper
         ";" . $this->contact->toCsvString() .
         ";" . $this->mailingId .
         ";" . $this->linkId .
+        ";" . $this->linkType .
         ";" . $this->linkUrl .
         ";" . $this->clientInfos->toCsvString() .
         ";" . $this->transactionId .
@@ -201,6 +211,9 @@ class Click extends AbstractXMLWrapper
         }
         if (isset($this->linkId)) {
             $xml->addChild("link_id", $this->linkId);
+        }
+        if (isset($this->linkType)) {
+            $xml->addChild("link_type", $this->linkType);
         }
         if (isset($this->linkUrl)) {
             $xml->addChild("link_url", $this->linkUrl);
