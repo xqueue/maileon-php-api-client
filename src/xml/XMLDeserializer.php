@@ -370,6 +370,9 @@ class XMLDeserializer
                     }
                     return $result;
 
+                case "error":
+                    $result = new Error();
+                    break;
 
                 case "account_placeholder":
                     $result = new AccountPlaceholder();
