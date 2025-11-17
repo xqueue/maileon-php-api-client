@@ -3,17 +3,18 @@
 namespace de\xqueue\maileon\api\client\reports;
 
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
+use Exception;
+use SimpleXMLElement;
 
 /**
  * This class represents a recipient containing the timestamp, the contact, and the ID of the mailing.
  *
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class Recipient extends AbstractXMLWrapper
 {
     /**
-     * @var integer
+     * @var int
      */
     public $timestamp;
 
@@ -23,52 +24,45 @@ class Recipient extends AbstractXMLWrapper
     public $contact;
 
     /**
-     * @var integer
+     * @var int
      */
     public $mailingId;
-    
+
     /**
      * @var string
      */
     public $transactionId;
-    
+
     /**
-     * @var integer
+     * @var int
      */
     public $messageId;
 
-    /**
-     * @return string
-     *  containing a human-readable representation of this recipient
-     */
-    public function toString()
+    public function toString(): string
     {
-        return "Recipient [timestamp=" . $this->timestamp .
-        ", contact=" . $this->contact->toString() .
-        ", mailingId=" . $this->mailingId .
-        ", transactionId=" . $this->transactionId .
-        ", messageId=" . $this->messageId ."]";
+        return 'Recipient ['
+            . 'timestamp=' . $this->timestamp
+            . ', contact=' . $this->contact->toString()
+            . ', mailingId=' . $this->mailingId
+            . ', transactionId=' . $this->transactionId
+            . ', messageId=' . $this->messageId
+            . ']';
     }
 
     /**
-     * @return string
-     *  containing a csv pepresentation of this recipient
-     */
-    public function toCsvString()
-    {
-        return $this->timestamp .
-        ";" . $this->contact->toCsvString() .
-        ";" . $this->mailingId .
-        ";" . $this->transactionId .
-        ";" . $this->messageId;
-    }
-
-    /**
-     * Initializes this recipient from an XML representation.
+     * CSV representation of this wrapper.
      *
-     * @param \SimpleXMLElement $xmlElement
-     *  the XML representation to use
+     * @return string
      */
+    public function toCsvString(): string
+    {
+        return $this->timestamp
+            . ';' . $this->contact->toCsvString()
+            . ';' . $this->mailingId
+            . ';' . $this->transactionId
+            . ';' . $this->messageId;
+    }
+
     public function fromXML($xmlElement)
     {
         $this->contact = new ReportContact();
@@ -77,9 +71,11 @@ class Recipient extends AbstractXMLWrapper
         if (isset($xmlElement->mailing_id)) {
             $this->mailingId = $xmlElement->mailing_id;
         }
+
         if (isset($xmlElement->timestamp)) {
             $this->timestamp = $xmlElement->timestamp;
         }
+
         if (isset($xmlElement->transaction_id)) {
             $this->transactionId = $xmlElement->transaction_id;
         }
@@ -88,25 +84,31 @@ class Recipient extends AbstractXMLWrapper
     /**
      * For future use, not implemented yet.
      *
-     * @return \SimpleXMLElement
-     *  containing the XML serialization of this object
+     * Serialization to a simple XML element.
+     *
+     * @return SimpleXMLElement contains the serialized representation of the object
+     *
+     * @throws Exception
      */
     public function toXML()
     {
-        $xmlString = "<?xml version=\"1.0\"?><recipient></recipient>";
-        $xml = new \SimpleXMLElement($xmlString);
+        $xmlString = '<?xml version="1.0"?><recipient></recipient>';
+        $xml       = new SimpleXMLElement($xmlString);
 
         if (isset($this->contact)) {
-            $xml->addChild("contact", $this->contact->toXML());
-        }        
+            $xml->addChild('contact', $this->contact->toXML());
+        }
+
         if (isset($this->mailingId)) {
-            $xml->addChild("mailing_id", $this->mailingId);
+            $xml->addChild('mailing_id', $this->mailingId);
         }
+
         if (isset($this->timestamp)) {
-            $xml->addChild("timestamp", $this->timestamp);
+            $xml->addChild('timestamp', $this->timestamp);
         }
+
         if (isset($this->transactionId)) {
-            $xml->addChild("transaction_id", $this->transactionId);
+            $xml->addChild('transaction_id', $this->transactionId);
         }
 
         return $xml;

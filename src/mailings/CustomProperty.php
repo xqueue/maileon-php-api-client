@@ -3,6 +3,7 @@
 namespace de\xqueue\maileon\api\client\mailings;
 
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
+use SimpleXMLElement;
 
 /**
  * The wrapper class for a Maileon custom property. This class wraps the XML structure.
@@ -20,52 +21,40 @@ class CustomProperty extends AbstractXMLWrapper
      * @param string $key
      * @param string $value
      */
-    public function __construct($key = null, $value = null)
-    {
-        $this->key = $key;
+    public function __construct(
+        $key = null,
+        $value = null
+    ) {
+        $this->key   = $key;
         $this->value = $value;
     }
 
-    /**
-     * Initialization of the attachment from a simple xml element.
-     *
-     * @param \SimpleXMLElement $xmlElement
-     *  The xml element that is used to parse the attachment from.
-     */
     public function fromXML($xmlElement)
     {
         if (isset($xmlElement->key)) {
-            $this->key = (string)$xmlElement->key;
+            $this->key = (string) $xmlElement->key;
         }
+
         if (isset($xmlElement->value)) {
-            $this->value = (string)$xmlElement->value;
+            $this->value = (string) $xmlElement->value;
         }
     }
 
-    /**
-     * Creates the XML representation of an attachment
-     *
-     * @return \SimpleXMLElement
-     */
     public function toXML()
     {
-        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><property></property>");
+        $xml = new SimpleXMLElement('<?xml version="1.0"?><property></property>');
 
-        $xml->addChild("key", $this->key);
-        $xml->addChild("value", $this->value);
+        $xml->addChild('key', $this->key);
+        $xml->addChild('value', $this->value);
 
         return $xml;
     }
-    
-    /**
-     * Human readable representation of this wrapper.
-     *
-     * @return string
-     *  A human readable version of the mailing.
-     */
-    public function toString()
+
+    public function toString(): string
     {
-        return "CustomProperty [key=" . $this->key . ", "
-                . "value=" . $this->value . "]";
+        return 'CustomProperty ['
+            . 'key=' . $this->key
+            . ', value=' . $this->value
+            . ']';
     }
 }

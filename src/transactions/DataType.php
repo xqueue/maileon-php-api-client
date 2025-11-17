@@ -8,8 +8,7 @@ namespace de\xqueue\maileon\api\client\transactions;
  * The supported data types are string, double, float, integer, boolean, timestamp and json.
  *
  * @author Viktor Balogh | Wanadis Kft. |  <a href="balogh.viktor@maileon.hu">balogh.viktor@maileon.hu</a>
- * @author Marcus St&auml;nder | Trusted Technologies GmbH |
- * <a href="mailto:marcus.staender@trusted-technologies.de">marcus.staender@trusted-technologies.de</a>
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class DataType
 {
@@ -26,24 +25,23 @@ class DataType
 
     // TODO use a more sensible name for this concept, e.g. "type descriptor"
     /**
+     * A string that describes the datatype. Valid values are "string", "double", "float", "integer", "boolean", "timestamp" and "json".
      *
-     * @var string $value
-     *  A string that describes the datatype. Valid values are "string", "double", "float",
-     *  "integer", "boolean", "timestamp" and "json".
+     * @var string
      */
     public $value;
 
     public static function init()
     {
-        if (self::$initialized == false) {
-            self::$STRING = new DataType("string");
-            self::$DOUBLE = new DataType("double");
-            self::$FLOAT = new DataType("float");
-            self::$INTEGER = new DataType("integer");
-            self::$BOOLEAN = new DataType("boolean");
-            self::$TIMESTAMP = new DataType("timestamp");
-            self::$DATE = new DataType("date");
-            self::$JSON = new DataType("json");
+        if (self::$initialized === false) {
+            self::$STRING      = new DataType('string');
+            self::$DOUBLE      = new DataType('double');
+            self::$FLOAT       = new DataType('float');
+            self::$INTEGER     = new DataType('integer');
+            self::$BOOLEAN     = new DataType('boolean');
+            self::$TIMESTAMP   = new DataType('timestamp');
+            self::$DATE        = new DataType('date');
+            self::$JSON        = new DataType('json');
             self::$initialized = true;
         }
     }
@@ -51,9 +49,9 @@ class DataType
     /**
      * Creates a new DataType object.
      *
+     * a string describing the data type. Valid values are "string", "double", "float", "integer", "boolean", "timestamp" and "json".
+     *
      * @param string $value
-     *  a string describing the data type. Valid values are "string", "double", "float",
-     *  "integer", "boolean", "timestamp" and "json".
      */
     public function __construct($value)
     {
@@ -61,11 +59,9 @@ class DataType
     }
 
     /**
-     * @return string
-     *  the type descriptor string of this DataType. Can be "string", "double", "float",
-     *  "integer", "boolean", "timestamp" or "json".
+     * @return string The type descriptor string of this DataType. Can be "string", "double", "float", "integer", "boolean", "timestamp" or "json".
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -73,35 +69,33 @@ class DataType
     /**
      * Get the permission object by type descriptor.
      *
-     * @param string $value
-     *  a type descriptor string. Can be "string", "double", "float",
-     *  "integer", "boolean", "timestamp" or "json".
-     * @return DataType
-     *  the DataType object
+     * @param string $value a type descriptor string. Can be "string", "double", "float", "integer", "boolean", "timestamp" or "json".
+     *
+     * @return DataType|null  The DataType object
      */
     public static function getDataType($value)
     {
         switch ($value) {
-            case "string":
+            case 'string':
                 return self::$STRING;
-            case "double":
+            case 'double':
                 return self::$DOUBLE;
-            case "float":
+            case 'float':
                 return self::$FLOAT;
-            case "integer":
+            case 'integer':
                 return self::$INTEGER;
-            case "boolean":
+            case 'boolean':
                 return self::$BOOLEAN;
-            case "timestamp":
+            case 'timestamp':
                 return self::$TIMESTAMP;
-            case "date":
+            case 'date':
                 return self::$DATE;
-            case "json":
+            case 'json':
                 return self::$JSON;
-
             default:
                 return null;
         }
     }
 }
+
 DataType::init();

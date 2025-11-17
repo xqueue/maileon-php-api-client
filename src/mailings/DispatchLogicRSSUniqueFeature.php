@@ -7,7 +7,7 @@ namespace de\xqueue\maileon\api\client\mailings;
  *
  * The supported RSS unique features are default, pubdate, title and link.
  *
- * @author Andreas Lange | XQueue GmbH |  <a href="andreas.lange@xqueue.com">andreas.lange@xqueue.com</a>
+ * @author Andreas Lange
  */
 class DispatchLogicRSSUniqueFeature
 {
@@ -20,19 +20,19 @@ class DispatchLogicRSSUniqueFeature
 
     // TODO use a more sensible name for this concept, e.g. "type descriptor"
     /**
-     *
-     * @var string $value
      * A string that describes the RSS unique feature. Valid values are "default", "pubdate", "title" and "link".
+     *
+     * @var string
      */
     public $value;
 
     public static function init()
     {
-        if (self::$initialized == false) {
-            self::$DEFAULT = new DispatchLogicRSSUniqueFeature("default");
-            self::$PUBDATE = new DispatchLogicRSSUniqueFeature("pubdate");
-            self::$TITLE = new DispatchLogicRSSUniqueFeature("title");
-            self::$LINK = new DispatchLogicRSSUniqueFeature("link");
+        if (self::$initialized === false) {
+            self::$DEFAULT     = new DispatchLogicRSSUniqueFeature('default');
+            self::$PUBDATE     = new DispatchLogicRSSUniqueFeature('pubdate');
+            self::$TITLE       = new DispatchLogicRSSUniqueFeature('title');
+            self::$LINK        = new DispatchLogicRSSUniqueFeature('link');
             self::$initialized = true;
         }
     }
@@ -40,8 +40,7 @@ class DispatchLogicRSSUniqueFeature
     /**
      * Creates a new DispatchLogicRSSUniqueFeature object.
      *
-     * @param string $value
-     * a string describing the RSS unique feature. Valid values are "default", "pubdate", "title" and "link".
+     * @param string $value a string describing the RSS unique feature. Valid values are "default", "pubdate", "title" and "link".
      */
     public function __construct($value)
     {
@@ -49,10 +48,9 @@ class DispatchLogicRSSUniqueFeature
     }
 
     /**
-     * @return string
-     * the type descriptor string of this DispatchLogicRSSUniqueFeature. Can be "default", "pubdate", "title" or "link".
+     * @return string the type descriptor string of this DispatchLogicRSSUniqueFeature. Can be "default", "pubdate", "title" or "link".
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -60,26 +58,25 @@ class DispatchLogicRSSUniqueFeature
     /**
      * Get the RSS unique feature object by type descriptor.
      *
-     * @param string $value
-     * a type descriptor string. Can be "default", "pubdate", "title" or "link".
-     * @return DispatchLogicRSSUniqueFeature
-     * the DispatchLogicRSSUniqueFeature object
+     * @param string $value a type descriptor string. Can be "default", "pubdate", "title" or "link".
+     *
+     * @return DispatchLogicRSSUniqueFeature|null the DispatchLogicRSSUniqueFeature object
      */
     public static function getObject($value)
     {
         switch ($value) {
-            case "default":
+            case 'default':
                 return self::$DEFAULT;
-            case "pubdate":
+            case 'pubdate':
                 return self::$PUBDATE;
-            case "title":
+            case 'title':
                 return self::$TITLE;
-            case "link":
+            case 'link':
                 return self::$LINK;
-
             default:
                 return null;
         }
     }
 }
+
 DispatchLogicRSSUniqueFeature::init();

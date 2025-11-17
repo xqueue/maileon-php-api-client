@@ -4,10 +4,13 @@ namespace de\xqueue\maileon\api\client\webhooks;
 
 use de\xqueue\maileon\api\client\json\AbstractJSONWrapper;
 
+use function property_exists;
+use function strtolower;
+
 /**
  * A wrapper class for a webhook URL parameter
  *
- * @author Balogh Viktor <balogh.viktor@maileon.hu> | Maileon - Wanadis Kft.
+ * @author Viktor Balogh | XQueue GmbH | <a href="mailto:viktor.balog@xqueue.com">viktor.balog@xqueue.com</a>
  */
 class WebhookUrlParameter extends AbstractJSONWrapper
 {
@@ -16,46 +19,46 @@ class WebhookUrlParameter extends AbstractJSONWrapper
      *
      * @var string|null
      */
-    public $customContactField = null;
+    public $customContactField;
 
     /**
      * The standard contact field for this parameter
      *
      * @var string|null
      */
-    public $standardContactField = null;
+    public $standardContactField;
 
     /**
      * The custom value for this parameter
      *
      * @var string|null
      */
-    public $customValue = null;
+    public $customValue;
 
     /**
      * The name for this parameter
      *
      * @var string
      */
-    public $name = null;
+    public $name;
 
-    public function toArray()
+    public function toArray(): array
     {
         $result = [];
 
-        if($this->name !== null) {
+        if ($this->name !== null) {
             $result['name'] = $this->name;
         }
 
-        if($this->standardContactField !== null) {
+        if ($this->standardContactField !== null) {
             $result['standard_contact_field'] = strtolower($this->standardContactField);
         }
 
-        if($this->standardContactField !== null) {
+        if ($this->standardContactField !== null) {
             $result['custom_contact_field'] = $this->customContactField;
         }
 
-        if($this->customValue !== null) {
+        if ($this->customValue !== null) {
             $result['custom_value'] = $this->customValue;
         }
 
@@ -64,17 +67,17 @@ class WebhookUrlParameter extends AbstractJSONWrapper
 
     public function fromArray($object_vars)
     {
-        if(property_exists($object_vars, 'standard_contact_field')) {
+        if (property_exists($object_vars, 'standard_contact_field')) {
             $this->standardContactField = $object_vars->standard_contact_field;
             unset($object_vars->standard_contact_field);
         }
 
-        if(property_exists($object_vars, 'custom_contact_field')) {
+        if (property_exists($object_vars, 'custom_contact_field')) {
             $this->customContactField = $object_vars->custom_contact_field;
             unset($object_vars->custom_contact_field);
         }
 
-        if(property_exists($object_vars, 'custom_value')) {
+        if (property_exists($object_vars, 'custom_value')) {
             $this->customValue = $object_vars->custom_value;
             unset($object_vars->custom_value);
         }

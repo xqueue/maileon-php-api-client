@@ -3,18 +3,19 @@
 namespace de\xqueue\maileon\api\client\reports;
 
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
+use Exception;
+use SimpleXMLElement;
 
 /**
  * This class represents a block containing the timestamp, the contact, and some details.
  *
  * @author Jannik Jochem
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class Block extends AbstractXMLWrapper
 {
     /**
-     * @var integer
+     * @var int
      */
     public $timestamp;
 
@@ -24,53 +25,46 @@ class Block extends AbstractXMLWrapper
     public $contact;
 
     /**
-     * @var integer
+     * @var int
      */
     public $oldStatus;
 
     /**
-     * @var integer
+     * @var int
      */
     public $newStatus;
 
     /**
-     * @var String
+     * @var string
      */
     public $reason;
 
-
-    /**
-     * @return string
-     *  containing a human-readable representation of this block
-     */
-    public function toString()
+    public function toString(): string
     {
-        return "Block [timestamp=" . $this->timestamp .
-        ", contact=" . $this->contact->toString() .
-        ", oldstatus=" . $this->oldStatus .
-        ", newstatus=" . $this->newStatus .
-        ", reason=" . $this->reason . "]";
+        return 'Block ['
+            . 'timestamp=' . $this->timestamp
+            . ', contact=' . $this->contact->toString()
+            . ', oldStatus=' . $this->oldStatus
+            . ', newStatus=' . $this->newStatus
+            . ', reason=' . $this->reason
+            . ']';
     }
 
     /**
-     * @return string
-     *  containing a csv pepresentation of this block
-     */
-    public function toCsvString()
-    {
-        return "block;" . $this->timestamp .
-        ";" . $this->contact->toCsvString() .
-        ";" . $this->oldStatus .
-        ";" . $this->newStatus .
-        ";" . $this->reason;
-    }
-
-    /**
-     * Initializes this bounce from an XML representation.
+     * CSV representation of this wrapper.
      *
-     * @param \SimpleXMLElement $xmlElement
-     *  the XML representation to use
+     * @return string
      */
+    public function toCsvString(): string
+    {
+        return 'block'
+            . ';' . $this->timestamp
+            . ';' . $this->contact->toCsvString()
+            . ';' . $this->oldStatus
+            . ';' . $this->newStatus
+            . ';' . $this->reason;
+    }
+
     public function fromXML($xmlElement)
     {
         $this->contact = new ReportContact();
@@ -79,12 +73,15 @@ class Block extends AbstractXMLWrapper
         if (isset($xmlElement->timestamp)) {
             $this->timestamp = $xmlElement->timestamp;
         }
+
         if (isset($xmlElement->old_status)) {
             $this->oldStatus = $xmlElement->old_status;
         }
+
         if (isset($xmlElement->new_status)) {
             $this->newStatus = $xmlElement->new_status;
         }
+
         if (isset($xmlElement->reason)) {
             $this->reason = $xmlElement->reason;
         }
@@ -93,28 +90,35 @@ class Block extends AbstractXMLWrapper
     /**
      * For future use, not implemented yet.
      *
-     * @return \SimpleXMLElement
-     *  containing the XML serialization of this object
+     * Serialization to a simple XML element.
+     *
+     * @return SimpleXMLElement contains the serialized representation of the object
+     *
+     * @throws Exception
      */
     public function toXML()
     {
-        $xmlString = "<?xml version=\"1.0\"?><block></block>";
-        $xml = new \SimpleXMLElement($xmlString);
+        $xmlString = '<?xml version="1.0"?><block></block>';
+        $xml       = new SimpleXMLElement($xmlString);
 
         if (isset($this->contact)) {
-            $xml->addChild("contact", $this->contact->toXML());
+            $xml->addChild('contact', $this->contact->toXML());
         }
+
         if (isset($this->timestamp)) {
-            $xml->addChild("timestamp", $this->timestamp);
+            $xml->addChild('timestamp', $this->timestamp);
         }
+
         if (isset($this->old_status)) {
-            $xml->addChild("old_status", $this->oldStatus);
+            $xml->addChild('old_status', $this->oldStatus);
         }
+
         if (isset($this->new_status)) {
-            $xml->addChild("new_status", $this->newStatus);
+            $xml->addChild('new_status', $this->newStatus);
         }
+
         if (isset($this->reason)) {
-            $xml->addChild("reason", $this->reason);
+            $xml->addChild('reason', $this->reason);
         }
 
         return $xml;

@@ -2,13 +2,13 @@
 
 namespace de\xqueue\maileon\api\client;
 
+use function array_key_exists;
+
 /**
- * This class allows translating between HTTP response codes and human readable strings
+ * This class allows translating between HTTP response codes and human-readable strings
  *
- * @author Felix Heinrichs | Trusted Mails GmbH |
- * <a href="mailto:felix.heinrichs@trusted-mails.com">felix.heinrichs@trusted-mails.com</a>
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Felix Heinrichs
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 abstract class HTTPResponseCodes
 {
@@ -126,42 +126,42 @@ abstract class HTTPResponseCodes
      */
     const SERVICE_UNAVAILABLE = 503;
 
-    protected static $codes = array(
-        200 => "OK",
-        201 => "Created",
-        202 => "Accepted",
-        204 => "No Content",
-        301 => "Moved Permanently",
-        303 => "See Other",
-        304 => "Not Modified",
-        307 => "Temporary Redirect",
-        400 => "Bad Request",
-        401 => "Unauthorized",
-        403 => "Forbidden",
-        404 => "Not Found",
-        406 => "Not Acceptable",
-        409 => "Conflict",
-        410 => "Gone",
-        412 => "Precondition Failed",
-        415 => "Unsupported Media Type",
-        500 => "Internal Server Error",
-        503 => "Service Unavailable"
-    );
+    protected static $codes
+        = [
+            200 => 'OK',
+            201 => 'Created',
+            202 => 'Accepted',
+            204 => 'No Content',
+            301 => 'Moved Permanently',
+            303 => 'See Other',
+            304 => 'Not Modified',
+            307 => 'Temporary Redirect',
+            400 => 'Bad Request',
+            401 => 'Unauthorized',
+            403 => 'Forbidden',
+            404 => 'Not Found',
+            406 => 'Not Acceptable',
+            409 => 'Conflict',
+            410 => 'Gone',
+            412 => 'Precondition Failed',
+            415 => 'Unsupported Media Type',
+            500 => 'Internal Server Error',
+            503 => 'Service Unavailable',
+        ];
 
     /**
      * Maps a numeric HTTP status code to the corresponding string message.
      *
-     * @param number $httpStatusCode
-     *  the HTTP status code to translate
-     * @return string
-     *  the corresponding string message, or an error message if the status code is unkown
+     * @param int $httpStatusCode The HTTP status code to translate
+     *
+     * @return string  The corresponding string message, or an error message if the status code is unkown
      */
     public static function getStringFromHTTPStatusCode($httpStatusCode)
     {
-        if (array_key_exists($httpStatusCode, HTTPResponseCodes::$codes) === true) {
-            return HTTPResponseCodes::$codes[$httpStatusCode];
-        } else {
-            return "unknown error code: " . $httpStatusCode;
+        if (array_key_exists($httpStatusCode, self::$codes) === true) {
+            return self::$codes[$httpStatusCode];
         }
+
+        return 'unknown error code: ' . $httpStatusCode;
     }
 }

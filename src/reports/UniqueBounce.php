@@ -3,16 +3,18 @@
 namespace de\xqueue\maileon\api\client\reports;
 
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
+use Exception;
+use SimpleXMLElement;
 
 /**
  * This class represents a unique bounce containing the timestamp, the contact, and the ID of the mailing.
  *
- * @author Marcus St&auml;nder
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class UniqueBounce extends AbstractXMLWrapper
 {
     /**
-     * @var String
+     * @var string
      */
     public $timestamp;
 
@@ -22,13 +24,12 @@ class UniqueBounce extends AbstractXMLWrapper
     public $contact;
 
     /**
-     * @var integer
+     * @var int
      */
     public $mailingId;
 
-
     /**
-     * @var String
+     * @var string
      */
     public $lastType;
 
@@ -47,42 +48,35 @@ class UniqueBounce extends AbstractXMLWrapper
      */
     public $countSoft;
 
-    /**
-     * @return string
-     *  containing a human-readable representation of this unique bounce
-     */
-    public function toString()
+    public function toString(): string
     {
-        return "UniqueBounce [timestamp=" . $this->timestamp .
-        ", contact=" . $this->contact->toString() .
-        ", mailingId=" . $this->mailingId .
-        ", count=" . $this->count .
-        ", countHard=" . $this->countHard .
-        ", countSoft=" . $this->countSoft .
-        ", lastType=" . $this->lastType . "]";
+        return 'UniqueBounce ['
+            . 'timestamp=' . $this->timestamp
+            . ', contact=' . $this->contact->toString()
+            . ', mailingId=' . $this->mailingId
+            . ', count=' . $this->count
+            . ', countHard=' . $this->countHard
+            . ', countSoft=' . $this->countSoft
+            . ', lastType=' . $this->lastType
+            . ']';
     }
 
     /**
-     * @return string
-     *  containing a csv pepresentation of this unique bounce
-     */
-    public function toCsvString()
-    {
-        return $this->timestamp .
-        ";" . $this->contact->toCsvString() .
-        ";" . $this->mailingId .
-        ";" . $this->count .
-        ";" . $this->countHard .
-        ";" . $this->countSoft .
-        ";" . $this->lastType;
-    }
-
-    /**
-     * Initializes this unique bounce from an XML representation.
+     * CSV representation of this wrapper.
      *
-     * @param \SimpleXMLElement $xmlElement
-     *  the XML representation to use
+     * @return string
      */
+    public function toCsvString(): string
+    {
+        return $this->timestamp
+            . ';' . $this->contact->toCsvString()
+            . ';' . $this->mailingId
+            . ';' . $this->count
+            . ';' . $this->countHard
+            . ';' . $this->countSoft
+            . ';' . $this->lastType;
+    }
+
     public function fromXML($xmlElement)
     {
         $this->contact = new ReportContact();
@@ -91,18 +85,23 @@ class UniqueBounce extends AbstractXMLWrapper
         if (isset($xmlElement->mailing_id)) {
             $this->mailingId = $xmlElement->mailing_id;
         }
+
         if (isset($xmlElement->timestamp)) {
             $this->timestamp = $xmlElement->timestamp;
         }
+
         if (isset($xmlElement->last_type)) {
             $this->lastType = $xmlElement->last_type;
         }
+
         if (isset($xmlElement->count)) {
             $this->count = $xmlElement->count;
         }
+
         if (isset($xmlElement->count_hard)) {
             $this->countHard = $xmlElement->count_hard;
         }
+
         if (isset($xmlElement->count_soft)) {
             $this->countSoft = $xmlElement->count_soft;
         }
@@ -111,34 +110,43 @@ class UniqueBounce extends AbstractXMLWrapper
     /**
      * For future use, not implemented yet.
      *
-     * @return \SimpleXMLElement
-     *  containing the XML serialization of this object
+     * Serialization to a simple XML element.
+     *
+     * @return SimpleXMLElement contains the serialized representation of the object
+     *
+     * @throws Exception
      */
     public function toXML()
     {
-        $xmlString = "<?xml version=\"1.0\"?><unique_bounce></unique_bounce>";
-        $xml = new \SimpleXMLElement($xmlString);
+        $xmlString = '<?xml version="1.0"?><unique_bounce></unique_bounce>';
+        $xml       = new SimpleXMLElement($xmlString);
 
         if (isset($this->contact)) {
-            $xml->addChild("contact", $this->contact->toXML());
-        }        
+            $xml->addChild('contact', $this->contact->toXML());
+        }
+
         if (isset($this->mailingId)) {
-            $xml->addChild("mailing_id", $this->mailingId);
+            $xml->addChild('mailing_id', $this->mailingId);
         }
+
         if (isset($this->timestamp)) {
-            $xml->addChild("timestamp", $this->timestamp);
+            $xml->addChild('timestamp', $this->timestamp);
         }
+
         if (isset($this->lastType)) {
-            $xml->addChild("last_type", $this->lastType);
+            $xml->addChild('last_type', $this->lastType);
         }
+
         if (isset($this->count)) {
-            $xml->addChild("count", $this->count);
+            $xml->addChild('count', $this->count);
         }
+
         if (isset($this->countHard)) {
-            $xml->addChild("count_hard", $this->countHard);
+            $xml->addChild('count_hard', $this->countHard);
         }
+
         if (isset($this->countSoft)) {
-            $xml->addChild("count_soft", $this->countSoft);
+            $xml->addChild('count_soft', $this->countSoft);
         }
 
         return $xml;

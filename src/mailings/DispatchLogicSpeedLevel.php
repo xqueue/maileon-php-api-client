@@ -7,7 +7,7 @@ namespace de\xqueue\maileon\api\client\mailings;
  *
  * The supported speed levels are low, medium and high.
  *
- * @author Andreas Lange | XQueue GmbH |  <a href="andreas.lange@xqueue.com">andreas.lange@xqueue.com</a>
+ * @author Andreas Lange
  */
 class DispatchLogicSpeedLevel
 {
@@ -19,18 +19,18 @@ class DispatchLogicSpeedLevel
 
     // TODO use a more sensible name for this concept, e.g. "type descriptor"
     /**
-     *
-     * @var string $value
      * A string that describes the speed level. Valid values are "low", "medium" and "high".
+     *
+     * @var string
      */
     public $value;
 
     public static function init()
     {
-        if (self::$initialized == false) {
-            self::$LOW = new DispatchLogicInterval("low");
-            self::$MEDIUM = new DispatchLogicInterval("medium");
-            self::$HIGH = new DispatchLogicInterval("high");
+        if (self::$initialized === false) {
+            self::$LOW         = new DispatchLogicInterval('low');
+            self::$MEDIUM      = new DispatchLogicInterval('medium');
+            self::$HIGH        = new DispatchLogicInterval('high');
             self::$initialized = true;
         }
     }
@@ -38,8 +38,7 @@ class DispatchLogicSpeedLevel
     /**
      * Creates a new DispatchLogicSpeedLevel object.
      *
-     * @param string $value
-     * a string describing the speed level. Valid values are "low", "medium" and "high".
+     * @param string $value a string describing the speed level. Valid values are "low", "medium" and "high".
      */
     public function __construct($value)
     {
@@ -47,10 +46,9 @@ class DispatchLogicSpeedLevel
     }
 
     /**
-     * @return string
-     * the type descriptor string of this DispatchLogicSpeedLevel. Can be "low", "medium" or "high".
+     * @return string the type descriptor string of this DispatchLogicSpeedLevel. Can be "low", "medium" or "high".
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -58,24 +56,23 @@ class DispatchLogicSpeedLevel
     /**
      * Get the speed level object by type descriptor.
      *
-     * @param string $value
-     * a type descriptor string. Can be "low", "medium" or "high".
-     * @return DispatchLogicSpeedLevel
-     * the DispatchLogicSpeedLevel object
+     * @param string $value a type descriptor string. Can be "low", "medium" or "high".
+     *
+     * @return DispatchLogicSpeedLevel|null the DispatchLogicSpeedLevel object
      */
     public static function getObject($value)
     {
         switch ($value) {
-            case "low":
+            case 'low':
                 return self::$LOW;
-            case "medium":
+            case 'medium':
                 return self::$MEDIUM;
-            case "high":
+            case 'high':
                 return self::$HIGH;
-
             default:
                 return null;
         }
     }
 }
+
 DispatchLogicSpeedLevel::init();

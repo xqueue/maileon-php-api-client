@@ -7,7 +7,7 @@ use de\xqueue\maileon\api\client\json\AbstractJSONWrapper;
 /**
  * A class for wrapping a recent transaction.
  *
- * @author Viktor Balogh | Wanadis Kft. | <a href="balogh.viktor@maileon.hu">balogh.viktor@maileon.hu</a>
+ * @author Viktor Balogh | XQueue GmbH | <a href="mailto:viktor.balog@xqueue.com">viktor.balog@xqueue.com</a>
  */
 class RecentTransaction extends AbstractJSONWrapper
 {
@@ -17,31 +17,25 @@ class RecentTransaction extends AbstractJSONWrapper
      * @var array
      */
     public $tx;
+
     /**
      * The id for this data
      *
      * @var int
      */
     public $txId;
+
     /**
      * The contact id
      *
-     * @var integer
+     * @var int
      */
     public $contactId;
+
     /**
      * The email address
      *
      * @var string
      */
     public $email;
-    
-    /**
-     * @return string
-     *    a human-readable representation of this recent transaction
-     */
-    public function toString()
-    {
-        return parent::__toString();
-    }
 }

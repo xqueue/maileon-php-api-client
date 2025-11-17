@@ -16,20 +16,27 @@ class Attachment
     /**
      * Creates a new attachment. Please use the factory methods
      * in Transaction instead of calling this constructor directly.
+     *
      * @param $filename
      * @param $mimetype
      * @param $data
      */
-    public function __construct($filename, $mimetype, $data)
-    {
+    public function __construct(
+        $filename,
+        $mimetype,
+        $data
+    ) {
         $this->filename = $filename;
         $this->mimetype = $mimetype;
-        $this->data = $data;
+        $this->data     = $data;
     }
 
-    public function toString()
+    public function toString(): string
     {
-        return "Attachment [filename=" . $this->filename .
-            ", mimetype=(" . $this->mimetype . "), data=(" . $this->data . ")]";
+        return 'Attachment ['
+            . 'filename=' . $this->filename
+            . ', mimetype=(' . $this->mimetype . ')'
+            . ', data=(' . $this->data . ')'
+            . ']';
     }
 }
