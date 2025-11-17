@@ -816,6 +816,8 @@ class MailingsService extends AbstractMaileonService
      * @param int    $page_size
      * @param string $orderBy
      * @param string $order
+     * @param bool   $trash                (default = null) {null, true, false} In case of null get all mailings. Value true will retrieve
+     *                                     only mailings in the trash bin, and value false otherwise.
      *
      * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
      *
@@ -828,7 +830,8 @@ class MailingsService extends AbstractMaileonService
         $page_index = 1,
         $page_size = 100,
         $orderBy = 'id',
-        $order = 'DESC'
+        $order = 'DESC',
+        $trash = null
     ) {
         $queryParameters = [
             'page_index'           => $page_index,
@@ -838,6 +841,10 @@ class MailingsService extends AbstractMaileonService
             'orderBy'              => $orderBy,
             'order'                => $order,
         ];
+
+        if (isset($trash)) {
+            $queryParameters['trash'] = $trash == true ? "true" : "false";
+        }
 
         $queryParameters = $this->appendArrayFields($queryParameters, 'fields', $fields);
 
@@ -857,6 +864,8 @@ class MailingsService extends AbstractMaileonService
      * @param array    $fields
      * @param int      $page_index
      * @param int      $page_size
+     * @param bool     $trash    (default = null) {null, true, false} In case of null get all mailings. Value true will retrieve only
+     *                           mailings in the trash bin, and value false otherwise.
      *
      * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
      *
@@ -867,13 +876,18 @@ class MailingsService extends AbstractMaileonService
         $keywordsOp = 'and',
         $fields = [],
         $page_index = 1,
-        $page_size = 100
+        $page_size = 100,
+        $trash = null
     ) {
         $queryParameters = [
             'page_index' => $page_index,
             'page_size'  => $page_size,
             'order'      => 'DESC',
         ];
+
+        if (isset($trash)) {
+            $queryParameters['trash'] = $trash == true ? "true" : "false";
+        }
 
         $queryParameters = $this->appendArrayFields($queryParameters, 'keywords', $keywords);
         $queryParameters = $this->appendArrayFields($queryParameters, 'keywordsOp', $keywordsOp);
@@ -895,6 +909,8 @@ class MailingsService extends AbstractMaileonService
      * @param array    $fields
      * @param int      $page_index
      * @param int      $page_size
+     * @param bool     $trash (default = null) {null, true, false} In case of null get all mailings. Value true will retrieve only mailings
+     *                        in the trash bin, and value false otherwise.
      *
      * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
      *
@@ -905,13 +921,18 @@ class MailingsService extends AbstractMaileonService
         $types,
         $fields = [],
         $page_index = 1,
-        $page_size = 100
+        $page_size = 100,
+        $trash = null
     ) {
         $queryParameters = [
             'page_index' => $page_index,
             'page_size'  => $page_size,
             'order'      => 'DESC',
         ];
+
+        if (isset($trash)) {
+            $queryParameters['trash'] = $trash == true ? "true" : "false";
+        }
 
         $queryParameters = $this->appendArrayFields($queryParameters, 'types', $types);
         $queryParameters = $this->appendArrayFields($queryParameters, 'fields', $fields);
@@ -930,6 +951,8 @@ class MailingsService extends AbstractMaileonService
      * @param array $fields
      * @param int   $page_index (default = 1) The index of the result page. The index must be greater or equal to 1.
      * @param int   $page_size
+     * @param bool  $trash      (default = null) {null, true, false} In case of null get all mailings. Value true will retrieve only
+     *                          mailings in the trash bin, and value false otherwise.
      *
      * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
      *
@@ -940,13 +963,18 @@ class MailingsService extends AbstractMaileonService
         $states,
         $fields = [],
         $page_index = 1,
-        $page_size = 100
+        $page_size = 100,
+        $trash = null
     ) {
         $queryParameters = [
             'page_index' => $page_index,
             'page_size'  => $page_size,
             'order'      => 'DESC',
         ];
+
+        if (isset($trash)) {
+            $queryParameters['trash'] = $trash == true ? "true" : "false";
+        }
 
         $queryParameters = $this->appendArrayFields($queryParameters, 'states', $states);
         $queryParameters = $this->appendArrayFields($queryParameters, 'fields', $fields);

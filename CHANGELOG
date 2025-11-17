@@ -1,3 +1,11 @@
+Date 2025-11-17
+Version 1.12.1
+- Fix encoding issue in path for unsubscribeContactByExternalId
+
+Date 2025-09-18
+Version 1.12.0
+- Added support for param trash in mailing endpoints
+
 Date 2025-06-24
 Version 1.11.2
 - Added link type to click reports
