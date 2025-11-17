@@ -28,7 +28,6 @@ class UniqueBounce extends AbstractXMLWrapper
      */
     public $mailingId;
 
-
     /**
      * @var string
      */

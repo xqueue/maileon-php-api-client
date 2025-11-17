@@ -79,7 +79,6 @@ class StandardContactField
      */
     public static $CHECKSUM = 'CHECKSUM';
 
-
     public static function init()
     {
         // Nothing to initialize

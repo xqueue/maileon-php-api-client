@@ -39,7 +39,6 @@ class Block extends AbstractXMLWrapper
      */
     public $reason;
 
-
     public function toString(): string
     {
         return 'Block ['

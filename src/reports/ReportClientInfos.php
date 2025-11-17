@@ -97,7 +97,6 @@ class ReportClientInfos extends AbstractXMLWrapper
         }
     }
 
-
     /**
      * CSV representation of this wrapper.
      *

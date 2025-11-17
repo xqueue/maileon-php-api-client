@@ -23,7 +23,6 @@ class MailingFields
     /** The Constant "scheduleTime". */
     public static $SCHEDULE_TIME = 'scheduleTime';
 
-
     public static function init()
     {
         // Nothing to initialize

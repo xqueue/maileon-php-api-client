@@ -46,7 +46,6 @@ class AccountService extends AbstractMaileonService
         return $this->get('account/placeholders');
     }
 
-
     /**
      * Sets the list of account placeholders. All current account placeholders will be overwritten or removed,
      * if not contained in the new array
@@ -74,7 +73,6 @@ class AccountService extends AbstractMaileonService
             $xml->asXML()
         );
     }
-
 
     /**
      * Update account placeholders. If account placeholder is not existing yet, it will be added.
@@ -104,7 +102,6 @@ class AccountService extends AbstractMaileonService
             $xml->asXML()
         );
     }
-
 
     /**
      * Delete account placeholder with requested {@code name}

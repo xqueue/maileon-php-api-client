@@ -394,7 +394,6 @@ class MailingsService extends AbstractMaileonService
         );
     }
 
-
     /**
      * Adds a contactfilter to the contact filter restrictions of the mailing with the given ID.
      *
@@ -459,7 +458,6 @@ class MailingsService extends AbstractMaileonService
             null
         );
     }
-
 
     /**
      * Updates the target group id of the mailing referenced by the given ID.
@@ -854,7 +852,6 @@ class MailingsService extends AbstractMaileonService
         );
     }
 
-
     /**
      *
      * Method to retrieve mailings by keywords
@@ -1229,7 +1226,6 @@ class MailingsService extends AbstractMaileonService
         );
     }
 
-
     /**
      * Fetches the DOI mailing key of the mailing identified by the given ID.
      *
@@ -1288,7 +1284,6 @@ class MailingsService extends AbstractMaileonService
         return $this->delete("mailings/$encodedMailingId/dispatching");
     }
 
-
     /**
      * Get the dispatch data for a trigger mailing by mailing ID.
      *
@@ -1304,7 +1299,6 @@ class MailingsService extends AbstractMaileonService
 
         return $this->get("mailings/$encodedMailingId/dispatching");
     }
-
 
     /**
      * Get the schedule for regular mailings by mailing ID.
@@ -1710,7 +1704,6 @@ class MailingsService extends AbstractMaileonService
         return $this->get("mailings/$encodedMailingId/settings/properties");
     }
 
-
     /**
      * Adds a list of custom properties to the mailing with the provided id.
      *
@@ -1743,7 +1736,6 @@ class MailingsService extends AbstractMaileonService
         );
     }
 
-
     /**
      * Updates a custom property of the mailing with the provided id.
      *
@@ -1772,7 +1764,6 @@ class MailingsService extends AbstractMaileonService
         );
     }
 
-
     /**
      * Deletes a custom property of the mailing with the provided id.
      *
@@ -1796,7 +1787,6 @@ class MailingsService extends AbstractMaileonService
             $queryParameters
         );
     }
-
 
     /**
      * Sends a testmail for the mailing with the provided id to a given email address.
@@ -1890,7 +1880,6 @@ class MailingsService extends AbstractMaileonService
 
         return $this->delete("mailings/$encodedMailingId/mailingblacklists/$encodedMailingBlacklistId");
     }
-
 
     /**
      * Retrieve the domain of this mailing

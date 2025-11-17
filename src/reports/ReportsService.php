@@ -15,8 +15,6 @@ use Exception;
  */
 class ReportsService extends AbstractMaileonService
 {
-
-
     /**
      * Returns a page of openers.
      *
@@ -470,7 +468,6 @@ class ReportsService extends AbstractMaileonService
         );
     }
 
-
     /**
      * Returns a page of clickers.
      *
@@ -686,7 +683,6 @@ class ReportsService extends AbstractMaileonService
             $params
         );
     }
-
 
     /**
      * Count clickers.
