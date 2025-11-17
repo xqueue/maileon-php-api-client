@@ -3,6 +3,8 @@
 namespace de\xqueue\maileon\api\client\contacts;
 
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
+use Exception;
+use SimpleXMLElement;
 
 /**
  * The wrapper class for a Maileon Preference. This class wraps the XML structure.
@@ -10,50 +12,44 @@ use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
 class Preference extends AbstractXMLWrapper
 {
     /**
-     * @var string $name
+     * @var string
      */
     public $name;
-    
+
     /**
-     * @var string $description
+     * @var string
      */
     public $description;
 
     /**
-     * @var string $category
+     * @var string
      */
     public $category;
 
     /**
-     * @var string $value
+     * @var string
      */
     public $value;
 
     /**
-     * @var string $source
+     * @var string
      */
     public $source;
 
     /**
-     * @var string $last_modified
+     * @var string
      */
     public $last_modified;
 
     /**
      * Constructor initializing default values.
      *
-     * @param string $name
-     *  The preference name.
-     * @param string $description
-     *  The preference description.
-     * @param string $category
-     *  The preference category name.
-     * @param string $value
-     *  The preference value.
-     * @param string $source
-     *  The preference source.
-     * @param string $last_modified
-     *  The preference last modified timestamp.
+     * @param string $name          The preference name.
+     * @param string $description   The preference description.
+     * @param string $category      The preference category name.
+     * @param string $value         The preference value.
+     * @param string $source        The preference source.
+     * @param string $last_modified The preference last modified timestamp.
      */
     public function __construct(
         $name = null,
@@ -63,26 +59,20 @@ class Preference extends AbstractXMLWrapper
         $source = null,
         $last_modified = null
     ) {
-        $this->name = $name;
-        $this->description = $description;
-        $this->category = $category;
-        $this->value = $value;
-        $this->source = $source;
+        $this->name          = $name;
+        $this->description   = $description;
+        $this->category      = $category;
+        $this->value         = $value;
+        $this->source        = $source;
         $this->last_modified = $last_modified;
     }
 
-    /**
-     * Initialization of the preference from a simple xml element.
-     *
-     * @param \SimpleXMLElement $xmlElement
-     *  The xml element that is used to parse the preference from.
-     */
     public function fromXML($xmlElement)
     {
         if (isset($xmlElement->name)) {
             $this->name = $xmlElement->name;
         }
-        
+
         if (isset($xmlElement->description)) {
             $this->description = $xmlElement->description;
         }
@@ -109,83 +99,71 @@ class Preference extends AbstractXMLWrapper
      *
      * @param bool $addXMLDeclaration
      *
-     * @return \SimpleXMLElement
-     * Generate a XML element from the preference object.
+     * @return SimpleXMLElement contains the serialized representation of the object
+     *
+     * @throws Exception
      */
     public function toXML($addXMLDeclaration = true)
     {
         if ($addXMLDeclaration) {
-            $xmlString = "<?xml version=\"1.0\"?><preference></preference>";
+            $xmlString = '<?xml version="1.0"?><preference></preference>';
         } else {
-            $xmlString = "<preference></preference>";
+            $xmlString = '<preference></preference>';
         }
 
-        $xml = new \SimpleXMLElement($xmlString);
+        $xml = new SimpleXMLElement($xmlString);
 
         if (isset($this->name)) {
-            $xml->addChild("name", $this->name);
+            $xml->addChild('name', $this->name);
         }
+
         if (isset($this->description)) {
-            $xml->addChild("description", $this->description);
+            $xml->addChild('description', $this->description);
         }
+
         if (isset($this->category)) {
-            $xml->addChild("category", $this->category);
+            $xml->addChild('category', $this->category);
         }
+
         if (isset($this->value)) {
-            $xml->addChild("value", $this->value);
+            $xml->addChild('value', $this->value);
         }
+
         if (isset($this->source)) {
-            $xml->addChild("source", $this->source);
+            $xml->addChild('source', $this->source);
         }
+
         if (isset($this->last_modified)) {
-            $xml->addChild("last_modified", $this->last_modified);
+            $xml->addChild('last_modified', $this->last_modified);
         }
 
         return $xml;
     }
 
-    /**
-     * Serialization to a simple XML element as string
-     *
-     * @return string
-     *  The string representation of the XML document for this preference.
-     */
-    public function toXMLString()
+    public function toString(): string
     {
-        $xml = $this->toXML();
-        return $xml->asXML();
-    }
-
-    /**
-     * Human readable representation of this wrapper.
-     *
-     * @return string
-     *  A human readable version of the preference.
-     */
-    public function toString()
-    {
-        return "Contact Preference [name=" . $this->name .
-        ", description=" . $this->description .
-        ", category=" . $this->category .
-        ", value=" . $this->value .
-        ", source=" . $this->source .
-        ", last_modified=" . $this->last_modified .
-        "]";
+        return 'Contact Preference ['
+            . 'name=' . $this->name
+            . ', description=' . $this->description
+            . ', category=' . $this->category
+            . ', value=' . $this->value
+            . ', source=' . $this->source
+            . ', last_modified=' . $this->last_modified
+            . ']';
     }
 
     /**
      * CSV representation of this wrapper.
      *
      * @return string
-     *  A csv version of the reference.
      */
-    public function toCsvString()
+    public function toCsvString(): string
     {
-        return $this->name .
-        ";" . $this->description .
-        ";" . $this->category .
-        ";" . $this->value .
-        ";" . $this->source .
-        ";" . $this->last_modified;
+        return $this->name
+            . ';' . $this->description
+            . ';' . $this->category
+            . ';' . $this->value
+            . ';' . $this->source
+            . ';' . $this->last_modified;
     }
 }

@@ -7,7 +7,7 @@ namespace de\xqueue\maileon\api\client\mailings;
  *
  * The supported RSS order are day, week, month and year.
  *
- * @author Andreas Lange | XQueue GmbH |  <a href="andreas.lange@xqueue.com">andreas.lange@xqueue.com</a>
+ * @author Andreas Lange
  */
 class DispatchLogicDeliveryLimitUnit
 {
@@ -20,19 +20,19 @@ class DispatchLogicDeliveryLimitUnit
 
     // TODO use a more sensible name for this concept, e.g. "type descriptor"
     /**
-     *
-     * @var string $value
      * A string that describes the RSS order. Valid values are day, week, month and year.
+     *
+     * @var string
      */
     public $value;
 
     public static function init()
     {
-        if (self::$initialized == false) {
-            self::$DAY = new DispatchLogicDeliveryLimitUnit("day");
-            self::$WEEK = new DispatchLogicDeliveryLimitUnit("week");
-            self::$MONTH = new DispatchLogicDeliveryLimitUnit("month");
-            self::$YEAR = new DispatchLogicDeliveryLimitUnit("year");
+        if (self::$initialized === false) {
+            self::$DAY         = new DispatchLogicDeliveryLimitUnit('day');
+            self::$WEEK        = new DispatchLogicDeliveryLimitUnit('week');
+            self::$MONTH       = new DispatchLogicDeliveryLimitUnit('month');
+            self::$YEAR        = new DispatchLogicDeliveryLimitUnit('year');
             self::$initialized = true;
         }
     }
@@ -40,8 +40,7 @@ class DispatchLogicDeliveryLimitUnit
     /**
      * Creates a new DispatchLogicDeliveryLimitUnit object.
      *
-     * @param string $value
-     * a string describing the RSS order. Valid values are day, week, month and year.
+     * @param string $value a string describing the RSS order. Valid values are day, week, month and year.
      */
     public function __construct($value)
     {
@@ -49,10 +48,9 @@ class DispatchLogicDeliveryLimitUnit
     }
 
     /**
-     * @return string
-     * the type descriptor string of this DispatchLogicDeliveryLimitUnit. Can be day, week, month or year.
+     * @return string the type descriptor string of this DispatchLogicDeliveryLimitUnit. Can be day, week, month or year.
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -60,26 +58,25 @@ class DispatchLogicDeliveryLimitUnit
     /**
      * Get the RSS order object by type descriptor.
      *
-     * @param string $value
-     * a type descriptor string. Can be day, week, month or year.
-     * @return DispatchLogicDeliveryLimitUnit
-     * the DispatchLogicDeliveryLimitUnit object
+     * @param string $value a type descriptor string. Can be day, week, month or year.
+     *
+     * @return DispatchLogicDeliveryLimitUnit|null the DispatchLogicDeliveryLimitUnit object
      */
     public static function getObject($value)
     {
         switch ($value) {
-            case "day":
+            case 'day':
                 return self::$DAY;
-            case "week":
+            case 'week':
                 return self::$WEEK;
-            case "month":
+            case 'month':
                 return self::$MONTH;
-            case "year":
+            case 'year':
                 return self::$YEAR;
-    
             default:
                 return null;
         }
     }
 }
+
 DispatchLogicDeliveryLimitUnit::init();

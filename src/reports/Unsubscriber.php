@@ -3,19 +3,20 @@
 namespace de\xqueue\maileon\api\client\reports;
 
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
+use Exception;
+use SimpleXMLElement;
 
 /**
  * This class represents an unsubscription containing the timestamp, the contact,
  * the ID of the mailing the unsubscription came from, and the source.
  *
- * @author Viktor Balogh (Wiera)
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Viktor Balogh | XQueue GmbH | <a href="mailto:viktor.balog@xqueue.com">viktor.balog@xqueue.com</a>
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class Unsubscriber extends AbstractXMLWrapper
 {
     /**
-     * @var integer
+     * @var int
      */
     public $timestamp;
 
@@ -25,17 +26,17 @@ class Unsubscriber extends AbstractXMLWrapper
     public $contact;
 
     /**
-     * @var integer
+     * @var int
      */
     public $mailingId;
-    
+
     /**
      * @var string
      */
     public $transactionId;
-    
+
     /**
-     * @var integer
+     * @var int
      */
     public $messageId;
 
@@ -44,39 +45,33 @@ class Unsubscriber extends AbstractXMLWrapper
      */
     public $source;
 
-    /**
-     * @return string
-     *  containing a human-readable representation of this unsubscription
-     */
-    public function toString()
+    public function toString(): string
     {
-        return "Unsubscriber [timestamp=" . $this->timestamp .
-        ", contact=" . $this->contact->toString() .
-        ", mailingId=" . $this->mailingId .
-        ", source=" . $this->source .
-        ", transactionId=" . $this->transactionId .
-        ", messageId=" . $this->messageId ."]";
+        return 'Unsubscriber ['
+            . 'timestamp=' . $this->timestamp
+            . ', contact=' . $this->contact->toString()
+            . ', mailingId=' . $this->mailingId
+            . ', source=' . $this->source
+            . ', transactionId=' . $this->transactionId
+            . ', messageId=' . $this->messageId
+            . ']';
     }
 
     /**
-     * @return string containing a csv pepresentation of this unsubscriber
-     */
-    public function toCsvString()
-    {
-        return $this->timestamp .
-        ";" . $this->contact->toCsvString() .
-        ";" . $this->mailingId .
-        ";" . $this->source .
-        ";" . $this->transactionId .
-        ";" . $this->messageId;
-    }
-
-    /**
-     * Initializes this unsubscription from an XML representation.
+     * CSV representation of this wrapper.
      *
-     * @param \SimpleXMLElement $xmlElement
-     *  the XML representation to use
+     * @return string
      */
+    public function toCsvString(): string
+    {
+        return $this->timestamp
+            . ';' . $this->contact->toCsvString()
+            . ';' . $this->mailingId
+            . ';' . $this->source
+            . ';' . $this->transactionId
+            . ';' . $this->messageId;
+    }
+
     public function fromXML($xmlElement)
     {
         $this->contact = new ReportContact();
@@ -85,48 +80,60 @@ class Unsubscriber extends AbstractXMLWrapper
         if (isset($xmlElement->mailing_id)) {
             $this->mailingId = $xmlElement->mailing_id;
         }
+
         if (isset($xmlElement->source)) {
             $this->source = $xmlElement->source;
         }
+
         if (isset($xmlElement->timestamp)) {
             $this->timestamp = $xmlElement->timestamp;
         }
+
         if (isset($xmlElement->transaction_id)) {
             $this->transactionId = $xmlElement->transaction_id;
         }
-        if (isset($xmlElement->msg_id )) {
-            $this->messageId = $xmlElement->msg_id ;
+
+        if (isset($xmlElement->msg_id)) {
+            $this->messageId = $xmlElement->msg_id;
         }
     }
 
     /**
      * For future use, not implemented yet.
      *
-     * @return \SimpleXMLElement
-     *  containing the XML serialization of this object
+     * Serialization to a simple XML element.
+     *
+     * @return SimpleXMLElement contains the serialized representation of the object
+     *
+     * @throws Exception
      */
     public function toXML()
     {
-        $xmlString = "<?xml version=\"1.0\"?><unsubscriber></unsubscriber>";
-        $xml = new \SimpleXMLElement($xmlString);
+        $xmlString = '<?xml version="1.0"?><unsubscriber></unsubscriber>';
+        $xml       = new SimpleXMLElement($xmlString);
 
         if (isset($this->contact)) {
-            $xml->addChild("contact", $this->contact->toXML());
-        }        
+            $xml->addChild('contact', $this->contact->toXML());
+        }
+
         if (isset($this->timestamp)) {
-            $xml->addChild("timestamp", $this->timestamp);
+            $xml->addChild('timestamp', $this->timestamp);
         }
+
         if (isset($this->mailingId)) {
-            $xml->addChild("mailing_id", $this->mailingId);
+            $xml->addChild('mailing_id', $this->mailingId);
         }
+
         if (isset($this->transactionId)) {
-            $xml->addChild("transaction_id", $this->transactionId);
+            $xml->addChild('transaction_id', $this->transactionId);
         }
-        if (isset($this->messageId )) {
-            $xml->addChild("msg_id", $this->messageId);
+
+        if (isset($this->messageId)) {
+            $xml->addChild('msg_id', $this->messageId);
         }
+
         if (isset($this->source)) {
-            $xml->addChild("source", $this->source);
+            $xml->addChild('source', $this->source);
         }
 
         return $xml;

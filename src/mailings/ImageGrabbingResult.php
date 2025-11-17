@@ -4,17 +4,18 @@ namespace de\xqueue\maileon\api\client\mailings;
 
 use de\xqueue\maileon\api\client\json\AbstractJSONWrapper;
 
+use function htmlentities;
+use function property_exists;
+
 /**
  * A wrapper class for an image grabbing result
  *
- * @author Balogh Viktor <balogh.viktor@maileon.hu> | Maileon - Wanadis Kft.
+ * @author Viktor Balogh | XQueue GmbH | <a href="mailto:viktor.balog@xqueue.com">viktor.balog@xqueue.com</a>
  */
 class ImageGrabbingResult extends AbstractJSONWrapper
 {
     /**
      * The modified content
-     *
-     * @var ReportContact
      */
     public $modified_content = '';
 

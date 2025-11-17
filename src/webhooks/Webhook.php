@@ -4,17 +4,22 @@ namespace de\xqueue\maileon\api\client\webhooks;
 
 use de\xqueue\maileon\api\client\json\AbstractJSONWrapper;
 
+use function array_merge;
+use function get_object_vars;
+use function is_array;
+use function property_exists;
+
 /**
  * A wrapper class for a webhook
  *
- * @author Balogh Viktor <balogh.viktor@maileon.hu> | Maileon - Wanadis Kft.
+ * @author Viktor Balogh | XQueue GmbH | <a href="mailto:viktor.balog@xqueue.com">viktor.balog@xqueue.com</a>
  */
 class Webhook extends AbstractJSONWrapper
 {
-    public static $EVENT_UNSUBSCRIPTION = 'unsubscription';
-    public static $EVENT_DOI = 'doi';
-    public static $EVENT_BOUNCE = 'bounce';
-    public static $EVENT_FILTERED = 'filtered';
+    public static $EVENT_UNSUBSCRIPTION       = 'unsubscription';
+    public static $EVENT_DOI                  = 'doi';
+    public static $EVENT_BOUNCE               = 'bounce';
+    public static $EVENT_FILTERED             = 'filtered';
     public static $EVENT_CONTACT_FIELD_CHANGE = 'contact_field_change';
 
     /**
@@ -22,21 +27,21 @@ class Webhook extends AbstractJSONWrapper
      *
      * @var WebhookBodySpecification
      */
-    public $body = null;
+    public $body;
 
     /**
      * The id of this webhook
      *
-     * @var integer|null
+     * @var int|null
      */
-    public $id = null;
+    public $id;
 
     /**
      * The newsletter account id of this webhook
      *
-     * @var integer|null
+     * @var int|null
      */
-    public $newsletterAccountId = null;
+    public $newsletterAccountId;
 
     /**
      * The url of this webhook
@@ -61,32 +66,33 @@ class Webhook extends AbstractJSONWrapper
 
     public function fromArray($object_vars)
     {
-        if (property_exists($object_vars, 'urlParams') && $object_vars->urlParams !== null && is_array($object_vars->urlParams)) {
+        if (property_exists($object_vars, 'urlParams') && is_array($object_vars->urlParams)) {
             foreach ($object_vars->urlParams as $param) {
                 $paramObject = new WebhookUrlParameter();
                 $paramObject->fromArray($param);
 
-                $this->urlParams []= $paramObject;
+                $this->urlParams [] = $paramObject;
             }
 
             unset($object_vars->urlParams);
         }
 
         $this->body = new WebhookBodySpecification();
+
         if (property_exists($object_vars, 'bodySpec') && $object_vars->bodySpec !== null) {
             $this->body->fromArray($object_vars->bodySpec);
 
             unset($object_vars->bodySpec);
         }
 
-        foreach(get_object_vars($this->body) as $key => $value) {
-            if(property_exists($object_vars, $key)) {
+        foreach (get_object_vars($this->body) as $key => $value) {
+            if (property_exists($object_vars, $key)) {
                 $this->body->{$key} = $object_vars->{$key};
                 unset($object_vars->{$key});
             }
         }
 
-        if(property_exists($object_vars, 'nlAccountId')) {
+        if (property_exists($object_vars, 'nlAccountId')) {
             $this->newsletterAccountId = $object_vars->nlAccountId;
             unset($object_vars->nlAccountId);
         }
@@ -94,12 +100,12 @@ class Webhook extends AbstractJSONWrapper
         parent::fromArray($object_vars);
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         $result = parent::toArray();
         unset($result['body']);
 
         // Body can be empty, if no body instantiated externally and no fromArray is used
-        return array_merge($result, ($this->body)?$this->body->toArray():[]);
+        return array_merge($result, ($this->body) ? $this->body->toArray() : []);
     }
 }

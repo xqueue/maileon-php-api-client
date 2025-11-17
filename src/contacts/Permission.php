@@ -5,18 +5,17 @@ namespace de\xqueue\maileon\api\client\contacts;
 /**
  * The wrapper class for a Maileon permission. 1 = NONE, 2 = SOI, 3 = COI, 4 = DOI, 5 = DOI+, 6 = OTHER.
  *
- * @author Marcus Beckerle | XQueue GmbH |
- * <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class Permission
 {
 
-    public static $NONE;
-    public static $SOI;
-    public static $COI;
-    public static $DOI;
-    public static $DOI_PLUS;
-    public static $OTHER;
+    public static  $NONE;
+    public static  $SOI;
+    public static  $COI;
+    public static  $DOI;
+    public static  $DOI_PLUS;
+    public static  $OTHER;
     private static $initialized = false;
 
     public $code;
@@ -27,13 +26,13 @@ class Permission
      */
     public static function init()
     {
-        if (self::$initialized == false) {
-            self::$NONE = new Permission(1, "none");
-            self::$SOI = new Permission(2, "soi");
-            self::$COI = new Permission(3, "coi");
-            self::$DOI = new Permission(4, "doi");
-            self::$DOI_PLUS = new Permission(5, "doi+");
-            self::$OTHER = new Permission(6, "other");
+        if (self::$initialized === false) {
+            self::$NONE        = new Permission(1, 'none');
+            self::$SOI         = new Permission(2, 'soi');
+            self::$COI         = new Permission(3, 'coi');
+            self::$DOI         = new Permission(4, 'doi');
+            self::$DOI_PLUS    = new Permission(5, 'doi+');
+            self::$OTHER       = new Permission(6, 'other');
             self::$initialized = true;
         }
     }
@@ -41,12 +40,14 @@ class Permission
     /**
      * Constructor initializing the code of the permission.
      *
-     * @param number $code
-     *  The code to use for the constructed permission.
+     * @param int $code The code to use for the constructed permission.
      */
-    public function __construct($code = 0, $type = null)
-    {
+    public function __construct(
+        $code = 0,
+        $type = null
+    ) {
         $this->code = $code < 1 || $code > 6 ? 6 : $code;
+
         if ($type === null) {
             $this->type = $this->getType($code);
         } else {
@@ -58,10 +59,9 @@ class Permission
      * Get the code of this permission.
      * 1 = NONE, 2 = SOI, 3 = COI, 4 = DOI, 5 = DOI+, 6 = OTHER.
      *
-     * @return int
-     *  the code of the permission object
+     * @return int  The code of the permission object
      */
-    public function getCode()
+    public function getCode(): int
     {
         return $this->code;
     }
@@ -70,10 +70,9 @@ class Permission
      * Get the type string of this permission.
      * none = NONE, soi = SOI, coi = COI, doi = DOI, doi+ = DOI+, other = OTHER.
      *
-     * @return string
-     *  the type of the permission object
+     * @return string  The type of the permission object
      */
-    public function getString()
+    public function getString(): string
     {
         return $this->type;
     }
@@ -92,51 +91,42 @@ class Permission
             case 5:
                 return 'doi+';
             case 6:
-                return 'other';
             default:
                 return 'other';
         }
     }
-    
+
     /**
      * Get the permission object from the code
      *
-     * @param integer $code
-     *  The code or type to get the permission object for.
-     * @return Permission
-     *  The permission object for the given code.
+     * @param int $code The code or type to get the permission object for.
+     *
+     * @return Permission  The permission object for the given code.
      */
     public static function getPermission($code)
     {
         switch ($code) {
             case 1:
-                return self::$NONE;
-            case "none":
+            case 'none':
                 return self::$NONE;
             case 2:
-                return self::$SOI;
-            case "soi":
+            case 'soi':
                 return self::$SOI;
             case 3:
-                return self::$COI;
-            case "coi":
+            case 'coi':
                 return self::$COI;
             case 4:
-                return self::$DOI;
-            case "doi":
+            case 'doi':
                 return self::$DOI;
             case 5:
-                return self::$DOI_PLUS;
-            case "doi+":
+            case 'doi+':
                 return self::$DOI_PLUS;
             case 6:
-                return self::$OTHER;
-            case "other":
-                return self::$OTHER;
-
+            case 'other':
             default:
                 return self::$OTHER;
         }
     }
 }
+
 Permission::init();

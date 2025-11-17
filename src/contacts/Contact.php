@@ -2,85 +2,82 @@
 
 namespace de\xqueue\maileon\api\client\contacts;
 
-use de\xqueue\maileon\api\client\xml\XMLUtils;
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
+use de\xqueue\maileon\api\client\xml\XMLUtils;
+use Exception;
+use SimpleXMLElement;
+
+use function rtrim;
+use function trim;
 
 /**
  * The wrapper class for a Maileon contact. This class wraps the XML structure.
  *
- * @author Felix Heinrichs | Trusted Mails GmbH |
- * <a href="mailto:felix.heinrichs@trusted-mails.com">felix.heinrichs@trusted-mails.com</a>
- * @author Marcus Beckerle | XQueue GmbH |
- * <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
+ * @author Felix Heinrichs
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class Contact extends AbstractXMLWrapper
 {
     /**
-     * @var int $id
+     * @var int
      */
     public $id;
 
     /**
-     * @var string $email
+     * @var string
      */
     public $email;
 
     /**
-     * @var Permission $permission
+     * @var Permission
      */
     public $permission;
 
     /**
-     * @var string $external_id
+     * @var string
      */
     public $external_id;
 
     /**
-     * @var bool $anonymous
+     * @var bool
      */
     public $anonymous;
 
     /**
-     * @var string $created
+     * @var string
      */
     public $created;
-    
+
     /**
-     * @var string updated
+     * @var string
      */
     public $updated;
 
     /**
-     * @var array $standard_fields
+     * @var array
      */
     public $standard_fields;
 
     /**
-     * @var array $custom_fields
+     * @var array
      */
     public $custom_fields;
 
     /**
-     * @var array $preferences
+     * @var array
      */
     public $preferences;
 
     /**
      * Constructor initializing default values.
      *
-     * @param int $id
-     *  The Maileon contact id.
-     * @param string $email
-     *  The email-address of the contact.
-     * @param Permission $permission
-     *  The permission NONE, SOI, COI, DOI, DOI_PLUS, OTHER.
-     * @param string $external_id
-     *  The external id to identify the contact.
-     * @param bool $anonymous
-     * @param array $standard_fields
-     *  An array of standard fields.
-     * @param array $custom_fields
-     *  An array of custom fields of the contact.
+     * @param int        $id              The Maileon contact id.
+     * @param string     $email           The email-address of the contact.
+     * @param Permission $permission      The permission NONE, SOI, COI, DOI, DOI_PLUS, OTHER.
+     * @param string     $external_id     The external id to identify the contact.
+     * @param bool       $anonymous
+     * @param array      $standard_fields An array of standard fields.
+     * @param array      $custom_fields   An array of custom fields of the contact.
      */
     public function __construct(
         $id = null,
@@ -88,45 +85,44 @@ class Contact extends AbstractXMLWrapper
         $permission = null,
         $external_id = -1,
         $anonymous = false,
-        $standard_fields = array(),
-        $custom_fields = array(),
+        $standard_fields = [],
+        $custom_fields = [],
         $created = null,
         $updated = null,
-        $preferences = array()
+        $preferences = []
     ) {
-        $this->id = $id;
-        $this->email = $email;
-        $this->permission = $permission;
-        $this->external_id = $external_id;
-        $this->anonymous = $anonymous;
+        $this->id              = $id;
+        $this->email           = $email;
+        $this->permission      = $permission;
+        $this->external_id     = $external_id;
+        $this->anonymous       = $anonymous;
         $this->standard_fields = $standard_fields;
-        $this->custom_fields = $custom_fields;
-        $this->created = $created;
-        $this->updated = $updated;
-        $this->preferences = $preferences;
+        $this->custom_fields   = $custom_fields;
+        $this->created         = $created;
+        $this->updated         = $updated;
+        $this->preferences     = $preferences;
     }
 
-    /**
-     * Initialization of the contact from a simple xml element.
-     *
-     * @param \SimpleXMLElement $xmlElement
-     *  The xml element that is used to parse the contact from.
-     */
     public function fromXML($xmlElement)
     {
         if (isset($xmlElement->id)) {
             $this->id = $xmlElement->id;
         }
-        $this->email = (string)$xmlElement->email;
+
+        $this->email = (string) $xmlElement->email;
+
         if (isset($xmlElement->permission)) {
-            $this->permission = Permission::getPermission((string)$xmlElement->permission);
+            $this->permission = Permission::getPermission((string) $xmlElement->permission);
         }
+
         if (isset($xmlElement->external_id)) {
-            (string)$this->external_id = $xmlElement->external_id;
+            (string) $this->external_id = $xmlElement->external_id;
         }
+
         if (isset($xmlElement->anonymous)) {
-            (string)$this->anonymous = $xmlElement->anonymous;
+            (string) $this->anonymous = $xmlElement->anonymous;
         }
+
         if (isset($xmlElement['anonymous'])) {
             $this->anonymous = $xmlElement['anonymous'];
         }
@@ -134,31 +130,34 @@ class Contact extends AbstractXMLWrapper
         if (isset($xmlElement->created)) {
             $this->created = $xmlElement->created;
         }
+
         if (isset($xmlElement->updated)) {
             $this->updated = $xmlElement->updated;
         }
 
         if (isset($xmlElement->standard_fields)) {
-            $this->standard_fields = array();
+            $this->standard_fields = [];
+
             foreach ($xmlElement->standard_fields->children() as $field) {
-                $this->standard_fields[trim($field->name)] = (string)$field->value;
+                $this->standard_fields[trim($field->name)] = (string) $field->value;
                 // The trim is required to make a safer string from the object
             }
         }
 
         if (isset($xmlElement->custom_fields)) {
             foreach ($xmlElement->custom_fields->children() as $field) {
-                $this->custom_fields[trim($field->name)] = (string)$field->value;
+                $this->custom_fields[trim($field->name)] = (string) $field->value;
                 // The trim is required to make a safer string from the object
             }
         }
 
         if (isset($xmlElement->preferences)) {
-            $this->preferences = array();
+            $this->preferences = [];
+
             foreach ($xmlElement->preferences->children() as $preference) {
                 $preference_obj = new Preference();
                 $preference_obj->fromXML($preference);
-                array_push($this->preferences, $preference_obj);
+                $this->preferences[] = $preference_obj;
             }
         }
     }
@@ -168,17 +167,18 @@ class Contact extends AbstractXMLWrapper
      *
      * @param bool $addXMLDeclaration
      *
-     * @return \SimpleXMLElement
-     * Generate a XML element from the contact object.
+     * @return SimpleXMLElement contains the serialized representation of the object
+     *
+     * @throws Exception
      */
     public function toXML($addXMLDeclaration = true)
     {
-        $xmlString = $addXMLDeclaration ? "<?xml version=\"1.0\"?><contact></contact>" : "<contact></contact>";
-        $xml = new \SimpleXMLElement($xmlString);
+        $xmlString = $addXMLDeclaration ? '<?xml version="1.0"?><contact></contact>' : '<contact></contact>';
+        $xml       = new SimpleXMLElement($xmlString);
 
         // Some fields are mandatory, especially when setting data to the API
         if (isset($this->id)) {
-            $xml->addChild("id", $this->id);
+            $xml->addChild('id', $this->id);
         }
 
         // As shown in http://stackoverflow.com/questions/17027043/unterminated-entity-reference-php
@@ -189,170 +189,181 @@ class Contact extends AbstractXMLWrapper
         }
 
         if (isset($this->permission)) {
-            $xml->addChild("permission", $this->permission->getCode());
+            $xml->addChild('permission', $this->permission->getCode());
         }
+
         if (isset($this->external_id) && $this->external_id != -1) {
-            $xml->addChild("external_id", $this->external_id);
+            $xml->addChild('external_id', $this->external_id);
         }
+
         if (isset($this->anonymous)) {
-            $xml->addChild("anonymous", $this->anonymous);
+            $xml->addChild('anonymous', $this->anonymous);
         }
+
         if (isset($this->created)) {
-            $xml->addChild("created", $this->created);
+            $xml->addChild('created', $this->created);
         }
+
         if (isset($this->updated)) {
-            $xml->addChild("updated", $this->updated);
+            $xml->addChild('updated', $this->updated);
         }
 
         if (isset($this->standard_fields)) {
-            $standard_fields = $xml->addChild("standard_fields");
-            foreach ($this->standard_fields as $index => $value) {
-                $field = $standard_fields->addChild("field");
-                $field->addChild("name", $index);
+            $standard_fields = $xml->addChild('standard_fields');
 
-                XMLUtils::addChildAsCDATA($field, "value", $value);
-                //$field->addChild("value", $value);
+            foreach ($this->standard_fields as $index => $value) {
+                $field = $standard_fields->addChild('field');
+                $field->addChild('name', $index);
+
+                XMLUtils::addChildAsCDATA($field, 'value', $value);
+                // $field->addChild('value', $value);
             }
         }
 
         if (isset($this->custom_fields)) {
-            $customfields = $xml->addChild("custom_fields");
-            foreach ($this->custom_fields as $index => $value) {
-                $field = $customfields->addChild("field");
-                $field->addChild("name", $index);
+            $custom_fields = $xml->addChild('custom_fields');
 
-                XMLUtils::addChildAsCDATA($field, "value", $value);
-                //$field->addChild("value", $value);
+            foreach ($this->custom_fields as $index => $value) {
+                $field = $custom_fields->addChild('field');
+                $field->addChild('name', $index);
+
+                XMLUtils::addChildAsCDATA($field, 'value', $value);
+                // $field->addChild('value', $value);
             }
         }
 
         if (isset($this->preferences)) {
-            $preferences_field = $xml->addChild("preferences");
-            foreach ($this->preferences as $preference) {
-                $preference_field = $preferences_field->addChild("preference");
-                $preference_field->addChild("name", $preference->name);
-                $preference_field->addChild("category", $preference->category);
-                
-                XMLUtils::addChildAsCDATA($preference_field, "value", $preference->value);
+            $preferences_field = $xml->addChild('preferences');
 
-                $preference_field->addChild("source", $preference->source);
+            foreach ($this->preferences as $preference) {
+                $preference_field = $preferences_field->addChild('preference');
+                $preference_field->addChild('name', $preference->name);
+                $preference_field->addChild('category', $preference->category);
+
+                XMLUtils::addChildAsCDATA($preference_field, 'value', $preference->value);
+
+                $preference_field->addChild('source', $preference->source);
             }
         }
 
         return $xml;
     }
 
-    /**
-     * Serialization to a simple XML element as string
-     *
-     * @return string
-     *  The string representation of the XML document for this contact.
-     */
-    public function toXMLString()
-    {
-        $xml = $this->toXML();
-        return $xml->asXML();
-    }
-
-    /**
-     * Human readable representation of this wrapper.
-     *
-     * @return string
-     *  A human readable version of the contact.
-     */
-    public function toString()
+    public function toString(): string
     {
         // Generate standard field string
-        $standard_fields = "";
+        $standard_fields = '';
+
         if (isset($this->standard_fields)) {
             foreach ($this->standard_fields as $index => $value) {
-                $standard_fields .= $index . "=" . $value . ",";
+                $standard_fields .= $index . '=' . $value . ',';
             }
+
             $standard_fields = rtrim($standard_fields, ',');
         }
 
         // Generate custom field string
-        $customfields = "";
+        $custom_fields = '';
+
         if (isset($this->custom_fields)) {
             foreach ($this->custom_fields as $index => $value) {
-                $customfields .= $index . "=" . $value . ",";
+                $custom_fields .= $index . '=' . $value . ',';
             }
-            $customfields = rtrim($customfields, ',');
+
+            $custom_fields = rtrim($custom_fields, ',');
         }
 
-        $preferences = "";
+        $preferences = '';
+
         if (isset($this->preferences)) {
             foreach ($this->preferences as $preference) {
-                $preferences .= $preference->toString() . ",";
+                $preferences .= $preference->toString() . ',';
             }
+
             $preferences = rtrim($preferences, ',');
         }
 
-        $permission = "";
+        $permission = '';
+
         if (isset($this->permission)) {
             $permission = $this->permission->getCode();
         }
 
-        return "Contact [id=" . $this->id . ", email="
-        . $this->email . ", permission=" . $permission . ", external_id=" . $this->external_id
-        . ", anonymous=" . (($this->anonymous == true) ? "true" : "false") .
-        ", created=" . $this->created . ", updated=" . $this->updated
-        . ", standard_fields={" . $standard_fields . "}, customfields={" . $customfields .
-        "}, preferences={" . $preferences . "}]";
+        return 'Contact ['
+            . 'id=' . $this->id
+            . ', email=' . $this->email
+            . ', permission=' . $permission
+            . ', external_id=' . $this->external_id
+            . ', anonymous=' . ($this->anonymous === true ? 'true' : 'false')
+            . ', created=' . $this->created
+            . ', updated=' . $this->updated
+            . ', standard_fields={' . $standard_fields . '}'
+            . ', custom_fields={' . $custom_fields . '}'
+            . ', preferences={' . $preferences . '}'
+            . ']';
     }
 
     /**
      * CSV representation of this wrapper.
      *
      * @return string
-     *  A csv version of the contact.
      */
-    public function toCsvString()
+    public function toCsvString(): string
     {
         // Generate standard field string
-        $standard_fields = "{";
+        $standard_fields = '{';
+
         if (isset($this->standard_fields)) {
             foreach ($this->standard_fields as $index => $value) {
-                $standard_fields .= $index . "=" . $value . ",";
+                $standard_fields .= $index . '=' . $value . ',';
             }
+
             $standard_fields = rtrim($standard_fields, ',');
         }
-        $standard_fields .= "}";
+
+        $standard_fields .= '}';
 
         // Generate custom field string
-        $customfields = "{";
+        $custom_fields = '{';
+
         if (isset($this->custom_fields)) {
             foreach ($this->custom_fields as $index => $value) {
-                $customfields .= $index . "=" . $value . ",";
+                $custom_fields .= $index . '=' . $value . ',';
             }
-            $customfields = rtrim($customfields, ',');
+
+            $custom_fields = rtrim($custom_fields, ',');
         }
-        $customfields .= "}";
+
+        $custom_fields .= '}';
 
         // Generate preferences string
-        $preferences = "{";
+        $preferences = '{';
+
         if (isset($this->preferences)) {
             foreach ($this->preferences as $preference) {
-                $preferences .= "{" . $preference->toCsvString() . "},";
+                $preferences .= '{' . $preference->toCsvString() . '},';
             }
+
             $preferences = rtrim($preferences, ',');
         }
-        $preferences .= "}";
 
-        $permission = "";
+        $preferences .= '}';
+
+        $permission = '';
+
         if (isset($this->permission)) {
             $permission = $this->permission->getCode();
         }
 
         return $this->id
-        . ";" . $this->email
-        . ";" . $permission
-        . ";" . $this->external_id
-        . ";" . (($this->anonymous == true) ? "true" : "false")
-        . ";" . $this->created
-        . ";" . $this->updated
-        . ";\"" . $standard_fields . "\""
-        . ";\"" . $customfields . "\""
-        . ";\"" . $preferences . "\"";
+            . ';' . $this->email
+            . ';' . $permission
+            . ';' . $this->external_id
+            . ';' . ($this->anonymous === true ? 'true' : 'false')
+            . ';' . $this->created
+            . ';' . $this->updated
+            . ';"' . $standard_fields . '"'
+            . ';"' . $custom_fields . '"'
+            . ';"' . $preferences . '"';
     }
 }

@@ -3,12 +3,15 @@
 namespace de\xqueue\maileon\api\client\contacts;
 
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
+use SimpleXMLElement;
+
+use function rtrim;
+use function trim;
 
 /**
  * The wrapper class for a list of custom fields.
  *
- * @author Marcus Beckerle | XQueue GmbH |
- * <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class CustomFields extends AbstractXMLWrapper
 {
@@ -18,20 +21,13 @@ class CustomFields extends AbstractXMLWrapper
     /**
      * Constructor initializing the list from an array.
      *
-     * @param array $custom_fields
-     *  The list of custom fields. Empty array if no argument passed.
+     * @param array $custom_fields The list of custom fields. Empty array if no argument passed.
      */
-    public function __construct($custom_fields = array())
+    public function __construct($custom_fields = [])
     {
         $this->custom_fields = $custom_fields;
     }
 
-    /**
-     * Initialization of the custom fields from a simple xml element.
-     *
-     * @param \SimpleXMLElement $xmlElement
-     *  The xml element that is used to parse the custom fields from.
-     */
     public function fromXML($xmlElement)
     {
         foreach ($xmlElement->children() as $field) {
@@ -40,55 +36,34 @@ class CustomFields extends AbstractXMLWrapper
         }
     }
 
-    /**
-     * Serialization to a simple XML element.
-     *
-     * @return \SimpleXMLElement
-     *  Generate a XML element from the custom fields list.
-     */
     public function toXML()
     {
-        $xml = new \SimpleXMLElement("<?xml version=\"1.0\"?><custom_fields></custom_fields>");
+        $xml = new SimpleXMLElement('<?xml version="1.0"?><custom_fields></custom_fields>');
+
         if (isset($this->custom_fields)) {
             foreach ($this->custom_fields as $index => $type) {
-                $field = $xml->addChild("field");
-                $field->addChild("name", $index);
-                $field->addChild("type", $type);
+                $field = $xml->addChild('field');
+                $field->addChild('name', $index);
+                $field->addChild('type', $type);
             }
         }
 
         return $xml;
     }
 
-    /**
-     * Serialization to a simple XML element as string
-     *
-     * @return string
-     *  The string representation of the XML document for this list of custom fields.
-     */
-    public function toXMLString()
-    {
-        $xml = $this->toXML();
-        return $xml->asXML();
-    }
-
-    /**
-     * Human readable representation of this list of custom fields.
-     *
-     * @return string
-     *  The human readable representation of the list of custom fields.
-     */
-    public function toString()
+    public function toString(): string
     {
         // Generate custom field string
-        $customfields = "";
+        $custom_fields = '';
+
         if (isset($this->custom_fields)) {
             foreach ($this->custom_fields as $index => $type) {
-                $customfields .= $index . "=" . $type . ", ";
+                $custom_fields .= $index . '=' . $type . ', ';
             }
-            $customfields = rtrim($customfields, ', ');
+
+            $custom_fields = rtrim($custom_fields, ', ');
         }
 
-        return "CustomFields = {" . $customfields . "}";
+        return 'CustomFields = {' . $custom_fields . '}';
     }
 }

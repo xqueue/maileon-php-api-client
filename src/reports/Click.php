@@ -3,18 +3,21 @@
 namespace de\xqueue\maileon\api\client\reports;
 
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
+use Exception;
+use SimpleXMLElement;
+
+use function rtrim;
 
 /**
  * This class represents a click containing the timestamp, the contact, and the ID of the mailing.
  *
  * @author Jannik Jochem
- * @author Marcus St&auml;nder | Trusted Mails GmbH |
- * <a href="mailto:marcus.staender@trusted-mails.com">marcus.staender@trusted-mails.com</a>
+ * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class Click extends AbstractXMLWrapper
 {
     /**
-     * @var integer
+     * @var int
      */
     public $timestamp;
 
@@ -24,12 +27,12 @@ class Click extends AbstractXMLWrapper
     public $contact;
 
     /**
-     * @var integer
+     * @var int
      */
     public $mailingId;
 
     /**
-     * @var integer
+     * @var int
      */
     public $linkId;
 
@@ -47,19 +50,19 @@ class Click extends AbstractXMLWrapper
      * @var array
      */
     public $linkTags;
-    
+
     /**
      * @var string
      */
     public $transactionId;
-    
+
     /**
      * @var string
      */
     public $contactHash;
-    
+
     /**
-     * @var integer
+     * @var int
      */
     public $messageId;
 
@@ -72,55 +75,49 @@ class Click extends AbstractXMLWrapper
      * @var string
      */
     public $deviceType;
-    
+
     /**
+     * Information about the client of the contact
      *
-     * @var ReportClientInfos Information about the client of the contact
+     * @var ReportClientInfos
      */
     public $clientInfos;
-    
+
     public function __construct()
     {
         $this->clientInfos = new ReportClientInfos();
     }
 
-    /**
-     * @return string
-     *  containing a human-readable representation of this click
-     */
-    public function toString()
+    public function toString(): string
     {
-
         // Generate custom field string
-        $linkTags = "";
+        $linkTags = '';
+
         if (isset($this->linkTags)) {
             foreach ($this->linkTags as $value) {
-                $linkTags .= $value . "#";
+                $linkTags .= $value . '#';
             }
+
             $linkTags = rtrim($linkTags, '#');
         }
 
-        return "Click [timestamp=" . $this->timestamp .
-        ", contact=" . $this->contact->toString() .
-        ", mailingId=" . $this->mailingId .
-        ", linkId=" . $this->linkId .
-        ", linkType=" . $this->linkType .
-        ", linkUrl=" . $this->linkUrl .
-        ", linkTags=" . $linkTags .
-        ", clientInfos=" . $this->clientInfos->toString() .
-        ", transactionId=" . $this->transactionId .
-        ", contactHash=" . $this->contactHash .
-        ", messageId=" . $this->messageId .
-        ", format=" . $this->format .
-        ", deviceType=" . $this->deviceType . "]";
+        return 'Click ['
+            . 'timestamp=' . $this->timestamp
+            . ', contact=' . $this->contact->toString()
+            . ', mailingId=' . $this->mailingId
+            . ', linkId=' . $this->linkId
+            . ', linkType=' . $this->linkType
+            . ', linkUrl=' . $this->linkUrl
+            . ', linkTags=' . $linkTags
+            . ', clientInfos=' . $this->clientInfos->toString()
+            . ', transactionId=' . $this->transactionId
+            . ', contactHash=' . $this->contactHash
+            . ', messageId=' . $this->messageId
+            . ', format=' . $this->format
+            . ', deviceType=' . $this->deviceType
+            . ']';
     }
 
-    /**
-     * Initializes this click from an XML representation.
-     *
-     * @param \SimpleXMLElement $xmlElement
-     *  the XML representation to use
-     */
     public function fromXML($xmlElement)
     {
         $this->contact = new ReportContact();
@@ -129,121 +126,145 @@ class Click extends AbstractXMLWrapper
         if (isset($xmlElement->mailing_id)) {
             $this->mailingId = $xmlElement->mailing_id;
         }
+
         if (isset($xmlElement->timestamp)) {
             $this->timestamp = $xmlElement->timestamp;
         }
+
         if (isset($xmlElement->link_id)) {
             $this->linkId = $xmlElement->link_id;
         }
+
         if (isset($xmlElement->link_type)) {
             $this->linkType = $xmlElement->link_type;
         }
+
         if (isset($xmlElement->link_url)) {
             $this->linkUrl = $xmlElement->link_url;
         }
+
         if (isset($xmlElement->transaction_id)) {
             $this->transactionId = $xmlElement->transaction_id;
         }
+
         if (isset($xmlElement->contact_hash)) {
             $this->contactHash = $xmlElement->contact_hash;
         }
+
         if (isset($xmlElement->msg_id)) {
-            $this->messageId = $xmlElement->msg_id ;
+            $this->messageId = $xmlElement->msg_id;
         }
+
         if (isset($xmlElement->format)) {
             $this->format = $xmlElement->format;
         }
+
         if (isset($xmlElement->device_type)) {
             $this->deviceType = $xmlElement->device_type;
         }
 
         if (isset($xmlElement->link_tags)) {
-            $this->linkTags = array();
+            $this->linkTags = [];
+
             foreach ($xmlElement->link_tags->children() as $field) {
-                array_push($this->linkTags, $field[0]);
+                $this->linkTags[] = $field[0];
             }
         }
-        
+
         if (isset($xmlElement->client)) {
             $this->clientInfos->fromXML($xmlElement->client);
         }
     }
 
     /**
+     * CSV representation of this wrapper.
+     *
      * @return string
-     *  containing a csv pepresentation of this click
      */
-    public function toCsvString()
+    public function toCsvString(): string
     {
-        return $this->timestamp .
-        ";" . $this->contact->toCsvString() .
-        ";" . $this->mailingId .
-        ";" . $this->linkId .
-        ";" . $this->linkType .
-        ";" . $this->linkUrl .
-        ";" . $this->clientInfos->toCsvString() .
-        ";" . $this->transactionId .
-        ";" . $this->contactHash .
-        ";" . $this->messageId .
-        ";" . $this->format .
-        ";" . $this->deviceType;
+        return $this->timestamp
+            . ';' . $this->contact->toCsvString()
+            . ';' . $this->mailingId
+            . ';' . $this->linkId
+            . ';' . $this->linkType
+            . ';' . $this->linkUrl
+            . ';' . $this->clientInfos->toCsvString()
+            . ';' . $this->transactionId
+            . ';' . $this->contactHash
+            . ';' . $this->messageId
+            . ';' . $this->format
+            . ';' . $this->deviceType;
     }
 
     /**
      * For future use, not implemented yet.
      *
-     * @return \SimpleXMLElement
-     *  containing the XML serialization of this object
+     * Serialization to a simple XML element.
+     *
+     * @return SimpleXMLElement contains the serialized representation of the object
+     *
+     * @throws Exception
      */
     public function toXML()
     {
-        $xmlString = "<?xml version=\"1.0\"?><click></click>";
-        $xml = new \SimpleXMLElement($xmlString);
+        $xmlString = '<?xml version="1.0"?><click></click>';
+        $xml       = new SimpleXMLElement($xmlString);
 
         if (isset($this->contact)) {
-            $xml->addChild("contact", $this->contact->toXML());
-        }        
+            $xml->addChild('contact', $this->contact->toXML());
+        }
+
         if (isset($this->mailingId)) {
-            $xml->addChild("mailing_id", $this->mailingId);
+            $xml->addChild('mailing_id', $this->mailingId);
         }
+
         if (isset($this->timestamp)) {
-            $xml->addChild("timestamp", $this->timestamp);
+            $xml->addChild('timestamp', $this->timestamp);
         }
+
         if (isset($this->linkId)) {
-            $xml->addChild("link_id", $this->linkId);
+            $xml->addChild('link_id', $this->linkId);
         }
+
         if (isset($this->linkType)) {
-            $xml->addChild("link_type", $this->linkType);
+            $xml->addChild('link_type', $this->linkType);
         }
+
         if (isset($this->linkUrl)) {
-            $xml->addChild("link_url", $this->linkUrl);
+            $xml->addChild('link_url', $this->linkUrl);
         }
+
         if (isset($this->transactionId)) {
-            $xml->addChild("transaction_id", $this->transactionId);
+            $xml->addChild('transaction_id', $this->transactionId);
         }
+
         if (isset($this->contactHash)) {
-            $xml->addChild("contact_hash", $this->contactHash);
+            $xml->addChild('contact_hash', $this->contactHash);
         }
+
         if (isset($this->messageId)) {
-            $xml->addChild("msg_id", $this->messageId);
+            $xml->addChild('msg_id', $this->messageId);
         }
+
         if (isset($this->format)) {
-            $xml->addChild("format", $this->format);
+            $xml->addChild('format', $this->format);
         }
+
         if (isset($this->deviceType)) {
-            $xml->addChild("device_type", $this->deviceType);
+            $xml->addChild('device_type', $this->deviceType);
         }
 
         if (isset($this->linkTags)) {
-            $linkTags = $xml->addChild("link_tags");
+            $linkTags = $xml->addChild('link_tags');
 
             foreach ($this->linkTags as $linkTag) {
-                $linkTags->addChild("field", $linkTag);
+                $linkTags->addChild('field', $linkTag);
             }
         }
-        
+
         if (isset($this->clientInfos)) {
-            $xml->addChild("client", $this->clientInfos->toXML());
+            $xml->addChild('client', $this->clientInfos->toXML());
         }
 
         return $xml;

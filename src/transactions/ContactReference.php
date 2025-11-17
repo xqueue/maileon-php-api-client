@@ -2,71 +2,62 @@
 
 namespace de\xqueue\maileon\api\client\transactions;
 
-use de\xqueue\maileon\api\client\json\AbstractJSONWrapper;
 use de\xqueue\maileon\api\client\contacts\Permission;
+use de\xqueue\maileon\api\client\json\AbstractJSONWrapper;
 
 /**
  * A class for wrapping contact references.
  *
- * @author Viktor Balogh | Wanadis Kft. | <a href="balogh.viktor@maileon.hu">balogh.viktor@maileon.hu</a>
+ * @author Viktor Balogh | XQueue GmbH | <a href="mailto:viktor.balog@xqueue.com">viktor.balog@xqueue.com</a>
  */
 class ContactReference extends AbstractJSONWrapper
 {
     /**
+     * The Maileon ID of the contact to send the transaction to
      *
-     * @var integer
-     *  the Maileon ID of the contact to send the transaction to
+     * @var int
      */
     public $id;
+
     /**
+     * The external ID of the contact to send the transaction to
      *
      * @var string
-     *  the external ID of the contact to send the transaction to
      */
     public $external_id;
+
     /**
+     * The email address of the contact to send the transaction to
      *
      * @var string
-     *  the email address of the contact to send the transaction to
      */
     public $email;
 
     /**
+     * The permission of this contact
      *
      * @var Permission
-     *  the permission of this contact
      */
     public $permission;
-    
-    /**
-     * @return string
-     *    a human-readable representation of this ContactReference
-     */
-    public function toString()
-    {
-        return parent::__toString();
-    }
-    
+
     /**
      * Signals to the JSON serializer whether this object should be serialized
      *
      * @return boolean
      */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
-        $result = !isset($this->id) && !isset($this->external_id) && !isset($this->email);
-        
-        return $result;
+        return ! isset($this->id) && ! isset($this->external_id) && ! isset($this->email);
     }
-    
-    public function toArray()
+
+    public function toArray(): array
     {
         $array = parent::toArray();
-        
+
         if ($this->permission != null) {
             $array['permission'] = $this->permission->code;
         }
-        
+
         return $array;
     }
 }

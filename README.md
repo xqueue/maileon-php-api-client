@@ -18,7 +18,7 @@ Maileon's REST API documentation can be found [here](https://maileon.com/support
 
 The API client requires `PHP >= 7.0` with `libxml` and `libcurl`.
 
-Additionally all requests use an SSL encrypted API endpoint.
+Additionally, all requests use an SSL encrypted API endpoint.
 To enable SSL support in CURL, please follow these steps:
  1. Download the official SSL cert bundle by CURL from https://curl.haxx.se/ca/cacert.pem
  2. Save the bundle to a directory that can be accessed by your PHP installation
@@ -38,7 +38,7 @@ composer require xqueue/maileon-api-client
 
 ## Usage
 
-The API client divides the features of Maileon's REST API into specific consumable services. Each service provides all functions of it's specific category.
+The API client divides the features of Maileon's REST API into specific consumable services. Each service provides all functions of its specific category.
 
 The following services are available:
 
@@ -48,8 +48,8 @@ Read, subscribe, edit, unsubscribe or delete contacts. Functions for individual 
 * **Blacklists**
 Manage your blacklists.
 
-* **Contactfilters**
-Segmentate your address pool by filter rules.
+* **Contact filters**
+Segment your address pool by filter rules.
 
 * **Targetgroups**
 Manage distribution lists to specify who gets which mailing.
@@ -106,7 +106,7 @@ $contact = $contactsService->getContactByEmail('foo@bar.com')->getResult();
 */
 ```
 
-* Request a contact identified by it's email address including their first name and a predefined custom field and also check for a valid response:
+* Request a contact identified by its email address including their first name and a predefined custom field and also check for a valid response:
 ```php
 <?php
 
@@ -264,13 +264,13 @@ do {
     );
     
     foreach ($getUnsubscribers->getResult() as $unsubscriber) {
-        printf('%s unsusbcribed in mailing %u at %s'.PHP_EOL,
+        printf('%s unsubscribed in mailing %u at %s'.PHP_EOL,
             $unsubscriber->contact->email,
             $unsubscriber->mailingId,
             $unsubscriber->timestamp
         );
     }
-} while($getUnsubscribers->getResponseHeaders()['X-Pages'] >= $index);
+} while($getUnsubscribers->getResponseHeader('x-pages') >= $index);
 ```
 
 * Get [KPI](https://kpi.org/KPI-Basics) data for a specific mailing:

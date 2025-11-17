@@ -7,7 +7,7 @@ namespace de\xqueue\maileon\api\client\mailings;
  *
  * The supported intervals are hour, day, week and month.
  *
- * @author Andreas Lange | XQueue GmbH |  <a href="andreas.lange@xqueue.com">andreas.lange@xqueue.com</a>
+ * @author Andreas Lange
  */
 class DispatchLogicInterval
 {
@@ -20,19 +20,19 @@ class DispatchLogicInterval
 
     // TODO use a more sensible name for this concept, e.g. "type descriptor"
     /**
-     *
-     * @var string $value
      * A string that describes the interval. Valid values are "hour", "day", "week" and "month".
+     *
+     * @var string
      */
     public $value;
 
     public static function init()
     {
-        if (self::$initialized == false) {
-            self::$HOUR = new DispatchLogicInterval("hour");
-            self::$DAY = new DispatchLogicInterval("day");
-            self::$WEEK = new DispatchLogicInterval("week");
-            self::$MONTH = new DispatchLogicInterval("month");
+        if (self::$initialized === false) {
+            self::$HOUR        = new DispatchLogicInterval('hour');
+            self::$DAY         = new DispatchLogicInterval('day');
+            self::$WEEK        = new DispatchLogicInterval('week');
+            self::$MONTH       = new DispatchLogicInterval('month');
             self::$initialized = true;
         }
     }
@@ -40,8 +40,7 @@ class DispatchLogicInterval
     /**
      * Creates a new DispatchLogicInterval object.
      *
-     * @param string $value
-     * a string describing the logic interval. Valid values are "hour", "day", "week" and "month".
+     * @param string $value a string describing the logic interval. Valid values are "hour", "day", "week" and "month".
      */
     public function __construct($value)
     {
@@ -49,10 +48,9 @@ class DispatchLogicInterval
     }
 
     /**
-     * @return string
-     * the type descriptor string of this DispatchLogicInterval. Can be "hour", "day", "week" or "month".
+     * @return string the type descriptor string of this DispatchLogicInterval. Can be "hour", "day", "week" or "month".
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -60,26 +58,25 @@ class DispatchLogicInterval
     /**
      * Get the interval object by type descriptor.
      *
-     * @param string $value
-     * a type descriptor string. Can be "hour", "day", "week" or "month".
-     * @return DispatchLogicInterval
-     * the DispatchLogicInterval object
+     * @param string $value a type descriptor string. Can be "hour", "day", "week" or "month".
+     *
+     * @return DispatchLogicInterval|null the DispatchLogicInterval object
      */
     public static function getObject($value)
     {
         switch ($value) {
-            case "hour":
+            case 'hour':
                 return self::$HOUR;
-            case "day":
+            case 'day':
                 return self::$DAY;
-            case "week":
+            case 'week':
                 return self::$WEEK;
-            case "month":
+            case 'month':
                 return self::$MONTH;
-
             default:
                 return null;
         }
     }
 }
+
 DispatchLogicInterval::init();

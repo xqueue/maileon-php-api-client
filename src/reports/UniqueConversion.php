@@ -3,6 +3,8 @@
 namespace de\xqueue\maileon\api\client\reports;
 
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
+use Exception;
+use SimpleXMLElement;
 
 /**
  * This class represents a unique conversion
@@ -12,7 +14,7 @@ use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
 class UniqueConversion extends AbstractXMLWrapper
 {
     /**
-     * @var integer
+     * @var int
      */
     public $contactId;
 
@@ -32,80 +34,80 @@ class UniqueConversion extends AbstractXMLWrapper
     public $revenue;
 
     /**
-     * @var integer
+     * @var int
      */
     public $countTotal;
 
-    /**
-     * @return string
-     *  containing a human-readable representation of this conversion
-     */
-    public function toString()
+    public function toString(): string
     {
-
-        return "UniqueConversion [" .
-        "contactId=" . $this->contactId .
-        ", contactEmail=" . $this->contactEmail .
-        ", revenue=" . $this->revenue .
-        ", countTotal=" . $this->countTotal ."]";
+        return 'UniqueConversion ['
+            . 'contactId=' . $this->contactId
+            . ', contactEmail=' . $this->contactEmail
+            . ', revenue=' . $this->revenue
+            . ', countTotal=' . $this->countTotal
+            . ']';
     }
 
-    /**
-     * Initializes this conversion from an XML representation.
-     *
-     * @param \SimpleXMLElement $xmlElement
-     *  the XML representation to use
-     */
     public function fromXML($xmlElement)
     {
         if (isset($xmlElement->contact_id)) {
             $this->contactId = $xmlElement->contact_id;
         }
+
         if (isset($xmlElement->contact_email)) {
             $this->contactEmail = $xmlElement->contact_email;
         }
+
         if (isset($xmlElement->revenue)) {
             $this->revenue = $xmlElement->revenue;
         }
+
         if (isset($xmlElement->count_total)) {
             $this->countTotal = $xmlElement->count_total;
         }
     }
 
     /**
+     * CSV representation of this wrapper.
+     *
      * @return string
-     *  containing a csv pepresentation of this conversion
      */
-    public function toCsvString()
+    public function toCsvString(): string
     {
-        return $this->contactId .
-        ";" . $this->contactEmail .
-        ";" . $this->revenue .
-        ";" . $this->countTotal;
+        return $this->contactId
+            . ';' . $this->contactEmail
+            . ';' . $this->revenue
+            . ';' . $this->countTotal;
     }
 
     /**
      * For future use, not implemented yet.
      *
-     * @return \SimpleXMLElement
-     *  containing the XML serialization of this object
+     * Serialization to a simple XML element.
+     *
+     * @return SimpleXMLElement contains the serialized representation of the object
+     *
+     * @throws Exception
      */
     public function toXML()
     {
-        $xmlString = "<?xml version=\"1.0\"?><unique_conversion></unique_conversion>";
-        $xml = new \SimpleXMLElement($xmlString);
+        $xmlString = '<?xml version="1.0"?><unique_conversion></unique_conversion>';
+        $xml       = new SimpleXMLElement($xmlString);
 
         if (isset($this->contactId)) {
-            $xml->addChild("contact_id", $this->contactId);
+            $xml->addChild('contact_id', $this->contactId);
         }
+
         if (isset($this->contactEmail)) {
-            $xml->addChild("contact_email", $this->contactEmail);
+            $xml->addChild('contact_email', $this->contactEmail);
         }
+
         if (isset($this->revenue)) {
-            $xml->addChild("revenue", $this->revenue);
+            $xml->addChild('revenue', $this->revenue);
         }
+
         if (isset($this->countTotal)) {
-            $xml->addChild("count_total", $this->countTotal);
+            $xml->addChild('count_total', $this->countTotal);
         }
 
         return $xml;

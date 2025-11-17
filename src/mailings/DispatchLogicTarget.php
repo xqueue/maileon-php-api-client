@@ -7,7 +7,7 @@ namespace de\xqueue\maileon\api\client\mailings;
  *
  * The supported targets are event, contactfilter and rss.
  *
- * @author Andreas Lange | XQueue GmbH |  <a href="andreas.lange@xqueue.com">andreas.lange@xqueue.com</a>
+ * @author Andreas Lange
  */
 class DispatchLogicTarget
 {
@@ -19,27 +19,26 @@ class DispatchLogicTarget
 
     // TODO use a more sensible name for this concept, e.g. "type descriptor"
     /**
-     *
-     * @var string $value
      * A string that describes the target. Valid values are "event", "contactfilter" and "rss".
+     *
+     * @var string
      */
     public $value;
 
     public static function init()
     {
-        if (self::$initialized == false) {
-            self::$EVENT = new DispatchLogicTarget("event");
-            self::$CONTACTFILTER = new DispatchLogicTarget("contactfilter");
-            self::$RSS = new DispatchLogicTarget("rss");
-            self::$initialized = true;
+        if (self::$initialized === false) {
+            self::$EVENT         = new DispatchLogicTarget('event');
+            self::$CONTACTFILTER = new DispatchLogicTarget('contactfilter');
+            self::$RSS           = new DispatchLogicTarget('rss');
+            self::$initialized   = true;
         }
     }
 
     /**
      * Creates a new DispatchLogicTarget object.
      *
-     * @param string $value
-     * a string describing the target. Valid values are "event", "contactfilter" and "rss".
+     * @param string $value a string describing the target. Valid values are "event", "contactfilter" and "rss".
      */
     public function __construct($value)
     {
@@ -47,10 +46,9 @@ class DispatchLogicTarget
     }
 
     /**
-     * @return string
-     * the type descriptor string of this DispatchLogicTarget. Can be "event", "contactfilter" or "rss".
+     * @return string the type descriptor string of this DispatchLogicTarget. Can be "event", "contactfilter" or "rss".
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -58,24 +56,24 @@ class DispatchLogicTarget
     /**
      * Get the target object by type descriptor.
      *
-     * @param string $value
-     * a type descriptor string. Can be "event", "contactfilter" or "rss".
-     * @return DispatchLogicTarget
-     * the DispatchLogicTarget object
+     * @param string $value a type descriptor string. Can be "event", "contactfilter" or "rss".
+     *
+     * @return DispatchLogicTarget|null the DispatchLogicTarget object
      */
     public static function getObject($value)
     {
         switch ($value) {
-            case "event":
+            case 'event':
                 return self::$EVENT;
-            case "contactfilter":
+            case 'contactfilter':
                 return self::$CONTACTFILTER;
-            case "rss":
+            case 'rss':
                 return self::$RSS;
-    
+
             default:
                 return null;
         }
     }
 }
+
 DispatchLogicTarget::init();
