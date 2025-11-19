@@ -33,6 +33,56 @@ abstract class AbstractJSONWrapper
         }
     }
 
+    /**
+     * Used to initialize this object from JSON. Override this to modify JSON
+     * parameters.
+     *
+     * @param array $object_vars The array from json_decode
+     */
+    public function fromArray($object_vars)
+    {
+        // copy each key to the property named the same way; if the property
+        // is a serializable Maileon class, call fromArray on it
+        foreach ($object_vars as $key => $value) {
+            if (class_exists(__CLASS__)
+                && is_subclass_of($this->{$key}, __CLASS__)) {
+                $this->{$key}->fromArray($value);
+            } else {
+                $this->{$key} = $value;
+            }
+        }
+    }
+
+    /**
+     * Human-readable representation of this object
+     *
+     * @return string A human-readable representation of this object
+     */
+    public function toString(): string
+    {
+        return $this->__toString();
+    }
+
+    /**
+     * Creates a string representation from this object in the following format:
+     * ObjectName [ property1=value1, property2=value2, ... , propertyN=valueN ]
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $object_vars = get_object_vars($this);
+        $elements    = '';
+
+        // add each property of this class to a string
+        foreach ($object_vars as $key => $value) {
+            $flat     = is_array($value) ? '[' . implode(',', $value) . ']' : $value;
+            $elements .= $key . '=' . $flat . ', ';
+        }
+
+        return get_class($this) . ' [ ' . mb_substr($elements, 0, -2) . ' ]';
+    }
+
     protected function elementToArray($value)
     {
         // if $value is an object, we can call toArray on it, and it
@@ -68,6 +118,16 @@ abstract class AbstractJSONWrapper
     }
 
     /**
+     * Can be overridden in derived classes to signal that this object is empty
+     *
+     * @return boolean
+     */
+    public function isEmpty(): bool
+    {
+        return false;
+    }
+
+    /**
      * Used to serialize this object to a JSON string. Override this to modify
      * JSON parameters.
      *
@@ -90,65 +150,5 @@ abstract class AbstractJSONWrapper
 
         // return the resulting array
         return $result;
-    }
-
-    /**
-     * Used to initialize this object from JSON. Override this to modify JSON
-     * parameters.
-     *
-     * @param array $object_vars The array from json_decode
-     */
-    public function fromArray($object_vars)
-    {
-        // copy each key to the property named the same way; if the property
-        // is a serializable Maileon class, call fromArray on it
-        foreach ($object_vars as $key => $value) {
-            if (class_exists(__CLASS__)
-                && is_subclass_of($this->{$key}, __CLASS__)) {
-                $this->{$key}->fromArray($value);
-            } else {
-                $this->{$key} = $value;
-            }
-        }
-    }
-
-    /**
-     * Creates a string representation from this object in the following format:
-     * ObjectName [ property1=value1, property2=value2, ... , propertyN=valueN ]
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        $object_vars = get_object_vars($this);
-        $elements    = '';
-
-        // add each property of this class to a string
-        foreach ($object_vars as $key => $value) {
-            $flat     = is_array($value) ? '[' . implode(',', $value) . ']' : $value;
-            $elements .= $key . '=' . $flat . ', ';
-        }
-
-        return get_class($this) . ' [ ' . mb_substr($elements, 0, -2) . ' ]';
-    }
-
-    /**
-     * Human-readable representation of this object
-     *
-     * @return string A human-readable representation of this object
-     */
-    public function toString(): string
-    {
-        return $this->__toString();
-    }
-
-    /**
-     * Can be overridden in derived classes to signal that this object is empty
-     *
-     * @return boolean
-     */
-    public function isEmpty(): bool
-    {
-        return false;
     }
 }

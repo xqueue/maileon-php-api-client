@@ -1736,6 +1736,15 @@ class MailingsService extends AbstractMaileonService
         );
     }
 
+    public function sxmlAppend(
+        SimpleXMLElement $to,
+        SimpleXMLElement $from
+    ) {
+        $toDom   = dom_import_simplexml($to);
+        $fromDom = dom_import_simplexml($from);
+        $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
+    }
+
     /**
      * Updates a custom property of the mailing with the provided id.
      *
@@ -1911,15 +1920,6 @@ class MailingsService extends AbstractMaileonService
         $encodedMailingId = rawurlencode(mb_convert_encoding((string) $mailingId, 'UTF-8'));
 
         return $this->get("mailings/$encodedMailingId/mailingblacklists/");
-    }
-
-    public function sxmlAppend(
-        SimpleXMLElement $to,
-        SimpleXMLElement $from
-    ) {
-        $toDom   = dom_import_simplexml($to);
-        $fromDom = dom_import_simplexml($from);
-        $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
     }
 
     /**

@@ -25,16 +25,6 @@ class DispatchLogicSpeedLevel
      */
     public $value;
 
-    public static function init()
-    {
-        if (self::$initialized === false) {
-            self::$LOW         = new DispatchLogicInterval('low');
-            self::$MEDIUM      = new DispatchLogicInterval('medium');
-            self::$HIGH        = new DispatchLogicInterval('high');
-            self::$initialized = true;
-        }
-    }
-
     /**
      * Creates a new DispatchLogicSpeedLevel object.
      *
@@ -45,12 +35,14 @@ class DispatchLogicSpeedLevel
         $this->value = $value;
     }
 
-    /**
-     * @return string the type descriptor string of this DispatchLogicSpeedLevel. Can be "low", "medium" or "high".
-     */
-    public function getValue(): string
+    public static function init()
     {
-        return $this->value;
+        if (self::$initialized === false) {
+            self::$LOW         = new DispatchLogicInterval('low');
+            self::$MEDIUM      = new DispatchLogicInterval('medium');
+            self::$HIGH        = new DispatchLogicInterval('high');
+            self::$initialized = true;
+        }
     }
 
     /**
@@ -72,6 +64,14 @@ class DispatchLogicSpeedLevel
             default:
                 return null;
         }
+    }
+
+    /**
+     * @return string the type descriptor string of this DispatchLogicSpeedLevel. Can be "low", "medium" or "high".
+     */
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }
 

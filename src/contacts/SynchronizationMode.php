@@ -17,18 +17,6 @@ class SynchronizationMode
     public $code;
 
     /**
-     * This is the initialization method for the synchronization modes. This must be called once in the beginning.
-     */
-    public static function init()
-    {
-        if (self::$initialized === false) {
-            self::$UPDATE      = new SynchronizationMode(1);
-            self::$IGNORE      = new SynchronizationMode(2);
-            self::$initialized = true;
-        }
-    }
-
-    /**
      * Constructor initializing the code of the synchronization mode.
      *
      * @param int $code The code to use for the constructed synchronization mode.
@@ -39,13 +27,15 @@ class SynchronizationMode
     }
 
     /**
-     * Get the code of this synchronization mode. 1 = UPDATE, 2 = IGNORE.
-     *
-     * @return int The code of the synchronization mode object
+     * This is the initialization method for the synchronization modes. This must be called once in the beginning.
      */
-    public function getCode(): int
+    public static function init()
     {
-        return $this->code;
+        if (self::$initialized === false) {
+            self::$UPDATE      = new SynchronizationMode(1);
+            self::$IGNORE      = new SynchronizationMode(2);
+            self::$initialized = true;
+        }
     }
 
     /**
@@ -64,6 +54,16 @@ class SynchronizationMode
             default:
                 return self::$IGNORE;
         }
+    }
+
+    /**
+     * Get the code of this synchronization mode. 1 = UPDATE, 2 = IGNORE.
+     *
+     * @return int The code of the synchronization mode object
+     */
+    public function getCode(): int
+    {
+        return $this->code;
     }
 }
 

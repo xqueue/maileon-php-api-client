@@ -26,17 +26,6 @@ class DispatchLogicDeliveryLimitUnit
      */
     public $value;
 
-    public static function init()
-    {
-        if (self::$initialized === false) {
-            self::$DAY         = new DispatchLogicDeliveryLimitUnit('day');
-            self::$WEEK        = new DispatchLogicDeliveryLimitUnit('week');
-            self::$MONTH       = new DispatchLogicDeliveryLimitUnit('month');
-            self::$YEAR        = new DispatchLogicDeliveryLimitUnit('year');
-            self::$initialized = true;
-        }
-    }
-
     /**
      * Creates a new DispatchLogicDeliveryLimitUnit object.
      *
@@ -47,12 +36,15 @@ class DispatchLogicDeliveryLimitUnit
         $this->value = $value;
     }
 
-    /**
-     * @return string the type descriptor string of this DispatchLogicDeliveryLimitUnit. Can be day, week, month or year.
-     */
-    public function getValue(): string
+    public static function init()
     {
-        return $this->value;
+        if (self::$initialized === false) {
+            self::$DAY         = new DispatchLogicDeliveryLimitUnit('day');
+            self::$WEEK        = new DispatchLogicDeliveryLimitUnit('week');
+            self::$MONTH       = new DispatchLogicDeliveryLimitUnit('month');
+            self::$YEAR        = new DispatchLogicDeliveryLimitUnit('year');
+            self::$initialized = true;
+        }
     }
 
     /**
@@ -76,6 +68,14 @@ class DispatchLogicDeliveryLimitUnit
             default:
                 return null;
         }
+    }
+
+    /**
+     * @return string the type descriptor string of this DispatchLogicDeliveryLimitUnit. Can be day, week, month or year.
+     */
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }
 

@@ -17,7 +17,7 @@ use function rtrim;
 class Click extends AbstractXMLWrapper
 {
     /**
-     * @var int
+     * @var string
      */
     public $timestamp;
 

@@ -25,16 +25,6 @@ class DispatchLogicRSSOrderBy
      */
     public $value;
 
-    public static function init()
-    {
-        if (self::$initialized === false) {
-            self::$PUBDATE     = new DispatchLogicRSSOrderBy('pubdate');
-            self::$TITLE       = new DispatchLogicRSSOrderBy('title');
-            self::$LINK        = new DispatchLogicRSSOrderBy('link');
-            self::$initialized = true;
-        }
-    }
-
     /**
      * Creates a new DispatchLogicRSSOrderBy object.
      *
@@ -45,12 +35,14 @@ class DispatchLogicRSSOrderBy
         $this->value = $value;
     }
 
-    /**
-     * @return string the type descriptor string of this DispatchLogicRSSOrderBy. Can be "pubdate", "title" or "link".
-     */
-    public function getValue(): string
+    public static function init()
     {
-        return $this->value;
+        if (self::$initialized === false) {
+            self::$PUBDATE     = new DispatchLogicRSSOrderBy('pubdate');
+            self::$TITLE       = new DispatchLogicRSSOrderBy('title');
+            self::$LINK        = new DispatchLogicRSSOrderBy('link');
+            self::$initialized = true;
+        }
     }
 
     /**
@@ -72,6 +64,14 @@ class DispatchLogicRSSOrderBy
             default:
                 return null;
         }
+    }
+
+    /**
+     * @return string the type descriptor string of this DispatchLogicRSSOrderBy. Can be "pubdate", "title" or "link".
+     */
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }
 

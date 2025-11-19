@@ -224,19 +224,19 @@ class Conversion extends AbstractXMLWrapper
             $xml->addChild('timestamp', $this->timestamp);
         }
 
-        if (isset($this->timestamp_sql)) {
+        if (isset($this->timestampSql)) {
             $xml->addChild('timestamp_sql', $this->timestampSql);
         }
 
-        if (isset($this->contact_id)) {
+        if (isset($this->contactId)) {
             $xml->addChild('contact_id', $this->contactId);
         }
 
-        if (isset($this->contact_email)) {
+        if (isset($this->contactEmail)) {
             $xml->addChild('contact_email', $this->contactEmail);
         }
 
-        if (isset($this->contact_external_id)) {
+        if (isset($this->contactExternalId)) {
             $xml->addChild('contact_external_id', $this->contactExternalId);
         }
 
@@ -244,43 +244,43 @@ class Conversion extends AbstractXMLWrapper
             $xml->addChild('value', $this->value);
         }
 
-        if (isset($this->mailing_sent_date)) {
+        if (isset($this->mailingSentTimestamp)) {
             $xml->addChild('mailing_sent_date', $this->mailingSentTimestamp);
         }
 
-        if (isset($this->mailing_sent_date_sql)) {
+        if (isset($this->mailingSentTimestampSql)) {
             $xml->addChild('mailing_sent_date_sql', $this->mailingSentTimestampSql);
         }
 
-        if (isset($this->mailing_id)) {
+        if (isset($this->mailingId)) {
             $xml->addChild('mailing_id', $this->mailingId);
         }
 
-        if (isset($this->mailing_name)) {
+        if (isset($this->mailingName)) {
             $xml->addChild('mailing_name', $this->mailingName);
         }
 
-        if (isset($this->site_id)) {
+        if (isset($this->siteId)) {
             $xml->addChild('site_id', $this->siteId);
         }
 
-        if (isset($this->site_name)) {
+        if (isset($this->siteName)) {
             $xml->addChild('site_name', $this->siteName);
         }
 
-        if (isset($this->goal_id)) {
+        if (isset($this->goalId)) {
             $xml->addChild('goal_id', $this->goalId);
         }
 
-        if (isset($this->goal_name)) {
+        if (isset($this->goalName)) {
             $xml->addChild('goal_name', $this->goalName);
         }
 
-        if (isset($this->link_id)) {
+        if (isset($this->linkId)) {
             $xml->addChild('link_id', $this->linkId);
         }
 
-        if (isset($this->link_url)) {
+        if (isset($this->linkUrl)) {
             $xml->addChild('link_url', $this->linkUrl);
         }
 

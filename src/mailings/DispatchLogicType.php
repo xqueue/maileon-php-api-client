@@ -24,15 +24,6 @@ class DispatchLogicType
      */
     public $value;
 
-    public static function init()
-    {
-        if (self::$initialized === false) {
-            self::$SINGLE      = new DispatchLogicType('single');
-            self::$MULTI       = new DispatchLogicType('multi');
-            self::$initialized = true;
-        }
-    }
-
     /**
      * Creates a new DispatchLogicType object.
      *
@@ -43,12 +34,13 @@ class DispatchLogicType
         $this->value = $value;
     }
 
-    /**
-     * @return string the DispatchLogicType descriptor string of this DispatchLogicType. Can be "single" or "multi".
-     */
-    public function getValue(): string
+    public static function init()
     {
-        return $this->value;
+        if (self::$initialized === false) {
+            self::$SINGLE      = new DispatchLogicType('single');
+            self::$MULTI       = new DispatchLogicType('multi');
+            self::$initialized = true;
+        }
     }
 
     /**
@@ -68,6 +60,14 @@ class DispatchLogicType
             default:
                 return null;
         }
+    }
+
+    /**
+     * @return string the DispatchLogicType descriptor string of this DispatchLogicType. Can be "single" or "multi".
+     */
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }
 

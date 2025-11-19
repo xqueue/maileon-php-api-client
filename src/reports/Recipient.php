@@ -14,7 +14,7 @@ use SimpleXMLElement;
 class Recipient extends AbstractXMLWrapper
 {
     /**
-     * @var int
+     * @var string
      */
     public $timestamp;
 
@@ -79,6 +79,10 @@ class Recipient extends AbstractXMLWrapper
         if (isset($xmlElement->transaction_id)) {
             $this->transactionId = $xmlElement->transaction_id;
         }
+
+        if (isset($xmlElement->msg_id)) {
+            $this->messageId = $xmlElement->msg_id;
+        }
     }
 
     /**
@@ -109,6 +113,10 @@ class Recipient extends AbstractXMLWrapper
 
         if (isset($this->transactionId)) {
             $xml->addChild('transaction_id', $this->transactionId);
+        }
+
+        if (isset($this->messageId)) {
+            $xml->addChild('msg_id', $this->messageId);
         }
 
         return $xml;

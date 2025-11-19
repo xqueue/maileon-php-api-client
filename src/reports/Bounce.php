@@ -132,7 +132,7 @@ class Bounce extends AbstractXMLWrapper
             $xml->addChild('contact', $this->contact->toXML());
         }
 
-        if (isset($this->mailing_id)) {
+        if (isset($this->mailingId)) {
             $xml->addChild('mailing_id', $this->mailingId);
         }
 
@@ -144,7 +144,7 @@ class Bounce extends AbstractXMLWrapper
             $xml->addChild('type', $this->type);
         }
 
-        if (isset($this->status_code)) {
+        if (isset($this->statusCode)) {
             $xml->addChild('status_code', $this->statusCode);
         }
 
@@ -152,7 +152,7 @@ class Bounce extends AbstractXMLWrapper
             $xml->addChild('source', $this->source);
         }
 
-        if (isset($this->msg_id)) {
+        if (isset($this->messageId)) {
             $xml->addChild('msg_id', $this->messageId);
         }
 
