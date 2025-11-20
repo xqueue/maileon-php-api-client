@@ -16,7 +16,7 @@ use SimpleXMLElement;
 class Subscriber extends AbstractXMLWrapper
 {
     /**
-     * @var int
+     * @var string
      */
     public $timestamp;
 

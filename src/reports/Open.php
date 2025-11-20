@@ -14,7 +14,7 @@ use SimpleXMLElement;
 class Open extends AbstractXMLWrapper
 {
     /**
-     * @var int
+     * @var string
      */
     public $timestamp;
 

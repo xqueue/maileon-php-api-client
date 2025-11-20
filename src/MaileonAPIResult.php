@@ -71,6 +71,22 @@ class MaileonAPIResult
         $this->checkResult($throwException);
     }
 
+    private function getBodyFromCurlResponse(
+        $curlSession,
+        $response
+    ) {
+        if ($response === null) {
+            return null;
+        }
+
+        // In a recent case, a CMS2 mailing contained \r\n\r\n, so the old approach failed (https://stackoverflow.com/questions/10589889/returning-header-as-array-using-curl).
+        // Now, we use CURLINFO_HEADER_SIZE (https://blog.devgenius.io/how-to-get-the-response-headers-with-curl-in-php-2173b10d4fc5) and only split up the headers at \r\n\r\n.
+        // CURLINFO_HEADER_SIZE returns the size of the header including \r\n\r\n.
+        $headerSize = curl_getinfo($curlSession, CURLINFO_HEADER_SIZE);
+
+        return substr($response, $headerSize);
+    }
+
     private function getHeaderArrayFromCurlResponse(
         $curlSession,
         $response
@@ -102,22 +118,6 @@ class MaileonAPIResult
         return $headers;
     }
 
-    private function getBodyFromCurlResponse(
-        $curlSession,
-        $response
-    ) {
-        if ($response === null) {
-            return null;
-        }
-
-        // In a recent case, a CMS2 mailing contained \r\n\r\n, so the old approach failed (https://stackoverflow.com/questions/10589889/returning-header-as-array-using-curl).
-        // Now, we use CURLINFO_HEADER_SIZE (https://blog.devgenius.io/how-to-get-the-response-headers-with-curl-in-php-2173b10d4fc5) and only split up the headers at \r\n\r\n.
-        // CURLINFO_HEADER_SIZE returns the size of the header including \r\n\r\n.
-        $headerSize = curl_getinfo($curlSession, CURLINFO_HEADER_SIZE);
-
-        return substr($response, $headerSize);
-    }
-
     /**
      * @param $throwException
      *
@@ -134,30 +134,6 @@ class MaileonAPIResult
         if ($throwException === true) {
             $this->checkForCURLError();
             $this->checkForServerError();
-        }
-    }
-
-    private function checkForCURLError()
-    {
-        if (curl_errno($this->curlSession)) {
-            $curlErrorMessage = curl_error($this->curlSession);
-            $curlErrorCode    = curl_errno($this->curlSession);
-            throw new MaileonAPIException(
-                "An error occurred in the connection to the REST API. Original cURL error message: $curlErrorMessage",
-                $curlErrorCode
-            );
-        }
-    }
-
-    private function checkForServerError()
-    {
-        $statusCode = $this->statusCode;
-
-        if ($statusCode >= 500 && $statusCode <= 599) {
-            throw new MaileonAPIException(
-                "A server error occurred in the REST API (HTTP status code $statusCode).",
-                $this->bodyData
-            );
         }
     }
 
@@ -192,36 +168,44 @@ class MaileonAPIResult
         }
     }
 
+    private function startsWith(
+        $haystack,
+        $needle
+    ): bool {
+        // search backwards starting from haystack length characters from the end
+        return $needle === '' || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+    }
+
+    private function checkForCURLError()
+    {
+        if (curl_errno($this->curlSession)) {
+            $curlErrorMessage = curl_error($this->curlSession);
+            $curlErrorCode    = curl_errno($this->curlSession);
+            throw new MaileonAPIException(
+                "An error occurred in the connection to the REST API. Original cURL error message: $curlErrorMessage",
+                $curlErrorCode
+            );
+        }
+    }
+
+    private function checkForServerError()
+    {
+        $statusCode = $this->statusCode;
+
+        if ($statusCode >= 500 && $statusCode <= 599) {
+            throw new MaileonAPIException(
+                "A server error occurred in the REST API (HTTP status code $statusCode).",
+                $this->bodyData
+            );
+        }
+    }
+
     /**
      * @return mixed The deserialized result object as a subclass of AbstractXMLWrapper, or the free-form string result if the response body data was not a deserializable object, or null if there was no response body data
      */
     public function getResult()
     {
         return $this->result;
-    }
-
-    /**
-     * @return int The HTTP status code that was returned by the HTTP request
-     */
-    public function getStatusCode(): int
-    {
-        return $this->statusCode;
-    }
-
-    /**
-     * @return bool true if a 2xx status code (success) was returned by the HTTP request
-     */
-    public function isSuccess(): bool
-    {
-        return $this->statusCode >= 200 and $this->statusCode <= 299;
-    }
-
-    /**
-     * @return bool true if a 4xx status code (client error) was returned by the HTTP request
-     */
-    public function isClientError(): bool
-    {
-        return $this->statusCode >= 400 and $this->statusCode <= 499;
     }
 
     /**
@@ -310,11 +294,27 @@ class MaileonAPIResult
         return $result;
     }
 
-    private function startsWith(
-        $haystack,
-        $needle
-    ): bool {
-        // search backwards starting from haystack length characters from the end
-        return $needle === '' || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+    /**
+     * @return int The HTTP status code that was returned by the HTTP request
+     */
+    public function getStatusCode(): int
+    {
+        return $this->statusCode;
+    }
+
+    /**
+     * @return bool true if a 2xx status code (success) was returned by the HTTP request
+     */
+    public function isSuccess(): bool
+    {
+        return $this->statusCode >= 200 and $this->statusCode <= 299;
+    }
+
+    /**
+     * @return bool true if a 4xx status code (client error) was returned by the HTTP request
+     */
+    public function isClientError(): bool
+    {
+        return $this->statusCode >= 400 and $this->statusCode <= 499;
     }
 }

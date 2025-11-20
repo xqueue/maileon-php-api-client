@@ -55,22 +55,6 @@ class TransactionsService extends AbstractMaileonService
     }
 
     /**
-     * Gets information about a transaction type.
-     *
-     * @param int $id the id of the transaction type to get information about
-     *
-     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
-     *
-     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
-     */
-    public function getTransactionType($id)
-    {
-        $encodedId = rawurlencode(mb_convert_encoding((string) $id, 'UTF-8'));
-
-        return $this->get("transactions/types/$encodedId");
-    }
-
-    /**
      * Gets information about a transaction type by its name.
      *
      * @param string $name the name of the transaction type to get information about
@@ -257,6 +241,22 @@ class TransactionsService extends AbstractMaileonService
     public function findTransactionTypeByName($type_name)
     {
         return $this->getTransactionType($type_name);
+    }
+
+    /**
+     * Gets information about a transaction type.
+     *
+     * @param int $id the id of the transaction type to get information about
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function getTransactionType($id)
+    {
+        $encodedId = rawurlencode(mb_convert_encoding((string) $id, 'UTF-8'));
+
+        return $this->get("transactions/types/$encodedId");
     }
 
     /**

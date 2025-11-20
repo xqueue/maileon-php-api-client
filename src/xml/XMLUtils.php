@@ -17,22 +17,6 @@ abstract class XMLUtils
 {
 
     /**
-     * This function appends one SimpleXMLElement to another one as addChild does not support deep copies
-     *
-     * @param SimpleXMLElement $to
-     * @param SimpleXMLElement $from
-     */
-    public static function appendChild(
-        SimpleXMLElement $to,
-        SimpleXMLElement $from
-    ) {
-        $toDom   = dom_import_simplexml($to);
-        $fromDom = dom_import_simplexml($from);
-
-        $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
-    }
-
-    /**
      * Adds a child with $value inside CDATA
      *
      * @param SimpleXMLElement $parent
@@ -56,5 +40,21 @@ abstract class XMLUtils
         }
 
         return $new_child;
+    }
+
+    /**
+     * This function appends one SimpleXMLElement to another one as addChild does not support deep copies
+     *
+     * @param SimpleXMLElement $to
+     * @param SimpleXMLElement $from
+     */
+    public static function appendChild(
+        SimpleXMLElement $to,
+        SimpleXMLElement $from
+    ) {
+        $toDom   = dom_import_simplexml($to);
+        $fromDom = dom_import_simplexml($from);
+
+        $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
     }
 }

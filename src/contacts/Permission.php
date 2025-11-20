@@ -22,22 +22,6 @@ class Permission
     public $type;
 
     /**
-     * This is the initialization method for the permission types. This must be called once in the beginning.
-     */
-    public static function init()
-    {
-        if (self::$initialized === false) {
-            self::$NONE        = new Permission(1, 'none');
-            self::$SOI         = new Permission(2, 'soi');
-            self::$COI         = new Permission(3, 'coi');
-            self::$DOI         = new Permission(4, 'doi');
-            self::$DOI_PLUS    = new Permission(5, 'doi+');
-            self::$OTHER       = new Permission(6, 'other');
-            self::$initialized = true;
-        }
-    }
-
-    /**
      * Constructor initializing the code of the permission.
      *
      * @param int $code The code to use for the constructed permission.
@@ -53,28 +37,6 @@ class Permission
         } else {
             $this->type = $type;
         }
-    }
-
-    /**
-     * Get the code of this permission.
-     * 1 = NONE, 2 = SOI, 3 = COI, 4 = DOI, 5 = DOI+, 6 = OTHER.
-     *
-     * @return int  The code of the permission object
-     */
-    public function getCode(): int
-    {
-        return $this->code;
-    }
-
-    /**
-     * Get the type string of this permission.
-     * none = NONE, soi = SOI, coi = COI, doi = DOI, doi+ = DOI+, other = OTHER.
-     *
-     * @return string  The type of the permission object
-     */
-    public function getString(): string
-    {
-        return $this->type;
     }
 
     private function getType($code)
@@ -93,6 +55,22 @@ class Permission
             case 6:
             default:
                 return 'other';
+        }
+    }
+
+    /**
+     * This is the initialization method for the permission types. This must be called once in the beginning.
+     */
+    public static function init()
+    {
+        if (self::$initialized === false) {
+            self::$NONE        = new Permission(1, 'none');
+            self::$SOI         = new Permission(2, 'soi');
+            self::$COI         = new Permission(3, 'coi');
+            self::$DOI         = new Permission(4, 'doi');
+            self::$DOI_PLUS    = new Permission(5, 'doi+');
+            self::$OTHER       = new Permission(6, 'other');
+            self::$initialized = true;
         }
     }
 
@@ -126,6 +104,28 @@ class Permission
             default:
                 return self::$OTHER;
         }
+    }
+
+    /**
+     * Get the code of this permission.
+     * 1 = NONE, 2 = SOI, 3 = COI, 4 = DOI, 5 = DOI+, 6 = OTHER.
+     *
+     * @return int  The code of the permission object
+     */
+    public function getCode(): int
+    {
+        return $this->code;
+    }
+
+    /**
+     * Get the type string of this permission.
+     * none = NONE, soi = SOI, coi = COI, doi = DOI, doi+ = DOI+, other = OTHER.
+     *
+     * @return string  The type of the permission object
+     */
+    public function getString(): string
+    {
+        return $this->type;
     }
 }
 

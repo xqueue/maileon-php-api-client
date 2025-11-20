@@ -1,3 +1,7 @@
+Date 2025-11-19
+Version 1.12.2
+- Fix properties
+
 Date 2025-11-17
 Version 1.12.1
 - Fix encoding issue in path for unsubscribeContactByExternalId

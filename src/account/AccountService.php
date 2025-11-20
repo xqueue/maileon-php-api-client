@@ -75,6 +75,24 @@ class AccountService extends AbstractMaileonService
     }
 
     /**
+     * Append a SimpleXMLElement to another
+     *
+     * @param SimpleXMLElement $to
+     * @param SimpleXMLElement $from
+     *
+     * @return void
+     */
+    public function sxmlAppend(
+        SimpleXMLElement $to,
+        SimpleXMLElement $from
+    ) {
+        $toDom   = dom_import_simplexml($to);
+        $fromDom = dom_import_simplexml($from);
+
+        $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
+    }
+
+    /**
      * Update account placeholders. If account placeholder is not existing yet, it will be added.
      * If account placeholder with given name is available the value will be updated.
      * Other existing account placeholders will not be touched.
@@ -136,23 +154,5 @@ class AccountService extends AbstractMaileonService
             [],
             'application/xml'
         );
-    }
-
-    /**
-     * Append a SimpleXMLElement to another
-     *
-     * @param SimpleXMLElement $to
-     * @param SimpleXMLElement $from
-     *
-     * @return void
-     */
-    public function sxmlAppend(
-        SimpleXMLElement $to,
-        SimpleXMLElement $from
-    ) {
-        $toDom   = dom_import_simplexml($to);
-        $fromDom = dom_import_simplexml($from);
-
-        $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
     }
 }

@@ -124,6 +124,84 @@ class ReportsService extends AbstractMaileonService
     }
 
     /**
+     * Creates the common query parameters
+     *
+     * @param int         $pageIndex          The index of the result page. The index must be greater or equal to 1.
+     * @param int         $pageSize           The maximum count of items in the result page. If provided, the value of page_size must be in
+     *                                        The range 1 to 1000.
+     * @param int         $fromDate           If provided, only the unsubscriptions after the given date will be returned. The value of
+     *                                        from_date must be a numeric value representing a point in time milliseconds after
+     *                                        January 1, 1970 00:00:00
+     * @param int         $toDate             If provided, only the unsubscriptions before the given date will be returned. The value of
+     *                                        to_date must be a numeric value representing a point in time milliseconds after
+     *                                        January 1, 1970 00:00:00
+     * @param array|null  $contactIds         Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to
+     *                                        a contact id.
+     * @param array|null  $contactEmails      Multivalued parameter to filter the unsubscriptions by email addresses.
+     * @param array|null  $contactExternalIds Multivalued parameter to filter the unsubscriptions by external ids. Each value must
+     *                                        correspond to a contacts external id.
+     * @param array|null  $mailingIds         Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to
+     *                                        a mailing id.
+     * @param string|null $source             Filters the unsubscriptions by their source. The source can be an unsubscription link (link),
+     *                                        a reply mail (reply) or other.
+     * @param bool|null   $embedFieldBackups  Supported values: true / false. Field Backups are the values of contact fields that have been
+     *                                        backed up for mailings because of a backup instruction. For each unsubscription, the
+     *                                        corresponding field backups will be returned if available. Note that this only applies for non
+     *                                        anonymizable field backups.
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    private function createQueryParameters(
+        $pageIndex,
+        $pageSize,
+        $fromDate,
+        $toDate,
+        $contactIds,
+        $contactEmails,
+        $contactExternalIds,
+        $mailingIds,
+        $source,
+        $embedFieldBackups
+    ) {
+        $queryParameters = [
+            'page_index' => $pageIndex,
+            'page_size'  => $pageSize,
+        ];
+
+        if (isset($fromDate)) {
+            $queryParameters ['from_date'] = $fromDate;
+        }
+
+        if (isset($toDate)) {
+            $queryParameters ['to_date'] = $toDate;
+        }
+
+        if (isset($source)) {
+            $queryParameters ['source'] = $source;
+        }
+
+        $queryParameters = $this->appendArrayFields($queryParameters, 'ids', $contactIds);
+        $queryParameters = $this->appendArrayFields($queryParameters, 'emails', $contactEmails);
+        $queryParameters = $this->appendArrayFields($queryParameters, 'eids', $contactExternalIds);
+
+        if (isset($embedFieldBackups)) {
+            $queryParameters ['embed_field_backups'] = $embedFieldBackups === true ? 'true' : 'false';
+        }
+
+        if (isset($mailingIds)) {
+            $queryParameters ['mailing_id'] = [];
+
+            foreach ($mailingIds as $mailingId) {
+                $queryParameters ['mailing_id'] [] = $mailingId;
+            }
+        }
+
+        return $queryParameters;
+    }
+
+    /**
      * Returns a page of unique openers.
      *
      * @param int   $fromDate              If provided, only the openers after the given date will be returned. The value of from_date must
@@ -278,6 +356,67 @@ class ReportsService extends AbstractMaileonService
             'reports/opens/count',
             $params
         );
+    }
+
+    /**
+     * Creates the common query parameters for count operations
+     *
+     * @param int        $fromDate           If provided, only the unsubscriptions after the given date will be returned. The value of
+     *                                       from_date must be a numeric value representing a point in time milliseconds after
+     *                                       January 1, 1970 00:00:00
+     * @param int        $toDate             If provided, only the unsubscriptions before the given date will be returned. The value of
+     *                                       to_date must be a numeric value representing a point in time milliseconds after
+     *                                       January 1, 1970 00:00:00
+     * @param array      $contactIds         Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to
+     *                                       a contact id.
+     * @param array      $contactEmails      Multivalued parameter to filter the unsubscriptions by email addresses.
+     * @param array      $contactExternalIds Multivalued parameter to filter the unsubscriptions by external ids. Each value must correspond
+     *                                       to a contacts external id.
+     * @param array|null $mailingIds         Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to
+     *                                       a mailing id.
+     * @param string     $source             Filters the unsubscriptions by their source. The source can be an unsubscription link (link),
+     *                                       a reply mail (reply) or other.
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    private function createCountQueryParameters(
+        $fromDate,
+        $toDate,
+        $contactIds,
+        $contactEmails,
+        $contactExternalIds,
+        $mailingIds,
+        $source
+    ) {
+        $queryParameters = [];
+
+        if (isset($fromDate)) {
+            $queryParameters ['from_date'] = $fromDate;
+        }
+
+        if (isset($toDate)) {
+            $queryParameters ['to_date'] = $toDate;
+        }
+
+        if (isset($source)) {
+            $queryParameters ['source'] = $source;
+        }
+
+        $queryParameters = $this->appendArrayFields($queryParameters, 'ids', $contactIds);
+        $queryParameters = $this->appendArrayFields($queryParameters, 'emails', $contactEmails);
+        $queryParameters = $this->appendArrayFields($queryParameters, 'eids', $contactExternalIds);
+
+        if (isset($mailingIds)) {
+            $queryParameters ['mailing_id'] = [];
+
+            foreach ($mailingIds as $mailingId) {
+                $queryParameters ['mailing_id'] [] = $mailingId;
+            }
+        }
+
+        return $queryParameters;
     }
 
     /**
@@ -1839,144 +1978,5 @@ class ReportsService extends AbstractMaileonService
             'reports/analytics/conversions/revenue',
             $params
         );
-    }
-
-    /**
-     * Creates the common query parameters
-     *
-     * @param int         $pageIndex          The index of the result page. The index must be greater or equal to 1.
-     * @param int         $pageSize           The maximum count of items in the result page. If provided, the value of page_size must be in
-     *                                        The range 1 to 1000.
-     * @param int         $fromDate           If provided, only the unsubscriptions after the given date will be returned. The value of
-     *                                        from_date must be a numeric value representing a point in time milliseconds after
-     *                                        January 1, 1970 00:00:00
-     * @param int         $toDate             If provided, only the unsubscriptions before the given date will be returned. The value of
-     *                                        to_date must be a numeric value representing a point in time milliseconds after
-     *                                        January 1, 1970 00:00:00
-     * @param array|null  $contactIds         Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to
-     *                                        a contact id.
-     * @param array|null  $contactEmails      Multivalued parameter to filter the unsubscriptions by email addresses.
-     * @param array|null  $contactExternalIds Multivalued parameter to filter the unsubscriptions by external ids. Each value must
-     *                                        correspond to a contacts external id.
-     * @param array|null  $mailingIds         Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to
-     *                                        a mailing id.
-     * @param string|null $source             Filters the unsubscriptions by their source. The source can be an unsubscription link (link),
-     *                                        a reply mail (reply) or other.
-     * @param bool|null   $embedFieldBackups  Supported values: true / false. Field Backups are the values of contact fields that have been
-     *                                        backed up for mailings because of a backup instruction. For each unsubscription, the
-     *                                        corresponding field backups will be returned if available. Note that this only applies for non
-     *                                        anonymizable field backups.
-     *
-     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
-     *
-     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
-     */
-    private function createQueryParameters(
-        $pageIndex,
-        $pageSize,
-        $fromDate,
-        $toDate,
-        $contactIds,
-        $contactEmails,
-        $contactExternalIds,
-        $mailingIds,
-        $source,
-        $embedFieldBackups
-    ) {
-        $queryParameters = [
-            'page_index' => $pageIndex,
-            'page_size'  => $pageSize,
-        ];
-
-        if (isset($fromDate)) {
-            $queryParameters ['from_date'] = $fromDate;
-        }
-
-        if (isset($toDate)) {
-            $queryParameters ['to_date'] = $toDate;
-        }
-
-        if (isset($source)) {
-            $queryParameters ['source'] = $source;
-        }
-
-        $queryParameters = $this->appendArrayFields($queryParameters, 'ids', $contactIds);
-        $queryParameters = $this->appendArrayFields($queryParameters, 'emails', $contactEmails);
-        $queryParameters = $this->appendArrayFields($queryParameters, 'eids', $contactExternalIds);
-
-        if (isset($embedFieldBackups)) {
-            $queryParameters ['embed_field_backups'] = $embedFieldBackups === true ? 'true' : 'false';
-        }
-
-        if (isset($mailingIds)) {
-            $queryParameters ['mailing_id'] = [];
-
-            foreach ($mailingIds as $mailingId) {
-                $queryParameters ['mailing_id'] [] = $mailingId;
-            }
-        }
-
-        return $queryParameters;
-    }
-
-    /**
-     * Creates the common query parameters for count operations
-     *
-     * @param int        $fromDate           If provided, only the unsubscriptions after the given date will be returned. The value of
-     *                                       from_date must be a numeric value representing a point in time milliseconds after
-     *                                       January 1, 1970 00:00:00
-     * @param int        $toDate             If provided, only the unsubscriptions before the given date will be returned. The value of
-     *                                       to_date must be a numeric value representing a point in time milliseconds after
-     *                                       January 1, 1970 00:00:00
-     * @param array      $contactIds         Multivalued parameter to filter the unsubscriptions by contacts. Each value must correspond to
-     *                                       a contact id.
-     * @param array      $contactEmails      Multivalued parameter to filter the unsubscriptions by email addresses.
-     * @param array      $contactExternalIds Multivalued parameter to filter the unsubscriptions by external ids. Each value must correspond
-     *                                       to a contacts external id.
-     * @param array|null $mailingIds         Multivalued parameter to filter the unsubscriptions by mailings. Each value must correspond to
-     *                                       a mailing id.
-     * @param string     $source             Filters the unsubscriptions by their source. The source can be an unsubscription link (link),
-     *                                       a reply mail (reply) or other.
-     *
-     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
-     *
-     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
-     */
-    private function createCountQueryParameters(
-        $fromDate,
-        $toDate,
-        $contactIds,
-        $contactEmails,
-        $contactExternalIds,
-        $mailingIds,
-        $source
-    ) {
-        $queryParameters = [];
-
-        if (isset($fromDate)) {
-            $queryParameters ['from_date'] = $fromDate;
-        }
-
-        if (isset($toDate)) {
-            $queryParameters ['to_date'] = $toDate;
-        }
-
-        if (isset($source)) {
-            $queryParameters ['source'] = $source;
-        }
-
-        $queryParameters = $this->appendArrayFields($queryParameters, 'ids', $contactIds);
-        $queryParameters = $this->appendArrayFields($queryParameters, 'emails', $contactEmails);
-        $queryParameters = $this->appendArrayFields($queryParameters, 'eids', $contactExternalIds);
-
-        if (isset($mailingIds)) {
-            $queryParameters ['mailing_id'] = [];
-
-            foreach ($mailingIds as $mailingId) {
-                $queryParameters ['mailing_id'] [] = $mailingId;
-            }
-        }
-
-        return $queryParameters;
     }
 }

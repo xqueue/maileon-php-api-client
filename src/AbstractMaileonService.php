@@ -182,96 +182,6 @@ abstract class AbstractMaileonService
     }
 
     /**
-     * Performs a PUT operation (i.e. an update) on a resource.
-     *
-     * @param string $resourcePath        the path of the resource to PUT
-     * @param string $payload             the payload data to PUT, i.e. the data to update the current state of the resource with
-     * @param array  $queryParameters     any additional query parameters
-     * @param string $mimeType            the acceptable response MIME type
-     * @param mixed  $deserializationType The name of the class this result should be deserialized as. Use array( 'array', 'typename' )
-     *                                    to deserialize arrays of a type.
-     *
-     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
-     *
-     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
-     */
-    public function put(
-        $resourcePath,
-        $payload = '',
-        $queryParameters = [],
-        $mimeType = 'application/vnd.maileon.api+xml',
-        $deserializationType = null
-    ) {
-        $curlSession = $this->prepareSession($resourcePath, $queryParameters, $mimeType);
-
-        /*
-         * PUT does not work as expected when passing post data, see
-         * http://developers.sugarcrm.com/wordpress/2011/11/22/howto-do-put-requests-with-php-curl-without-writing-to-a-file/
-         * Because of this, we use a custom request here.
-         */
-        curl_setopt($curlSession, CURLOPT_CUSTOMREQUEST, 'PUT');
-        curl_setopt($curlSession, CURLOPT_POSTFIELDS, $payload);
-
-        return $this->performRequest($curlSession, $deserializationType);
-    }
-
-    /**
-     * Performs a POST operation (i.e. creates a new instance) on a resource.
-     *
-     * @param string $resourcePath        the path of the resource to POST. This is typically the parent (or owner) resource of the resource
-     *                                    instance to create.
-     * @param string $payload             the data to POST, i.e. the contents of the new resource instance
-     * @param array  $queryParameters     any additional query parameters
-     * @param string $mimeType            the acceptable response MIME type
-     * @param mixed  $deserializationType The name of the class this result should be deserialized as. Use array( 'array', 'typename' ) to
-     *                                    deserialize arrays of a type.
-     *
-     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
-     *
-     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
-     */
-    public function post(
-        $resourcePath,
-        $payload = '',
-        $queryParameters = [],
-        $mimeType = 'application/vnd.maileon.api+xml',
-        $deserializationType = null,
-        $contentType = null,
-        $contentLength = null
-    ) {
-        $curlSession = $this->prepareSession($resourcePath, $queryParameters, $mimeType, $contentType, $contentLength);
-        curl_setopt($curlSession, CURLOPT_POST, true);
-        curl_setopt($curlSession, CURLOPT_POSTFIELDS, $payload);
-
-        return $this->performRequest($curlSession, $deserializationType);
-    }
-
-    /**
-     * Performs a DELETE operation on a resource.
-     *
-     * @param string $resourcePath        the resource to DELETE
-     * @param array  $queryParameters     any additional query parameters
-     * @param string $mimeType            the acceptable response MIME type
-     * @param mixed  $deserializationType The name of the class this result should be deserialized as. Use array( 'array', 'typename' ) to
-     *                                    deserialize arrays of a type.
-     *
-     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
-     *
-     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
-     */
-    public function delete(
-        $resourcePath,
-        $queryParameters = [],
-        $mimeType = 'application/vnd.maileon.api+xml',
-        $deserializationType = null
-    ) {
-        $curlSession = $this->prepareSession($resourcePath, $queryParameters, $mimeType);
-        curl_setopt($curlSession, CURLOPT_CUSTOMREQUEST, 'DELETE');
-
-        return $this->performRequest($curlSession, $deserializationType);
-    }
-
-    /**
      * @param $resourcePath
      * @param $queryParameters
      * @param $mimeType
@@ -422,30 +332,6 @@ abstract class AbstractMaileonService
         }
     }
 
-    protected function appendArrayFields(
-        $params,
-        $name,
-        $fieldValues
-    ) {
-        if (is_array($fieldValues) && ! empty($fieldValues)) {
-            $params [(string) $name] = [];
-
-            foreach ($fieldValues as $value) {
-                if ($value === true) {
-                    $params [(string) $name] [] = 'true';
-                } elseif ($value === false) {
-                    $params [(string) $name] [] = 'false';
-                } elseif ($value instanceof PreferenceCategory) {
-                    $params[$name] = urlencode((string) $value->name);
-                } else {
-                    $params [(string) $name] [] = urlencode($value);
-                }
-            }
-        }
-
-        return $params;
-    }
-
     private function printDebugInformation(
         $curlSession,
         $result = null,
@@ -505,5 +391,119 @@ abstract class AbstractMaileonService
 
             $this->verboseOut = null;
         }
+    }
+
+    /**
+     * Performs a PUT operation (i.e. an update) on a resource.
+     *
+     * @param string $resourcePath        the path of the resource to PUT
+     * @param string $payload             the payload data to PUT, i.e. the data to update the current state of the resource with
+     * @param array  $queryParameters     any additional query parameters
+     * @param string $mimeType            the acceptable response MIME type
+     * @param mixed  $deserializationType The name of the class this result should be deserialized as. Use array( 'array', 'typename' )
+     *                                    to deserialize arrays of a type.
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function put(
+        $resourcePath,
+        $payload = '',
+        $queryParameters = [],
+        $mimeType = 'application/vnd.maileon.api+xml',
+        $deserializationType = null
+    ) {
+        $curlSession = $this->prepareSession($resourcePath, $queryParameters, $mimeType);
+
+        /*
+         * PUT does not work as expected when passing post data, see
+         * http://developers.sugarcrm.com/wordpress/2011/11/22/howto-do-put-requests-with-php-curl-without-writing-to-a-file/
+         * Because of this, we use a custom request here.
+         */
+        curl_setopt($curlSession, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($curlSession, CURLOPT_POSTFIELDS, $payload);
+
+        return $this->performRequest($curlSession, $deserializationType);
+    }
+
+    /**
+     * Performs a POST operation (i.e. creates a new instance) on a resource.
+     *
+     * @param string $resourcePath        the path of the resource to POST. This is typically the parent (or owner) resource of the resource
+     *                                    instance to create.
+     * @param string $payload             the data to POST, i.e. the contents of the new resource instance
+     * @param array  $queryParameters     any additional query parameters
+     * @param string $mimeType            the acceptable response MIME type
+     * @param mixed  $deserializationType The name of the class this result should be deserialized as. Use array( 'array', 'typename' ) to
+     *                                    deserialize arrays of a type.
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function post(
+        $resourcePath,
+        $payload = '',
+        $queryParameters = [],
+        $mimeType = 'application/vnd.maileon.api+xml',
+        $deserializationType = null,
+        $contentType = null,
+        $contentLength = null
+    ) {
+        $curlSession = $this->prepareSession($resourcePath, $queryParameters, $mimeType, $contentType, $contentLength);
+        curl_setopt($curlSession, CURLOPT_POST, true);
+        curl_setopt($curlSession, CURLOPT_POSTFIELDS, $payload);
+
+        return $this->performRequest($curlSession, $deserializationType);
+    }
+
+    /**
+     * Performs a DELETE operation on a resource.
+     *
+     * @param string $resourcePath        the resource to DELETE
+     * @param array  $queryParameters     any additional query parameters
+     * @param string $mimeType            the acceptable response MIME type
+     * @param mixed  $deserializationType The name of the class this result should be deserialized as. Use array( 'array', 'typename' ) to
+     *                                    deserialize arrays of a type.
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function delete(
+        $resourcePath,
+        $queryParameters = [],
+        $mimeType = 'application/vnd.maileon.api+xml',
+        $deserializationType = null
+    ) {
+        $curlSession = $this->prepareSession($resourcePath, $queryParameters, $mimeType);
+        curl_setopt($curlSession, CURLOPT_CUSTOMREQUEST, 'DELETE');
+
+        return $this->performRequest($curlSession, $deserializationType);
+    }
+
+    protected function appendArrayFields(
+        $params,
+        $name,
+        $fieldValues
+    ) {
+        if (is_array($fieldValues) && ! empty($fieldValues)) {
+            $params [(string) $name] = [];
+
+            foreach ($fieldValues as $value) {
+                if ($value === true) {
+                    $params [(string) $name] [] = 'true';
+                } elseif ($value === false) {
+                    $params [(string) $name] [] = 'false';
+                } elseif ($value instanceof PreferenceCategory) {
+                    $params[$name] = urlencode((string) $value->name);
+                } else {
+                    $params [(string) $name] [] = urlencode($value);
+                }
+            }
+        }
+
+        return $params;
     }
 }

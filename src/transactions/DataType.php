@@ -31,6 +31,18 @@ class DataType
      */
     public $value;
 
+    /**
+     * Creates a new DataType object.
+     *
+     * a string describing the data type. Valid values are "string", "double", "float", "integer", "boolean", "timestamp" and "json".
+     *
+     * @param string $value
+     */
+    public function __construct($value)
+    {
+        $this->value = $value;
+    }
+
     public static function init()
     {
         if (self::$initialized === false) {
@@ -44,26 +56,6 @@ class DataType
             self::$JSON        = new DataType('json');
             self::$initialized = true;
         }
-    }
-
-    /**
-     * Creates a new DataType object.
-     *
-     * a string describing the data type. Valid values are "string", "double", "float", "integer", "boolean", "timestamp" and "json".
-     *
-     * @param string $value
-     */
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
-
-    /**
-     * @return string The type descriptor string of this DataType. Can be "string", "double", "float", "integer", "boolean", "timestamp" or "json".
-     */
-    public function getValue(): string
-    {
-        return $this->value;
     }
 
     /**
@@ -95,6 +87,14 @@ class DataType
             default:
                 return null;
         }
+    }
+
+    /**
+     * @return string The type descriptor string of this DataType. Can be "string", "double", "float", "integer", "boolean", "timestamp" or "json".
+     */
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }
 

@@ -25,16 +25,6 @@ class DispatchLogicTarget
      */
     public $value;
 
-    public static function init()
-    {
-        if (self::$initialized === false) {
-            self::$EVENT         = new DispatchLogicTarget('event');
-            self::$CONTACTFILTER = new DispatchLogicTarget('contactfilter');
-            self::$RSS           = new DispatchLogicTarget('rss');
-            self::$initialized   = true;
-        }
-    }
-
     /**
      * Creates a new DispatchLogicTarget object.
      *
@@ -45,12 +35,14 @@ class DispatchLogicTarget
         $this->value = $value;
     }
 
-    /**
-     * @return string the type descriptor string of this DispatchLogicTarget. Can be "event", "contactfilter" or "rss".
-     */
-    public function getValue(): string
+    public static function init()
     {
-        return $this->value;
+        if (self::$initialized === false) {
+            self::$EVENT         = new DispatchLogicTarget('event');
+            self::$CONTACTFILTER = new DispatchLogicTarget('contactfilter');
+            self::$RSS           = new DispatchLogicTarget('rss');
+            self::$initialized   = true;
+        }
     }
 
     /**
@@ -73,6 +65,14 @@ class DispatchLogicTarget
             default:
                 return null;
         }
+    }
+
+    /**
+     * @return string the type descriptor string of this DispatchLogicTarget. Can be "event", "contactfilter" or "rss".
+     */
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }
 

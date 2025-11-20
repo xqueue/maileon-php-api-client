@@ -26,17 +26,6 @@ class DispatchLogicInterval
      */
     public $value;
 
-    public static function init()
-    {
-        if (self::$initialized === false) {
-            self::$HOUR        = new DispatchLogicInterval('hour');
-            self::$DAY         = new DispatchLogicInterval('day');
-            self::$WEEK        = new DispatchLogicInterval('week');
-            self::$MONTH       = new DispatchLogicInterval('month');
-            self::$initialized = true;
-        }
-    }
-
     /**
      * Creates a new DispatchLogicInterval object.
      *
@@ -47,12 +36,15 @@ class DispatchLogicInterval
         $this->value = $value;
     }
 
-    /**
-     * @return string the type descriptor string of this DispatchLogicInterval. Can be "hour", "day", "week" or "month".
-     */
-    public function getValue(): string
+    public static function init()
     {
-        return $this->value;
+        if (self::$initialized === false) {
+            self::$HOUR        = new DispatchLogicInterval('hour');
+            self::$DAY         = new DispatchLogicInterval('day');
+            self::$WEEK        = new DispatchLogicInterval('week');
+            self::$MONTH       = new DispatchLogicInterval('month');
+            self::$initialized = true;
+        }
     }
 
     /**
@@ -76,6 +68,14 @@ class DispatchLogicInterval
             default:
                 return null;
         }
+    }
+
+    /**
+     * @return string the type descriptor string of this DispatchLogicInterval. Can be "hour", "day", "week" or "month".
+     */
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }
 

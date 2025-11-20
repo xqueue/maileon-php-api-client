@@ -16,13 +16,6 @@ use function simplexml_load_string;
 abstract class AbstractXMLWrapper
 {
     /**
-     * Initialization from a simple xml element.
-     *
-     * @param SimpleXMLElement $xmlElement the SimpleXMLElement to initialize the object from
-     */
-    abstract public function fromXML($xmlElement);
-
-    /**
      * Initialization from a xml serialized string.
      *
      * @param string $xmlString the raw XML to initialize the object from
@@ -35,13 +28,11 @@ abstract class AbstractXMLWrapper
     }
 
     /**
-     * Serialization to a simple XML element.
+     * Initialization from a simple xml element.
      *
-     * @return SimpleXMLElement contains the serialized representation of the object
-     *
-     * @throws Exception
+     * @param SimpleXMLElement $xmlElement the SimpleXMLElement to initialize the object from
      */
-    abstract public function toXML();
+    abstract public function fromXML($xmlElement);
 
     /**
      * Serialization to an XML string.
@@ -54,6 +45,15 @@ abstract class AbstractXMLWrapper
     {
         return $this->toXML()->asXML();
     }
+
+    /**
+     * Serialization to a simple XML element.
+     *
+     * @return SimpleXMLElement contains the serialized representation of the object
+     *
+     * @throws Exception
+     */
+    abstract public function toXML();
 
     /**
      * Human-readable representation of the object

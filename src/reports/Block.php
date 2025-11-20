@@ -15,7 +15,7 @@ use SimpleXMLElement;
 class Block extends AbstractXMLWrapper
 {
     /**
-     * @var int
+     * @var string
      */
     public $timestamp;
 
@@ -109,11 +109,11 @@ class Block extends AbstractXMLWrapper
             $xml->addChild('timestamp', $this->timestamp);
         }
 
-        if (isset($this->old_status)) {
+        if (isset($this->oldStatus)) {
             $xml->addChild('old_status', $this->oldStatus);
         }
 
-        if (isset($this->new_status)) {
+        if (isset($this->newStatus)) {
             $xml->addChild('new_status', $this->newStatus);
         }
 

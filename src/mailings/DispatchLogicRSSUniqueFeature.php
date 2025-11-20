@@ -26,17 +26,6 @@ class DispatchLogicRSSUniqueFeature
      */
     public $value;
 
-    public static function init()
-    {
-        if (self::$initialized === false) {
-            self::$DEFAULT     = new DispatchLogicRSSUniqueFeature('default');
-            self::$PUBDATE     = new DispatchLogicRSSUniqueFeature('pubdate');
-            self::$TITLE       = new DispatchLogicRSSUniqueFeature('title');
-            self::$LINK        = new DispatchLogicRSSUniqueFeature('link');
-            self::$initialized = true;
-        }
-    }
-
     /**
      * Creates a new DispatchLogicRSSUniqueFeature object.
      *
@@ -47,12 +36,15 @@ class DispatchLogicRSSUniqueFeature
         $this->value = $value;
     }
 
-    /**
-     * @return string the type descriptor string of this DispatchLogicRSSUniqueFeature. Can be "default", "pubdate", "title" or "link".
-     */
-    public function getValue(): string
+    public static function init()
     {
-        return $this->value;
+        if (self::$initialized === false) {
+            self::$DEFAULT     = new DispatchLogicRSSUniqueFeature('default');
+            self::$PUBDATE     = new DispatchLogicRSSUniqueFeature('pubdate');
+            self::$TITLE       = new DispatchLogicRSSUniqueFeature('title');
+            self::$LINK        = new DispatchLogicRSSUniqueFeature('link');
+            self::$initialized = true;
+        }
     }
 
     /**
@@ -76,6 +68,14 @@ class DispatchLogicRSSUniqueFeature
             default:
                 return null;
         }
+    }
+
+    /**
+     * @return string the type descriptor string of this DispatchLogicRSSUniqueFeature. Can be "default", "pubdate", "title" or "link".
+     */
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }
 
