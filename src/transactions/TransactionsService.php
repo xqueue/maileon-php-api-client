@@ -352,7 +352,7 @@ class TransactionsService extends AbstractMaileonService
         $encodedTransactionId = rawurlencode(mb_convert_encoding((string) $transaction_id, 'UTF-8'));
 
         return $this->delete(
-            "transactions/$encodedTypeId/transaction_id/$encodedTransactionId"
+            "transactions/$encodedTypeId/transaction_id/$encodedTransactionId",
             [],
             'application/json'
         );
