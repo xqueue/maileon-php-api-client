@@ -3,6 +3,7 @@
 namespace de\xqueue\maileon\api\client\contacts;
 
 use ArrayIterator;
+use Traversable;
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
 use IteratorAggregate;
 use SimpleXMLElement;
@@ -39,9 +40,9 @@ class Contacts extends AbstractXMLWrapper implements IteratorAggregate
     }
 
     /**
-     * @return ArrayIterator an iterator for the contacts in this list of contacts
+     * @return Traversable an iterator for the contacts in this list of contacts
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->contacts);
     }
