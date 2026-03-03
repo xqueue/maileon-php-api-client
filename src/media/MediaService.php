@@ -19,7 +19,7 @@ class MediaService extends AbstractMaileonService
      *
      * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
      *
-     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred The result of the operation
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
      */
     public function getMailingTemplates()
     {
@@ -28,6 +28,63 @@ class MediaService extends AbstractMaileonService
             null,
             'application/vnd.maileon.api+json',
             'array'
+        );
+    }
+
+    /**
+     * Retrieves a list of articles from an account
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function getArticles()
+    {
+        return $this->get(
+            'media/articles',
+            [],
+            'application/json',
+            array('array', Article::class)
+        );
+    }
+
+    /**
+     * Retrieves the article with the given ID.
+     *
+     * @param string $articleId The ID of the article.
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function getArticle(string $articleId)
+    {
+        $encodedId = rawurlencode($articleId);
+
+        return $this->get(
+            "media/articles/$encodedId",
+            [],
+            'application/json',
+            Article::class
+        );
+    }
+
+    /**
+     * Retrieves the article with the given ID.
+     *
+     * @param string $articleId The ID of the article.
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function getArticleAsZip(string $articleId) {
+        $encodedId = rawurlencode($articleId);
+
+        return $this->get(
+            "media/articles/$encodedId/content",
+            [],
+            'application/zip'
         );
     }
 }

@@ -11,20 +11,25 @@ use RuntimeException;
  */
 class MaileonAPIException extends RuntimeException
 {
+    /** @var false|string */
     private $response;
 
+    /**
+     * @param Exception|null $previous
+     */
     public function __construct(
         $message = '',
         $response = false,
         $code = 0,
-        Exception $previous = null
+        $previous = null
     ) {
         parent::__construct($message, $code, $previous);
         $this->response = $response;
     }
 
     /**
-     * @return false|string The HTTP response body if there was one, false otherwise. If a CURL error occurred, this returns the ID of the CURL exception, see e.g. https://curl.se/libcurl/c/libcurl-errors.html
+     * @return false|string The HTTP response body if there was one, false otherwise. If a CURL error occurred,
+     * this returns the ID of the CURL exception, see e.g. https://curl.se/libcurl/c/libcurl-errors.html
      */
     public function getResponse()
     {
