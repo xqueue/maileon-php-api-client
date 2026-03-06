@@ -6,6 +6,7 @@ use ArrayIterator;
 use de\xqueue\maileon\api\client\xml\AbstractXMLWrapper;
 use IteratorAggregate;
 use SimpleXMLElement;
+use Traversable;
 
 use function count;
 use function dom_import_simplexml;
@@ -41,7 +42,7 @@ class Contacts extends AbstractXMLWrapper implements IteratorAggregate
     /**
      * @return ArrayIterator an iterator for the contacts in this list of contacts
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->contacts);
     }
