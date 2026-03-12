@@ -1979,4 +1979,24 @@ class ReportsService extends AbstractMaileonService
             $params
         );
     }
+
+    /**
+     * Return a summary for the given mailings, including most common KPIs.
+     *
+     * @param array $mailingIds Multivalued parameter. Each value must correspond to a mailing id.
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function getMailingSummaries(array $mailingIds) {
+        $queryParameters = [
+            'mailing_id' => $mailingIds
+        ];
+
+        return $this->get(
+            'reports/mailing_summaries',
+            $queryParameters
+        );
+    }
 }
