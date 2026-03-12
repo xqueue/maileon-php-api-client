@@ -29,6 +29,7 @@ use de\xqueue\maileon\api\client\reports\UniqueBounce;
 use de\xqueue\maileon\api\client\reports\UniqueConversion;
 use de\xqueue\maileon\api\client\reports\Unsubscriber;
 use de\xqueue\maileon\api\client\reports\UnsubscriptionReason;
+use de\xqueue\maileon\api\client\reports\MailingSummary;
 use de\xqueue\maileon\api\client\targetgroups\TargetGroup;
 use de\xqueue\maileon\api\client\transactions\TransactionType;
 
@@ -124,6 +125,7 @@ class XMLDeserializer
                 case 'attachments':
                 case 'unique_conversions':
                 case 'conversions':
+                case 'mailing_summaries':
                 case 'preference_categories':
                 case 'preferences':
                 case 'contactfilters':
@@ -221,6 +223,10 @@ class XMLDeserializer
                     break;
                 case 'block':
                     $result = new Block();
+
+                    break;
+                case 'mailing_summary':
+                    $result = new MailingSummary();
 
                     break;
                 case 'mailing':
