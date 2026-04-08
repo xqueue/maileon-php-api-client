@@ -1,3 +1,7 @@
+Date 2026-04-08
+Version 1.23.1
+- Fixed bounces endpoint parameters
+
 Date 2026-03-12
 Version 1.23.0
 - Added getMailingSummaries() endpoint to retrieve KPI metrics (opens, clicks, bounces, etc.) for one or more mailings.
