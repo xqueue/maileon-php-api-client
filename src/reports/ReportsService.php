@@ -981,13 +981,12 @@ class ReportsService extends AbstractMaileonService
      *                                        deletion/unsubscription) are returned.
      * @param array  $standardFields          The list of standard contact fields to return.
      * @param array  $customFields            The list of custom contact fields to return.
-     * @param bool   $embedFieldBackups       Supported values: true / false. Field Backups are the values of contact fields that have been
-     *                                        backed up for mailings because of a backup instruction. For each unsubscription, the
-     *                                        corresponding field backups will be returned if available. Note that this only applies for non
-     *                                        anonymizable field backups.
+     * @param bool   $embedFieldBackups       @deprecated This parameter is deprecated and will be removed in a future version.
      * @param int    $pageIndex               The index of the result page. The index must be greater or equal to 1.
      * @param int    $pageSize                The maximum count of items in the result page. If provided, the value of page_size must be in
      *                                        the range 1 to 1000.
+     * @param bool   $embedTransactionId      If this parameter set to true, the attribute "transaction_id" of a transaction will be
+     *                                        returned that caused this bounce, if available.
      *
      * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
      *
@@ -1008,7 +1007,8 @@ class ReportsService extends AbstractMaileonService
         $customFields = null,
         $embedFieldBackups = false,
         $pageIndex = 1,
-        $pageSize = 100
+        $pageSize = 100,
+        $embedTransactionId = false
     ) {
         $params = $this->createQueryParameters(
             $pageIndex,
@@ -1022,6 +1022,8 @@ class ReportsService extends AbstractMaileonService
             null,
             $embedFieldBackups
         );
+
+        $params = $this->appendArrayFields($params, 'status_code', $statusCodeFilter);
         $params = $this->appendArrayFields($params, 'standard_field', $standardFields);
         $params = $this->appendArrayFields($params, 'custom_field', $customFields);
 
@@ -1031,6 +1033,10 @@ class ReportsService extends AbstractMaileonService
 
         if (isset($typeFilter)) {
             $params['type'] = $typeFilter;
+        }
+
+        if (isset($embedTransactionId)) {
+            $params['embed_transaction_id'] = $embedTransactionId === true ? 'true' : 'false';
         }
 
         if (isset($sourceFilter)) {
@@ -1045,6 +1051,9 @@ class ReportsService extends AbstractMaileonService
 
     /**
      * Returns a page of unique bouncers.
+     *
+     * @deprecated This resource has been marked as deprecated and should not be used anymore.
+     *             Please refer to "getBounces" to retrieve bounces.
      *
      * @param int   $fromDate                If provided, only the bouncers after the given date will be returned. The value of from_date
      *                                       must be a numeric value representing a point in time milliseconds after
@@ -1164,6 +1173,8 @@ class ReportsService extends AbstractMaileonService
             null
         );
 
+        $params = $this->appendArrayFields($params, 'status_code', $statusCodeFilter);
+
         if (isset($excludeAnonymousBounces)) {
             $params['exclude_anonymous_bounces'] = $excludeAnonymousBounces === true ? 'true' : 'false';
         }
@@ -1184,6 +1195,9 @@ class ReportsService extends AbstractMaileonService
 
     /**
      * Count unique bouncers.
+     *
+     * @deprecated This resource has been marked as deprecated and should not be used anymore.
+     *             Please refer to "getBouncesCount" to retrieve bounces count.
      *
      * @param int   $fromDate                If provided, only the bouncers after the given date will be returned. The value of from_date
      *                                       must be a numeric value representing a point in time milliseconds after
