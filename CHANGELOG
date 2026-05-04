@@ -1,3 +1,7 @@
+Date 2026-05-04
+Version 1.23.2
+- Added getCms2MailingTemplates method
+
 Date 2026-04-08
 Version 1.23.1
 - Fixed bounces endpoint parameters
