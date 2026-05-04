@@ -32,6 +32,22 @@ class MediaService extends AbstractMaileonService
     }
 
     /**
+     * Retrieves a list of CMS2 mailing templates from an account
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function getCms2MailingTemplates()
+    {
+        return $this->get(
+            'media/templates/mailings/cms2',
+            null,
+            'application/json',
+            'array'
+        );
+    }
+
+    /**
      * Retrieves a list of articles from an account
      *
      * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
