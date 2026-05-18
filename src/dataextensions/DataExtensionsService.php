@@ -80,11 +80,63 @@ class DataExtensionsService extends AbstractMaileonService
      */
     public function getDataExtension(int $extensionId): ?MaileonAPIResult
     {
-        return $this->get(
+        return $this->get("dataextensions/$extensionId", [], 'application/json');
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // Write records (upsert / synchronize)
+    // ──────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Import records into a data extension.
+     *
+     * Sends POST /dataextensions/{id}?importOption={option}.
+     *
+     * The API requires a DataRecords envelope with two keys:
+     *   field_names  — ordered list of field name strings
+     *   records_list — list of {"values": [...]} objects, one per row,
+     *                  values ordered to match field_names
+     *
+     * Valid importOption values: INSERT, UPDATE, UPSERT,
+     *   INSERT_IGNORE_DUPLICATES, DELETE.
+     *
+     * @param int                              $extensionId  Numeric Maileon data extension ID.
+     * @param array<int, array<string, mixed>> $records      Rows to import; each is a
+     *                                                        field-name => value map.
+     * @param string                           $importOption One of the valid import modes.
+     *
+     * @return MaileonAPIResult|null 201 on success; inspect getStatusCode() on failure.
+     *
+     * @throws MaileonAPIException|Exception On connection or server error.
+     */
+    public function synchronizeRecords(int $extensionId, array $records, string $importOption = 'UPSERT'): ?MaileonAPIResult
+    {
+        if (empty($records)) {
+            return null;
+        }
+
+        $fieldNames  = array_keys(reset($records));
+        $recordsList = array_map(
+            fn(array $row) => ['values' => array_map(
+                fn(string $name) => isset($row[$name]) ? (string) $row[$name] : '',
+                $fieldNames
+            )],
+            $records
+        );
+
+        $payload = json_encode(
+            ['field_names' => $fieldNames, 'records_list' => $recordsList],
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+        );
+
+        return $this->post(
             "dataextensions/$extensionId",
-            [],
-            'application/vnd.maileon.api+json',
-            DataExtension::class
+            $payload,
+            ['importOption' => $importOption],
+            'application/json',
+            null,
+            'application/json',
+            strlen($payload)
         );
     }
 
