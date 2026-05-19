@@ -1,3 +1,16 @@
+Date 2026-05-19
+Version 1.24.2
+- Added usage examples, updated documentation
+
+Date 2026-05-18
+Version 1.24.1
+- Added data extension method to add data
+- Fixed content-type issue
+
+Date 2026-05-17
+Version 1.24.0
+- Added data extension methods
+
 Date 2026-05-04
 Version 1.23.2
 - Added getCms2MailingTemplates method
