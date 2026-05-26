@@ -13,8 +13,15 @@ For runnable examples and integration tests see the [maileon-php-api-client-exam
 ## Table of contents
  * [Requirements](#requirements)
  * [Installation](#installation)
+ * [Configuration](#configuration)
  * [Usage](#usage)
+ * [Response handling](#response-handling)
  * [Examples](#examples)
+   * [Contact examples](#contact-examples)
+   * [Report example](#report-example)
+   * [Mailing example](#mailing-example)
+   * [Data Extensions examples](#data-extensions-examples)
+   * [Transaction example](#transaction-example)
 
 ## Requirements
 
@@ -36,6 +43,28 @@ You can add this library to your project using [Composer](https://getcomposer.or
 
 ```
 composer require xqueue/maileon-api-client
+```
+
+## Configuration
+
+All services accept a configuration array as their constructor argument. The following keys are supported:
+
+| Key | Required | Default | Description |
+|---|---|---|---|
+| `API_KEY` | yes | — | Your Maileon REST API key |
+| `BASE_URI` | no | `https://api.maileon.com/1.0` | Override the API base URL (e.g. for staging) |
+| `DEBUG` | no | `false` | Print cURL session logs and response details. **Do not enable in production** — output may contain sensitive data |
+| `THROW_EXCEPTION` | no | `true` | Throw a `MaileonAPIException` on connection errors or 5xx responses. When `false`, those calls return `null` instead |
+| `TIMEOUT` | no | `5` | cURL connect and total timeout in seconds |
+| `PROXY_HOST` | no | — | Proxy hostname or IP |
+| `PROXY_PORT` | no | `80` | Proxy port |
+
+```php
+$service = new ContactsService([
+    'API_KEY'         => 'Your API key',
+    'TIMEOUT'         => 10,
+    'THROW_EXCEPTION' => false,
+]);
 ```
 
 ## Usage
@@ -79,6 +108,44 @@ Manage automatic data distributions to notify external systems of specific event
 
 * **Data Extensions**
 Create, update, and delete data extensions (custom tables). Import, query, and bulk-delete records using all five import modes: INSERT, UPDATE, UPSERT, INSERT_IGNORE_DUPLICATES, DELETE.
+
+* **Mailing Blacklists**
+Create and manage named blacklists that suppress specific addresses from mailings. Add or retrieve blacklist expressions (patterns) per list.
+
+* **Ping**
+Verify connectivity and API key validity by sending test GET, PUT, POST, or DELETE requests to the API.
+
+
+## Response handling
+
+Every service method returns a `MaileonAPIResult` object. Use the following methods to inspect it:
+
+| Method | Return type | Description |
+|---|---|---|
+| `isSuccess()` | `bool` | `true` if the HTTP status code is 2xx |
+| `isClientError()` | `bool` | `true` if the HTTP status code is 4xx |
+| `getStatusCode()` | `int` | The raw HTTP status code |
+| `getResult()` | `mixed` | The deserialized response payload (typed object, array, or raw string depending on endpoint) |
+| `getResultXML()` | `SimpleXMLElement\|null` | The response body parsed as XML, or `null` if the response was not XML |
+| `getBodyData()` | `string\|null` | The raw response body string |
+| `getResponseHeader(string $header)` | `string\|null` | A single response header value by name (case-insensitive) |
+| `getResponseHeaders()` | `array` | All response headers as an associative array |
+
+The `x-pages` response header is used by paginated endpoints to indicate the total number of available pages.
+
+When `THROW_EXCEPTION` is `true` (default), connection errors and 5xx responses throw a `MaileonAPIException`. When it is `false`, those calls return `null` — check for `null` before calling any method on the result.
+
+```php
+$response = $service->someMethod();
+
+if ($response === null || !$response->isSuccess()) {
+    // handle error — getResultXML()->message often contains the API error description
+    $message = $response?->getResultXML()?->message ?? 'Unknown error';
+    throw new RuntimeException((string) $message);
+}
+
+$data = $response->getResult();
+```
 
 
 ## Examples
