@@ -8,6 +8,8 @@ Provides an API client to connect to XQueue Maileon's REST API and (de-)serializ
 
 Maileon's REST API documentation can be found [here](https://maileon.com/support/rest-api-1-0/).
 
+For runnable examples and integration tests see the [maileon-php-api-client-examples](https://github.com/xqueue/maileon-php-api-client-examples) repository.
+
 ## Table of contents
  * [Requirements](#requirements)
  * [Installation](#installation)
@@ -16,7 +18,7 @@ Maileon's REST API documentation can be found [here](https://maileon.com/support
 
 ## Requirements
 
-The API client requires `PHP >= 7.0` with `libxml` and `libcurl`.
+The API client requires `PHP >= 7.4` with `libxml` and `libcurl`.
 
 Additionally, all requests use an SSL encrypted API endpoint.
 To enable SSL support in CURL, please follow these steps:
@@ -74,6 +76,9 @@ Manage mailing templates.
 
 * **Webhooks**
 Manage automatic data distributions to notify external systems of specific events.
+
+* **Data Extensions**
+Create, update, and delete data extensions (custom tables). Import, query, and bulk-delete records using all five import modes: INSERT, UPDATE, UPSERT, INSERT_IGNORE_DUPLICATES, DELETE.
 
 
 ## Examples
@@ -323,6 +328,99 @@ $mailingsService->setHTMLContent(
 );
 $mailingsService->setTargetGroupId($mailingId, 123);
 $mailingsService->sendMailingNow($mailingId);
+```
+
+### Data Extensions examples
+
+* Create a new data extension with two fields:
+```php
+<?php
+
+use de\xqueue\maileon\api\client\dataextensions\DataExtension;
+use de\xqueue\maileon\api\client\dataextensions\DataExtensionField;
+use de\xqueue\maileon\api\client\dataextensions\DataExtensionsService;
+use de\xqueue\maileon\api\client\dataextensions\FieldDataType;
+use de\xqueue\maileon\api\client\dataextensions\RetentionPolicy;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$service = new DataExtensionsService(['API_KEY' => 'Your API key']);
+
+$emailField                    = new DataExtensionField();
+$emailField->name              = 'email';
+$emailField->data_type         = FieldDataType::STRING;
+$emailField->nullable          = false;
+$emailField->unique_identifier = true;
+
+$valueField            = new DataExtensionField();
+$valueField->name      = 'score';
+$valueField->data_type = FieldDataType::INTEGER;
+$valueField->nullable  = true;
+
+$extension                   = new DataExtension();
+$extension->name             = 'My custom table';
+$extension->retention_policy = RetentionPolicy::NONE;
+$extension->fields           = [$emailField, $valueField];
+
+$response    = $service->createDataExtension($extension);
+$extensionId = $response->getResult(); // numeric ID of the new extension
+```
+
+* Import records using UPSERT (insert new rows, update existing ones by unique key):
+```php
+<?php
+
+use de\xqueue\maileon\api\client\dataextensions\DataExtensionsService;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$service     = new DataExtensionsService(['API_KEY' => 'Your API key']);
+$extensionId = 123;
+
+$records = [
+    ['email' => 'alice@example.com', 'score' => '42'],
+    ['email' => 'bob@example.com',   'score' => '17'],
+];
+
+$service->synchronizeRecords($extensionId, $records, 'UPSERT');
+// Other import options: INSERT, UPDATE, INSERT_IGNORE_DUPLICATES, DELETE
+```
+
+* Read all records page by page:
+```php
+<?php
+
+use de\xqueue\maileon\api\client\dataextensions\DataExtensionsService;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$service     = new DataExtensionsService(['API_KEY' => 'Your API key']);
+$extensionId = 123;
+$pageIndex   = 1;
+$pageSize    = 100;
+
+do {
+    $response = $service->getDataExtensionRecords($extensionId, $pageIndex, $pageSize);
+    foreach ($response->getResult() as $record) {
+        // $record->values is a field-name => value map
+        echo $record->values['email'] . PHP_EOL;
+    }
+    $pageIndex++;
+} while ((int)$response->getResponseHeader('x-pages') >= $pageIndex);
+```
+
+* Delete all records from a data extension:
+```php
+<?php
+
+use de\xqueue\maileon\api\client\dataextensions\DataExtensionsService;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$service     = new DataExtensionsService(['API_KEY' => 'Your API key']);
+$extensionId = 123;
+
+$service->deleteAllRecords($extensionId);
 ```
 
 ### Transaction example

@@ -1,3 +1,17 @@
+Date 2026-05-26
+Version 1.25.1
+- Fixed synchronizeRecords to accept DataExtensionRecord[] instead of raw arrays
+- Fixed getDataExtension deserialization target
+- Added validate() on DataExtension and DataExtensionField
+- Added RetentionPolicy, FieldDataType, DeleteIntervalUnit enums
+- Added DataExtensionRecord::__toString
+
+Date 2026-05-19
+Version 1.25.0
+- Added DataExtensionsService: createDataExtension, updateDataExtension, deleteDataExtension, deleteAllRecords, getDataTypes
+- Added example scripts and integration tests for all new data extension operations
+- Updated README with Data Extensions section and cross-references
+
 Date 2026-05-19
 Version 1.24.2
 - Added usage examples, updated documentation

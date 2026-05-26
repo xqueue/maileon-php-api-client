@@ -109,4 +109,19 @@ class DataExtensionRecord extends AbstractJSONWrapper
     {
         return array_key_exists($fieldName, $this->values);
     }
+
+    /**
+     * Override to render field names alongside their values.
+     * Base class implode(',', $values) drops associative keys.
+     *
+     * @return string e.g. DataExtensionRecord [ email=alice@example.com, score=10 ]
+     */
+    public function __toString(): string
+    {
+        $pairs = [];
+        foreach ($this->values as $key => $value) {
+            $pairs[] = $key . '=' . ($value ?? 'null');
+        }
+        return self::class . ' [ ' . implode(', ', $pairs) . ' ]';
+    }
 }

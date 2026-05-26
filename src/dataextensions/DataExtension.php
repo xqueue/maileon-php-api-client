@@ -20,13 +20,13 @@ use de\xqueue\maileon\api\client\json\AbstractJSONWrapper;
  * {
  *   "name": "Newsletter subscribers",
  *   "description": "Active opt-in contacts",
- *   "retention_policy": "FOREVER",
+ *   "retention_policy": "RECORDS_DURATION",
  *   "delete_date": null,
- *   "delete_interval": null,
- *   "delete_interval_unit": null,
+ *   "delete_interval": 7,
+ *   "delete_interval_unit": "DAYS",
  *   "fields": [
- *     { "id": 7, "name": "email", "data_type": "STRING", "unique_identifier": true, ... },
- *     { "id": 8, "name": "first_name", "data_type": "STRING", "nullable": true, ... }
+ *     { "id": 7, "name": "email", "data_type": "contact_email", "unique_identifier": true, ... },
+ *     { "id": 8, "name": "first_name", "data_type": "string", "nullable": true, ... }
  *   ]
  * }
  *
@@ -36,6 +36,9 @@ class DataExtension extends AbstractJSONWrapper
 {
     /**
      * Human-readable name of the data extension.
+     *
+     * Must match the Maileon identifier pattern: [a-zA-Z][a-zA-Z0-9_]{0,38}[a-zA-Z0-9]
+     * (letters/digits/underscores only, starts with a letter, 2–40 chars, no hyphens).
      *
      * @var string|null
      */
@@ -49,31 +52,34 @@ class DataExtension extends AbstractJSONWrapper
     public ?string $description = null;
 
     /**
-     * Retention policy constant (e.g. "FOREVER", "DAYS_90").
+     * Retention policy. See RetentionPolicy for all valid values.
+     * Use RetentionPolicy::NONE for permanent storage (no automatic deletion).
      *
      * @var string|null
      */
     public ?string $retention_policy = null;
 
     /**
-     * Absolute date on which all records will be deleted (ISO 8601).
-     * NULL when the extension uses an interval-based policy or FOREVER.
+     * Absolute date on which the extension (and its records) will be deleted (ISO 8601).
+     * Required when retention_policy is EXTENSION_DATE; null otherwise.
      *
      * @var string|null
      */
     public ?string $delete_date = null;
 
     /**
-     * Number of units after which records are deleted (e.g. 90 for 90 days).
-     * NULL when using an absolute delete_date or FOREVER policy.
+     * Number of units after which data is deleted.
+     * Required (not null) when retention_policy is EXTENSION_DURATION,
+     * EXTENSION_DURATION_RENEW_ON_MODIFICATION, or RECORDS_DURATION.
+     * Valid range: 1–60.
      *
      * @var int|null
      */
     public ?int $delete_interval = null;
 
     /**
-     * Unit of the delete interval (e.g. "DAYS", "MONTHS").
-     * NULL when delete_interval is not set.
+     * Unit of the delete interval. See DeleteIntervalUnit for valid values (DAYS, WEEKS, MONTHS).
+     * Required when delete_interval is set; null otherwise.
      *
      * @var string|null
      */
@@ -172,5 +178,72 @@ class DataExtension extends AbstractJSONWrapper
         }
 
         return null;
+    }
+
+    /**
+     * Validate all mandatory fields before sending to the API.
+     *
+     * Required by both createDataExtension and updateDataExtension:
+     *   - name
+     *   - retention_policy (must be a valid RetentionPolicy constant)
+     *   - delete_date       when retention_policy = EXTENSION_DATE
+     *   - delete_interval + delete_interval_unit
+     *                       when retention_policy is duration-based
+     *
+     * Also validates every nested DataExtensionField.
+     *
+     * @throws \InvalidArgumentException on the first missing or invalid value.
+     */
+    public function validate(): void
+    {
+        if (empty($this->name)) {
+            throw new \InvalidArgumentException('DataExtension: name is required.');
+        }
+
+        if (empty($this->retention_policy)) {
+            throw new \InvalidArgumentException("DataExtension '{$this->name}': retention_policy is required.");
+        }
+
+        if (!RetentionPolicy::isValid($this->retention_policy)) {
+            throw new \InvalidArgumentException(
+                "DataExtension '{$this->name}': unknown retention_policy '{$this->retention_policy}'."
+            );
+        }
+
+        if ($this->retention_policy === RetentionPolicy::EXTENSION_DATE) {
+            if (empty($this->delete_date)) {
+                throw new \InvalidArgumentException(
+                    "DataExtension '{$this->name}': delete_date is required for retention_policy EXTENSION_DATE."
+                );
+            }
+        }
+
+        $durationPolicies = [
+            RetentionPolicy::EXTENSION_DURATION,
+            RetentionPolicy::EXTENSION_DURATION_RENEW_ON_MODIFICATION,
+            RetentionPolicy::RECORDS_DURATION,
+        ];
+
+        if (in_array($this->retention_policy, $durationPolicies, true)) {
+            if ($this->delete_interval === null) {
+                throw new \InvalidArgumentException(
+                    "DataExtension '{$this->name}': delete_interval is required for retention_policy {$this->retention_policy}."
+                );
+            }
+            if (empty($this->delete_interval_unit)) {
+                throw new \InvalidArgumentException(
+                    "DataExtension '{$this->name}': delete_interval_unit is required for retention_policy {$this->retention_policy}."
+                );
+            }
+            if (!DeleteIntervalUnit::isValid($this->delete_interval_unit)) {
+                throw new \InvalidArgumentException(
+                    "DataExtension '{$this->name}': unknown delete_interval_unit '{$this->delete_interval_unit}'."
+                );
+            }
+        }
+
+        foreach ($this->fields as $field) {
+            $field->validate();
+        }
     }
 }

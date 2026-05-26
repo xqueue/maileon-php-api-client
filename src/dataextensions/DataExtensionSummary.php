@@ -21,7 +21,7 @@ use de\xqueue\maileon\api\client\json\AbstractJSONWrapper;
  *   "id": 42,
  *   "name": "Newsletter subscribers",
  *   "description": "Active opt-in contacts",
- *   "retention_policy": "FOREVER",
+ *   "retention_policy": "NONE",
  *   "created_user": "admin@example.com",
  *   "created": "2024-01-15T08:00:00Z",
  *   "count_fields": 5,
@@ -54,8 +54,8 @@ class DataExtensionSummary extends AbstractJSONWrapper
     public ?string $description = null;
 
     /**
-     * Retention policy constant (e.g. "FOREVER", "DAYS_90").
-     * Determines how long records are kept before automatic deletion.
+     * Retention policy. See RetentionPolicy for valid values.
+     * NONE = stored permanently; other values trigger automatic deletion.
      *
      * @var string|null
      */

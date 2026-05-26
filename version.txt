@@ -1,2 +1,2 @@
-dist.version = 1.24.1
-dist.version.stable = 1.24.1
+dist.version = 1.25.1
+dist.version.stable = 1.25.1

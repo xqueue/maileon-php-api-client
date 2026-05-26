@@ -23,7 +23,7 @@ use de\xqueue\maileon\api\client\json\AbstractJSONWrapper;
  *   "description": "Primary contact email",
  *   "nullable": false,
  *   "unique_identifier": true,
- *   "data_type": "STRING",
+ *   "data_type": "contact_email",
  *   "default_value": null
  * }
  *
@@ -40,6 +40,9 @@ class DataExtensionField extends AbstractJSONWrapper
 
     /**
      * The field name used as the key in record objects.
+     *
+     * Must match the Maileon identifier pattern: [a-zA-Z][a-zA-Z0-9_]{0,38}[a-zA-Z0-9]
+     * (letters/digits/underscores only, starts with a letter, 2–40 chars, no hyphens).
      *
      * @var string|null
      */
@@ -69,8 +72,10 @@ class DataExtensionField extends AbstractJSONWrapper
     public ?bool $unique_identifier = null;
 
     /**
-     * The Maileon field data type constant.
-     * Known values include: STRING, INTEGER, FLOAT, BOOLEAN, DATE, TIMESTAMP.
+     * The Maileon field data type name (always lowercase).
+     * Common values: string, integer, double, float, boolean, date, timestamp,
+     * contact_email, contact_external_id, string10, string100, string512, …
+     * See FieldDataType for the full list of constants.
      *
      * @var string|null
      */
@@ -100,5 +105,18 @@ class DataExtensionField extends AbstractJSONWrapper
         }
 
         return $this->nullable === false && $this->default_value === null;
+    }
+
+    /**
+     * @throws \InvalidArgumentException if name or data_type is missing.
+     */
+    public function validate(): void
+    {
+        if (empty($this->name)) {
+            throw new \InvalidArgumentException('DataExtensionField: name is required.');
+        }
+        if (empty($this->data_type)) {
+            throw new \InvalidArgumentException("DataExtensionField '{$this->name}': data_type is required.");
+        }
     }
 }
