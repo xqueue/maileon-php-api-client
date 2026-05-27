@@ -9,6 +9,8 @@ use SimpleXMLElement;
 /**
  * This class represents a unique bounce containing the timestamp, the contact, and the ID of the mailing.
  *
+ * @deprecated The unique bounces API endpoint has been removed and returns 404. Use the Bounce class instead.
+ *
  * @author Marcus Beckerle | XQueue GmbH | <a href="mailto:marcus.beckerle@xqueue.com">marcus.beckerle@xqueue.com</a>
  */
 class UniqueBounce extends AbstractXMLWrapper

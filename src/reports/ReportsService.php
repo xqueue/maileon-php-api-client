@@ -1052,8 +1052,8 @@ class ReportsService extends AbstractMaileonService
     /**
      * Returns a page of unique bouncers.
      *
-     * @deprecated This resource has been marked as deprecated and should not be used anymore.
-     *             Please refer to "getBounces" to retrieve bounces.
+     * @deprecated This endpoint has been removed from the Maileon API and returns 404.
+     *             Use {@see getBounces()} instead.
      *
      * @param int   $fromDate                If provided, only the bouncers after the given date will be returned. The value of from_date
      *                                       must be a numeric value representing a point in time milliseconds after
@@ -1196,8 +1196,8 @@ class ReportsService extends AbstractMaileonService
     /**
      * Count unique bouncers.
      *
-     * @deprecated This resource has been marked as deprecated and should not be used anymore.
-     *             Please refer to "getBouncesCount" to retrieve bounces count.
+     * @deprecated This endpoint has been removed from the Maileon API and returns 404.
+     *             Use {@see getBouncesCount()} instead.
      *
      * @param int   $fromDate                If provided, only the bouncers after the given date will be returned. The value of from_date
      *                                       must be a numeric value representing a point in time milliseconds after
