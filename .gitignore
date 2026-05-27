@@ -1,5 +1,4 @@
 vendor/
-composer.lock
 level*errors.txt
 .buildpath
 .project
