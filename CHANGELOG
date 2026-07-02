@@ -1,3 +1,8 @@
+Date 2026-06-02
+Version 1.25.2
+- Added getTemplates(), getTemplate(), and getTemplateAsZip() media methods
+- Added syncTextVersion() mailing method
+
 Date 2026-05-26
 Version 1.25.1
 - Fixed synchronizeRecords to accept DataExtensionRecord[] instead of raw arrays

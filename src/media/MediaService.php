@@ -86,7 +86,7 @@ class MediaService extends AbstractMaileonService
     }
 
     /**
-     * Retrieves the article with the given ID.
+     * Retrieves the article content with the given ID in Zip.
      *
      * @param string $articleId The ID of the article.
      *
@@ -99,6 +99,63 @@ class MediaService extends AbstractMaileonService
 
         return $this->get(
             "media/articles/$encodedId/content",
+            [],
+            'application/zip'
+        );
+    }
+
+    /**
+     * Retrieves a list of templates from an account
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function getTemplates()
+    {
+        return $this->get(
+            'media/templates',
+            [],
+            'application/json',
+            array('array', Template::class)
+        );
+    }
+
+    /**
+     * Retrieves the template with the given ID.
+     *
+     * @param string $templateId The ID of the template.
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function getTemplate(string $templateId)
+    {
+        $encodedId = rawurlencode($templateId);
+
+        return $this->get(
+            "media/templates/$encodedId",
+            [],
+            'application/json',
+            Template::class
+        );
+    }
+
+    /**
+     * Retrieves the template content with the given ID in Zip.
+     *
+     * @param string $templateId The ID of the template.
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function getTemplateAsZip(string $templateId) {
+        $encodedId = rawurlencode($templateId);
+
+        return $this->get(
+            "media/templates/$encodedId/content",
             [],
             'application/zip'
         );

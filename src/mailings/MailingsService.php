@@ -2176,4 +2176,20 @@ class MailingsService extends AbstractMaileonService
             'application/json'
         );
     }
+
+    /**
+     * Sync the mailing text version
+     *
+     * @param string $mailingId The ID of the mailing to send now
+     *
+     * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
+     *
+     * @throws MaileonAPIException|Exception If there was a connection problem or a server error occurred
+     */
+    public function syncTextVersion(string $mailingId)
+    {
+        $encodedId = rawurlencode($mailingId);
+
+        return $this->post("mailings/$encodedId/contents/synctextversion");
+    }
 }
