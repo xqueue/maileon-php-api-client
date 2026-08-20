@@ -1,4 +1,8 @@
 Date 2026-08-20
+Version 1.25.4
+- Fixed Template missing mimetype property, causing "Undefined property: Template::$mimetype" during template hydration
+
+Date 2026-08-20
 Version 1.25.3
 - Fixed Template missing size property, causing "Undefined property: Template::$size" during template hydration
 
