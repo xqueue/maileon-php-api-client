@@ -1,4 +1,8 @@
 Date 2026-08-20
+Version 1.25.5
+- Fixed Article missing size and mimetype properties, causing "Undefined property: Article::$size"/"$mimetype" during article hydration (media/articles is backed by the same server-side model as media/templates)
+
+Date 2026-08-20
 Version 1.25.4
 - Fixed Template missing mimetype property, causing "Undefined property: Template::$mimetype" during template hydration
 
