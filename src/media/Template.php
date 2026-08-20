@@ -18,6 +18,9 @@ class Template extends AbstractJSONWrapper
     /** @var string|null */
     protected $created;
 
+    /** @var int|null */
+    protected $size;
+
     /** @var string[]|null */
     protected $tags = [];
 
@@ -39,6 +42,11 @@ class Template extends AbstractJSONWrapper
     public function getCreated()
     {
         return $this->created;
+    }
+
+    public function getSize()
+    {
+        return $this->size;
     }
 
     public function getTags()
