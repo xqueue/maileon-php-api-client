@@ -18,6 +18,12 @@ class Article extends AbstractJSONWrapper
     /** @var string|null */
     protected $created;
 
+    /** @var int|null */
+    protected $size;
+
+    /** @var string|null */
+    protected $mimetype;
+
     /** @var string[]|null */
     protected $tags = [];
 
@@ -39,6 +45,16 @@ class Article extends AbstractJSONWrapper
     public function getCreated()
     {
         return $this->created;
+    }
+
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    public function getMimetype()
+    {
+        return $this->mimetype;
     }
 
     public function getTags()
