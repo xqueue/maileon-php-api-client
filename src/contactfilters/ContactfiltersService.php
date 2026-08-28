@@ -3,6 +3,7 @@
 namespace de\xqueue\maileon\api\client\contactfilters;
 
 use de\xqueue\maileon\api\client\AbstractMaileonService;
+use de\xqueue\maileon\api\client\json\JSONSerializer;
 use de\xqueue\maileon\api\client\MaileonAPIException;
 use de\xqueue\maileon\api\client\MaileonAPIResult;
 use Exception;
@@ -94,9 +95,11 @@ class ContactfiltersService extends AbstractMaileonService
     /**
      * Creates a simple contact filter.
      *
-     * @param ContactFilter    $newFilterObject   The data for the filter
-     * @param bool             $createTargetGroup if true, also a target group will be created and the ID will be returned
-     * @param int|float|string $version           version identifier to use different versions of the created target group resource
+     * @param ContactFilter|ContactFilterV2 $newFilterObject   The data for the filter. Must be a ContactFilter instance when
+     *                                                          $version is 1.0 (XML), or a ContactFilterV2 instance when $version
+     *                                                          is 2.0 (JSON).
+     * @param bool                          $createTargetGroup if true, also a target group will be created and the ID will be returned
+     * @param int|float|string              $version           version identifier to use different versions of the created target group resource
      *
      * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
      *
@@ -122,7 +125,7 @@ class ContactfiltersService extends AbstractMaileonService
 
             return $this->post(
                 'contactfilters/v2',
-                $newFilterObject,
+                JSONSerializer::json_encode($newFilterObject),
                 $queryParameters,
                 'application/json'
             );
@@ -152,7 +155,7 @@ class ContactfiltersService extends AbstractMaileonService
      * contacts matched by the contact filter is recomputed.
      *
      * @param int $contactFilterId The ID of the contact filter to refresh
-     * @param     $time            A timestamp for the request. If the contact filter was updated after the given timestamp, the refresh is
+     * @param int $time            A timestamp for the request. If the contact filter was updated after the given timestamp, the refresh is
      *                             not performed. The default value will force the refresh to always be performed.
      *
      * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
