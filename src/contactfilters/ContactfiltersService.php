@@ -8,6 +8,7 @@ use de\xqueue\maileon\api\client\MaileonAPIException;
 use de\xqueue\maileon\api\client\MaileonAPIResult;
 use Exception;
 
+use function is_string;
 use function mb_convert_encoding;
 use function rawurlencode;
 
@@ -95,11 +96,11 @@ class ContactfiltersService extends AbstractMaileonService
     /**
      * Creates a simple contact filter.
      *
-     * @param ContactFilter|ContactFilterV2 $newFilterObject   The data for the filter. Must be a ContactFilter instance when
-     *                                                          $version is 1.0 (XML), or a ContactFilterV2 instance when $version
-     *                                                          is 2.0 (JSON).
-     * @param bool                          $createTargetGroup if true, also a target group will be created and the ID will be returned
-     * @param int|float|string              $version           version identifier to use different versions of the created target group resource
+     * @param ContactFilter|ContactFilterV2|string $newFilterObject   The data for the filter. Must be a ContactFilter instance when
+     *                                                                $version is 1.0 (XML), or a ContactFilterV2 instance when $version
+     *                                                                is 2.0 (JSON).
+     * @param bool                                 $createTargetGroup if true, also a target group will be created and the ID will be returned
+     * @param int|float|string                     $version           version identifier to use different versions of the created target group resource
      *
      * @return MaileonAPIResult|null The result object of the API call, internal result object available at MaileonAPIResult::getResult()
      *
@@ -115,7 +116,9 @@ class ContactfiltersService extends AbstractMaileonService
 
             return $this->put(
                 'contactfilters/contactfilter',
-                $newFilterObject->toXMLString(),
+                is_string($newFilterObject)
+                    ? $newFilterObject
+                    : $newFilterObject->toXMLString(),
                 $queryParameters
             );
         }
@@ -125,7 +128,9 @@ class ContactfiltersService extends AbstractMaileonService
 
             return $this->post(
                 'contactfilters/v2',
-                JSONSerializer::json_encode($newFilterObject),
+                is_string($newFilterObject)
+                    ? $newFilterObject
+                    : JSONSerializer::json_encode($newFilterObject),
                 $queryParameters,
                 'application/json'
             );
